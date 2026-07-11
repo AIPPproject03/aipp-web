@@ -1375,8 +1375,91 @@ window.setLanguage = function (lang) {
   renderAthletics();
 };
 
+function updateActiveNavOnScroll() {
+  const sections = ["foundation", "stack", "projects", "athletics", "impact"];
+  const navLinks = document.querySelectorAll(".mobile-nav-link");
+  if (!navLinks.length) return;
+
+  let currentSectionId = "";
+  // Check the section occupying the top third of the viewport
+  const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+  sections.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.offsetTop;
+      const height = el.offsetHeight;
+      if (scrollPosition >= top && scrollPosition < top + height) {
+        currentSectionId = id;
+      }
+    }
+  });
+
+  // Force active state for the final section when scrolled to the very bottom
+  if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 80) {
+    currentSectionId = "impact";
+  }
+
+  if (currentSectionId) {
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href").substring(1);
+      if (href === currentSectionId) {
+        if (!link.classList.contains("active")) {
+          link.classList.add("active");
+          const icon = link.querySelector("iconify-icon");
+          if (icon) {
+            gsap.fromTo(icon,
+              { scale: 0.7, y: 0 },
+              { scale: 1.15, y: -3, duration: 0.45, ease: "back.out(2.2)" }
+            );
+          }
+        }
+      } else {
+        if (link.classList.contains("active")) {
+          link.classList.remove("active");
+          const icon = link.querySelector("iconify-icon");
+          if (icon) {
+            gsap.to(icon, { scale: 1, y: 0, duration: 0.3, ease: "power2.out" });
+          }
+        }
+      }
+    });
+  }
+}
+
+function setupMobileActiveNav() {
+  const navLinks = document.querySelectorAll(".mobile-nav-link");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const icon = link.querySelector("iconify-icon");
+      if (icon) {
+        gsap.fromTo(icon,
+          { scale: 0.6, y: 0 },
+          { scale: 1.25, y: -5, duration: 0.4, ease: "back.out(2.5)" }
+        );
+      }
+    });
+  });
+
+  let ticking = false;
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveNavOnScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  updateActiveNavOnScroll();
+}
+
 function init() {
   window.setLanguage(window.currentLang);
+  setupMobileActiveNav();
   setupTypingEffect();
   setupTabs();
   setupFilters();

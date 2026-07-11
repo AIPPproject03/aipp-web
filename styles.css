@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 /* Custom scrollbar */
@@ -1002,6 +1003,62 @@ footer {
   #lightbox-next {
     right: 0.5rem;
   }
+}
+
+/* Mobile Navigation Link Custom Styling */
+.mobile-nav-link {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.25s ease, opacity 0.25s ease;
+  opacity: 0.55;
+  color: #ffffff;
+}
+
+.mobile-nav-link iconify-icon {
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.25s ease;
+}
+
+/* Micro-dot active indicator */
+.mobile-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 4px;
+  height: 4px;
+  background-color: #06B6D4;
+  border-radius: 0px;
+  box-shadow: 0 0 6px #06B6D4;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mobile-nav-link:hover {
+  opacity: 0.9;
+  color: #22D3EE;
+}
+
+.mobile-nav-link:hover iconify-icon {
+  transform: translateY(-1px);
+}
+
+/* Active State Styles */
+.mobile-nav-link.active {
+  opacity: 1;
+  color: #22D3EE !important;
+}
+
+.mobile-nav-link.active iconify-icon {
+  transform: translateY(-3px) scale(1.15);
+  color: #22D3EE !important;
+}
+
+.mobile-nav-link.active::after {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Tactile Spring Press Effect */
+.mobile-nav-link:active {
+  transform: scale(0.88);
 }
 
 
