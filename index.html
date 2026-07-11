@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Agustinus Irwin Putra Pangesti - Informatics Engineer, Web3 & AI Developer, and Elite Badminton Athlete portfolio." />
+    <title>Agustinus Irwin Putra Pangesti | Symphony of Mind, Muscle, and Code</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slateInk: '#0F172A',
+                        cyanNeon: '#06B6D4',
+                        gold: {
+                            100: '#FEF3C7',
+                            200: '#FCD34D',
+                            400: '#D97706',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        halo: '0 0 0 1px rgba(6,182,212,.2), 0 20px 80px rgba(2,132,199,.18)',
+                    },
+                },
+            },
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-slateInk text-slate-100 antialiased selection:bg-cyan-400/30 selection:text-white">
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="custom-cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="noise-layer"></div>
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-gold"></div>
+    <div class="orb orb-slate"></div>
+
+    <header class="sticky top-0 z-50 border-b border-white/5 bg-slateInk/75 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+            <a href="#hero" class="group flex items-center gap-3">
+                <span
+                    class="flex h-10 w-10 items-center justify-center rounded-2xl border border-cyan-400/30 bg-cyan-400/10 text-sm font-black text-cyan-300 shadow-halo">
+                    AI
+                </span>
+                <div>
+                    <p class="text-sm font-semibold tracking-[0.3em] text-white/80">AIPP PROTOCOL</p>
+                    <p class="text-xs uppercase tracking-[0.4em] text-white/45">Mind, Muscle, Code</p>
+                </div>
+            </a>
+
+            <nav class="hidden items-center gap-8 text-sm text-white/70 md:flex">
+                <a class="nav-link" href="#foundation">Foundation</a>
+                <a class="nav-link" href="#stack">Stack</a>
+                <a class="nav-link" href="#projects">Projects</a>
+                <a class="nav-link" href="#athletics">Athletics</a>
+                <a class="nav-link" href="#impact">Impact</a>
+            </nav>
+
+            <a href="https://github.com/AIPPproject03" target="_blank" rel="noreferrer"
+                class="hidden rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:-translate-y-0.5 hover:bg-cyan-400/20 sm:inline-flex">
+                GitHub Portfolio
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="relative overflow-hidden">
+            <div
+                class="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:py-24">
+                <div class="reveal space-y-8">
+                    <div data-hero-badge
+                        class="inline-flex items-center gap-3 rounded-full border border-cyan-400/20 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/90">
+                        The Symphony of Mind, Muscle, and Code
+                    </div>
+
+                    <div class="space-y-5">
+                        <p data-hero-kicker class="text-sm font-semibold uppercase tracking-[0.5em] text-white/55">
+                            Personal Portfolio</p>
+                        <h1 data-hero-title
+                            class="max-w-4xl text-4xl font-black leading-[0.95] tracking-[-0.04em] text-white sm:text-5xl md:text-7xl">
+                            AGUSTINUS IRWIN PUTRA PANGESTI
+                        </h1>
+                        <p data-hero-subtitle class="max-w-3xl text-lg leading-8 text-white/72 sm:text-xl">
+                            Informatics Engineer | <span class="typing-wrap"><span id="typing-role"
+                                    class="typing-role"></span><span class="typing-caret">|</span></span> | Elite
+                            Badminton Athlete
+                        </p>
+                        <p data-hero-summary class="max-w-3xl text-base leading-8 text-white/65 sm:text-lg">
+                            A dynamic combination of superior cognitive capacity, relentless physical discipline, and
+                            deep engineering execution. I specialize in building decentralized Web3 applications and
+                            automated quantitative systems from the ground up.
+                        </p>
+                    </div>
+
+                    <div class="storyline-strip">
+                        <div class="story-node">
+                            <p class="story-step">01</p>
+                            <p class="story-title">Academics</p>
+                            <p class="story-copy">Structured learning, strong GPA, and analytical depth.</p>
+                        </div>
+                        <div class="story-arrow">→</div>
+                        <div class="story-node">
+                            <p class="story-step">02</p>
+                            <p class="story-title">Engineering</p>
+                            <p class="story-copy">Web3, AI, and secure client-side execution.</p>
+                        </div>
+                        <div class="story-arrow">→</div>
+                        <div class="story-node">
+                            <p class="story-step">03</p>
+                            <p class="story-title">Athletics</p>
+                            <p class="story-copy">National badminton discipline translated into performance.</p>
+                        </div>
+                    </div>
+
+                    <div data-hero-actions class="flex flex-col gap-4 sm:flex-row">
+                        <a href="#foundation" class="btn-primary">Explore My Journey</a>
+                        <a href="https://github.com/AIPPproject03" target="_blank" rel="noreferrer"
+                            class="btn-secondary">View GitHub Portfolio</a>
+                    </div>
+
+                    <div data-hero-stats class="grid gap-4 sm:grid-cols-3">
+                        <article class="metric-card reveal-delay-1">
+                            <p class="metric-label">Cognitive Tier</p>
+                            <p class="metric-value">IQ 121</p>
+                            <p class="metric-note">Superior category</p>
+                        </article>
+                        <article class="metric-card reveal-delay-2">
+                            <p class="metric-label">Academic GPA</p>
+                            <p class="metric-value">3.85/4.00</p>
+                            <p class="metric-note">S1 Informatika</p>
+                        </article>
+                        <article class="metric-card reveal-delay-3">
+                            <p class="metric-label">Athletic Level</p>
+                            <p class="metric-value">National</p>
+                            <p class="metric-note">Elite badminton</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="reveal space-y-8">
+                    <!-- Profile Image Card -->
+                    <div
+                        class="glass-panel p-3 overflow-hidden rounded-[2.5rem] aspect-[4/5] sm:aspect-square md:aspect-[4/5] max-h-[460px] flex items-center justify-center relative group">
+                        <!-- High-tech HUD diagnostic lines -->
+                        <div
+                            class="absolute top-4 left-5 font-mono text-[9px] text-cyan-400/60 uppercase tracking-[0.2em] z-20">
+                            SYSTEM: ONLINE</div>
+                        <div
+                            class="absolute top-4 right-5 font-mono text-[9px] text-gold-400/60 uppercase tracking-[0.2em] z-20">
+                            AIPP_PROTOCOL_V3.0</div>
+                        <div class="absolute bottom-4 left-5 font-mono text-[9px] text-white/30 tracking-[0.2em] z-20">
+                            LATENCY: 12ms</div>
+                        <div
+                            class="absolute bottom-4 right-5 font-mono text-[9px] text-cyan-400/60 tracking-[0.2em] z-20">
+                            SECURE_ENV: TRUE</div>
+
+                        <!-- Neon Corner Accents -->
+                        <div class="absolute top-3 left-4 w-4 h-4 border-t-2 border-l-2 border-cyan-400/50 z-20"></div>
+                        <div class="absolute top-3 right-4 w-4 h-4 border-t-2 border-r-2 border-cyan-400/50 z-20"></div>
+                        <div class="absolute bottom-3 left-4 w-4 h-4 border-b-2 border-l-2 border-cyan-400/50 z-20">
+                        </div>
+                        <div class="absolute bottom-3 right-4 w-4 h-4 border-b-2 border-r-2 border-cyan-400/50 z-20">
+                        </div>
+
+                        <!-- Profile Image -->
+                        <img src="img/aipp-hero.png" alt="Agustinus Irwin Putra Pangesti"
+                            class="w-full h-full object-cover rounded-[2rem] transition-transform duration-[750ms] group-hover:scale-103 filter saturate-[0.98] contrast-[1.01] z-10">
+
+                        <!-- Ambient lighting gradient mask -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slateInk/80 via-transparent to-transparent pointer-events-none z-15">
+                        </div>
+                    </div>
+
+                    <!-- Live Profile Signal Dashboard -->
+                    <div data-hero-panel class="hero-panel glass-panel p-6 sm:p-8">
+                        <div class="flex flex-wrap items-start justify-between gap-4 border-b border-white/10 pb-5">
+                            <div class="space-y-2">
+                                <p class="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-200/80">Live
+                                    Profile Signal</p>
+                                <h2 class="text-2xl font-bold text-white sm:text-3xl">Cognitive, Athletic, Engineering
+                                </h2>
+                            </div>
+                            <span
+                                class="rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-200">Superior</span>
+                        </div>
+
+                        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                            <div class="glass-inner p-4">
+                                <p class="text-xs uppercase tracking-[0.35em] text-white/40">Core Identity</p>
+                                <p class="mt-2 text-lg font-semibold text-white">Engineer / Athlete / Builder</p>
+                                <p class="mt-2 text-sm leading-7 text-white/65">Balancing rigorous academics, code
+                                    architecture, and competition-grade physical discipline.</p>
+                            </div>
+                            <div class="glass-inner p-4">
+                                <p class="text-xs uppercase tracking-[0.35em] text-white/40">Operating Mode</p>
+                                <p class="mt-2 text-lg font-semibold text-white">Client-side First</p>
+                                <p class="mt-2 text-sm leading-7 text-white/65">Security-minded Web3 systems,
+                                    quantitative strategy design, and practical machine intelligence.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 grid gap-4 sm:grid-cols-3">
+                            <div class="stack-chip">Vanilla JS</div>
+                            <div class="stack-chip">Web3</div>
+                            <div class="stack-chip">AI</div>
+                        </div>
+
+                        <div class="mt-6 rounded-3xl border border-white/10 bg-slate-950/35 p-5">
+                            <div class="flex items-center justify-between gap-4">
+                                <p class="text-sm font-semibold text-white/70">Discipline Index</p>
+                                <p class="font-mono text-sm text-cyan-200">92%</p>
+                            </div>
+                            <div class="mt-3 h-2 rounded-full bg-white/8">
+                                <div
+                                    class="h-2 w-[92%] rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-gold-400">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                            <div class="mini-ribbon">
+                                <p class="mini-label">Focus</p>
+                                <p class="mini-value">Decentralized systems</p>
+                            </div>
+                            <div class="mini-ribbon mini-ribbon-gold">
+                                <p class="mini-label">Edge</p>
+                                <p class="mini-value">Tournament resilience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="foundation" class="section-shell">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="reveal max-w-3xl space-y-4">
+                    <p class="section-kicker">Section A</p>
+                    <h2 class="section-title">The Cognitive Foundation</h2>
+                    <p class="section-copy">
+                        A profile built on academic structure, psychometric strength, social integrity, and multilingual
+                        adaptability.
+                    </p>
+                </div>
+
+                <div class="mt-10 grid gap-6 lg:grid-cols-[1.08fr_.92fr]">
+                    <article class="reveal glass-panel p-6 sm:p-8">
+                        <div class="flex items-center justify-between gap-4">
+                            <div>
+                                <p class="text-xs uppercase tracking-[0.4em] text-cyan-200/70">Psychogram & Academics
+                                </p>
+                                <h3 class="mt-2 text-2xl font-bold text-white">Structured Intelligence Dashboard</h3>
+                            </div>
+                            <span
+                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/65">Certified
+                                Source</span>
+                        </div>
+                        <div id="foundation-grid" class="mt-6 grid gap-4 md:grid-cols-2"></div>
+                    </article>
+
+                    <aside class="reveal glass-panel p-6 sm:p-8">
+                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80">Language Map</p>
+                        <h3 class="mt-2 text-2xl font-bold text-white">Multilingual Presence</h3>
+                        <div id="language-list" class="mt-6 space-y-4"></div>
+                        <div class="mt-8 rounded-3xl border border-cyan-400/15 bg-cyan-400/8 p-5">
+                            <p class="text-sm font-semibold text-cyan-100">Interpretive Strengths</p>
+                            <div class="mt-4 grid gap-3 text-sm text-white/72">
+                                <div class="flex items-center justify-between gap-3 rounded-2xl bg-white/5 px-4 py-3">
+                                    <span>High concept comprehension</span><span
+                                        class="font-mono text-cyan-200">NEW</span>
+                                </div>
+                                <div class="flex items-center justify-between gap-3 rounded-2xl bg-white/5 px-4 py-3">
+                                    <span>Extreme consistency in attitude</span><span
+                                        class="font-mono text-gold-200">LOCKED</span>
+                                </div>
+                                <div class="flex items-center justify-between gap-3 rounded-2xl bg-white/5 px-4 py-3">
+                                    <span>High integrity</span><span class="font-mono text-white/80">TRUSTED</span>
+                                </div>
+                                <div class="flex items-center justify-between gap-3 rounded-2xl bg-white/5 px-4 py-3">
+                                    <span>Excellent group synergy</span><span
+                                        class="font-mono text-cyan-200">TEAM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="stack" class="section-shell">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="reveal max-w-3xl space-y-4">
+                    <p class="section-kicker">Section B</p>
+                    <h2 class="section-title">Core Tech Stack & Engineering Skills</h2>
+                    <p class="section-copy">A practical stack spanning front-end foundations, secure back-end systems,
+                        Web3 primitives, quantitative trading, and applied machine learning.</p>
+                </div>
+
+                <div id="stack-stage" class="stack-stage mt-10 grid gap-6 xl:grid-cols-[1.12fr_.88fr]">
+                    <div class="space-y-6">
+                        <div
+                            class="rounded-[2rem] border border-white/10 bg-white/5 p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
+                            <div id="stack-tabs" class="grid gap-2 md:grid-cols-4"></div>
+                        </div>
+
+                        <div id="stack-panel" class="grid gap-4 md:grid-cols-2 xl:grid-cols-4"></div>
+                    </div>
+
+                    <aside class="tech-spotlight glass-panel p-6 sm:p-8">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-[0.45em] text-cyan-200/70">Tech
+                                    Constellation</p>
+                                <h3 id="tech-title" class="mt-2 text-2xl font-bold text-white">Front-End Instruments
+                                </h3>
+                            </div>
+                            <span
+                                class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100">Live</span>
+                        </div>
+
+                        <p id="tech-copy" class="mt-4 text-sm leading-8 text-white/68">
+                            The primary tools I use to shape interfaces, interactions, and production-ready digital
+                            experiences.
+                        </p>
+
+                        <div id="tech-grid" class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3"></div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section-shell">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="reveal max-w-3xl space-y-4">
+                    <p class="section-kicker">Section C</p>
+                    <h2 class="section-title">The Revolutionary Portfolio</h2>
+                    <p class="section-copy">Five initiatives that blend security, civic impact, education, AI, and
+                        research into a coherent body of work.</p>
+                </div>
+
+                <div class="mt-10 flex flex-wrap gap-3" id="project-filters"></div>
+                <div id="project-grid" class="mt-6 grid gap-6 lg:grid-cols-2"></div>
+            </div>
+        </section>
+
+        <section id="athletics" class="section-shell">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="reveal max-w-3xl space-y-4">
+                    <p class="section-kicker">Section D</p>
+                    <h2 class="section-title">The Athletic Legacy & Discipline</h2>
+                    <p class="section-copy">Competitive badminton sharpened the same traits demanded by engineering:
+                        pacing, recovery, execution under pressure, and repeatable discipline.</p>
+                </div>
+
+                <div class="mt-10 grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
+                    <article class="reveal glass-panel p-6 sm:p-8">
+                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80">Persona</p>
+                        <h3 class="mt-2 text-2xl font-bold text-white">Elite National Badminton Athlete</h3>
+                        <div class="mt-6 space-y-4">
+                            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                <p class="text-sm font-semibold text-white">Lifestyle Philosophy</p>
+                                <p class="mt-2 text-sm leading-7 text-white/65">Daily calisthenics, hybrid training, and
+                                    a systematic long-term investor mindset with DCA for Bitcoin.</p>
+                            </div>
+                            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                <p class="text-sm font-semibold text-white">Physical Target</p>
+                                <p class="mt-2 text-sm leading-7 text-white/65">Maintaining 62 kg lean muscle mass with
+                                    disciplined composition, mobility, and conditioning cycles.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="reveal glass-panel p-6 sm:p-8">
+                        <p class="text-xs uppercase tracking-[0.4em] text-cyan-200/80">Competitive Timeline</p>
+                        <div class="relative mt-6">
+                            <div class="timeline-svg-container">
+                                <svg width="100%" height="100%" viewBox="0 0 2 100" preserveAspectRatio="none"
+                                    fill="none">
+                                    <defs>
+                                        <linearGradient id="timeline-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#06B6D4" />
+                                            <stop offset="100%" stop-color="#F59E0B" />
+                                        </linearGradient>
+                                    </defs>
+                                    <line x1="1" y1="0" x2="1" y2="100" class="timeline-svg-line"
+                                        vector-effect="non-scaling-stroke"></line>
+                                    <path id="timeline-path" d="M 1 0 L 1 100" class="timeline-svg-progress"
+                                        vector-effect="non-scaling-stroke" fill="none"></path>
+                                </svg>
+                            </div>
+                            <div id="athletic-timeline" class="space-y-6"></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="section-shell pb-24">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="reveal max-w-3xl space-y-4">
+                    <p class="section-kicker">Section E</p>
+                    <h2 class="section-title">Impact & Community Leadership</h2>
+                    <p class="section-copy">The same operational rigor used in projects and sports was applied to
+                        community service, digital adoption, and village-level execution.
+                    </p>
+                </div>
+
+                <div class="mt-10 grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
+                    <article class="reveal glass-panel p-6 sm:p-8">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span
+                                class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100">KKN
+                                204</span>
+                            <span
+                                class="rounded-full border border-gold-400/20 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-100">TAMPA
+                                BERAKSI</span>
+                            <span
+                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/65">July
+                                - August 2025</span>
+                        </div>
+                        <h3 class="mt-5 text-2xl font-bold text-white">Leader of Community Service Program</h3>
+                        <p class="mt-4 text-sm leading-8 text-white/68">
+                            Led a multidisciplinary team of 15 students in Desa Tampa, Barito Timur. Built and deployed
+                            the official village portal, mapped digital borders, and engineered digital marketing
+                            systems for the local Kingkong Tampa cassava chip cooperative, increasing community
+                            engagement by more than 75%.
+                        </p>
+                        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                <p class="text-sm font-semibold text-white">Village Portal</p>
+                                <p class="mt-2 text-sm text-white/65">desatampa.netlify.app</p>
+                            </div>
+                            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                <p class="text-sm font-semibold text-white">Publication</p>
+                                <p class="mt-2 text-sm text-white/65">TAMPA BERAKSI academic report</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <aside class="reveal glass-panel p-6 sm:p-8">
+                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80">Academic Publication</p>
+                        <blockquote class="mt-4 border-l-2 border-cyan-400/40 pl-5 text-lg leading-8 text-white/80">
+                            “TAMPA BERAKSI: Penguatan Pendidikan, Kesehatan, dan Lingkungan Melalui Kuliah Kerja Nyata
+                            Universitas Palangka Raya di Desa Tampa”
+                        </blockquote>
+                        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                            <div class="stat-card">
+                                <p class="stat-value">15</p>
+                                <p class="stat-label">Students led</p>
+                            </div>
+                            <div class="stat-card">
+                                <p class="stat-value">75%+</p>
+                                <p class="stat-label">Engagement lift</p>
+                            </div>
+                            <div class="stat-card">
+                                <p class="stat-value">1</p>
+                                <p class="stat-label">Village portal</p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-black/25">
+        <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+            <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.45em] text-white/45">Contact</p>
+                    <h2 class="mt-3 text-2xl font-bold text-white">Build, compete, and create with precision.</h2>
+                </div>
+                <div class="flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap">
+                    <a class="footer-link" href="mailto:aippirwin@gmail.com">aippirwin@gmail.com</a>
+                    <a class="footer-link" href="https://github.com/AIPPproject03" target="_blank"
+                        rel="noreferrer">github.com/AIPPproject03</a>
+                    <a class="footer-link" href="https://www.linkedin.com/in/" target="_blank"
+                        rel="noreferrer">LinkedIn</a>
+                </div>
+            </div>
+            <p class="mt-8 text-xs uppercase tracking-[0.4em] text-white/35">© <span id="year"></span> Agustinus Irwin
+                Putra Pangesti</p>
+        </div>
+    </footer>
+
+    <!-- Image Lightbox Modal -->
+    <div id="lightbox-modal"
+        class="fixed inset-0 z-[10000] bg-slate-950/95 backdrop-blur-md flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <button id="lightbox-close"
+            class="absolute top-6 right-6 w-12 h-12 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001]"
+            type="button">
+            <iconify-icon icon="mdi:close"></iconify-icon>
+        </button>
+        <div class="max-w-5xl max-h-[80vh] px-4 flex items-center justify-center relative">
+            <img id="lightbox-img" src="" alt="Storytelling detail"
+                class="max-w-full max-h-[80vh] object-contain rounded-2xl border border-white/5 shadow-2xl scale-95 transition-transform duration-300">
+
+            <button id="lightbox-prev"
+                class="absolute -left-4 sm:left-6 w-12 h-12 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001] hidden"
+                type="button">
+                <iconify-icon icon="mdi:chevron-left"></iconify-icon>
+            </button>
+            <button id="lightbox-next"
+                class="absolute -right-4 sm:right-6 w-12 h-12 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001] hidden"
+                type="button">
+                <iconify-icon icon="mdi:chevron-right"></iconify-icon>
+            </button>
+        </div>
+        <p id="lightbox-caption"
+            class="mt-6 text-sm font-semibold tracking-wider text-cyan-200 uppercase text-center max-w-xl px-4"></p>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
