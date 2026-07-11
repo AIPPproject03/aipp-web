@@ -431,18 +431,20 @@ function setupGsapAnimations() {
 
     driftCycle();
 
-    window.addEventListener("mousemove", (e) => {
-      const shiftX = (e.clientX - window.innerWidth / 2) * -0.015;
-      const shiftY = (e.clientY - window.innerHeight / 2) * -0.015;
+    if (window.matchMedia("(pointer: fine)").matches) {
+      window.addEventListener("mousemove", (e) => {
+        const shiftX = (e.clientX - window.innerWidth / 2) * -0.015;
+        const shiftY = (e.clientY - window.innerHeight / 2) * -0.015;
 
-      gsap.to(orb, {
-        xPercent: shiftX,
-        yPercent: shiftY,
-        duration: 2.5,
-        ease: "power2.out",
-        overwrite: "auto",
+        gsap.to(orb, {
+          xPercent: shiftX,
+          yPercent: shiftY,
+          duration: 2.5,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
       });
-    });
+    }
   }
 
   animateOrbDrift(".orb-cyan", 15);
@@ -488,25 +490,48 @@ function setupGsapAnimations() {
 
   if (scrollTrigger) {
     // Scroll trigger batches for card entry
-    scrollTrigger.batch(
-      ".glass-panel, .foundation-card, .skill-card, .project-card, .stat-card, .metric-card",
-      {
-        start: "top 90%",
-        once: true,
-        onEnter: (batch) =>
-          gsap.fromTo(
-            batch,
-            { y: 32, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.75,
-              ease: "power3.out",
-              stagger: 0.06,
-            },
-          ),
-      },
-    );
+    if (window.innerWidth >= 768) {
+      scrollTrigger.batch(
+        ".glass-panel, .foundation-card, .skill-card, .project-card, .stat-card, .metric-card",
+        {
+          start: "top 90%",
+          once: true,
+          onEnter: (batch) =>
+            gsap.fromTo(
+              batch,
+              { y: 32, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.75,
+                ease: "power3.out",
+                stagger: 0.06,
+              },
+            ),
+        },
+      );
+    } else {
+      // Simplified reveal for mobile view to prevent layout lag on scroll
+      scrollTrigger.batch(
+        ".glass-panel, .foundation-card, .skill-card, .project-card, .stat-card, .metric-card",
+        {
+          start: "top 95%",
+          once: true,
+          onEnter: (batch) =>
+            gsap.fromTo(
+              batch,
+              { y: 15, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.45,
+                ease: "power2.out",
+                overwrite: "auto",
+              },
+            ),
+        },
+      );
+    }
 
     // Pinned Stack section
     const matchMedia = gsap.matchMedia();
@@ -553,7 +578,7 @@ function setupGsapAnimations() {
     });
 
     // Discipline index fill & value text count up
-    const dispVal = document.querySelector('.hero-panel p.font-mono');
+    const dispVal = document.querySelector('.hero-panel p.font-pixel');
     const dispBar = document.querySelector('.hero-panel .mt-3 div > div');
     if (dispVal && dispBar) {
       gsap.set(dispBar, { width: "0%" });
@@ -614,6 +639,7 @@ function setupGsapAnimations() {
 
 function setupCursorGlow() {
   if (!window.gsap) return;
+  if (!window.matchMedia("(pointer: fine)").matches) return;
 
   const cursor = document.querySelector(".custom-cursor");
   const cursorDot = document.querySelector(".custom-cursor-dot");
@@ -705,6 +731,7 @@ function setupCursorGlow() {
 
 function setupMagneticInteractions() {
   if (!window.gsap) return;
+  if (!window.matchMedia("(pointer: fine)").matches) return;
 
   document
     .querySelectorAll(
@@ -740,6 +767,7 @@ function setupMagneticInteractions() {
 function setupCardTilt() {
   if (!window.gsap) return;
   if (window.innerWidth < 768) return;
+  if (!window.matchMedia("(pointer: fine)").matches) return;
 
   const cards = document.querySelectorAll(".project-card, .glass-panel, .foundation-card, .metric-card");
   cards.forEach((card) => {
@@ -1000,28 +1028,28 @@ function executeRenderProjects(activeKey) {
           <div class="relative z-10 space-y-5">
             ${project.images && project.images.length > 0 ? `
               <!-- Project storytelling photo slider -->
-              <div class="project-carousel relative overflow-hidden rounded-2xl w-full h-[220px] mb-5 bg-slate-950/40 border border-white/5 group-carousel">
+              <div class="project-carousel relative overflow-hidden rounded w-full h-[220px] mb-5 bg-slate-950/40 border border-white/5 group-carousel">
                 <div class="project-slides flex transition-transform duration-500 w-full h-full" id="slides-${project.id}">
                   ${project.images.map(img => `
                     <div class="w-full h-full flex-shrink-0 relative cursor-zoom-in group">
                       <img src="${img}" alt="${project.title}" class="w-full h-full object-cover select-none transition-transform duration-[600ms] group-hover:scale-[1.02]" onclick="window.openLightbox('${img}', '${project.label} - ${project.title}', '${project.id}')">
                       <!-- High tech diagnostic label overlay -->
-                      <div class="absolute bottom-3 left-3 bg-slateInk/85 backdrop-blur-md border border-cyan-400/20 px-2 py-0.5 rounded text-[8px] font-mono text-cyan-300 uppercase tracking-widest pointer-events-none z-10">
+                      <div class="absolute bottom-3 left-3 bg-slateInk/85 backdrop-blur-md border border-cyan-400/25 px-2 py-0.5 rounded-none text-[6.5px] sm:text-[7.5px] font-pixel text-cyan-300 uppercase tracking-widest pointer-events-none z-10">
                         DIAGNOSTIC: SUCCESS
                       </div>
                     </div>
                   `).join('')}
                 </div>
                 ${project.images.length > 1 ? `
-                  <button type="button" class="carousel-nav prev-btn absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', -1, event)">
-                    <iconify-icon icon="mdi:chevron-left" class="text-lg"></iconify-icon>
+                  <button type="button" class="carousel-nav prev-btn absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', -1, event)">
+                    <iconify-icon icon="mdi:chevron-left" class="text-base"></iconify-icon>
                   </button>
-                  <button type="button" class="carousel-nav next-btn absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', 1, event)">
-                    <iconify-icon icon="mdi:chevron-right" class="text-lg"></iconify-icon>
+                  <button type="button" class="carousel-nav next-btn absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', 1, event)">
+                    <iconify-icon icon="mdi:chevron-right" class="text-base"></iconify-icon>
                   </button>
                   <div class="carousel-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
                     ${project.images.map((_, idx) => `
-                      <span class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300 ${idx === 0 ? 'bg-cyan-400 w-3' : ''}" onclick="window.setSlide('${project.id}', ${idx}, event)"></span>
+                      <span class="carousel-dot w-1.5 h-1.5 rounded-none bg-white/20 transition-all duration-300 ${idx === 0 ? 'bg-cyan-400 w-3.5' : ''}" onclick="window.setSlide('${project.id}', ${idx}, event)"></span>
                     `).join('')}
                   </div>
                 ` : ''}
@@ -1062,20 +1090,20 @@ function executeRenderProjects(activeKey) {
               
               ${project.story ? `
                 <div id="story-content-${project.id}" class="mt-4 hidden overflow-hidden text-xs leading-6 text-white/70 space-y-4 font-normal">
-                  <div class="rounded-xl bg-white/5 border border-white/5 p-3.5 space-y-3.5 backdrop-blur-md">
+                  <div class="rounded bg-white/5 border border-white/5 p-3.5 space-y-3.5 backdrop-blur-md">
                     <div>
                       <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">Latar Belakang</p>
-                      <p class="text-white/60 leading-relaxed text-justify">${project.story.background}</p>
+                      <p class="text-white/60 leading-relaxed text-left sm:text-justify">${project.story.background}</p>
                     </div>
                     <div>
                       <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">Tujuan Utama</p>
-                      <ul class="list-disc list-inside space-y-1.5 text-white/60 leading-relaxed text-justify pl-1">
+                      <ul class="list-disc list-inside space-y-1.5 text-white/60 leading-relaxed text-left sm:text-justify pl-1">
                         ${project.story.objectives.map(obj => `<li>${obj}</li>`).join('')}
                       </ul>
                     </div>
                     <div>
                       <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">Fitur Utama</p>
-                      <ul class="list-disc list-inside space-y-1.5 text-white/60 leading-relaxed text-justify pl-1">
+                      <ul class="list-disc list-inside space-y-1.5 text-white/60 leading-relaxed text-left sm:text-justify pl-1">
                         ${project.story.features.map(feat => `<li>${feat}</li>`).join('')}
                       </ul>
                     </div>
@@ -1405,6 +1433,24 @@ function setupLightboxEvents() {
         window.closeLightbox();
       }
     });
+
+    // Touch Swipe Support for Mobile View
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightboxModal.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightboxModal.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const swipeThreshold = 50; // pixels
+      if (touchEndX < touchStartX - swipeThreshold) {
+        window.navigateLightbox(1);  // Swipe left -> next
+      } else if (touchEndX > touchStartX + swipeThreshold) {
+        window.navigateLightbox(-1); // Swipe right -> prev
+      }
+    }, { passive: true });
   }
   if (prevBtn) {
     prevBtn.addEventListener("click", (e) => {

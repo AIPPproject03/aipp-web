@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap"
         rel="stylesheet" />
     <script>
         tailwind.config = {
@@ -28,6 +28,7 @@
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
+                        pixel: ['Silkscreen', 'monospace'],
                     },
                     boxShadow: {
                         halo: '0 0 0 1px rgba(6,182,212,.2), 0 20px 80px rgba(2,132,199,.18)',
@@ -56,12 +57,12 @@
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <a href="#hero" class="group flex items-center gap-3">
                 <span
-                    class="flex h-10 w-10 items-center justify-center rounded-2xl border border-cyan-400/30 bg-cyan-400/10 text-sm font-black text-cyan-300 shadow-halo">
+                    class="flex h-9 w-9 items-center justify-center rounded border border-cyan-400/30 bg-cyan-400/10 text-[10px] font-pixel text-cyan-300 shadow-halo">
                     AI
                 </span>
                 <div>
-                    <p class="text-sm font-semibold tracking-[0.3em] text-white/80">AIPP PROTOCOL</p>
-                    <p class="text-xs uppercase tracking-[0.4em] text-white/45">Mind, Muscle, Code</p>
+                    <p class="text-xs font-pixel tracking-[0.15em] text-white/85">AIPP PROTOCOL</p>
+                    <p class="text-[9px] uppercase tracking-[0.35em] text-white/40">Mind, Muscle, Code</p>
                 </div>
             </a>
 
@@ -86,7 +87,7 @@
                 class="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:py-24">
                 <div class="reveal space-y-8">
                     <div data-hero-badge
-                        class="inline-flex items-center gap-3 rounded-full border border-cyan-400/20 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/90">
+                        class="inline-flex items-center gap-3 rounded border border-cyan-400/35 bg-cyan-400/5 px-3 py-1.5 text-[9px] font-pixel uppercase tracking-widest text-cyan-300/90 shadow-halo">
                         The Symphony of Mind, Muscle, and Code
                     </div>
 
@@ -111,19 +112,19 @@
 
                     <div class="storyline-strip">
                         <div class="story-node">
-                            <p class="story-step">01</p>
+                            <p class="story-step font-pixel text-cyan-300">01</p>
                             <p class="story-title">Academics</p>
                             <p class="story-copy">Structured learning, strong GPA, and analytical depth.</p>
                         </div>
-                        <div class="story-arrow">→</div>
+                        <div class="story-arrow font-pixel text-cyan-400/55">→</div>
                         <div class="story-node">
-                            <p class="story-step">02</p>
+                            <p class="story-step font-pixel text-cyan-300">02</p>
                             <p class="story-title">Engineering</p>
                             <p class="story-copy">Web3, AI, and secure client-side execution.</p>
                         </div>
-                        <div class="story-arrow">→</div>
+                        <div class="story-arrow font-pixel text-cyan-400/55">→</div>
                         <div class="story-node">
-                            <p class="story-step">03</p>
+                            <p class="story-step font-pixel text-cyan-300">03</p>
                             <p class="story-title">Athletics</p>
                             <p class="story-copy">National badminton discipline translated into performance.</p>
                         </div>
@@ -138,17 +139,17 @@
                     <div data-hero-stats class="grid gap-4 sm:grid-cols-3">
                         <article class="metric-card reveal-delay-1">
                             <p class="metric-label">Cognitive Tier</p>
-                            <p class="metric-value">IQ 121</p>
+                            <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300">IQ 121</p>
                             <p class="metric-note">Superior category</p>
                         </article>
                         <article class="metric-card reveal-delay-2">
                             <p class="metric-label">Academic GPA</p>
-                            <p class="metric-value">3.85/4.00</p>
+                            <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300">3.85/4.00</p>
                             <p class="metric-note">S1 Informatika</p>
                         </article>
                         <article class="metric-card reveal-delay-3">
                             <p class="metric-label">Athletic Level</p>
-                            <p class="metric-value">National</p>
+                            <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300">National</p>
                             <p class="metric-note">Elite badminton</p>
                         </article>
                     </div>
@@ -160,15 +161,15 @@
                         class="glass-panel p-3 overflow-hidden rounded-[2.5rem] aspect-[4/5] sm:aspect-square md:aspect-[4/5] max-h-[460px] flex items-center justify-center relative group">
                         <!-- High-tech HUD diagnostic lines -->
                         <div
-                            class="absolute top-4 left-5 font-mono text-[9px] text-cyan-400/60 uppercase tracking-[0.2em] z-20">
+                            class="absolute top-4 left-5 font-pixel text-[6.5px] sm:text-[7.5px] text-cyan-400/60 uppercase tracking-widest z-20">
                             SYSTEM: ONLINE</div>
                         <div
-                            class="absolute top-4 right-5 font-mono text-[9px] text-gold-400/60 uppercase tracking-[0.2em] z-20">
+                            class="absolute top-4 right-5 font-pixel text-[6.5px] sm:text-[7.5px] text-gold-400/60 uppercase tracking-widest z-20">
                             AIPP_PROTOCOL_V3.0</div>
-                        <div class="absolute bottom-4 left-5 font-mono text-[9px] text-white/30 tracking-[0.2em] z-20">
+                        <div class="absolute bottom-4 left-5 font-pixel text-[6.5px] sm:text-[7.5px] text-white/35 tracking-widest z-20">
                             LATENCY: 12ms</div>
                         <div
-                            class="absolute bottom-4 right-5 font-mono text-[9px] text-cyan-400/60 tracking-[0.2em] z-20">
+                            class="absolute bottom-4 right-5 font-pixel text-[6.5px] sm:text-[7.5px] text-cyan-400/60 tracking-widest z-20">
                             SECURE_ENV: TRUE</div>
 
                         <!-- Neon Corner Accents -->
@@ -223,14 +224,15 @@
                             <div class="stack-chip">AI</div>
                         </div>
 
-                        <div class="mt-6 rounded-3xl border border-white/10 bg-slate-950/35 p-5">
+                        <div class="mt-6 rounded border border-white/10 bg-slate-950/35 p-5">
                             <div class="flex items-center justify-between gap-4">
                                 <p class="text-sm font-semibold text-white/70">Discipline Index</p>
-                                <p class="font-mono text-sm text-cyan-200">92%</p>
+                                <p class="font-pixel text-xs text-cyan-300">92%</p>
                             </div>
-                            <div class="mt-3 h-2 rounded-full bg-white/8">
+                            <div class="mt-3 h-3 rounded bg-white/8 border border-white/10 overflow-hidden">
                                 <div
-                                    class="h-2 w-[92%] rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-gold-400">
+                                    class="h-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-gold-400"
+                                    style="width: 92%; background-image: repeating-linear-gradient(90deg, transparent, transparent 5px, #0f172a 5px, #0f172a 7px), linear-gradient(90deg, #22d3ee, #d97706);">
                                 </div>
                             </div>
                         </div>
@@ -462,15 +464,15 @@
                         </blockquote>
                         <div class="mt-8 grid gap-4 sm:grid-cols-3">
                             <div class="stat-card">
-                                <p class="stat-value">15</p>
+                                <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">15</p>
                                 <p class="stat-label">Students led</p>
                             </div>
                             <div class="stat-card">
-                                <p class="stat-value">75%+</p>
+                                <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">75%+</p>
                                 <p class="stat-label">Engagement lift</p>
                             </div>
                             <div class="stat-card">
-                                <p class="stat-value">1</p>
+                                <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">1</p>
                                 <p class="stat-label">Village portal</p>
                             </div>
                         </div>
