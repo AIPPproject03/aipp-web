@@ -1,38 +1,50 @@
 const foundation = [
   {
-    title: "Academic Core",
+    titleId: "Inti Akademik",
+    titleEn: "Academic Core",
     value: "S1 Informatika",
-    note: "Universitas Palangka Raya • NIM 223020503162 • GPA 3.85/4.00",
+    noteId: "Universitas Palangka Raya • NIM 223020503162 • IPK 3.85/4.00",
+    noteEn: "Universitas Palangka Raya • NIM 223020503162 • GPA 3.85/4.00",
   },
   {
-    title: "Certified Psychogram",
+    titleId: "Psikogram Bersertifikat",
+    titleEn: "Certified Psychogram",
     value: "IQ 121",
-    note: "Wechsler scale • Superior category",
+    noteId: "Skala Wechsler • Kategori Superior",
+    noteEn: "Wechsler scale • Superior category",
   },
   {
-    title: "Cognitive Strengths",
-    value: "High Adaptation",
-    note: "Concept comprehension, consistency, integrity, and synergy",
+    titleId: "Kekuatan Kognitif",
+    titleEn: "Cognitive Strengths",
+    valueId: "Adaptasi Tinggi",
+    valueEn: "High Adaptation",
+    noteId: "Pemahaman konsep, konsistensi, integritas, dan sinergi",
+    noteEn: "Concept comprehension, consistency, integrity, and synergy",
   },
   {
-    title: "Profile Ethos",
-    value: "Build with discipline",
-    note: "Engineering execution reinforced by athletic structure",
+    titleId: "Etos Profil",
+    titleEn: "Profile Ethos",
+    valueId: "Membangun dengan Disiplin",
+    valueEn: "Build with discipline",
+    noteId: "Eksekusi rekayasa yang diperkuat oleh struktur atletik",
+    noteEn: "Engineering execution reinforced by athletic structure",
   },
 ];
 
 const languages = [
-  { name: "Bahasa Indonesia", level: "Native", width: "100%" },
-  { name: "English", level: "Limited Working", width: "68%" },
-  { name: "Japanese", level: "Elementary", width: "28%" },
-  { name: "Latin", level: "Elementary", width: "18%" },
+  { name: "Bahasa Indonesia", levelId: "Bahasa Ibu", levelEn: "Native", width: "100%" },
+  { name: "English", levelId: "Kerja Terbatas", levelEn: "Limited Working", width: "68%" },
+  { name: "Japanese", levelId: "Dasar", levelEn: "Elementary", width: "28%" },
+  { name: "Latin", levelId: "Dasar", levelEn: "Elementary", width: "18%" },
 ];
 
 const stackCategories = [
   {
     key: "frontend",
-    label: "Front-End Core",
-    summary: "Core browser foundations and modern app interfaces.",
+    labelId: "Inti Front-End",
+    labelEn: "Front-End Core",
+    summaryId: "Fondasi utama browser dan antarmuka aplikasi modern.",
+    summaryEn: "Core browser foundations and modern app interfaces.",
     items: [
       "Vanilla JavaScript (ES6+ Modules)",
       "HTML5",
@@ -44,8 +56,10 @@ const stackCategories = [
   },
   {
     key: "backend",
-    label: "Back-End & Web3",
-    summary: "Server, data, and cryptographic integration layers.",
+    labelId: "Back-End & Web3",
+    labelEn: "Back-End & Web3",
+    summaryId: "Lapisan integrasi server, data, dan kriptografi sisi klien.",
+    summaryEn: "Server, data, and cryptographic integration layers.",
     items: [
       "Node.js",
       "Hono.js",
@@ -58,8 +72,10 @@ const stackCategories = [
   },
   {
     key: "quant",
-    label: "Quant Trading & AI",
-    summary: "Algorithmic systems and applied machine intelligence.",
+    labelId: "Quant Trading & AI",
+    labelEn: "Quant Trading & AI",
+    summaryId: "Sistem algoritmik perdagangan dan kecerdasan mesin terapan.",
+    summaryEn: "Algorithmic systems and applied machine intelligence.",
     items: [
       "MQL5 Expert Advisor",
       "MetaTrader 5",
@@ -71,8 +87,10 @@ const stackCategories = [
   },
   {
     key: "soft",
-    label: "Soft Skills",
-    summary: "Team execution, analysis, and operational leadership.",
+    labelId: "Soft Skills",
+    labelEn: "Soft Skills",
+    summaryId: "Eksekusi tim, analisis, dan kepemimpinan operasional.",
+    summaryEn: "Team execution, analysis, and operational leadership.",
     items: [
       "Cross-Functional Leadership",
       "Project Management",
@@ -86,8 +104,10 @@ const stackCategories = [
 
 const techSpotlights = {
   frontend: {
-    title: "Front-End Instruments",
-    copy: "Visual polish, interface speed, and component discipline are driven by these tools.",
+    titleId: "Instrumen Front-End",
+    titleEn: "Front-End Instruments",
+    copyId: "Polesan visual, kecepatan antarmuka, dan disiplin komponen digerakkan oleh alat-alat ini.",
+    copyEn: "Visual polish, interface speed, and component discipline are driven by these tools.",
     items: [
       { name: "VS Code", icon: "devicon:vscode" },
       { name: "JavaScript", icon: "devicon:javascript" },
@@ -100,8 +120,10 @@ const techSpotlights = {
     ],
   },
   backend: {
-    title: "Back-End & Web3 Signals",
-    copy: "Server logic, data integrity, and client-side cryptographic workflows form the secure core.",
+    titleId: "Sinyal Back-End & Web3",
+    titleEn: "Back-End & Web3 Signals",
+    copyId: "Logika server, integritas data, dan alur kerja kriptografi sisi klien membentuk inti yang aman.",
+    copyEn: "Server logic, data integrity, and client-side cryptographic workflows form the secure core.",
     items: [
       { name: "Node.js", icon: "devicon:nodejs" },
       { name: "PostgreSQL", icon: "devicon:postgresql" },
@@ -114,8 +136,10 @@ const techSpotlights = {
     ],
   },
   quant: {
-    title: "Quant AI Arsenal",
-    copy: "Trading automation, machine learning, and practical AI integrations sharpen execution speed.",
+    titleId: "Persenjataan Quant & AI",
+    titleEn: "Quant AI Arsenal",
+    copyId: "Otomatisasi perdagangan, pembelajaran mesin, dan integrasi AI praktis mempercepat eksekusi.",
+    copyEn: "Trading automation, machine learning, and practical AI integrations sharpen execution speed.",
     items: [
       { name: "Python", icon: "devicon:python" },
       { name: "MQL5", glyph: "M5" },
@@ -128,8 +152,10 @@ const techSpotlights = {
     ],
   },
   soft: {
-    title: "Leadership Toolkit",
-    copy: "Cross-functional coordination, project steering, and analysis keep the work consistent and useful.",
+    titleId: "Perangkat Kepemimpinan",
+    titleEn: "Leadership Toolkit",
+    copyId: "Koordinasi lintas fungsi, kemudi proyek, dan analisis menjaga pekerjaan tetap konsisten dan bermanfaat.",
+    copyEn: "Cross-functional coordination, project steering, and analysis keep the work consistent and useful.",
     items: [
       { name: "Leadership", icon: "mdi:account-group" },
       { name: "Project Mgmt", icon: "mdi:clipboard-text-outline" },
@@ -147,10 +173,11 @@ const projects = [
   {
     id: "wallet",
     category: "flagship",
-    label: "Flagship Academic Project",
+    labelId: "Proyek Akademik Unggulan",
+    labelEn: "Flagship Academic Project",
     title: "AIPP.Wallet",
-    description:
-      "A highly secure, non-custodial multi-chain crypto wallet prioritizing complete client-side security and independent user control over private keys.",
+    descriptionId: "Dompet kripto multi-chain non-kustodian yang sangat aman, memprioritaskan keamanan penuh sisi klien dan kontrol pengguna secara mandiri atas kunci privat.",
+    descriptionEn: "A highly secure, non-custodial multi-chain crypto wallet prioritizing complete client-side security and independent user control over private keys.",
     stack: ["Vanilla JavaScript", "ethers.js", "bitcoinjs-lib"],
     meta: ["Client-side signing", "Multi-chain security", "Zero custody"],
     github: "https://github.com/AIPPproject03/aipp-wallet",
@@ -161,28 +188,42 @@ const projects = [
       "img/AIPP-WALLET/aipp-wallet-3.png"
     ],
     story: {
-      background: "AIPP.Wallet dikembangkan sebagai solusi pengamanan kunci privat secara mandiri (self-custody) berbasis web untuk mengatasi kerentanan dompet kustodian terhadap kegagalan tunggal (seperti kasus kolapsnya FTX) serta kelemahan validasi transaksi pada ekstensi browser konvensional.",
-      objectives: [
+      backgroundId: "AIPP.Wallet dikembangkan sebagai solusi pengamanan kunci privat secara mandiri (self-custody) berbasis web untuk mengatasi kerentanan dompet kustodian terhadap kegagalan tunggal (seperti kasus kolapsnya FTX) serta kelemahan validasi transaksi pada ekstensi browser konvensional.",
+      backgroundEn: "AIPP.Wallet was developed as a web-based self-custody private key management solution to address the vulnerability of custodial wallets to single points of failure (such as the FTX collapse) and transactional validation weaknesses in conventional browser extensions.",
+      objectivesId: [
         "Keamanan Self-Custody: Menghilangkan ketergantungan pada server backend untuk mengelola kunci privat sehingga meminimalisir risiko peretasan database.",
         "Kompatibilitas Multi-Chain: Membuktikan kelayakan client-side transaction signing pada model UTXO (Bitcoin Testnet) dan model Account-based (Ethereum Sepolia Testnet).",
         "Enkripsi Mnemonic Lokal: Mengamankan seed phrase pengguna di browser secara lokal dengan komputasi kriptografi intensif.",
         "Efisiensi Signing: Menjamin waktu eksekusi penandatanganan transaksi sangat instan di bawah ambang batas kenyamanan pengguna (500 ms)."
       ],
-      features: [
+      objectivesEn: [
+        "Self-Custody Security: Eliminates reliance on backend servers for private key management, minimizing database breach risks.",
+        "Multi-Chain Compatibility: Proves client-side transaction signing viability on UTXO model (Bitcoin Testnet) and Account-based model (Ethereum Sepolia Testnet).",
+        "Local Mnemonic Encryption: Securely stores user seed phrases locally in the browser using intensive cryptographic calculations.",
+        "Signing Efficiency: Guarantees near-instant transaction signing execution time well below the user comfort threshold (500 ms)."
+      ],
+      featuresId: [
         "Client-side secp256k1 Signing: Penandatanganan transaksi offline berjalan lokal dengan ECDSA secp256k1.",
         "Kriptografi PBKDF2 & AES-GCM 256-bit: Enkripsi mnemonic dengan 310.000 iterasi PBKDF2 sebelum disimpan di LocalStorage.",
         "Derivasi BIP-39/32/44/84: Standarisasi pembuatan seed phrase dan derivasi alamat multi-chain deterministik.",
         "Validasi Bech32 & Hex: Validasi real-time untuk alamat SegWit Bitcoin (Bech32) dan alamat Ethereum."
+      ],
+      featuresEn: [
+        "Client-Side secp256k1 Signing: Offline transaction signing runs locally using ECDSA secp256k1.",
+        "PBKDF2 & AES-GCM 256-bit Cryptography: Encrypts mnemonics with 310,000 PBKDF2 iterations before LocalStorage persistence.",
+        "BIP-39/32/44/84 Derivation: Standardized seed phrase generation and deterministic multi-chain address derivation.",
+        "Bech32 & Hex Validation: Real-time address validation for Bitcoin SegWit (Bech32) and Ethereum formats."
       ]
     }
   },
   {
     id: "adaapi",
     category: "hackathon",
-    label: "3rd Place National Hackathon Permikomnas 2025",
+    labelId: "Juara 3 Hackathon Nasional Permikomnas 2025",
+    labelEn: "3rd Place National Hackathon Permikomnas 2025",
     title: "ADAAPI",
-    description:
-      "An emergency fire acceleration and notification platform developed collaboratively with BPBD, featuring real-time alerting and visual detection.",
+    descriptionId: "Platform akselerasi dan notifikasi darurat kebakaran terintegrasi dengan BPBD, menampilkan sistem peringatan real-time dan deteksi visual otomatis.",
+    descriptionEn: "An emergency fire acceleration and notification platform developed collaboratively with BPBD, featuring real-time alerting and visual detection.",
     stack: ["Next.js", "Hono.js", "PostgreSQL", "YOLOv11", "Gemini API"],
     meta: ["Team Leader", "Project Manager", "Team Pyrosentinel"],
     github: "https://github.com/orgs/PyroSentinel/repositories",
@@ -194,28 +235,42 @@ const projects = [
       "img/HACKATHON/hackathon-5.jpg"
     ],
     story: {
-      background: "ADAAPI (Aplikasi Digital Akselerasi Antisipasi Kebakaran Indonesia) dikembangkan dalam ajang Hackathon PERMIKOMNAS 2025 di BBPSDMP KOMDIGI Makassar (20-21 Juni 2025). Mengusung visi 'Satu detik sangat berharga untuk menyelamatkan nyawa', aplikasi ini dirancang untuk memangkas waktu tanggap pemadam kebakaran yang terhambat akibat pelaporan manual tak terintegrasi.",
-      objectives: [
+      backgroundId: "ADAAPI (Aplikasi Digital Akselerasi Antisipasi Kebakaran Indonesia) dikembangkan dalam ajang Hackathon PERMIKOMNAS 2025 di BBPSDMP KOMDIGI Makassar (20-21 Juni 2025). Mengusung visi 'Satu detik sangat berharga untuk menyelamatkan nyawa', aplikasi ini dirancang untuk memangkas waktu tanggap pemadam kebakaran yang terhambat akibat pelaporan manual tak terintegrasi.",
+      backgroundEn: "ADAAPI (Indonesian Digital Fire Anticipation & Acceleration Application) was developed during the PERMIKOMNAS 2025 Hackathon at BBPSDMP KOMDIGI Makassar (June 20-21, 2025). Built under the vision 'One second is precious to save lives', it is designed to slash fire response times delayed by manual and unintegrated reporting.",
+      objectivesId: [
         "Akselerasi Waktu Tanggap: Mengurangi keterlambatan respons damkar yang rata-rata melebihi 15 menit.",
         "Verifikasi Laporan Cepat: Mencegah prank report dengan deteksi visual otomatis menggunakan kecerdasan buatan.",
         "Notifikasi Instan Terpadu: Mengintegrasikan posko pemadam kebakaran, BPBD, dan instansi terkait secara real-time.",
         "Pelakakan Lokasi Presisi: Mendeteksi geolokasi kebakaran secara otomatis melalui peta interaktif React Leaflet."
       ],
-      features: [
+      objectivesEn: [
+        "Response Time Acceleration: Slashes dispatch delays, which average over 15 minutes.",
+        "Fast Report Verification: Curbs false reports via automatic computer vision detection.",
+        "Unified Instant Alerts: Connects local fire stations, BPBD, and relevant agencies in real-time.",
+        "Precision Location Tracking: Automatically detects fire geolocations via interactive React Leaflet maps."
+      ],
+      featuresId: [
         "Pelaporan Media & GPS: Kirim laporan visual instan dengan koordinat lokasi otomatis.",
         "YOLOv11 Fire & Smoke Detector: Pemindaian cerdas otomatis untuk mendeteksi tanda bahaya kebakaran.",
         "SMTP Gmail Alert Service: Jalur komunikasi instan langsung ke tim penanggulangan bencana.",
         "Diagnostic Log Dashboard: Laporan audit status penanganan kebakaran secara real-time bagi publik."
+      ],
+      featuresEn: [
+        "Media & GPS Reporting: Submit instant visual alerts with automatic geolocation metadata.",
+        "YOLOv11 Fire & Smoke Detector: Automatic computer vision scanning to identify early fire and smoke signatures.",
+        "SMTP Gmail Alert Service: Direct instant email communication dispatch routes to emergency teams.",
+        "Diagnostic Log Dashboard: Real-time public audit logs tracking fire hazard status and resolution."
       ]
     }
   },
   {
     id: "siwaras",
     category: "internship",
-    label: "Enterprise Internship Work",
+    labelId: "Kerja Magang Korporat",
+    labelEn: "Enterprise Internship Work",
     title: "SIWARAS",
-    description:
-      "An enterprise-grade integrated web inventory management system built during my internship at Universitas Terbuka (UT) Palangka Raya using Google Apps Script as backend and Google Spreadsheet as database.",
+    descriptionId: "Sistem manajemen inventori web terintegrasi kelas korporat yang dibangun selama magang di Universitas Terbuka (UT) Palangka Raya menggunakan Google Apps Script sebagai backend dan Google Spreadsheet sebagai database.",
+    descriptionEn: "An enterprise-grade integrated web inventory management system built during my internship at Universitas Terbuka (UT) Palangka Raya using Google Apps Script as backend and Google Spreadsheet as database.",
     stack: ["Google Apps Script", "Google Spreadsheet", "RESTful API", "Chart.js", "jsPDF"],
     meta: ["Enterprise workflows", "Asset control", "Sosprom Logistics"],
     github: "https://github.com/AIPPproject03/siwaras-ut-web",
@@ -231,28 +286,42 @@ const projects = [
       "img/SIWARAS/siwaras-2.jpg"
     ],
     story: {
-      background: "SIWARAS (Sistem Inventori Wisuda & Rangkaian Sosprom) diimplementasikan pada Universitas Terbuka (UT) Palangka Raya untuk menggantikan pencatatan logistik manual (wisuda, sosprom, ATK, backdrop, sound system) yang sebelumnya menggunakan dokumen fisik & spreadsheet lokal terpisah.",
-      objectives: [
+      backgroundId: "SIWARAS (Sistem Inventori Wisuda & Rangkaian Sosprom) diimplementasikan pada Universitas Terbuka (UT) Palangka Raya untuk menggantikan pencatatan logistik manual (wisuda, sosprom, ATK, backdrop, sound system) yang sebelumnya menggunakan dokumen fisik & spreadsheet lokal terpisah.",
+      backgroundEn: "SIWARAS (Graduation & Sosprom Campaign Inventory System) was deployed at Universitas Terbuka (UT) Palangka Raya to replace manual logistics logging (for graduation, promotional campaigns, office stationeries) which previously relied on paper slips and fragmented local spreadsheets.",
+      objectivesId: [
         "Digitalisasi & Sinkronisasi: Mencegah redundansi data logistik akibat pencatatan berulang di berbagai file lokal yang tidak terintegrasi.",
         "Serverless Server Ekonomi: Memanfaatkan integrasi gratis Google Spreadsheet (database) & Google Apps Script (RESTful API backend) untuk menghemat biaya hosting/VPS.",
         "Otomatisasi Tanda Terima: Mempercepat pembuatan tanda terima legal barang keluar yang sebelumnya dilakukan secara manual.",
         "Transparansi Real-time: Memberikan visibilitas ketersediaan stok perlengkapan secara instan bagi unit kerja terkait."
       ],
-      features: [
+      objectivesEn: [
+        "Digitalization & Synchronization: Eliminates structural data redundancies caused by duplicate records across non-integrated files.",
+        "Cost-Effective Serverless Stack: Leverages Google Sheets (database) & Google Apps Script (RESTful API backend) to save hosting overheads.",
+        "Receipt Automation: Accelerates legal dispatch receipt generation which was previously typed manually.",
+        "Real-Time Transparency: Grants instant inventory visibility for coordinating academic departments."
+      ],
+      featuresId: [
         "Manajemen CRUD Inventori: Fitur lengkap pengelolaan master barang dan rekam barang masuk/keluar.",
         "Real-time Stock Monitoring: Monitoring ketersediaan perlengkapan operasional secara instan.",
-        "Ekspor Tanda Terima PDF: Pembuatan surat tanda terima digital otomatis dengan ekstensi ekspor jsPDF.",
+        "Ekspor Tanda Terima PDF: Pembuatan surat tanda terima digital otomatis dengan ekspresi ekspor jsPDF.",
         "Interactive Data Dashboard: Visualisasi tren barang keluar-masuk menggunakan Chart.js."
+      ],
+      featuresEn: [
+        "CRUD Inventory Management: Full features for managing master items and tracking inward/outward asset flows.",
+        "Real-time Stock Monitoring: Instant live tracking of operational supply levels.",
+        "jsPDF Receipt Export: Automatic generation of legal digital dispatch receipts exportable to PDF formats.",
+        "Interactive Data Dashboard: Interactive analytics showcasing inbound and outbound trends using Chart.js."
       ]
     }
   },
   {
     id: "adanest",
     category: "finalist",
-    label: "National Finalist GEMASTIK 2023",
+    labelId: "Finalis Nasional GEMASTIK 2023",
+    labelEn: "National Finalist GEMASTIK 2023",
     title: "Adanest",
-    description:
-      "A specialized web application designed to support individuals in recovering from PMO (Porn, Masturbation, Orgasm) addiction, offering custom habit tracking, motivational resources, educational blogs, chatbot assistants, and professional medical consultations.",
+    descriptionId: "Aplikasi web khusus untuk mendukung individu memulihkan diri dari kecanduan PMO (Porn, Masturbation, Orgasm), menawarkan pemantauan kebiasaan, artikel motivasi, konsultasi medis, dan bantuan chatbot.",
+    descriptionEn: "A specialized web application designed to support individuals in recovering from PMO (Porn, Masturbation, Orgasm) addiction, offering custom habit tracking, motivational resources, educational blogs, chatbot assistants, and professional medical consultations.",
     stack: ["React", "Node.js", "PostgreSQL", "Chatbot System", "Blog Engine"],
     meta: ["National finalist", "Software Development", "Health & Recovery Tech"],
     github: "https://github.com/orgs/adanestapp/repositories",
@@ -263,55 +332,83 @@ const projects = [
       "img/GEMASTIK/gemastik-1.jpg"
     ],
     story: {
-      background: "Adanest, yang diambil dari pepatah bahasa Latin 'Aegroto dum anima est, spes est' (Selama orang sakit masih memiliki semangat, maka masih ada harapan), merupakan aplikasi perangkat lunak berbasis website yang didedikasikan untuk memberikan harapan, dukungan, dan sumber daya klinis bagi mereka yang berjuang memulihkan diri dari kecanduan PMO (Porn, Masturbation, Orgasm).",
-      objectives: [
+      backgroundId: "Adanest, yang diambil dari pepatah bahasa Latin 'Aegroto dum anima est, spes est' (Selama orang sakit masih memiliki semangat, maka masih ada harapan), merupakan aplikasi perangkat lunak berbasis website yang didedikasikan untuk memberikan harapan, dukungan, dan sumber daya klinis bagi mereka yang berjuang memulihkan diri dari kecanduan PMO (Porn, Masturbation, Orgasm).",
+      backgroundEn: "Adanest, taken from the Latin proverb 'Aegroto dum anima est, spes est' (While the sick person has soul, there is hope), is a dedicated web application providing hope, support, and clinical resources for those recovering from PMO (Porn, Masturbation, Orgasm) addiction.",
+      objectivesId: [
         "Memantau dan Mengelola Kebiasaan: Membantu pengguna memonitor kebiasaan terkait PMO dan mengidentifikasi faktor pemicu utama.",
         "Menawarkan Alternatif Positif: Memberikan latihan pengganti yang sehat untuk mengalihkan perhatian dari pemicu PMO.",
         "Menyediakan Dukungan & Motivasi: Memberikan asupan artikel inspiratif serta forum komunitas pemulihan yang aman.",
         "Layanan Konsultasi Profesional: Menghubungkan pengguna langsung dengan dokter dan profesional berkompeten untuk bimbingan personal."
       ],
-      features: [
+      objectivesEn: [
+        "Habit Tracking & Management: Assists users in logging behaviors and identifying triggers.",
+        "Healthy Alternatives: Suggests replacement activities to divert focus from PMO urges.",
+        "Community & Motivation: Delivers motivational articles and safe anonymous forums.",
+        "Professional Consulting: Connects users directly to verified medical experts and therapists."
+      ],
+      featuresId: [
         "Forum Terbuka & Diskusi Medis: Tempat berinteraksi dan berkonsultasi langsung dengan profesional medis.",
         "Chatbot Asisten Pemulihan: Layanan asisten otomatis 24/7 yang memberikan motivasi dan informasi pemulihan.",
         "E-Learning & Blog Medis: Berisi artikel kesehatan fisik dan mental tervalidasi mengenai dampak PMO.",
         "Konsultasi Privat Berjadwal: Konsultasi tatap muka online yang terjadwal dengan psikolog atau dokter."
+      ],
+      featuresEn: [
+        "Open Forum & Medical Discussions: Direct interactions and consulting channels with medical practitioners.",
+        "24/7 Recovery Chatbot Assistant: Automated assistant delivering recovery guides and guidance.",
+        "Validated E-Learning & Health Blog: Articles covering the physical and mental science of recovery.",
+        "Private Scheduled Consultations: Virtual scheduled appointments with licensed therapists and counselors."
       ]
     }
   },
 ];
 
 const projectFilters = [
-  { key: "all", label: "All Projects" },
-  { key: "flagship", label: "Flagship" },
-  { key: "hackathon", label: "Hackathon" },
-  { key: "internship", label: "Internship" },
-  { key: "finalist", label: "Finalist" },
+  { key: "all", labelId: "Semua Proyek", labelEn: "All Projects" },
+  { key: "flagship", labelId: "Unggulan", labelEn: "Flagship" },
+  { key: "hackathon", labelId: "Hackathon", labelEn: "Hackathon" },
+  { key: "internship", labelId: "Magang", labelEn: "Internship" },
+  { key: "finalist", labelId: "Finalis", labelEn: "Finalist" },
 ];
 
 const athleticTimeline = [
   {
-    title: "Juara I Beregu Putra & Juara I Ganda Taruna Putra",
-    detail: "PORPROV XII Kalimantan Tengah 2023",
+    titleId: "Juara I Beregu Putra & Juara I Ganda Taruna Putra",
+    titleEn: "1st Place Men's Team & 1st Place Men's Junior Doubles",
+    detailId: "PORPROV XII Kalimantan Tengah 2023",
+    detailEn: "PORPROV XII Central Kalimantan 2023",
   },
   {
-    title: "Delegate Athlete",
-    detail: "Seleksi Nasional (Seleknas) PBSI at Pelatnas Cipayung 2022",
+    titleId: "Atlet Delegasi",
+    titleEn: "Delegate Athlete",
+    detailId: "Seleksi Nasional (Seleknas) PBSI di Pelatnas Cipayung 2022",
+    detailEn: "National Selection (Seleknas) PBSI at Pelatnas Cipayung 2022",
   },
   {
-    title: "National Competitor",
-    detail: "POMNAS XVII (2022) & XVIII (2023)",
+    titleId: "Kompetitor Nasional",
+    titleEn: "National Competitor",
+    detailId: "POMNAS XVII (2022) & XVIII (2023)",
+    detailEn: "POMNAS XVII (2022) & XVIII (2023)",
   },
   {
-    title: "National Competitor",
-    detail: "O2SN SMP 2017",
+    titleId: "Kompetitor Nasional",
+    titleEn: "National Competitor",
+    detailId: "O2SN SMP 2017",
+    detailEn: "O2SN Junior High School 2017",
   },
 ];
 
-const typingRoles = [
-  "Informatics Engineer",
-  "Web3 Specialist",
-  "Elite Athlete",
-];
+const typingRoles = {
+  id: [
+    "Rekayasa Informatika",
+    "Spesialis Web3",
+    "Atlet Bulu Tangkis",
+  ],
+  en: [
+    "Informatics Engineer",
+    "Web3 Specialist",
+    "Elite Athlete",
+  ]
+};
 
 const foundationGrid = document.getElementById("foundation-grid");
 const languageList = document.getElementById("language-list");
@@ -810,13 +907,14 @@ function setupCardTilt() {
 }
 
 function renderFoundation() {
+  const isEn = window.currentLang === "en";
   foundationGrid.innerHTML = foundation
     .map(
       (item) => `
         <article class="foundation-card">
-          <p class="foundation-kicker">${item.title}</p>
-          <h4 class="foundation-value">${item.value}</h4>
-          <p class="foundation-note">${item.note}</p>
+          <p class="foundation-kicker">${isEn ? item.titleEn : item.titleId}</p>
+          <h4 class="foundation-value">${isEn ? (item.valueEn || item.value) : (item.valueId || item.value)}</h4>
+          <p class="foundation-note">${isEn ? item.noteEn : item.noteId}</p>
         </article>
       `,
     )
@@ -824,13 +922,14 @@ function renderFoundation() {
 }
 
 function renderLanguages() {
+  const isEn = window.currentLang === "en";
   languageList.innerHTML = languages
     .map(
       (language) => `
         <div class="language-item">
           <div class="language-row">
             <span class="language-name">${language.name}</span>
-            <span class="language-level">${language.level}</span>
+            <span class="language-level">${isEn ? language.levelEn : language.levelId}</span>
           </div>
           <div class="language-bar">
             <div class="language-fill" style="width: ${language.width}"></div>
@@ -842,6 +941,7 @@ function renderLanguages() {
 }
 
 function renderStackTabs(activeKey = "frontend") {
+  const isEn = window.currentLang === "en";
   stackTabs.innerHTML = stackCategories
     .map(
       (category) => `
@@ -852,8 +952,8 @@ function renderStackTabs(activeKey = "frontend") {
           aria-selected="${category.key === activeKey}"
           data-stack-tab="${category.key}"
         >
-          <span class="stack-tab-title">${category.label}</span>
-          <span class="stack-tab-desc">${category.summary}</span>
+          <span class="stack-tab-title">${isEn ? category.labelEn : category.labelId}</span>
+          <span class="stack-tab-desc">${isEn ? category.summaryEn : category.summaryId}</span>
         </button>
       `,
     )
@@ -880,6 +980,7 @@ function renderStackPanel(activeKey = "frontend") {
 }
 
 function executeRenderStackPanel(activeKey) {
+  const isEn = window.currentLang === "en";
   const category =
     stackCategories.find((entry) => entry.key === activeKey) ??
     stackCategories[0];
@@ -890,7 +991,7 @@ function executeRenderStackPanel(activeKey) {
         <article class="skill-card reveal">
           <p class="skill-index">Skill ${String(index + 1).padStart(2, "0")}</p>
           <h4 class="skill-title">${skill}</h4>
-          <p class="skill-copy">Built for resilient product engineering, clean architecture, and production-grade execution.</p>
+          <p class="skill-copy">${isEn ? 'Built for resilient product engineering, clean architecture, and production-grade execution.' : 'Dibuat untuk rekayasa produk yang tangguh, arsitektur bersih, dan eksekusi kelas produksi.'}</p>
         </article>
       `,
     )
@@ -935,9 +1036,10 @@ function renderTechSpotlight(activeKey = "frontend") {
 }
 
 function executeRenderTechSpotlight(activeKey) {
+  const isEn = window.currentLang === "en";
   const spotlight = techSpotlights[activeKey] ?? techSpotlights.frontend;
-  techTitle.textContent = spotlight.title;
-  techCopy.textContent = spotlight.copy;
+  techTitle.textContent = isEn ? spotlight.titleEn : spotlight.titleId;
+  techCopy.textContent = isEn ? spotlight.copyEn : spotlight.copyId;
 
   techGrid.innerHTML = spotlight.items
     .map(
@@ -970,6 +1072,7 @@ function executeRenderTechSpotlight(activeKey) {
 }
 
 function renderProjectFilters(activeKey = "all") {
+  const isEn = window.currentLang === "en";
   projectFiltersEl.innerHTML = projectFilters
     .map(
       (filter) => `
@@ -979,7 +1082,7 @@ function renderProjectFilters(activeKey = "all") {
           aria-pressed="${filter.key === activeKey}"
           data-project-filter="${filter.key}"
         >
-          ${filter.label}
+          ${isEn ? filter.labelEn : filter.labelId}
         </button>
       `,
     )
@@ -1007,6 +1110,7 @@ function renderProjects(activeKey = "all") {
 }
 
 function executeRenderProjects(activeKey) {
+  const isEn = window.currentLang === "en";
   const visibleProjects =
     activeKey === "all"
       ? projects
@@ -1015,7 +1119,7 @@ function executeRenderProjects(activeKey) {
   if (!visibleProjects.length) {
     projectGrid.innerHTML = `
       <div class="glass-panel p-8 text-white/70 lg:col-span-2">
-        No projects match this filter.
+        ${isEn ? "No projects match this filter." : "Tidak ada proyek yang sesuai dengan filter ini."}
       </div>
     `;
     return;
@@ -1032,7 +1136,7 @@ function executeRenderProjects(activeKey) {
                 <div class="project-slides flex transition-transform duration-500 w-full h-full" id="slides-${project.id}">
                   ${project.images.map(img => `
                     <div class="w-full h-full flex-shrink-0 relative cursor-zoom-in group">
-                      <img src="${img}" alt="${project.title}" class="w-full h-full object-cover select-none transition-transform duration-[600ms] group-hover:scale-[1.02]" onclick="window.openLightbox('${img}', '${project.label} - ${project.title}', '${project.id}')">
+                      <img src="${img}" alt="${project.title}" class="w-full h-full object-cover select-none transition-transform duration-[600ms] group-hover:scale-[1.02]" onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')">
                       <!-- High tech diagnostic label overlay -->
                       <div class="absolute bottom-3 left-3 bg-slateInk/85 backdrop-blur-md border border-cyan-400/25 px-2 py-0.5 rounded-none text-[6.5px] sm:text-[7.5px] font-pixel text-cyan-300 uppercase tracking-widest pointer-events-none z-10">
                         DIAGNOSTIC: SUCCESS
@@ -1057,11 +1161,11 @@ function executeRenderProjects(activeKey) {
             ` : ''}
             
             <div class="flex flex-wrap items-center gap-3">
-              <span class="tag-pill">${project.label}</span>
+              <span class="tag-pill">${isEn ? project.labelEn : project.labelId}</span>
               <span class="tag-pill tag-pill-accent">${project.title}</span>
             </div>
             <h3 class="project-title">${project.title}</h3>
-            <p class="project-copy">${project.description}</p>
+            <p class="project-copy">${isEn ? project.descriptionEn : project.descriptionId}</p>
             <div class="flex flex-wrap gap-2">
               ${project.stack.map((item) => `<span class="project-chip">${item}</span>`).join("")}
             </div>
@@ -1075,14 +1179,14 @@ function executeRenderProjects(activeKey) {
                 ${project.story ? `
                   <button type="button" class="flex items-center gap-2 text-xs font-bold text-cyan-300 hover:text-cyan-200 transition-colors uppercase tracking-widest cursor-pointer" onclick="window.toggleProjectStory('${project.id}', event)">
                     <iconify-icon icon="mdi:book-open-outline" class="text-sm animate-pulse" id="story-icon-${project.id}"></iconify-icon>
-                    <span id="story-text-${project.id}">Read Project Story</span>
+                    <span id="story-text-${project.id}">${isEn ? "Read Project Story" : "Baca Cerita Proyek"}</span>
                   </button>
                 ` : '<div></div>'}
                 
                 ${project.github ? `
                   <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest cursor-none-hover group/git-link" onclick="event.stopPropagation()">
                     <iconify-icon icon="mdi:github" class="text-base group-hover/git-link:rotate-12 transition-transform duration-300"></iconify-icon>
-                    <span>Repository</span>
+                    <span>${isEn ? "Repository" : "Repositori"}</span>
                     <iconify-icon icon="mdi:arrow-top-right" class="text-[10px] text-white/40 group-hover/git-link:translate-x-0.5 group-hover/git-link:-translate-y-0.5 transition-transform duration-300"></iconify-icon>
                   </a>
                 ` : ''}
@@ -1092,19 +1196,19 @@ function executeRenderProjects(activeKey) {
                 <div id="story-content-${project.id}" class="mt-4 hidden overflow-hidden text-xs leading-6 text-white/70 space-y-4 font-normal">
                   <div class="rounded bg-white/5 border border-white/5 p-3.5 space-y-3.5 backdrop-blur-md">
                     <div>
-                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">Latar Belakang</p>
-                      <p class="text-white/60 leading-relaxed text-left sm:text-justify">${project.story.background}</p>
+                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">${isEn ? "Background" : "Latar Belakang"}</p>
+                      <p class="text-white/60 leading-relaxed text-left sm:text-justify">${isEn ? project.story.backgroundEn : project.story.backgroundId}</p>
                     </div>
                     <div>
-                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">Tujuan Utama</p>
+                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">${isEn ? "Key Objectives" : "Tujuan Utama"}</p>
                       <ul class="list-disc list-inside space-y-1.5 text-white/60 leading-relaxed text-left sm:text-justify pl-1">
-                        ${project.story.objectives.map(obj => `<li>${obj}</li>`).join('')}
+                        ${(isEn ? project.story.objectivesEn : project.story.objectivesId).map(obj => `<li>${obj}</li>`).join('')}
                       </ul>
                     </div>
                     <div>
-                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">Fitur Utama</p>
+                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">${isEn ? "Key Features" : "Fitur Utama"}</p>
                       <ul class="list-disc list-inside space-y-1.5 text-white/60 leading-relaxed text-left sm:text-justify pl-1">
-                        ${project.story.features.map(feat => `<li>${feat}</li>`).join('')}
+                        ${(isEn ? project.story.featuresEn : project.story.featuresId).map(feat => `<li>${feat}</li>`).join('')}
                       </ul>
                     </div>
                   </div>
@@ -1137,12 +1241,13 @@ function executeRenderProjects(activeKey) {
 }
 
 function renderAthletics() {
+  const isEn = window.currentLang === "en";
   athleticTimelineEl.innerHTML = athleticTimeline
     .map(
       (item) => `
         <div class="timeline-item pb-4">
-          <p class="timeline-title">${item.title}</p>
-          <p class="timeline-detail">${item.detail}</p>
+          <p class="timeline-title">${isEn ? item.titleEn : item.titleId}</p>
+          <p class="timeline-detail">${isEn ? item.detailEn : item.detailId}</p>
         </div>
       `,
     )
@@ -1155,7 +1260,8 @@ function setupTypingEffect() {
   let removing = false;
 
   const tick = () => {
-    const activeRole = typingRoles[roleIndex];
+    const roles = typingRoles[window.currentLang] || typingRoles.en;
+    const activeRole = roles[roleIndex % roles.length];
     const nextText = removing
       ? activeRole.slice(0, Math.max(0, charIndex - 1))
       : activeRole.slice(0, charIndex + 1);
@@ -1170,7 +1276,7 @@ function setupTypingEffect() {
 
     if (removing && charIndex === 0) {
       removing = false;
-      roleIndex = (roleIndex + 1) % typingRoles.length;
+      roleIndex = (roleIndex + 1) % roles.length;
       setTimeout(tick, 280);
       return;
     }
@@ -1226,14 +1332,51 @@ function observeReveals() {
     .forEach((node) => revealObserver.observe(node));
 }
 
-function init() {
+window.currentLang = localStorage.getItem("aipp-lang") || "id";
+
+window.setLanguage = function (lang) {
+  window.currentLang = lang;
+  localStorage.setItem("aipp-lang", lang);
+
+  // Update navbar language switcher buttons active states
+  const btnId = document.getElementById("lang-id");
+  const btnEn = document.getElementById("lang-en");
+  if (btnId && btnEn) {
+    if (lang === "id") {
+      btnId.className = "px-1.5 py-0.5 rounded-sm transition-colors text-cyan-300 bg-cyan-400/15";
+      btnEn.className = "px-1.5 py-0.5 rounded-sm transition-colors text-white/40 hover:text-white/80";
+    } else {
+      btnEn.className = "px-1.5 py-0.5 rounded-sm transition-colors text-cyan-300 bg-cyan-400/15";
+      btnId.className = "px-1.5 py-0.5 rounded-sm transition-colors text-white/40 hover:text-white/80";
+    }
+  }
+
+  // Update all static HTML elements with translation attributes
+  document.querySelectorAll("[data-lang-id]").forEach((el) => {
+    el.innerHTML = lang === "id" ? el.getAttribute("data-lang-id") : el.getAttribute("data-lang-en");
+  });
+
+  // Re-render dynamic elements
   renderFoundation();
   renderLanguages();
-  renderStackTabs();
-  renderStackPanel();
-  renderProjectFilters();
-  renderProjects();
+
+  // Pick active stack panel keys to preserve selection
+  const activeTabBtn = document.querySelector("[data-stack-tab][aria-selected='true']");
+  const activeTabKey = activeTabBtn ? activeTabBtn.getAttribute("data-stack-tab") : "frontend";
+  renderStackTabs(activeTabKey);
+  renderStackPanel(activeTabKey);
+
+  // Pick active project filters to preserve selection
+  const activeFilterBtn = document.querySelector("[data-project-filter][aria-pressed='true']");
+  const activeFilterKey = activeFilterBtn ? activeFilterBtn.getAttribute("data-project-filter") : "all";
+  renderProjectFilters(activeFilterKey);
+  renderProjects(activeFilterKey);
+
   renderAthletics();
+};
+
+function init() {
+  window.setLanguage(window.currentLang);
   setupTypingEffect();
   setupTabs();
   setupFilters();
@@ -1255,6 +1398,7 @@ window.toggleProjectStory = function (projectId, event) {
   if (!content) return;
 
   const isHidden = content.classList.contains("hidden");
+  const isEn = window.currentLang === "en";
 
   if (isHidden) {
     content.classList.remove("hidden");
@@ -1266,7 +1410,7 @@ window.toggleProjectStory = function (projectId, event) {
       icon.setAttribute("icon", "mdi:book-open-page-variant-outline");
       icon.classList.remove("animate-pulse");
     }
-    if (text) text.textContent = "Hide Project Story";
+    if (text) text.textContent = isEn ? "Hide Project Story" : "Sembunyikan Cerita";
   } else {
     gsap.to(content, {
       height: 0,
@@ -1281,7 +1425,7 @@ window.toggleProjectStory = function (projectId, event) {
       icon.setAttribute("icon", "mdi:book-open-outline");
       icon.classList.add("animate-pulse");
     }
-    if (text) text.textContent = "Read Project Story";
+    if (text) text.textContent = isEn ? "Read Project Story" : "Baca Cerita Proyek";
   }
 };
 

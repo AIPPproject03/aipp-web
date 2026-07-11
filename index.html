@@ -67,17 +67,25 @@
             </a>
 
             <nav class="hidden items-center gap-8 text-sm text-white/70 md:flex">
-                <a class="nav-link" href="#foundation">Foundation</a>
-                <a class="nav-link" href="#stack">Stack</a>
-                <a class="nav-link" href="#projects">Projects</a>
-                <a class="nav-link" href="#athletics">Athletics</a>
-                <a class="nav-link" href="#impact">Impact</a>
+                <a class="nav-link" href="#foundation" data-lang-id="Fondasi" data-lang-en="Foundation">Foundation</a>
+                <a class="nav-link" href="#stack" data-lang-id="Teknologi" data-lang-en="Stack">Stack</a>
+                <a class="nav-link" href="#projects" data-lang-id="Proyek" data-lang-en="Projects">Projects</a>
+                <a class="nav-link" href="#athletics" data-lang-id="Atletik" data-lang-en="Athletics">Athletics</a>
+                <a class="nav-link" href="#impact" data-lang-id="Dampak" data-lang-en="Impact">Impact</a>
             </nav>
 
-            <a href="https://github.com/AIPPproject03" target="_blank" rel="noreferrer"
-                class="hidden rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:-translate-y-0.5 hover:bg-cyan-400/20 sm:inline-flex">
-                GitHub Portfolio
-            </a>
+            <div class="flex items-center gap-3">
+                <!-- Language Toggle Switch -->
+                <div class="flex items-center gap-0.5 bg-slate-950/60 border border-white/10 p-0.5 rounded font-pixel text-[8px] sm:text-[9px] uppercase tracking-wider z-20">
+                    <button id="lang-id" class="px-1.5 py-0.5 rounded-sm transition-colors text-cyan-300 bg-cyan-400/15" onclick="window.setLanguage('id')">ID</button>
+                    <button id="lang-en" class="px-1.5 py-0.5 rounded-sm transition-colors text-white/40 hover:text-white/80" onclick="window.setLanguage('en')">EN</button>
+                </div>
+
+                <a href="https://github.com/AIPPproject03" target="_blank" rel="noreferrer"
+                    class="hidden rounded border border-cyan-400/30 bg-cyan-400/10 px-3.5 py-1.5 text-xs font-semibold font-pixel text-cyan-200 transition hover:-translate-y-0.5 hover:bg-cyan-400/20 sm:inline-flex shadow-halo active:translate-y-0.5">
+                    GitHub Portfolio
+                </a>
+            </div>
         </div>
     </header>
 
@@ -86,24 +94,24 @@
             <div
                 class="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:py-24">
                 <div class="reveal space-y-8">
-                    <div data-hero-badge
+                    <div data-hero-badge data-lang-id="Simfoni Pikiran, Otot, dan Kode" data-lang-en="The Symphony of Mind, Muscle, and Code"
                         class="inline-flex items-center gap-3 rounded border border-cyan-400/35 bg-cyan-400/5 px-3 py-1.5 text-[9px] font-pixel uppercase tracking-widest text-cyan-300/90 shadow-halo">
                         The Symphony of Mind, Muscle, and Code
                     </div>
 
                     <div class="space-y-5">
-                        <p data-hero-kicker class="text-sm font-semibold uppercase tracking-[0.5em] text-white/55">
+                        <p data-hero-kicker data-lang-id="PORTFOLIO PRIBADI" data-lang-en="PERSONAL PORTFOLIO" class="text-sm font-semibold uppercase tracking-[0.5em] text-white/55">
                             Personal Portfolio</p>
                         <h1 data-hero-title
                             class="max-w-4xl text-4xl font-black leading-[0.95] tracking-[-0.04em] text-white sm:text-5xl md:text-7xl">
                             AGUSTINUS IRWIN PUTRA PANGESTI
                         </h1>
-                        <p data-hero-subtitle class="max-w-3xl text-lg leading-8 text-white/72 sm:text-xl">
-                            Informatics Engineer | <span class="typing-wrap"><span id="typing-role"
-                                    class="typing-role"></span><span class="typing-caret">|</span></span> | Elite
-                            Badminton Athlete
+                        <p class="max-w-3xl text-lg leading-8 text-white/72 sm:text-xl">
+                            <span data-lang-id="Teknik Informatika" data-lang-en="Informatics Engineer">Informatics Engineer</span> | 
+                            <span class="typing-wrap"><span id="typing-role" class="typing-role"></span><span class="typing-caret">|</span></span> | 
+                            <span data-lang-id="Atlet Bulu Tangkis Elite" data-lang-en="Elite Badminton Athlete">Elite Badminton Athlete</span>
                         </p>
-                        <p data-hero-summary class="max-w-3xl text-base leading-8 text-white/65 sm:text-lg">
+                        <p data-hero-summary data-lang-id="Perpaduan dinamis dari kapasitas kognitif unggul, disiplin fisik tanpa henti, dan eksekusi rekayasa perangkat lunak mendalam. Saya berspesialisasi dalam membangun aplikasi Web3 terdesentralisasi dan sistem kuantitatif otomatis dari awal." data-lang-en="A dynamic combination of superior cognitive capacity, relentless physical discipline, and deep engineering execution. I specialize in building decentralized Web3 applications and automated quantitative systems from the ground up." class="max-w-3xl text-base leading-8 text-white/65 sm:text-lg">
                             A dynamic combination of superior cognitive capacity, relentless physical discipline, and
                             deep engineering execution. I specialize in building decentralized Web3 applications and
                             automated quantitative systems from the ground up.
@@ -113,44 +121,44 @@
                     <div class="storyline-strip">
                         <div class="story-node">
                             <p class="story-step font-pixel text-cyan-300">01</p>
-                            <p class="story-title">Academics</p>
-                            <p class="story-copy">Structured learning, strong GPA, and analytical depth.</p>
+                            <p class="story-title" data-lang-id="Akademik" data-lang-en="Academics">Academics</p>
+                            <p class="story-copy" data-lang-id="Pembelajaran terstruktur, IPK kuat, dan kedalaman analisis." data-lang-en="Structured learning, strong GPA, and analytical depth.">Structured learning, strong GPA, and analytical depth.</p>
                         </div>
                         <div class="story-arrow font-pixel text-cyan-400/55">→</div>
                         <div class="story-node">
                             <p class="story-step font-pixel text-cyan-300">02</p>
-                            <p class="story-title">Engineering</p>
-                            <p class="story-copy">Web3, AI, and secure client-side execution.</p>
+                            <p class="story-title" data-lang-id="Rekayasa" data-lang-en="Engineering">Engineering</p>
+                            <p class="story-copy" data-lang-id="Web3, AI, dan eksekusi sisi klien yang aman." data-lang-en="Web3, AI, and secure client-side execution.">Web3, AI, and secure client-side execution.</p>
                         </div>
                         <div class="story-arrow font-pixel text-cyan-400/55">→</div>
                         <div class="story-node">
                             <p class="story-step font-pixel text-cyan-300">03</p>
-                            <p class="story-title">Athletics</p>
-                            <p class="story-copy">National badminton discipline translated into performance.</p>
+                            <p class="story-title" data-lang-id="Atletik" data-lang-en="Athletics">Athletics</p>
+                            <p class="story-copy" data-lang-id="Disiplin bulu tangkis nasional yang diwujudkan dalam performa." data-lang-en="National badminton discipline translated into performance.">National badminton discipline translated into performance.</p>
                         </div>
                     </div>
 
                     <div data-hero-actions class="flex flex-col gap-4 sm:flex-row">
-                        <a href="#foundation" class="btn-primary">Explore My Journey</a>
+                        <a href="#foundation" class="btn-primary" data-lang-id="Jelajahi Perjalanan Saya" data-lang-en="Explore My Journey">Explore My Journey</a>
                         <a href="https://github.com/AIPPproject03" target="_blank" rel="noreferrer"
-                            class="btn-secondary">View GitHub Portfolio</a>
+                            class="btn-secondary" data-lang-id="Lihat Portofolio GitHub" data-lang-en="View GitHub Portfolio">View GitHub Portfolio</a>
                     </div>
 
                     <div data-hero-stats class="grid gap-4 sm:grid-cols-3">
                         <article class="metric-card reveal-delay-1">
-                            <p class="metric-label">Cognitive Tier</p>
+                            <p class="metric-label" data-lang-id="Tingkat Kognitif" data-lang-en="Cognitive Tier">Cognitive Tier</p>
                             <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300">IQ 121</p>
-                            <p class="metric-note">Superior category</p>
+                            <p class="metric-note" data-lang-id="Kategori Superior" data-lang-en="Superior category">Superior category</p>
                         </article>
                         <article class="metric-card reveal-delay-2">
-                            <p class="metric-label">Academic GPA</p>
+                            <p class="metric-label" data-lang-id="IPK Akademik" data-lang-en="Academic GPA">Academic GPA</p>
                             <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300">3.85/4.00</p>
-                            <p class="metric-note">S1 Informatika</p>
+                            <p class="metric-note" data-lang-id="S1 Informatika" data-lang-en="Informatics Undergrad">S1 Informatika</p>
                         </article>
                         <article class="metric-card reveal-delay-3">
-                            <p class="metric-label">Athletic Level</p>
-                            <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300">National</p>
-                            <p class="metric-note">Elite badminton</p>
+                            <p class="metric-label" data-lang-id="Tingkat Atletik" data-lang-en="Athletic Level">Athletic Level</p>
+                            <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300" data-lang-id="Nasional" data-lang-en="National">National</p>
+                            <p class="metric-note" data-lang-id="Bulu tangkis elite" data-lang-en="Elite badminton">Elite badminton</p>
                         </article>
                     </div>
                 </div>
@@ -194,27 +202,25 @@
                     <div data-hero-panel class="hero-panel glass-panel p-6 sm:p-8">
                         <div class="flex flex-wrap items-start justify-between gap-4 border-b border-white/10 pb-5">
                             <div class="space-y-2">
-                                <p class="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-200/80">Live
+                                <p class="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-200/80" data-lang-id="Sinyal Profil Langsung" data-lang-en="Live Profile Signal">Live
                                     Profile Signal</p>
-                                <h2 class="text-2xl font-bold text-white sm:text-3xl">Cognitive, Athletic, Engineering
+                                <h2 class="text-2xl font-bold text-white sm:text-3xl" data-lang-id="Kognitif, Atletik, Rekayasa" data-lang-en="Cognitive, Athletic, Engineering">Cognitive, Athletic, Engineering
                                 </h2>
                             </div>
                             <span
-                                class="rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-200">Superior</span>
+                                class="rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-200" data-lang-id="Unggul" data-lang-en="Superior">Superior</span>
                         </div>
 
                         <div class="mt-6 grid gap-4 sm:grid-cols-2">
                             <div class="glass-inner p-4">
-                                <p class="text-xs uppercase tracking-[0.35em] text-white/40">Core Identity</p>
-                                <p class="mt-2 text-lg font-semibold text-white">Engineer / Athlete / Builder</p>
-                                <p class="mt-2 text-sm leading-7 text-white/65">Balancing rigorous academics, code
-                                    architecture, and competition-grade physical discipline.</p>
+                                <p class="text-xs uppercase tracking-[0.35em] text-white/40" data-lang-id="Identitas Inti" data-lang-en="Core Identity">Core Identity</p>
+                                <p class="mt-2 text-lg font-semibold text-white" data-lang-id="Rekayasawan / Atlet / Pembuat" data-lang-en="Engineer / Athlete / Builder">Engineer / Athlete / Builder</p>
+                                <p class="mt-2 text-sm leading-7 text-white/65" data-lang-id="Menyeimbangkan akademis yang ketat, arsitektur kode, dan disiplin fisik tingkat kompetisi." data-lang-en="Balancing rigorous academics, code architecture, and competition-grade physical discipline.">Balancing rigorous academics, code architecture, and competition-grade physical discipline.</p>
                             </div>
                             <div class="glass-inner p-4">
-                                <p class="text-xs uppercase tracking-[0.35em] text-white/40">Operating Mode</p>
-                                <p class="mt-2 text-lg font-semibold text-white">Client-side First</p>
-                                <p class="mt-2 text-sm leading-7 text-white/65">Security-minded Web3 systems,
-                                    quantitative strategy design, and practical machine intelligence.</p>
+                                <p class="text-xs uppercase tracking-[0.35em] text-white/40" data-lang-id="Mode Operasi" data-lang-en="Operating Mode">Operating Mode</p>
+                                <p class="mt-2 text-lg font-semibold text-white" data-lang-id="Sisi Klien Utama" data-lang-en="Client-side First">Client-side First</p>
+                                <p class="mt-2 text-sm leading-7 text-white/65" data-lang-id="Sistem Web3 yang aman, desain strategi kuantitatif, dan kecerdasan mesin praktis." data-lang-en="Security-minded Web3 systems, quantitative strategy design, and practical machine intelligence.">Security-minded Web3 systems, quantitative strategy design, and practical machine intelligence.</p>
                             </div>
                         </div>
 
@@ -226,7 +232,7 @@
 
                         <div class="mt-6 rounded border border-white/10 bg-slate-950/35 p-5">
                             <div class="flex items-center justify-between gap-4">
-                                <p class="text-sm font-semibold text-white/70">Discipline Index</p>
+                                <p class="text-sm font-semibold text-white/70" data-lang-id="Indeks Disiplin" data-lang-en="Discipline Index">Discipline Index</p>
                                 <p class="font-pixel text-xs text-cyan-300">92%</p>
                             </div>
                             <div class="mt-3 h-3 rounded bg-white/8 border border-white/10 overflow-hidden">
@@ -238,12 +244,12 @@
                         </div>
                         <div class="mt-5 grid gap-3 sm:grid-cols-2">
                             <div class="mini-ribbon">
-                                <p class="mini-label">Focus</p>
-                                <p class="mini-value">Decentralized systems</p>
+                                <p class="mini-label" data-lang-id="Fokus" data-lang-en="Focus">Focus</p>
+                                <p class="mini-value" data-lang-id="Sistem terdesentralisasi" data-lang-en="Decentralized systems">Decentralized systems</p>
                             </div>
                             <div class="mini-ribbon mini-ribbon-gold">
-                                <p class="mini-label">Edge</p>
-                                <p class="mini-value">Tournament resilience</p>
+                                <p class="mini-label" data-lang-id="Keunggulan" data-lang-en="Edge">Edge</p>
+                                <p class="mini-value" data-lang-id="Ketangguhan turnamen" data-lang-en="Tournament resilience">Tournament resilience</p>
                             </div>
                         </div>
                     </div>
@@ -254,9 +260,9 @@
         <section id="foundation" class="section-shell">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker">Section A</p>
-                    <h2 class="section-title">The Cognitive Foundation</h2>
-                    <p class="section-copy">
+                    <p class="section-kicker" data-lang-id="Bagian A" data-lang-en="Section A">Section A</p>
+                    <h2 class="section-title" data-lang-id="Fondasi Kognitif" data-lang-en="The Cognitive Foundation">The Cognitive Foundation</h2>
+                    <p class="section-copy" data-lang-id="Profil yang dibangun di atas struktur akademik, kekuatan psikometrik, integritas sosial, dan kemampuan adaptasi multibahasa." data-lang-en="A profile built on academic structure, psychometric strength, social integrity, and multilingual adaptability.">
                         A profile built on academic structure, psychometric strength, social integrity, and multilingual
                         adaptability.
                     </p>
@@ -266,38 +272,38 @@
                     <article class="reveal glass-panel p-6 sm:p-8">
                         <div class="flex items-center justify-between gap-4">
                             <div>
-                                <p class="text-xs uppercase tracking-[0.4em] text-cyan-200/70">Psychogram & Academics
+                                <p class="text-xs uppercase tracking-[0.4em] text-cyan-200/70" data-lang-id="Psikogram & Akademik" data-lang-en="Psychogram & Academics">Psychogram & Academics
                                 </p>
-                                <h3 class="mt-2 text-2xl font-bold text-white">Structured Intelligence Dashboard</h3>
+                                <h3 class="mt-2 text-2xl font-bold text-white" data-lang-id="Dasbor Kecerdasan Terstruktur" data-lang-en="Structured Intelligence Dashboard">Structured Intelligence Dashboard</h3>
                             </div>
                             <span
-                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/65">Certified
+                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/65" data-lang-id="Sumber Terverifikasi" data-lang-en="Certified Source">Certified
                                 Source</span>
                         </div>
                         <div id="foundation-grid" class="mt-6 grid gap-4 md:grid-cols-2"></div>
                     </article>
 
                     <aside class="reveal glass-panel p-6 sm:p-8">
-                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80">Language Map</p>
-                        <h3 class="mt-2 text-2xl font-bold text-white">Multilingual Presence</h3>
+                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80" data-lang-id="Peta Bahasa" data-lang-en="Language Map">Language Map</p>
+                        <h3 class="mt-2 text-2xl font-bold text-white" data-lang-id="Kehadiran Multibahasa" data-lang-en="Multilingual Presence">Multilingual Presence</h3>
                         <div id="language-list" class="mt-6 space-y-4"></div>
                         <div class="mt-8 rounded-3xl border border-cyan-400/15 bg-cyan-400/8 p-5">
-                            <p class="text-sm font-semibold text-cyan-100">Interpretive Strengths</p>
+                            <p class="text-sm font-semibold text-cyan-100" data-lang-id="Kekuatan Interpretatif" data-lang-en="Interpretive Strengths">Interpretive Strengths</p>
                             <div class="mt-4 grid gap-3 text-sm text-white/72">
-                                <div class="flex items-center justify-between gap-3 rounded-2xl bg-white/5 px-4 py-3">
-                                    <span>High concept comprehension</span><span
-                                        class="font-mono text-cyan-200">NEW</span>
+                                <div class="flex items-center justify-between gap-3 rounded bg-white/5 px-4 py-3">
+                                    <span data-lang-id="Pemahaman konsep yang tinggi" data-lang-en="High concept comprehension">High concept comprehension</span><span
+                                        class="font-mono text-cyan-200 font-pixel text-[10px]">NEW</span>
                                 </div>
-                                <div class="flex items-center justify-between gap-3 rounded-2xl bg-white/5 px-4 py-3">
-                                    <span>Extreme consistency in attitude</span><span
-                                        class="font-mono text-gold-200">LOCKED</span>
+                                <div class="flex items-center justify-between gap-3 rounded bg-white/5 px-4 py-3">
+                                    <span data-lang-id="Konsistensi sikap yang tinggi" data-lang-en="Extreme consistency in attitude">Extreme consistency in attitude</span><span
+                                        class="font-mono text-gold-200 font-pixel text-[10px]">LOCKED</span>
                                 </div>
-                                <div class="flex items-center justify-between gap-3 rounded-2xl bg-white/5 px-4 py-3">
-                                    <span>High integrity</span><span class="font-mono text-white/80">TRUSTED</span>
+                                <div class="flex items-center justify-between gap-3 rounded bg-white/5 px-4 py-3">
+                                    <span data-lang-id="Integritas yang tinggi" data-lang-en="High integrity">High integrity</span><span class="font-mono text-white/80 font-pixel text-[10px]">TRUSTED</span>
                                 </div>
-                                <div class="flex items-center justify-between gap-3 rounded-2xl bg-white/5 px-4 py-3">
-                                    <span>Excellent group synergy</span><span
-                                        class="font-mono text-cyan-200">TEAM</span>
+                                <div class="flex items-center justify-between gap-3 rounded bg-white/5 px-4 py-3">
+                                    <span data-lang-id="Sinergi kelompok yang sangat baik" data-lang-en="Excellent group synergy">Excellent group synergy</span><span
+                                        class="font-mono text-cyan-200 font-pixel text-[10px]">TEAM</span>
                                 </div>
                             </div>
                         </div>
@@ -309,9 +315,9 @@
         <section id="stack" class="section-shell">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker">Section B</p>
-                    <h2 class="section-title">Core Tech Stack & Engineering Skills</h2>
-                    <p class="section-copy">A practical stack spanning front-end foundations, secure back-end systems,
+                    <p class="section-kicker" data-lang-id="Bagian B" data-lang-en="Section B">Section B</p>
+                    <h2 class="section-title" data-lang-id="Tumpukan Teknologi & Keterampilan Rekayasa" data-lang-en="Core Tech Stack & Engineering Skills">Core Tech Stack & Engineering Skills</h2>
+                    <p class="section-copy" data-lang-id="Tumpukan teknologi praktis yang mencakup fondasi front-end, sistem back-end yang aman, primitif Web3, perdagangan kuantitatif, dan pembelajaran mesin terapan." data-lang-en="A practical stack spanning front-end foundations, secure back-end systems, Web3 primitives, quantitative trading, and applied machine learning.">A practical stack spanning front-end foundations, secure back-end systems,
                         Web3 primitives, quantitative trading, and applied machine learning.</p>
                 </div>
 
@@ -328,13 +334,13 @@
                     <aside class="tech-spotlight glass-panel p-6 sm:p-8">
                         <div class="flex items-start justify-between gap-4">
                             <div>
-                                <p class="text-xs font-semibold uppercase tracking-[0.45em] text-cyan-200/70">Tech
+                                <p class="text-xs font-semibold uppercase tracking-[0.45em] text-cyan-200/70" data-lang-id="Konstelasi Teknologi" data-lang-en="Tech Constellation">Tech
                                     Constellation</p>
                                 <h3 id="tech-title" class="mt-2 text-2xl font-bold text-white">Front-End Instruments
                                 </h3>
                             </div>
                             <span
-                                class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100">Live</span>
+                                class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100" data-lang-id="Aktif" data-lang-en="Live">Live</span>
                         </div>
 
                         <p id="tech-copy" class="mt-4 text-sm leading-8 text-white/68">
@@ -351,9 +357,9 @@
         <section id="projects" class="section-shell">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker">Section C</p>
-                    <h2 class="section-title">The Revolutionary Portfolio</h2>
-                    <p class="section-copy">Five initiatives that blend security, civic impact, education, AI, and
+                    <p class="section-kicker" data-lang-id="Bagian C" data-lang-en="Section C">Section C</p>
+                    <h2 class="section-title" data-lang-id="Portofolio Proyek" data-lang-en="The Revolutionary Portfolio">The Revolutionary Portfolio</h2>
+                    <p class="section-copy" data-lang-id="Empat inisiatif yang memadukan keamanan, dampak kemasyarakatan, pendidikan, AI, dan riset ke dalam satu kesatuan karya." data-lang-en="Four initiatives that blend security, civic impact, education, AI, and research into a coherent body of work.">Four initiatives that blend security, civic impact, education, AI, and
                         research into a coherent body of work.</p>
                 </div>
 
@@ -365,32 +371,32 @@
         <section id="athletics" class="section-shell">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker">Section D</p>
-                    <h2 class="section-title">The Athletic Legacy & Discipline</h2>
-                    <p class="section-copy">Competitive badminton sharpened the same traits demanded by engineering:
+                    <p class="section-kicker" data-lang-id="Bagian D" data-lang-en="Section D">Section D</p>
+                    <h2 class="section-title" data-lang-id="Warisan & Disiplin Atletik" data-lang-en="The Athletic Legacy & Discipline">The Athletic Legacy & Discipline</h2>
+                    <p class="section-copy" data-lang-id="Bulu tangkis kompetitif melatih sifat-sifat yang sama yang dibutuhkan oleh rekayasa perangkat lunak: ritme, pemulihan, eksekusi di bawah tekanan, dan disiplin yang berulang." data-lang-en="Competitive badminton sharpened the same traits demanded by engineering: pacing, recovery, execution under pressure, and repeatable discipline.">Competitive badminton sharpened the same traits demanded by engineering:
                         pacing, recovery, execution under pressure, and repeatable discipline.</p>
                 </div>
 
                 <div class="mt-10 grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
                     <article class="reveal glass-panel p-6 sm:p-8">
                         <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80">Persona</p>
-                        <h3 class="mt-2 text-2xl font-bold text-white">Elite National Badminton Athlete</h3>
+                        <h3 class="mt-2 text-2xl font-bold text-white" data-lang-id="Atlet Bulu Tangkis Nasional Elite" data-lang-en="Elite National Badminton Athlete">Elite National Badminton Athlete</h3>
                         <div class="mt-6 space-y-4">
-                            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-semibold text-white">Lifestyle Philosophy</p>
-                                <p class="mt-2 text-sm leading-7 text-white/65">Daily calisthenics, hybrid training, and
+                            <div class="rounded border border-white/10 bg-white/5 p-4">
+                                <p class="text-sm font-semibold text-white" data-lang-id="Filosofi Gaya Hidup" data-lang-en="Lifestyle Philosophy">Lifestyle Philosophy</p>
+                                <p class="mt-2 text-sm leading-7 text-white/65" data-lang-id="Kalistenik harian, latihan hibrida, dan pola pikir investor jangka panjang yang sistematis dengan DCA untuk Bitcoin." data-lang-en="Daily calisthenics, hybrid training, and a systematic long-term investor mindset with DCA for Bitcoin.">Daily calisthenics, hybrid training, and
                                     a systematic long-term investor mindset with DCA for Bitcoin.</p>
                             </div>
-                            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-semibold text-white">Physical Target</p>
-                                <p class="mt-2 text-sm leading-7 text-white/65">Maintaining 62 kg lean muscle mass with
+                            <div class="rounded border border-white/10 bg-white/5 p-4">
+                                <p class="text-sm font-semibold text-white" data-lang-id="Target Fisik" data-lang-en="Physical Target">Physical Target</p>
+                                <p class="mt-2 text-sm leading-7 text-white/65" data-lang-id="Mempertahankan 62 kg massa otot tanpa lemak dengan komposisi disiplin, mobilitas, dan siklus pengkondisian." data-lang-en="Maintaining 62 kg lean muscle mass with disciplined composition, mobility, and conditioning cycles.">Maintaining 62 kg lean muscle mass with
                                     disciplined composition, mobility, and conditioning cycles.</p>
                             </div>
                         </div>
                     </article>
 
                     <article class="reveal glass-panel p-6 sm:p-8">
-                        <p class="text-xs uppercase tracking-[0.4em] text-cyan-200/80">Competitive Timeline</p>
+                        <p class="text-xs uppercase tracking-[0.4em] text-cyan-200/80" data-lang-id="Linimasa Kompetisi" data-lang-en="Competitive Timeline">Competitive Timeline</p>
                         <div class="relative mt-6">
                             <div class="timeline-svg-container">
                                 <svg width="100%" height="100%" viewBox="0 0 2 100" preserveAspectRatio="none"
@@ -417,9 +423,9 @@
         <section id="impact" class="section-shell pb-24">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker">Section E</p>
-                    <h2 class="section-title">Impact & Community Leadership</h2>
-                    <p class="section-copy">The same operational rigor used in projects and sports was applied to
+                    <p class="section-kicker" data-lang-id="Bagian E" data-lang-en="Section E">Section E</p>
+                    <h2 class="section-title" data-lang-id="Dampak & Kepemimpinan Komunitas" data-lang-en="Impact & Community Leadership">Impact & Community Leadership</h2>
+                    <p class="section-copy" data-lang-id="Kedisiplinan operasional yang sama yang digunakan dalam proyek dan olahraga diterapkan pada pengabdian masyarakat, adopsi digital, dan eksekusi di tingkat desa." data-lang-en="The same operational rigor used in projects and sports was applied to community service, digital adoption, and village-level execution.">The same operational rigor used in projects and sports was applied to
                         community service, digital adoption, and village-level execution.
                     </p>
                 </div>
@@ -434,30 +440,30 @@
                                 class="rounded-full border border-gold-400/20 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-100">TAMPA
                                 BERAKSI</span>
                             <span
-                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/65">July
+                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/65" data-lang-id="Juli - Agustus 2025" data-lang-en="July - August 2025">July
                                 - August 2025</span>
                         </div>
-                        <h3 class="mt-5 text-2xl font-bold text-white">Leader of Community Service Program</h3>
-                        <p class="mt-4 text-sm leading-8 text-white/68">
+                        <h3 class="mt-5 text-2xl font-bold text-white" data-lang-id="Ketua Pengabdian Masyarakat (KKN)" data-lang-en="Leader of Community Service Program">Leader of Community Service Program</h3>
+                        <p class="mt-4 text-sm leading-8 text-white/68" data-lang-id="Memperkenalkan dan memimpin tim multidisiplin beranggotakan 15 mahasiswa di Desa Tampa, Barito Timur. Membangun dan meluncurkan portal resmi desa, memetakan batas wilayah digital, dan merekayasa sistem pemasaran digital untuk koperasi keripik singkong Kingkong Tampa setempat, meningkatkan keterlibatan masyarakat lebih dari 75%." data-lang-en="Led a multidisciplinary team of 15 students in Desa Tampa, Barito Timur. Built and deployed the official village portal, mapped digital borders, and engineered digital marketing systems for the local Kingkong Tampa cassava chip cooperative, increasing community engagement by more than 75%.">
                             Led a multidisciplinary team of 15 students in Desa Tampa, Barito Timur. Built and deployed
                             the official village portal, mapped digital borders, and engineered digital marketing
                             systems for the local Kingkong Tampa cassava chip cooperative, increasing community
                             engagement by more than 75%.
                         </p>
                         <div class="mt-6 grid gap-4 sm:grid-cols-2">
-                            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-semibold text-white">Village Portal</p>
+                            <div class="rounded border border-white/10 bg-white/5 p-4">
+                                <p class="text-sm font-semibold text-white" data-lang-id="Portal Desa" data-lang-en="Village Portal">Village Portal</p>
                                 <p class="mt-2 text-sm text-white/65">desatampa.netlify.app</p>
                             </div>
-                            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-semibold text-white">Publication</p>
-                                <p class="mt-2 text-sm text-white/65">TAMPA BERAKSI academic report</p>
+                            <div class="rounded border border-white/10 bg-white/5 p-4">
+                                <p class="text-sm font-semibold text-white" data-lang-id="Publikasi" data-lang-en="Publication">Publication</p>
+                                <p class="mt-2 text-sm text-white/65" data-lang-id="Laporan akademik TAMPA BERAKSI" data-lang-en="TAMPA BERAKSI academic report">TAMPA BERAKSI academic report</p>
                             </div>
                         </div>
                     </article>
 
                     <aside class="reveal glass-panel p-6 sm:p-8">
-                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80">Academic Publication</p>
+                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80" data-lang-id="Publikasi Akademik" data-lang-en="Academic Publication">Academic Publication</p>
                         <blockquote class="mt-4 border-l-2 border-cyan-400/40 pl-5 text-lg leading-8 text-white/80">
                             “TAMPA BERAKSI: Penguatan Pendidikan, Kesehatan, dan Lingkungan Melalui Kuliah Kerja Nyata
                             Universitas Palangka Raya di Desa Tampa”
@@ -465,15 +471,15 @@
                         <div class="mt-8 grid gap-4 sm:grid-cols-3">
                             <div class="stat-card">
                                 <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">15</p>
-                                <p class="stat-label">Students led</p>
+                                <p class="stat-label" data-lang-id="Mhs dipimpin" data-lang-en="Students led">Students led</p>
                             </div>
                             <div class="stat-card">
                                 <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">75%+</p>
-                                <p class="stat-label">Engagement lift</p>
+                                <p class="stat-label" data-lang-id="Kenaikan interaksi" data-lang-en="Engagement lift">Engagement lift</p>
                             </div>
                             <div class="stat-card">
                                 <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">1</p>
-                                <p class="stat-label">Village portal</p>
+                                <p class="stat-label" data-lang-id="Portal desa" data-lang-en="Village portal">Village portal</p>
                             </div>
                         </div>
                     </aside>
@@ -486,8 +492,8 @@
         <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
             <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.45em] text-white/45">Contact</p>
-                    <h2 class="mt-3 text-2xl font-bold text-white">Build, compete, and create with precision.</h2>
+                    <p class="text-sm font-semibold uppercase tracking-[0.45em] text-white/45" data-lang-id="Kontak" data-lang-en="Contact">Contact</p>
+                    <h2 class="mt-3 text-2xl font-bold text-white" data-lang-id="Bangun, bertanding, dan berkreasi dengan presisi." data-lang-en="Build, compete, and create with precision.">Build, compete, and create with precision.</h2>
                 </div>
                 <div class="flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap">
                     <a class="footer-link" href="mailto:aippirwin@gmail.com">aippirwin@gmail.com</a>
