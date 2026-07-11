@@ -1061,4 +1061,92 @@ footer {
   transform: scale(0.88);
 }
 
+/* Equalizer Visualizer Custom Styling */
+#music-equalizer .bar {
+  transition: height 0.15s ease, background-color 0.3s ease;
+  will-change: height;
+}
+
+#music-container.playing #music-equalizer {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+#music-container.playing #music-equalizer .bar-1 {
+  animation: pulseBar 0.75s ease-in-out infinite alternate;
+}
+#music-container.playing #music-equalizer .bar-2 {
+  animation: pulseBar 0.5s ease-in-out infinite alternate 0.15s;
+}
+#music-container.playing #music-equalizer .bar-3 {
+  animation: pulseBar 0.65s ease-in-out infinite alternate 0.3s;
+}
+
+@keyframes pulseBar {
+  0% {
+    height: 3px;
+  }
+  100% {
+    height: 14px;
+  }
+}
+
+/* Retro Robot Custom Animations */
+@keyframes robotBob {
+  0% {
+    transform: translateY(2px) scale(1);
+  }
+  100% {
+    transform: translateY(-5px) scale(1.03);
+  }
+}
+
+.playing-robot {
+  animation: robotBob 0.8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+@keyframes antennaSway {
+  0%, 100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+#robot-antenna {
+  transform-origin: 8px 2px;
+  transition: transform 0.3s ease;
+}
+
+#music-container.playing #robot-antenna {
+  animation: antennaSway 0.75s ease-in-out infinite;
+}
+
+@keyframes speakerFlash {
+  0%, 100% { fill: #22d3ee; }
+  50% { fill: #fbbf24; }
+}
+
+#music-container.playing #speaker-light-l {
+  animation: speakerFlash 0.5s infinite;
+}
+#music-container.playing #speaker-light-r {
+  animation: speakerFlash 0.5s infinite 0.25s;
+}
+
+@keyframes eyeBlink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+#robot-eye-l, #robot-eye-r {
+  transform-origin: center;
+}
+
+#music-container.playing #robot-eye-l,
+#music-container.playing #robot-eye-r {
+  animation: eyeBlink 3.2s infinite;
+}
+
 

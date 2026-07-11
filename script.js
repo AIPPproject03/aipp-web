@@ -1457,9 +1457,162 @@ function setupMobileActiveNav() {
   updateActiveNavOnScroll();
 }
 
+function setupBackgroundMusic() {
+  const musicContainer = document.getElementById("music-container");
+  const musicToggle = document.getElementById("music-toggle");
+  const musicEqualizer = document.getElementById("music-equalizer");
+  const musicRobot = document.getElementById("music-robot");
+  const playIcon = document.getElementById("music-play-icon");
+  const bgMusic = document.getElementById("bg-music");
+
+  if (!musicContainer || !musicToggle || !musicEqualizer || !musicRobot || !playIcon || !bgMusic) return;
+
+  // Set comfortable low volume for ambient play
+  bgMusic.volume = 0.22;
+
+  let isPlaying = false;
+
+  const playMusic = () => {
+    bgMusic.play().then(() => {
+      isPlaying = true;
+      musicContainer.classList.add("playing");
+      musicContainer.classList.add("eq-active");
+
+      // GSAP Squash and Stretch Launch Timeline
+      const tl = gsap.timeline();
+      gsap.killTweensOf([musicToggle, musicRobot]);
+      musicRobot.classList.remove("playing-robot");
+
+      // Squish capsule
+      tl.to(musicToggle, {
+        scaleY: 0.72,
+        scaleX: 1.28,
+        duration: 0.15,
+        ease: "power1.out"
+      })
+        // Bounce capsule back to normal
+        .to(musicToggle, {
+          scaleY: 1,
+          scaleX: 1,
+          duration: 0.35,
+          ease: "elastic.out(1.2, 0.4)"
+        }, "+=0.04")
+        // Launch robot upward with spin rotation
+        .fromTo(musicRobot,
+          { opacity: 0, y: 35, scale: 0.4, rotation: -12, pointerEvents: "none" },
+          {
+            opacity: 1,
+            y: -14,
+            scale: 1.1,
+            rotation: 8,
+            pointerEvents: "auto",
+            duration: 0.35,
+            ease: "power2.out"
+          },
+          "<" // start exactly when capsule rebounds
+        )
+        // Settle robot down to dancing state
+        .to(musicRobot, {
+          y: 0,
+          scale: 1,
+          rotation: 0,
+          duration: 0.42,
+          ease: "back.out(2.2)",
+          onComplete: () => {
+            if (isPlaying) musicRobot.classList.add("playing-robot");
+          }
+        });
+
+      // Icon toggle
+      gsap.to(playIcon, { scale: 0, opacity: 0, duration: 0.25 });
+
+      localStorage.setItem("aipp-music-enabled", "true");
+    }).catch((err) => {
+      console.log("Autoplay blocked by browser policy, waiting for interaction:", err);
+    });
+  };
+
+  const pauseMusic = () => {
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+    isPlaying = false;
+    musicContainer.classList.remove("playing");
+    musicContainer.classList.remove("eq-active");
+    musicRobot.classList.remove("playing-robot");
+
+    musicEqualizer.style.pointerEvents = "none";
+
+    // Retract robot back inside capsule bubble
+    gsap.killTweensOf([musicToggle, musicRobot]);
+    const tl = gsap.timeline();
+
+    // Robot anticipation hop
+    tl.to(musicRobot, {
+      y: -6,
+      scaleY: 1.15,
+      scaleX: 0.88,
+      rotation: -6,
+      duration: 0.15,
+      ease: "power1.out"
+    })
+      // Dive back inside
+      .to(musicRobot, {
+        opacity: 0,
+        y: 35,
+        scale: 0.4,
+        rotation: 12,
+        pointerEvents: "none",
+        duration: 0.4,
+        ease: "power2.in"
+      })
+      // Squish the capsule when the robot lands inside
+      .to(musicToggle, {
+        scaleY: 0.78,
+        scaleX: 1.22,
+        duration: 0.12,
+        ease: "power1.out"
+      }, "-=0.15")
+      // Rebound back to normal
+      .to(musicToggle, {
+        scaleY: 1,
+        scaleX: 1,
+        duration: 0.35,
+        ease: "elastic.out(1.2, 0.4)"
+      });
+
+    // Icon toggle
+    gsap.to(playIcon, { scale: 1, opacity: 1, duration: 0.25 });
+
+    localStorage.setItem("aipp-music-enabled", "false");
+  };
+
+  musicToggle.addEventListener("click", () => {
+    if (isPlaying) {
+      pauseMusic();
+    } else {
+      playMusic();
+    }
+  });
+
+  // Autoplay bypass on first user interaction if previously enabled
+  const isEnabledBefore = localStorage.getItem("aipp-music-enabled");
+  if (isEnabledBefore === "true") {
+    const handleFirstInteraction = () => {
+      playMusic();
+      document.removeEventListener("click", handleFirstInteraction);
+      document.removeEventListener("touchstart", handleFirstInteraction);
+      document.removeEventListener("scroll", handleFirstInteraction);
+    };
+    document.addEventListener("click", handleFirstInteraction);
+    document.addEventListener("touchstart", handleFirstInteraction);
+    document.addEventListener("scroll", handleFirstInteraction);
+  }
+}
+
 function init() {
   window.setLanguage(window.currentLang);
   setupMobileActiveNav();
+  setupBackgroundMusic();
   setupTypingEffect();
   setupTabs();
   setupFilters();
