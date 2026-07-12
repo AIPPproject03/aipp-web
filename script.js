@@ -269,207 +269,6 @@ const techSpotlights = {
   },
 };
 
-const projects = [
-  {
-    id: "wallet",
-    category: "flagship",
-    labelId: "Proyek Akademik Unggulan",
-    labelEn: "Flagship Academic Project",
-    title: "AIPP.Wallet",
-    descriptionId: "Dompet kripto multi-chain non-kustodian yang sangat aman, memprioritaskan keamanan penuh sisi klien dan kontrol pengguna secara mandiri atas kunci privat.",
-    descriptionEn: "A highly secure, non-custodial multi-chain crypto wallet prioritizing complete client-side security and independent user control over private keys.",
-    stack: ["Vanilla JavaScript", "ethers.js", "bitcoinjs-lib"],
-    meta: ["Client-side signing", "Multi-chain security", "Zero custody"],
-    github: "https://github.com/AIPPproject03/aipp-wallet",
-    images: [
-      "img/AIPP-WALLET/logo-aipp-wallet.png",
-      "img/AIPP-WALLET/aipp-wallet-1.png",
-      "img/AIPP-WALLET/aipp-wallet-2.png",
-      "img/AIPP-WALLET/aipp-wallet-3.png"
-    ],
-    story: {
-      backgroundId: "AIPP.Wallet dikembangkan sebagai solusi pengamanan kunci privat secara mandiri (self-custody) berbasis web untuk mengatasi kerentanan dompet kustodian terhadap kegagalan tunggal (seperti kasus kolapsnya FTX) serta kelemahan validasi transaksi pada ekstensi browser konvensional.",
-      backgroundEn: "AIPP.Wallet was developed as a web-based self-custody private key management solution to address the vulnerability of custodial wallets to single points of failure (such as the FTX collapse) and transactional validation weaknesses in conventional browser extensions.",
-      objectivesId: [
-        "Keamanan Self-Custody: Menghilangkan ketergantungan pada server backend untuk mengelola kunci privat sehingga meminimalisir risiko peretasan database.",
-        "Kompatibilitas Multi-Chain: Membuktikan kelayakan client-side transaction signing pada model UTXO (Bitcoin Testnet) dan model Account-based (Ethereum Sepolia Testnet).",
-        "Enkripsi Mnemonic Lokal: Mengamankan seed phrase pengguna di browser secara lokal dengan komputasi kriptografi intensif.",
-        "Efisiensi Signing: Menjamin waktu eksekusi penandatanganan transaksi sangat instan di bawah ambang batas kenyamanan pengguna (500 ms)."
-      ],
-      objectivesEn: [
-        "Self-Custody Security: Eliminates reliance on backend servers for private key management, minimizing database breach risks.",
-        "Multi-Chain Compatibility: Proves client-side transaction signing viability on UTXO model (Bitcoin Testnet) and Account-based model (Ethereum Sepolia Testnet).",
-        "Local Mnemonic Encryption: Securely stores user seed phrases locally in the browser using intensive cryptographic calculations.",
-        "Signing Efficiency: Guarantees near-instant transaction signing execution time well below the user comfort threshold (500 ms)."
-      ],
-      featuresId: [
-        "Client-side secp256k1 Signing: Penandatanganan transaksi offline berjalan lokal dengan ECDSA secp256k1.",
-        "Kriptografi PBKDF2 & AES-GCM 256-bit: Enkripsi mnemonic dengan 310.000 iterasi PBKDF2 sebelum disimpan di LocalStorage.",
-        "Derivasi BIP-39/32/44/84: Standarisasi pembuatan seed phrase dan derivasi alamat multi-chain deterministik.",
-        "Validasi Bech32 & Hex: Validasi real-time untuk alamat SegWit Bitcoin (Bech32) dan alamat Ethereum."
-      ],
-      featuresEn: [
-        "Client-Side secp256k1 Signing: Offline transaction signing runs locally using ECDSA secp256k1.",
-        "PBKDF2 & AES-GCM 256-bit Cryptography: Encrypts mnemonics with 310,000 PBKDF2 iterations before LocalStorage persistence.",
-        "BIP-39/32/44/84 Derivation: Standardized seed phrase generation and deterministic multi-chain address derivation.",
-        "Bech32 & Hex Validation: Real-time address validation for Bitcoin SegWit (Bech32) and Ethereum formats."
-      ]
-    }
-  },
-  {
-    id: "adaapi",
-    category: "hackathon",
-    labelId: "Juara 3 Hackathon Nasional Permikomnas 2025",
-    labelEn: "3rd Place National Hackathon Permikomnas 2025",
-    title: "ADAAPI",
-    descriptionId: "Platform akselerasi dan notifikasi darurat kebakaran terintegrasi dengan BPBD, menampilkan sistem peringatan real-time dan deteksi visual otomatis.",
-    descriptionEn: "An emergency fire acceleration and notification platform developed collaboratively with BPBD, featuring real-time alerting and visual detection.",
-    stack: ["Next.js", "Hono.js", "PostgreSQL", "YOLOv11", "Gemini API"],
-    meta: ["Team Leader", "Project Manager", "Team Pyrosentinel"],
-    github: "https://github.com/orgs/PyroSentinel/repositories",
-    images: [
-      "img/HACKATHON/hackathon-1.jpg",
-      "img/HACKATHON/hackathon-2.jpg",
-      "img/HACKATHON/hackathon-3.jpg",
-      "img/HACKATHON/hackathon-4.jpg",
-      "img/HACKATHON/hackathon-5.jpg"
-    ],
-    story: {
-      backgroundId: "ADAAPI (Aplikasi Digital Akselerasi Antisipasi Kebakaran Indonesia) dikembangkan dalam ajang Hackathon PERMIKOMNAS 2025 di BBPSDMP KOMDIGI Makassar (20-21 Juni 2025). Mengusung visi 'Satu detik sangat berharga untuk menyelamatkan nyawa', aplikasi ini dirancang untuk memangkas waktu tanggap pemadam kebakaran yang terhambat akibat pelaporan manual tak terintegrasi.",
-      backgroundEn: "ADAAPI (Indonesian Digital Fire Anticipation & Acceleration Application) was developed during the PERMIKOMNAS 2025 Hackathon at BBPSDMP KOMDIGI Makassar (June 20-21, 2025). Built under the vision 'One second is precious to save lives', it is designed to slash fire response times delayed by manual and unintegrated reporting.",
-      objectivesId: [
-        "Akselerasi Waktu Tanggap: Mengurangi keterlambatan respons damkar yang rata-rata melebihi 15 menit.",
-        "Verifikasi Laporan Cepat: Mencegah prank report dengan deteksi visual otomatis menggunakan kecerdasan buatan.",
-        "Notifikasi Instan Terpadu: Mengintegrasikan posko pemadam kebakaran, BPBD, dan instansi terkait secara real-time.",
-        "Pelakakan Lokasi Presisi: Mendeteksi geolokasi kebakaran secara otomatis melalui peta interaktif React Leaflet."
-      ],
-      objectivesEn: [
-        "Response Time Acceleration: Slashes dispatch delays, which average over 15 minutes.",
-        "Fast Report Verification: Curbs false reports via automatic computer vision detection.",
-        "Unified Instant Alerts: Connects local fire stations, BPBD, and relevant agencies in real-time.",
-        "Precision Location Tracking: Automatically detects fire geolocations via interactive React Leaflet maps."
-      ],
-      featuresId: [
-        "Pelaporan Media & GPS: Kirim laporan visual instan dengan koordinat lokasi otomatis.",
-        "YOLOv11 Fire & Smoke Detector: Pemindaian cerdas otomatis untuk mendeteksi tanda bahaya kebakaran.",
-        "SMTP Gmail Alert Service: Jalur komunikasi instan langsung ke tim penanggulangan bencana.",
-        "Diagnostic Log Dashboard: Laporan audit status penanganan kebakaran secara real-time bagi publik."
-      ],
-      featuresEn: [
-        "Media & GPS Reporting: Submit instant visual alerts with automatic geolocation metadata.",
-        "YOLOv11 Fire & Smoke Detector: Automatic computer vision scanning to identify early fire and smoke signatures.",
-        "SMTP Gmail Alert Service: Direct instant email communication dispatch routes to emergency teams.",
-        "Diagnostic Log Dashboard: Real-time public audit logs tracking fire hazard status and resolution."
-      ]
-    }
-  },
-  {
-    id: "siwaras",
-    category: "internship",
-    labelId: "Kerja Magang Korporat",
-    labelEn: "Enterprise Internship Work",
-    title: "SIWARAS",
-    descriptionId: "Sistem manajemen inventori web terintegrasi kelas korporat yang dibangun selama magang di Universitas Terbuka (UT) Palangka Raya menggunakan Google Apps Script sebagai backend dan Google Spreadsheet sebagai database.",
-    descriptionEn: "An enterprise-grade integrated web inventory management system built during my internship at Universitas Terbuka (UT) Palangka Raya using Google Apps Script as backend and Google Spreadsheet as database.",
-    stack: ["Google Apps Script", "Google Spreadsheet", "RESTful API", "Chart.js", "jsPDF"],
-    meta: ["Enterprise workflows", "Asset control", "Sosprom Logistics"],
-    github: "https://github.com/AIPPproject03/siwaras-ut-web",
-    images: [
-      "img/SIWARAS/siwaras-1.jpg",
-      "img/SIWARAS/web-siwaras-1.png",
-      "img/SIWARAS/web-siwaras-2.png",
-      "img/SIWARAS/web-siwaras-3.png",
-      "img/SIWARAS/web-siwaras-4.png",
-      "img/SIWARAS/web-siwaras-5.png",
-      "img/SIWARAS/web-siwaras-6.png",
-      "img/SIWARAS/web-siwaras-7.png",
-      "img/SIWARAS/siwaras-2.jpg"
-    ],
-    story: {
-      backgroundId: "SIWARAS (Sistem Inventori Wisuda & Rangkaian Sosprom) diimplementasikan pada Universitas Terbuka (UT) Palangka Raya untuk menggantikan pencatatan logistik manual (wisuda, sosprom, ATK, backdrop, sound system) yang sebelumnya menggunakan dokumen fisik & spreadsheet lokal terpisah.",
-      backgroundEn: "SIWARAS (Graduation & Sosprom Campaign Inventory System) was deployed at Universitas Terbuka (UT) Palangka Raya to replace manual logistics logging (for graduation, promotional campaigns, office stationeries) which previously relied on paper slips and fragmented local spreadsheets.",
-      objectivesId: [
-        "Digitalisasi & Sinkronisasi: Mencegah redundansi data logistik akibat pencatatan berulang di berbagai file lokal yang tidak terintegrasi.",
-        "Serverless Server Ekonomi: Memanfaatkan integrasi gratis Google Spreadsheet (database) & Google Apps Script (RESTful API backend) untuk menghemat biaya hosting/VPS.",
-        "Otomatisasi Tanda Terima: Mempercepat pembuatan tanda terima legal barang keluar yang sebelumnya dilakukan secara manual.",
-        "Transparansi Real-time: Memberikan visibilitas ketersediaan stok perlengkapan secara instan bagi unit kerja terkait."
-      ],
-      objectivesEn: [
-        "Digitalization & Synchronization: Eliminates structural data redundancies caused by duplicate records across non-integrated files.",
-        "Cost-Effective Serverless Stack: Leverages Google Sheets (database) & Google Apps Script (RESTful API backend) to save hosting overheads.",
-        "Receipt Automation: Accelerates legal dispatch receipt generation which was previously typed manually.",
-        "Real-Time Transparency: Grants instant inventory visibility for coordinating academic departments."
-      ],
-      featuresId: [
-        "Manajemen CRUD Inventori: Fitur lengkap pengelolaan master barang dan rekam barang masuk/keluar.",
-        "Real-time Stock Monitoring: Monitoring ketersediaan perlengkapan operasional secara instan.",
-        "Ekspor Tanda Terima PDF: Pembuatan surat tanda terima digital otomatis dengan ekspresi ekspor jsPDF.",
-        "Interactive Data Dashboard: Visualisasi tren barang keluar-masuk menggunakan Chart.js."
-      ],
-      featuresEn: [
-        "CRUD Inventory Management: Full features for managing master items and tracking inward/outward asset flows.",
-        "Real-time Stock Monitoring: Instant live tracking of operational supply levels.",
-        "jsPDF Receipt Export: Automatic generation of legal digital dispatch receipts exportable to PDF formats.",
-        "Interactive Data Dashboard: Interactive analytics showcasing inbound and outbound trends using Chart.js."
-      ]
-    }
-  },
-  {
-    id: "adanest",
-    category: "finalist",
-    labelId: "Finalis Nasional GEMASTIK 2023",
-    labelEn: "National Finalist GEMASTIK 2023",
-    title: "Adanest",
-    descriptionId: "Aplikasi web khusus untuk mendukung individu memulihkan diri dari kecanduan PMO (Porn, Masturbation, Orgasm), menawarkan pemantauan kebiasaan, artikel motivasi, konsultasi medis, dan bantuan chatbot.",
-    descriptionEn: "A specialized web application designed to support individuals in recovering from PMO (Porn, Masturbation, Orgasm) addiction, offering custom habit tracking, motivational resources, educational blogs, chatbot assistants, and professional medical consultations.",
-    stack: ["React", "Node.js", "PostgreSQL", "Chatbot System", "Blog Engine"],
-    meta: ["National finalist", "Software Development", "Health & Recovery Tech"],
-    github: "https://github.com/orgs/adanestapp/repositories",
-    images: [
-      "img/GEMASTIK/gemastik-4.png",
-      "img/GEMASTIK/gemastik-2.jpg",
-      "img/GEMASTIK/gemastik-3.jpg",
-      "img/GEMASTIK/gemastik-1.jpg"
-    ],
-    story: {
-      backgroundId: "Adanest, yang diambil dari pepatah bahasa Latin 'Aegroto dum anima est, spes est' (Selama orang sakit masih memiliki semangat, maka masih ada harapan), merupakan aplikasi perangkat lunak berbasis website yang didedikasikan untuk memberikan harapan, dukungan, dan sumber daya klinis bagi mereka yang berjuang memulihkan diri dari kecanduan PMO (Porn, Masturbation, Orgasm).",
-      backgroundEn: "Adanest, taken from the Latin proverb 'Aegroto dum anima est, spes est' (While the sick person has soul, there is hope), is a dedicated web application providing hope, support, and clinical resources for those recovering from PMO (Porn, Masturbation, Orgasm) addiction.",
-      objectivesId: [
-        "Memantau dan Mengelola Kebiasaan: Membantu pengguna memonitor kebiasaan terkait PMO dan mengidentifikasi faktor pemicu utama.",
-        "Menawarkan Alternatif Positif: Memberikan latihan pengganti yang sehat untuk mengalihkan perhatian dari pemicu PMO.",
-        "Menyediakan Dukungan & Motivasi: Memberikan asupan artikel inspiratif serta forum komunitas pemulihan yang aman.",
-        "Layanan Konsultasi Profesional: Menghubungkan pengguna langsung dengan dokter dan profesional berkompeten untuk bimbingan personal."
-      ],
-      objectivesEn: [
-        "Habit Tracking & Management: Assists users in logging behaviors and identifying triggers.",
-        "Healthy Alternatives: Suggests replacement activities to divert focus from PMO urges.",
-        "Community & Motivation: Delivers motivational articles and safe anonymous forums.",
-        "Professional Consulting: Connects users directly to verified medical experts and therapists."
-      ],
-      featuresId: [
-        "Forum Terbuka & Diskusi Medis: Tempat berinteraksi dan berkonsultasi langsung dengan profesional medis.",
-        "Chatbot Asisten Pemulihan: Layanan asisten otomatis 24/7 yang memberikan motivasi dan informasi pemulihan.",
-        "E-Learning & Blog Medis: Berisi artikel kesehatan fisik dan mental tervalidasi mengenai dampak PMO.",
-        "Konsultasi Privat Berjadwal: Konsultasi tatap muka online yang terjadwal dengan psikolog atau dokter."
-      ],
-      featuresEn: [
-        "Open Forum & Medical Discussions: Direct interactions and consulting channels with medical practitioners.",
-        "24/7 Recovery Chatbot Assistant: Automated assistant delivering recovery guides and guidance.",
-        "Validated E-Learning & Health Blog: Articles covering the physical and mental science of recovery.",
-        "Private Scheduled Consultations: Virtual scheduled appointments with licensed therapists and counselors."
-      ]
-    }
-  },
-];
-
-const projectFilters = [
-  { key: "all", labelId: "Semua Proyek", labelEn: "All Projects" },
-  { key: "flagship", labelId: "Unggulan", labelEn: "Flagship" },
-  { key: "hackathon", labelId: "Hackathon", labelEn: "Hackathon" },
-  { key: "internship", labelId: "Magang", labelEn: "Internship" },
-  { key: "finalist", labelId: "Finalis", labelEn: "Finalist" },
-];
-
 const athleticTimeline = [
   {
     titleId: "Juara I Beregu Putra & Juara I Ganda Taruna Putra",
@@ -644,9 +443,11 @@ function setupGsapAnimations() {
     }
   }
 
-  animateOrbDrift(".orb-cyan", 15);
-  animateOrbDrift(".orb-gold", 18);
-  animateOrbDrift(".orb-slate", 22);
+  if (window.innerWidth >= 1024) {
+    animateOrbDrift(".orb-cyan", 15);
+    animateOrbDrift(".orb-gold", 18);
+    animateOrbDrift(".orb-slate", 22);
+  }
 
   // Parallax hero panel scroll trigger
   gsap.to("[data-hero-panel]", {
@@ -685,51 +486,30 @@ function setupGsapAnimations() {
       );
     });
 
-  if (scrollTrigger) {
-    // Scroll trigger batches for card entry
-    if (window.innerWidth >= 768) {
-      scrollTrigger.batch(
-        ".glass-panel, .foundation-card, .skill-card, .project-card, .stat-card, .metric-card",
-        {
-          start: "top 90%",
-          once: true,
-          onEnter: (batch) =>
-            gsap.fromTo(
-              batch,
-              { y: 32, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 0.75,
-                ease: "power3.out",
-                stagger: 0.06,
-              },
-            ),
-        },
-      );
-    } else {
-      // Simplified reveal for mobile view to prevent layout lag on scroll
-      scrollTrigger.batch(
-        ".glass-panel, .foundation-card, .skill-card, .project-card, .stat-card, .metric-card",
-        {
-          start: "top 95%",
-          once: true,
-          onEnter: (batch) =>
-            gsap.fromTo(
-              batch,
-              { y: 15, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 0.45,
-                ease: "power2.out",
-                overwrite: "auto",
-              },
-            ),
-        },
-      );
-    }
+  if (scrollTrigger && window.innerWidth >= 1024) {
+    // Scroll trigger batches for card entry (Desktop only)
+    scrollTrigger.batch(
+      ".glass-panel, .foundation-card, .skill-card, .project-card, .stat-card, .metric-card",
+      {
+        start: "top 90%",
+        once: true,
+        onEnter: (batch) =>
+          gsap.fromTo(
+            batch,
+            { y: 32, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.75,
+              ease: "power3.out",
+              stagger: 0.06,
+            },
+          ),
+      },
+    );
+  }
 
+  if (scrollTrigger) {
     // Pinned Stack section
     const matchMedia = gsap.matchMedia();
     matchMedia.add("(min-width: 1024px)", () => {
@@ -1171,174 +951,7 @@ function executeRenderTechSpotlight(activeKey) {
   observeReveals();
 }
 
-function renderProjectFilters(activeKey = "all") {
-  const isEn = window.currentLang === "en";
-  projectFiltersEl.innerHTML = projectFilters
-    .map(
-      (filter) => `
-        <button
-          class="filter-chip"
-          type="button"
-          aria-pressed="${filter.key === activeKey}"
-          data-project-filter="${filter.key}"
-        >
-          ${isEn ? filter.labelEn : filter.labelId}
-        </button>
-      `,
-    )
-    .join("");
-}
 
-function renderProjects(activeKey = "all") {
-  const cards = projectGrid.querySelectorAll(".project-card");
-
-  if (cards.length > 0) {
-    gsap.to(cards, {
-      opacity: 0,
-      scale: 0.95,
-      y: -15,
-      duration: 0.25,
-      stagger: 0.03,
-      ease: "power2.in",
-      onComplete: () => {
-        executeRenderProjects(activeKey);
-      }
-    });
-  } else {
-    executeRenderProjects(activeKey);
-  }
-}
-
-function executeRenderProjects(activeKey) {
-  const isEn = window.currentLang === "en";
-  const visibleProjects =
-    activeKey === "all"
-      ? projects
-      : projects.filter((project) => project.category === activeKey);
-
-  if (!visibleProjects.length) {
-    projectGrid.innerHTML = `
-      <div class="glass-panel p-8 text-white/70 lg:col-span-2">
-        ${isEn ? "No projects match this filter." : "Tidak ada proyek yang sesuai dengan filter ini."}
-      </div>
-    `;
-    return;
-  }
-
-  projectGrid.innerHTML = visibleProjects
-    .map(
-      (project) => `
-        <article class="project-card reveal" style="transform-style: preserve-3d; perspective: 1000px;">
-          <div class="relative z-10 space-y-5">
-            ${project.images && project.images.length > 0 ? `
-              <!-- Project storytelling photo slider -->
-              <div class="project-carousel relative overflow-hidden rounded-none w-full h-[220px] mb-5 bg-slate-950/40 border border-white/5 group-carousel">
-                <div class="project-slides flex transition-transform duration-500 w-full h-full" id="slides-${project.id}">
-                  ${project.images.map(img => `
-                    <div class="w-full h-full flex-shrink-0 relative cursor-zoom-in group">
-                      <img src="${img}" alt="${project.title}" class="w-full h-full object-cover select-none transition-transform duration-[600ms] group-hover:scale-[1.02]" onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')">
-                      <!-- High tech diagnostic label overlay -->
-                      <div class="absolute bottom-3 left-3 bg-slateInk/85 backdrop-blur-md border border-cyan-400/25 px-2 py-0.5 rounded-none text-[6.5px] sm:text-[7.5px] font-pixel text-cyan-300 uppercase tracking-widest pointer-events-none z-10">
-                        DIAGNOSTIC: SUCCESS
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
-                ${project.images.length > 1 ? `
-                  <button type="button" class="carousel-nav prev-btn absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-none bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', -1, event)">
-                    <iconify-icon icon="mdi:chevron-left" class="text-base"></iconify-icon>
-                  </button>
-                  <button type="button" class="carousel-nav next-btn absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-none bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', 1, event)">
-                    <iconify-icon icon="mdi:chevron-right" class="text-base"></iconify-icon>
-                  </button>
-                  <div class="carousel-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
-                    ${project.images.map((_, idx) => `
-                      <span class="carousel-dot w-1.5 h-1.5 rounded-none bg-white/20 transition-all duration-300 ${idx === 0 ? 'bg-cyan-400 w-3.5' : ''}" onclick="window.setSlide('${project.id}', ${idx}, event)"></span>
-                    `).join('')}
-                  </div>
-                ` : ''}
-              </div>
-            ` : ''}
-            
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="tag-pill">${isEn ? project.labelEn : project.labelId}</span>
-              <span class="tag-pill tag-pill-accent">${project.title}</span>
-            </div>
-            <h3 class="project-title">${project.title}</h3>
-            <p class="project-copy">${isEn ? project.descriptionEn : project.descriptionId}</p>
-            <div class="flex flex-wrap gap-2">
-              ${project.stack.map((item) => `<span class="project-chip">${item}</span>`).join("")}
-            </div>
-            <div class="flex flex-wrap gap-2">
-              ${project.meta.map((item) => `<span class="project-chip project-chip-accent">${item}</span>`).join("")}
-            </div>
-            
-            ${(project.story || project.github) ? `
-              <!-- Project action buttons footer -->
-              <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-4 text-left">
-                ${project.story ? `
-                  <button type="button" class="flex items-center gap-2 text-xs font-bold text-cyan-300 hover:text-cyan-200 transition-colors uppercase tracking-widest cursor-pointer" onclick="window.toggleProjectStory('${project.id}', event)">
-                    <iconify-icon icon="mdi:book-open-outline" class="text-sm animate-pulse" id="story-icon-${project.id}"></iconify-icon>
-                    <span id="story-text-${project.id}">${isEn ? "Read Project Story" : "Baca Cerita Proyek"}</span>
-                  </button>
-                ` : '<div></div>'}
-                
-                ${project.github ? `
-                  <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest cursor-none-hover group/git-link" onclick="event.stopPropagation()">
-                    <iconify-icon icon="mdi:github" class="text-base group-hover/git-link:rotate-12 transition-transform duration-300"></iconify-icon>
-                    <span>${isEn ? "Repository" : "Repositori"}</span>
-                    <iconify-icon icon="mdi:arrow-top-right" class="text-[10px] text-white/40 group-hover/git-link:translate-x-0.5 group-hover/git-link:-translate-y-0.5 transition-transform duration-300"></iconify-icon>
-                  </a>
-                ` : ''}
-              </div>
-              
-              ${project.story ? `
-                <div id="story-content-${project.id}" class="mt-4 hidden overflow-hidden text-xs leading-6 text-white/70 space-y-4 font-normal">
-                  <div class="rounded-none bg-white/5 border border-white/5 p-3.5 space-y-3.5 backdrop-blur-md">
-                    <div>
-                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">${isEn ? "Background" : "Latar Belakang"}</p>
-                      <p class="text-white/60 leading-relaxed text-left sm:text-justify">${isEn ? project.story.backgroundEn : project.story.backgroundId}</p>
-                    </div>
-                    <div>
-                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">${isEn ? "Key Objectives" : "Tujuan Utama"}</p>
-                      <ul class="list-disc list-inside space-y-1.5 text-white/60 leading-relaxed text-left sm:text-justify pl-1">
-                        ${(isEn ? project.story.objectivesEn : project.story.objectivesId).map(obj => `<li>${obj}</li>`).join('')}
-                      </ul>
-                    </div>
-                    <div>
-                      <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">${isEn ? "Key Features" : "Fitur Utama"}</p>
-                      <ul class="list-disc list-inside space-y-1.5 text-white/60 leading-relaxed text-left sm:text-justify pl-1">
-                        ${(isEn ? project.story.featuresEn : project.story.featuresId).map(feat => `<li>${feat}</li>`).join('')}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ` : ''}
-            ` : ''}
-          </div>
-        </article>
-      `,
-    )
-    .join("");
-
-  const newCards = projectGrid.querySelectorAll(".project-card");
-  gsap.fromTo(
-    newCards,
-    { opacity: 0, scale: 0.95, y: 20 },
-    {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 0.55,
-      stagger: 0.06,
-      ease: "power3.out",
-      clearProps: "transform,opacity"
-    }
-  );
-
-  setupCardTilt();
-  observeReveals();
-}
 
 function renderAthletics() {
   const isEn = window.currentLang === "en";
@@ -1398,16 +1011,7 @@ function setupTabs() {
   });
 }
 
-function setupFilters() {
-  projectFiltersEl.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-project-filter]");
-    if (!button) return;
-    const { projectFilter } = button.dataset;
-    renderProjectFilters(projectFilter);
-    renderProjects(projectFilter);
-    observeReveals();
-  });
-}
+
 
 let revealObserver;
 function observeReveals() {
@@ -1466,11 +1070,7 @@ window.setLanguage = function (lang) {
   renderStackTabs(activeTabKey);
   renderStackPanel(activeTabKey);
 
-  // Pick active project filters to preserve selection
-  const activeFilterBtn = document.querySelector("[data-project-filter][aria-pressed='true']");
-  const activeFilterKey = activeFilterBtn ? activeFilterBtn.getAttribute("data-project-filter") : "all";
-  renderProjectFilters(activeFilterKey);
-  renderProjects(activeFilterKey);
+
 
   renderAthletics();
 };
@@ -1573,6 +1173,9 @@ function setupBackgroundMusic() {
   let isPlaying = false;
 
   const playMusic = () => {
+    const savedTime = parseFloat(localStorage.getItem("aipp-music-time")) || 0;
+    bgMusic.currentTime = savedTime;
+
     bgMusic.play().then(() => {
       isPlaying = true;
       musicContainer.classList.add("playing");
@@ -1635,6 +1238,7 @@ function setupBackgroundMusic() {
   const pauseMusic = () => {
     bgMusic.pause();
     bgMusic.currentTime = 0;
+    localStorage.setItem("aipp-music-time", "0");
     isPlaying = false;
     musicContainer.classList.remove("playing");
     musicContainer.classList.remove("eq-active");
@@ -1694,6 +1298,12 @@ function setupBackgroundMusic() {
     }
   });
 
+  bgMusic.addEventListener("timeupdate", () => {
+    if (isPlaying) {
+      localStorage.setItem("aipp-music-time", bgMusic.currentTime);
+    }
+  });
+
   // Autoplay bypass on first user interaction if previously enabled
   const isEnabledBefore = localStorage.getItem("aipp-music-enabled");
   if (isEnabledBefore === "true") {
@@ -1709,249 +1319,76 @@ function setupBackgroundMusic() {
   }
 }
 
+
+
+function setupProjectsPortal() {
+  const portalLink = document.querySelector('a[href="projects/projects.html"]');
+  const portalOverlay = document.getElementById("portal-overlay");
+  const portalLoader = document.getElementById("portal-loader");
+  const portalIframe = document.getElementById("portal-iframe");
+
+  if (portalLink && portalOverlay && portalIframe) {
+    portalLink.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Show portal overlay
+      portalOverlay.classList.remove("pointer-events-none");
+      gsap.to(portalOverlay, { opacity: 1, duration: 0.4, ease: "power2.out" });
+
+      // Show loader
+      if (portalLoader) {
+        portalLoader.style.opacity = "1";
+        portalLoader.style.pointerEvents = "auto";
+      }
+
+      // Load iframe
+      portalIframe.src = "projects/projects.html";
+
+      // When iframe loads, hide loading screen
+      portalIframe.onload = () => {
+        if (portalLoader) {
+          gsap.to(portalLoader, {
+            opacity: 0,
+            duration: 0.5,
+            delay: 0.3,
+            onComplete: () => {
+              portalLoader.style.pointerEvents = "none";
+            }
+          });
+        }
+      };
+    });
+  }
+
+  // Global window function so iframe can call it to close itself
+  window.closeProjectsPortal = function () {
+    if (portalOverlay && portalIframe) {
+      gsap.to(portalOverlay, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.in",
+        onComplete: () => {
+          portalOverlay.classList.add("pointer-events-none");
+          portalIframe.src = ""; // unload iframe to save resources
+        }
+      });
+    }
+  };
+}
+
 function init() {
   window.setLanguage(window.currentLang);
   setupMobileActiveNav();
   setupBackgroundMusic();
   setupTypingEffect();
   setupTabs();
-  setupFilters();
   observeReveals();
   setupGsapAnimations();
   setupCursorGlow();
   setupMagneticInteractions();
   setupCardTilt();
-  setupLightboxEvents();
+  setupProjectsPortal();
   yearEl.textContent = new Date().getFullYear();
-}
-
-window.toggleProjectStory = function (projectId, event) {
-  if (event) event.stopPropagation();
-  const content = document.getElementById(`story-content-${projectId}`);
-  const icon = document.getElementById(`story-icon-${projectId}`);
-  const text = document.getElementById(`story-text-${projectId}`);
-
-  if (!content) return;
-
-  const isHidden = content.classList.contains("hidden");
-  const isEn = window.currentLang === "en";
-
-  if (isHidden) {
-    content.classList.remove("hidden");
-    gsap.fromTo(content,
-      { height: 0, opacity: 0 },
-      { height: "auto", opacity: 1, duration: 0.45, ease: "power2.out" }
-    );
-    if (icon) {
-      icon.setAttribute("icon", "mdi:book-open-page-variant-outline");
-      icon.classList.remove("animate-pulse");
-    }
-    if (text) text.textContent = isEn ? "Hide Project Story" : "Sembunyikan Cerita";
-  } else {
-    gsap.to(content, {
-      height: 0,
-      opacity: 0,
-      duration: 0.35,
-      ease: "power2.in",
-      onComplete: () => {
-        content.classList.add("hidden");
-      }
-    });
-    if (icon) {
-      icon.setAttribute("icon", "mdi:book-open-outline");
-      icon.classList.add("animate-pulse");
-    }
-    if (text) text.textContent = isEn ? "Read Project Story" : "Baca Cerita Proyek";
-  }
-};
-
-// Carousel Slide Navigations
-const projectSlideIndices = {};
-
-window.moveSlide = function (projectId, direction, event) {
-  if (event) event.stopPropagation();
-  const proj = projects.find(p => p.id === projectId);
-  if (!proj || !proj.images) return;
-
-  if (projectSlideIndices[projectId] === undefined) {
-    projectSlideIndices[projectId] = 0;
-  }
-
-  let newIdx = projectSlideIndices[projectId] + direction;
-  if (newIdx < 0) newIdx = proj.images.length - 1;
-  if (newIdx >= proj.images.length) newIdx = 0;
-
-  window.setSlide(projectId, newIdx);
-};
-
-window.setSlide = function (projectId, index, event) {
-  if (event) event.stopPropagation();
-  projectSlideIndices[projectId] = index;
-
-  const slidesContainer = document.getElementById(`slides-${projectId}`);
-  if (slidesContainer) {
-    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  const dotsContainer = slidesContainer.closest(".project-carousel")?.querySelector(".carousel-dots");
-  if (dotsContainer) {
-    const dots = dotsContainer.querySelectorAll(".carousel-dot");
-    dots.forEach((dot, idx) => {
-      if (idx === index) {
-        dot.classList.add("bg-cyan-400", "w-3");
-        dot.classList.remove("bg-white/20");
-      } else {
-        dot.classList.remove("bg-cyan-400", "w-3");
-        dot.classList.add("bg-white/20");
-      }
-    });
-  }
-};
-
-// Lightbox Modal System
-let activeLightboxImages = [];
-let activeLightboxIndex = 0;
-
-window.openLightbox = function (imageSrc, caption, projectId) {
-  const lightboxModal = document.getElementById("lightbox-modal");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const lightboxCaption = document.getElementById("lightbox-caption");
-
-  if (!lightboxModal || !lightboxImg) return;
-
-  lightboxImg.src = imageSrc;
-  if (lightboxCaption) {
-    lightboxCaption.textContent = caption;
-  }
-
-  if (projectId) {
-    const proj = projects.find(p => p.id === projectId);
-    if (proj && proj.images) {
-      activeLightboxImages = proj.images;
-      activeLightboxIndex = proj.images.indexOf(imageSrc);
-
-      const prevBtn = document.getElementById("lightbox-prev");
-      const nextBtn = document.getElementById("lightbox-next");
-
-      if (activeLightboxImages.length > 1) {
-        if (prevBtn) prevBtn.classList.remove("hidden");
-        if (nextBtn) nextBtn.classList.remove("hidden");
-      } else {
-        if (prevBtn) prevBtn.classList.add("hidden");
-        if (nextBtn) nextBtn.classList.add("hidden");
-      }
-    }
-  } else {
-    activeLightboxImages = [];
-    const prevBtn = document.getElementById("lightbox-prev");
-    const nextBtn = document.getElementById("lightbox-next");
-    if (prevBtn) prevBtn.classList.add("hidden");
-    if (nextBtn) nextBtn.classList.add("hidden");
-  }
-
-  lightboxModal.classList.remove("pointer-events-none");
-
-  gsap.to(lightboxModal, { opacity: 1, duration: 0.3, ease: "power2.out" });
-  gsap.fromTo(lightboxImg, { scale: 0.94 }, { scale: 1, duration: 0.4, ease: "back.out(1.4)" });
-};
-
-window.closeLightbox = function () {
-  const lightboxModal = document.getElementById("lightbox-modal");
-  const lightboxImg = document.getElementById("lightbox-img");
-  if (!lightboxModal) return;
-
-  gsap.to(lightboxModal, {
-    opacity: 0,
-    duration: 0.25,
-    ease: "power2.in",
-    onComplete: () => {
-      lightboxModal.classList.add("pointer-events-none");
-      if (lightboxImg) lightboxImg.src = "";
-    }
-  });
-};
-
-window.navigateLightbox = function (direction) {
-  const lightboxImg = document.getElementById("lightbox-img");
-  if (!lightboxImg || activeLightboxImages.length <= 1) return;
-
-  activeLightboxIndex += direction;
-  if (activeLightboxIndex < 0) activeLightboxIndex = activeLightboxImages.length - 1;
-  if (activeLightboxIndex >= activeLightboxImages.length) activeLightboxIndex = 0;
-
-  const nextSrc = activeLightboxImages[activeLightboxIndex];
-
-  gsap.to(lightboxImg, {
-    opacity: 0,
-    scale: 0.96,
-    duration: 0.15,
-    ease: "power2.in",
-    onComplete: () => {
-      lightboxImg.src = nextSrc;
-      gsap.to(lightboxImg, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.35,
-        ease: "power2.out"
-      });
-    }
-  });
-};
-
-function setupLightboxEvents() {
-  const lightboxModal = document.getElementById("lightbox-modal");
-  const lightboxClose = document.getElementById("lightbox-close");
-  const prevBtn = document.getElementById("lightbox-prev");
-  const nextBtn = document.getElementById("lightbox-next");
-
-  if (lightboxClose) {
-    lightboxClose.addEventListener("click", window.closeLightbox);
-  }
-  if (lightboxModal) {
-    lightboxModal.addEventListener("click", (e) => {
-      if (e.target === lightboxModal) {
-        window.closeLightbox();
-      }
-    });
-
-    // Touch Swipe Support for Mobile View
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    lightboxModal.addEventListener("touchstart", (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    lightboxModal.addEventListener("touchend", (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const swipeThreshold = 50; // pixels
-      if (touchEndX < touchStartX - swipeThreshold) {
-        window.navigateLightbox(1);  // Swipe left -> next
-      } else if (touchEndX > touchStartX + swipeThreshold) {
-        window.navigateLightbox(-1); // Swipe right -> prev
-      }
-    }, { passive: true });
-  }
-  if (prevBtn) {
-    prevBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      window.navigateLightbox(-1);
-    });
-  }
-  if (nextBtn) {
-    nextBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      window.navigateLightbox(1);
-    });
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (lightboxModal && !lightboxModal.classList.contains("pointer-events-none")) {
-      if (e.key === "Escape") window.closeLightbox();
-      if (e.key === "ArrowLeft") window.navigateLightbox(-1);
-      if (e.key === "ArrowRight") window.navigateLightbox(1);
-    }
-  });
 }
 
 init();

@@ -441,8 +441,77 @@
                         research into a coherent body of work.</p>
                 </div>
 
-                <div class="mt-10 flex flex-wrap gap-3" id="project-filters"></div>
-                <div id="project-grid" class="mt-6 grid gap-6 lg:grid-cols-2"></div>
+                <!-- Interactive Arcade Portal Gate -->
+                <div class="mt-10 flex justify-center items-center">
+                    <div
+                        class="reveal w-full max-w-2xl bg-slate-950/60 p-6 sm:p-10 text-center relative overflow-hidden pixel-border-double-gold rounded-none select-none">
+                        <!-- Portal Background Scanlines -->
+                        <div class="absolute inset-0 bg-cyan-950/5 pointer-events-none"></div>
+
+                        <!-- Floating sprites inside the cabinet -->
+                        <div class="flex justify-center items-center gap-6 mb-6">
+                            <!-- Gold Slime -->
+                            <svg class="pixel-sprite pixel-slime" viewBox="0 0 16 16" width="48" height="48">
+                                <rect x="4" y="12" width="8" height="1" fill="#000" />
+                                <rect x="3" y="11" width="1" height="1" fill="#000" />
+                                <rect x="12" y="11" width="1" height="1" fill="#000" />
+                                <rect x="2" y="8" width="1" height="3" fill="#000" />
+                                <rect x="13" y="8" width="1" height="3" fill="#000" />
+                                <rect x="3" y="7" width="1" height="1" fill="#000" />
+                                <rect x="12" y="7" width="1" height="1" fill="#000" />
+                                <rect x="4" y="6" width="8" height="1" fill="#000" />
+                                <rect x="4" y="7" width="8" height="5" fill="#d97706" />
+                                <rect x="3" y="8" width="10" height="3" fill="#f59e0b" />
+                                <rect x="5" y="8" width="1" height="1" fill="#fff" />
+                                <rect x="10" y="8" width="1" height="1" fill="#fff" />
+                                <rect x="5" y="9" width="1" height="1" fill="#000" />
+                                <rect x="10" y="9" width="1" height="1" fill="#000" />
+                            </svg>
+                            <!-- Arcade Label -->
+                            <div
+                                class="px-5 py-1.5 bg-slate-900 border border-cyan-400/20 text-cyan-400 font-pixel text-[9px] tracking-widest uppercase">
+                                Arcade Cabinet v1.0
+                            </div>
+                            <!-- Cute Robot -->
+                            <svg class="pixel-sprite pixel-cute-robot" viewBox="0 0 16 16" width="48" height="48">
+                                <rect x="4" y="3" width="8" height="5" fill="#475569" />
+                                <rect x="3" y="4" width="10" height="3" fill="#64748b" />
+                                <rect x="4" y="5" width="8" height="1" fill="#000" />
+                                <rect x="5" y="5" width="2" height="1" fill="#22d3ee" />
+                                <rect x="9" y="5" width="2" height="1" fill="#22d3ee" />
+                                <rect x="7" y="1" width="2" height="2" fill="#ef4444" />
+                                <rect x="5" y="9" width="6" height="4" fill="#334155" />
+                                <rect x="6" y="10" width="4" height="2" fill="#22d3ee" />
+                                <rect x="3" y="9" width="1" height="3" fill="#64748b" />
+                                <rect x="12" y="9" width="1" height="3" fill="#64748b" />
+                                <rect x="6" y="13" width="4" height="2" fill="#f97316" />
+                            </svg>
+                        </div>
+
+                        <h3 class="font-pixel text-xs sm:text-sm text-gold-200 tracking-wider mb-2 uppercase"
+                            data-lang-id="MEMULAI KONEKSI SISTEM" data-lang-en="ESTABLISHING CONNECTION">ESTABLISHING
+                            CONNECTION</h3>
+                        <p class="font-mono text-[11px] text-white/50 mb-6 max-w-md mx-auto leading-relaxed"
+                            data-lang-id="Akses gerbang repositori proyek tervalidasi. Siapkan diri untuk memasuki simulasi visual interaktif dengan tingkat kenyamanan maksimal."
+                            data-lang-en="Accessing the validated project repository gate. Prepare to enter the interactive visual simulation with peak performance comfort.">
+                            Accessing the validated project repository gate. Prepare to enter the interactive visual
+                            simulation with peak performance comfort.</p>
+
+                        <!-- Glowing Gateway Button -->
+                        <div class="relative inline-block group/portal">
+                            <div
+                                class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-amber-400 rounded-none blur opacity-25 group-hover/portal:opacity-75 transition duration-300">
+                            </div>
+                            <a href="projects/projects.html"
+                                class="relative pixel-btn block text-center text-[10px] sm:text-xs px-8 py-3.5 text-cyan-300 border-cyan-400 tracking-widest uppercase">
+                                <iconify-icon icon="mdi:gamepad-variant-outline"
+                                    class="mr-2 text-base align-middle animate-bounce"></iconify-icon>
+                                <span data-lang-id="MASUK PORTAL PROYEK" data-lang-en="ENTER PROJECTS PORTAL">ENTER
+                                    PROJECTS PORTAL</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -705,31 +774,18 @@
         </audio>
     </div>
 
-    <!-- Image Lightbox Modal -->
-    <div id="lightbox-modal"
-        class="fixed inset-0 z-[10000] bg-slate-950/95 backdrop-blur-md flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-        <button id="lightbox-close"
-            class="absolute top-6 right-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001]"
-            type="button">
-            <iconify-icon icon="mdi:close"></iconify-icon>
-        </button>
-        <div class="max-w-5xl max-h-[80vh] px-4 flex items-center justify-center relative">
-            <img id="lightbox-img" src="" alt="Storytelling detail"
-                class="max-w-full max-h-[80vh] object-contain rounded-none border border-white/5 shadow-2xl scale-95 transition-transform duration-300">
-
-            <button id="lightbox-prev"
-                class="absolute -left-4 sm:left-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001] hidden"
-                type="button">
-                <iconify-icon icon="mdi:chevron-left"></iconify-icon>
-            </button>
-            <button id="lightbox-next"
-                class="absolute -right-4 sm:right-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001] hidden"
-                type="button">
-                <iconify-icon icon="mdi:chevron-right"></iconify-icon>
-            </button>
+    <!-- Full-Screen Projects Portal Overlay -->
+    <div id="portal-overlay" class="fixed inset-0 z-[9999] bg-slateInk opacity-0 pointer-events-none transition-opacity duration-500 flex flex-col">
+        <!-- Retro Loading Screen -->
+        <div id="portal-loader" class="absolute inset-0 bg-slateInk z-50 flex flex-col items-center justify-center font-pixel text-cyan-300">
+            <div class="space-y-4 text-center">
+                <iconify-icon icon="mdi:loading" class="text-4xl animate-spin text-cyan-400"></iconify-icon>
+                <p class="text-xs uppercase tracking-widest animate-pulse" data-lang-id="MEMULAI DEKONSENTRASI PORTAL..." data-lang-en="INITIALIZING PORTAL LINK...">INITIALIZING PORTAL LINK...</p>
+            </div>
         </div>
-        <p id="lightbox-caption"
-            class="mt-6 text-sm font-semibold tracking-wider text-cyan-200 uppercase text-center max-w-xl px-4"></p>
+        
+        <!-- Portal IFrame -->
+        <iframe id="portal-iframe" src="" class="w-full h-full border-none bg-transparent"></iframe>
     </div>
 
     <script type="module" src="script.js"></script>

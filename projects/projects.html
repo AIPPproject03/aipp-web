@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Irwin's Pixel Projects Portal - The complete collection of flagship systems, hackathons, and corporate works." />
+    <title>Projects Portal | Agustinus Irwin Putra Pangesti</title>
+    <link rel="icon" type="image/png" href="../img/aipp-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slateInk: '#0F172A',
+                        cyanNeon: '#06B6D4',
+                        gold: {
+                            100: '#FEF3C7',
+                            200: '#FCD34D',
+                            400: '#D97706',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        pixel: ['Silkscreen', 'monospace'],
+                    },
+                },
+            },
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+        /* Immersive Pixel Theme Specific Classes */
+        .pixel-border-double {
+            border: 4px double rgba(6, 182, 212, 0.4);
+            box-shadow: 0 0 0 2px rgba(15, 23, 42, 1), 0 0 0 4px rgba(6, 182, 212, 0.3);
+        }
+        .pixel-border-double-gold {
+            border: 4px double rgba(245, 158, 11, 0.4);
+            box-shadow: 0 0 0 2px rgba(15, 23, 42, 1), 0 0 0 4px rgba(245, 158, 11, 0.3);
+        }
+        .pixel-btn {
+            font-family: 'Silkscreen', monospace;
+            border-style: solid;
+            border-width: 3px;
+            border-color: rgba(6, 182, 212, 0.8) rgba(6, 182, 212, 0.3) rgba(6, 182, 212, 0.3) rgba(6, 182, 212, 0.8);
+            background: rgba(15, 23, 42, 0.9);
+            box-shadow: 2px 2px 0 0 rgba(0,0,0,0.5);
+            transition: all 120ms steps(2);
+        }
+        .pixel-btn:hover {
+            border-color: rgba(6, 182, 212, 1);
+            background: rgba(6, 182, 212, 0.15);
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 0 rgba(0,0,0,0.5);
+        }
+        .pixel-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0 0 rgba(0,0,0,0.5);
+        }
+        .pixel-sprite {
+            image-rendering: pixelated;
+            display: inline-block;
+        }
+        
+        /* Animated SVG Pixel Character Placements */
+        .character-floating-box {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Scanlines Overlay */
+        .retro-scanlines::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 9999;
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slateInk text-slate-100 antialiased selection:bg-cyan-400/30 selection:text-white retro-scanlines relative min-h-screen pb-20">
+    <!-- Background Grid Noise Layer -->
+    <div class="noise-layer"></div>
+
+    <!-- Background Orbs -->
+    <div class="orb orb-cyan" style="top: 15%; left: 5%;"></div>
+    <div class="orb orb-gold" style="bottom: 10%; right: 5%;"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="custom-cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-50 border-b border-white/5 bg-slateInk/80 backdrop-filter backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="../index.html" class="flex items-center gap-2 group">
+                    <img src="../img/aipp-logo.png" class="h-7 w-7 transition-transform duration-300 group-hover:rotate-12" alt="Logo" />
+                    <span class="font-pixel text-[10px] sm:text-xs tracking-wider text-cyan-300 group-hover:text-cyan-200">AIPP.SYSTEMS</span>
+                </a>
+                
+                <div class="flex items-center gap-4">
+                    <!-- Language Selection -->
+                    <div class="flex rounded border border-white/10 bg-white/5 p-0.5 text-xs font-semibold">
+                        <button onclick="setLanguage('id')" id="lang-id" class="rounded px-2.5 py-1 transition-all">ID</button>
+                        <button onclick="setLanguage('en')" id="lang-en" class="rounded px-2.5 py-1 transition-all">EN</button>
+                    </div>
+
+                    <!-- Return Gate Button -->
+                    <a href="../index.html" class="pixel-btn text-[9px] sm:text-[10px] px-3 py-1.5 text-cyan-300 border-cyan-400 flex items-center gap-1.5">
+                        <iconify-icon icon="mdi:home-export-outline" class="text-xs"></iconify-icon>
+                        <span data-lang-id="KEMBALI KE BERANDA" data-lang-en="RETURN HOME">RETURN HOME</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Stage -->
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 relative">
+        
+        <!-- Flying Bat (Top Area) -->
+        <div class="character-floating-box top-4 right-10 sm:right-32">
+            <svg class="pixel-sprite pixel-bat" viewBox="0 0 16 16" width="72" height="72">
+                <g fill="#1e293b">
+                    <!-- Wings & Body shape -->
+                    <rect x="2" y="5" width="2" height="1"/>
+                    <rect x="4" y="4" width="2" height="1"/>
+                    <rect x="6" y="5" width="4" height="4"/>
+                    <rect x="10" y="4" width="2" height="1"/>
+                    <rect x="12" y="5" width="2" height="1"/>
+                    <rect x="1" y="6" width="2" height="1"/>
+                    <rect x="13" y="6" width="2" height="1"/>
+                    <rect x="0" y="7" width="2" height="1"/>
+                    <rect x="14" y="7" width="2" height="1"/>
+                    <rect x="1" y="8" width="1" height="2"/>
+                    <rect x="14" y="8" width="1" height="2"/>
+                    <rect x="5" y="9" width="6" height="1"/>
+                    <rect x="7" y="10" width="2" height="2"/>
+                    <!-- Head & Ears -->
+                    <rect x="6" y="2" width="1" height="2"/>
+                    <rect x="9" y="2" width="1" height="2"/>
+                    <rect x="7" y="3" width="2" height="2"/>
+                    <!-- Eyes (Glow) -->
+                    <rect x="7" y="4" width="1" height="1" fill="#ef4444"/>
+                    <rect x="8" y="4" width="1" height="1" fill="#ef4444"/>
+                </g>
+            </svg>
+        </div>
+
+        <!-- Header Title block -->
+        <header class="text-center max-w-3xl mx-auto space-y-4 mb-16 relative">
+            
+            <!-- Wizard (Floating Left) -->
+            <div class="absolute -top-12 -left-8 sm:-left-16 hidden sm:block">
+                <svg class="pixel-sprite pixel-wizard" viewBox="0 0 16 16" width="76" height="76">
+                    <!-- Hat -->
+                    <rect x="7" y="0" width="2" height="1" fill="#4f46e5"/>
+                    <rect x="6" y="1" width="4" height="1" fill="#4338ca"/>
+                    <rect x="5" y="2" width="6" height="1" fill="#312e81"/>
+                    <rect x="4" y="3" width="8" height="1" fill="#1e1b4b"/>
+                    <rect x="2" y="4" width="12" height="1" fill="#22d3ee"/> <!-- Hat Brim -->
+                    <!-- Head / Eyes -->
+                    <rect x="5" y="5" width="6" height="3" fill="#ffedd5"/>
+                    <rect x="5" y="6" width="1" height="1" fill="#000"/>
+                    <rect x="9" y="6" width="1" height="1" fill="#000"/>
+                    <!-- Beard -->
+                    <rect x="4" y="8" width="8" height="3" fill="#f8fafc"/>
+                    <rect x="5" y="11" width="6" height="1" fill="#f8fafc"/>
+                    <!-- Robe -->
+                    <rect x="3" y="12" width="10" height="3" fill="#312e81"/>
+                    <!-- Staff -->
+                    <rect x="13" y="4" width="1" height="11" fill="#78350f"/>
+                    <rect x="12" y="3" width="3" height="1" fill="#eab308"/>
+                    <rect x="13" y="2" width="1" height="1" fill="#eab308"/>
+                    <circle cx="13.5" cy="2.5" r="1" fill="#fbbf24" class="animate-pulse"/>
+                </svg>
+            </div>
+
+            <p class="font-pixel text-xs tracking-[0.25em] text-gold-200 uppercase" data-lang-id="ARSIF PORTAL PROYEK" data-lang-en="PROJECT PORTAL ARCHIVES">PROJECT PORTAL ARCHIVES</p>
+            <h1 class="font-pixel text-2xl sm:text-4xl text-white tracking-wide uppercase leading-normal" data-lang-id="DUNIA PIXEL KARYA" data-lang-en="PIXEL PROJECTS WORLD">PIXEL PROJECTS WORLD</h1>
+            <p class="text-xs sm:text-sm text-white/60 leading-relaxed font-mono" data-lang-id="Selamat datang di terminal arsip portofolio terpadu. Klik tab filter untuk memanggil repositori, dan buka 'Project Story' untuk mengeksplorasi dokumentasi." data-lang-en="Welcome to the unified portfolio archive terminal. Click filter tabs to query repositories, and open 'Project Story' to explore complete documentations.">Welcome to the unified portfolio archive terminal. Click filter tabs to query repositories, and open 'Project Story' to explore complete documentations.</p>
+        </header>
+
+        <!-- Category Filter Panel -->
+        <section class="mb-12 relative">
+            <!-- Cute Robot (Hovering Right) -->
+            <div class="absolute -top-10 right-4">
+                <svg class="pixel-sprite pixel-cute-robot" viewBox="0 0 16 16" width="60" height="60">
+                    <!-- Head -->
+                    <rect x="4" y="3" width="8" height="5" fill="#475569"/>
+                    <rect x="3" y="4" width="10" height="3" fill="#64748b"/>
+                    <!-- Eye slot -->
+                    <rect x="4" y="5" width="8" height="1" fill="#000"/>
+                    <rect x="5" y="5" width="2" height="1" fill="#22d3ee"/> <!-- cyan eyes -->
+                    <rect x="9" y="5" width="2" height="1" fill="#22d3ee"/>
+                    <!-- Antenna -->
+                    <rect x="7" y="1" width="2" height="2" fill="#ef4444"/>
+                    <!-- Body -->
+                    <rect x="5" y="9" width="6" height="4" fill="#334155"/>
+                    <rect x="6" y="10" width="4" height="2" fill="#22d3ee"/>
+                    <!-- Arms -->
+                    <rect x="3" y="9" width="1" height="3" fill="#64748b"/>
+                    <rect x="12" y="9" width="1" height="3" fill="#64748b"/>
+                    <!-- Jet thrust -->
+                    <rect x="6" y="13" width="4" height="2" fill="#f97316"/>
+                </svg>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3" id="project-filters"></div>
+        </section>
+
+        <!-- Bouncing Slime (Guarding Grid) -->
+        <div class="mb-4 ml-4 flex items-center gap-2">
+            <svg class="pixel-sprite pixel-slime" viewBox="0 0 16 16" width="56" height="56">
+                <!-- Outer Border -->
+                <rect x="4" y="12" width="8" height="1" fill="#000"/>
+                <rect x="3" y="11" width="1" height="1" fill="#000"/>
+                <rect x="12" y="11" width="1" height="1" fill="#000"/>
+                <rect x="2" y="8" width="1" height="3" fill="#000"/>
+                <rect x="13" y="8" width="1" height="3" fill="#000"/>
+                <rect x="3" y="7" width="1" height="1" fill="#000"/>
+                <rect x="12" y="7" width="1" height="1" fill="#000"/>
+                <rect x="4" y="6" width="8" height="1" fill="#000"/>
+                <!-- Body cyan -->
+                <rect x="4" y="7" width="8" height="5" fill="#06b6d4"/>
+                <rect x="3" y="8" width="10" height="3" fill="#22d3ee"/>
+                <!-- Eyes -->
+                <rect x="5" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="5" y="9" width="1" height="1" fill="#000"/>
+                <rect x="10" y="9" width="1" height="1" fill="#000"/>
+            </svg>
+            <span class="font-pixel text-[9px] tracking-widest text-cyan-400 animate-pulse uppercase" data-lang-id="Penjaga Repositori: Aktif" data-lang-en="Repository Guard: Active">Repository Guard: Active</span>
+        </div>
+
+        <!-- Project Grid Stage -->
+        <div id="project-grid" class="grid gap-8 lg:grid-cols-2"></div>
+        
+    </main>
+
+    <!-- Footer Guard Knight -->
+    <footer class="mt-24 text-center relative pt-8 border-t border-white/5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="absolute -top-12 left-10 sm:left-24">
+            <svg class="pixel-sprite pixel-knight" viewBox="0 0 16 16" width="70" height="70">
+                <!-- Helmet -->
+                <rect x="5" y="2" width="6" height="1" fill="#000"/>
+                <rect x="4" y="3" width="8" height="5" fill="#475569"/>
+                <rect x="4" y="5" width="8" height="1" fill="#000"/>
+                <rect x="6" y="5" width="4" height="1" fill="#f59e0b"/> <!-- gold visor glow -->
+                <rect x="7" y="1" width="2" height="1" fill="#ef4444"/> <!-- feather -->
+                <!-- Armor Body -->
+                <rect x="3" y="8" width="10" height="5" fill="#334155"/>
+                <!-- Sword -->
+                <rect x="11" y="5" width="1" height="7" fill="#cbd5e1"/>
+                <rect x="10" y="9" width="3" height="1" fill="#d97706"/>
+                <!-- Shield -->
+                <rect x="2" y="9" width="3" height="4" fill="#06b6d4"/>
+                <rect x="3" y="10" width="1" height="2" fill="#fff"/>
+                <!-- Feet -->
+                <rect x="5" y="13" width="2" height="1" fill="#1e293b"/>
+                <rect x="9" y="13" width="2" height="1" fill="#1e293b"/>
+            </svg>
+        </div>
+
+        <p class="font-pixel text-[10px] tracking-widest text-white/45">© 2026 AIPP.SYSTEMS • ALL RIGS RESERVED</p>
+    </footer>
+
+    <!-- Image Lightbox Modal -->
+    <div id="lightbox-modal"
+        class="fixed inset-0 z-[10000] bg-slate-950/95 backdrop-blur-md flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <button id="lightbox-close"
+            class="absolute top-6 right-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001]"
+            type="button">
+            <iconify-icon icon="mdi:close"></iconify-icon>
+        </button>
+        <div class="max-w-5xl max-h-[80vh] px-4 flex items-center justify-center relative">
+            <img id="lightbox-img" src="" alt="Storytelling detail"
+                class="max-w-full max-h-[80vh] object-contain rounded-none border border-white/5 shadow-2xl scale-95 transition-transform duration-300">
+
+            <button id="lightbox-prev"
+                class="absolute -left-4 sm:left-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001] hidden"
+                type="button">
+                <iconify-icon icon="mdi:chevron-left"></iconify-icon>
+            </button>
+            <button id="lightbox-next"
+                class="absolute -right-4 sm:right-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001] hidden"
+                type="button">
+                <iconify-icon icon="mdi:chevron-right"></iconify-icon>
+            </button>
+        </div>
+        <p id="lightbox-caption"
+            class="mt-6 text-sm font-semibold tracking-wider text-cyan-200 uppercase text-center max-w-xl px-4"></p>
+    </div>
+
+    <!-- Floating Music Toggle Bubble Container -->
+    <div id="music-container" class="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-center">
+        <!-- The Pixel Robot (pops out) -->
+        <div id="music-robot"
+            class="h-12 w-12 opacity-0 pointer-events-none translate-y-4 transition-all duration-300 mb-1 select-none">
+            <svg class="h-full w-full" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Antenna with Group for Sway Animation -->
+                <g id="robot-antenna">
+                    <rect x="7" y="0" width="2" height="2" fill="#fbbf24" />
+                </g>
+                <!-- Head -->
+                <rect x="4" y="2" width="8" height="6" fill="#475569" />
+                <!-- Ear Left -->
+                <rect x="3" y="4" width="1" height="2" fill="#334155" />
+                <!-- Ear Right -->
+                <rect x="12" y="4" width="1" height="2" fill="#334155" />
+                <!-- Eyes -->
+                <rect id="robot-eye-l" x="5" y="4" width="2" height="2" fill="#22d3ee" />
+                <rect id="robot-eye-r" x="9" y="4" width="2" height="2" fill="#22d3ee" />
+                <!-- Neck -->
+                <rect x="7" y="8" width="2" height="1" fill="#334155" />
+                <!-- Radio Boombox Body -->
+                <rect x="2" y="9" width="12" height="6" fill="#334155" />
+                <!-- Speakers -->
+                <rect x="3" y="10" width="3" height="3" fill="#1e293b" />
+                <rect id="speaker-light-l" x="4" y="11" width="1" height="1" fill="#22d3ee" />
+                <rect x="10" y="10" width="3" height="3" fill="#1e293b" />
+                <rect id="speaker-light-r" x="11" y="11" width="1" height="1" fill="#22d3ee" />
+                <!-- Tape deck -->
+                <rect x="7" y="11" width="2" height="2" fill="#fbbf24" />
+            </svg>
+        </div>
+
+        <!-- The Capsule/Bubble trigger button -->
+        <button id="music-toggle"
+            class="relative flex h-11 w-11 items-center justify-center rounded-none border border-cyan-400/30 bg-slateInk/85 backdrop-blur-md shadow-[0_0_12px_rgba(6,182,212,0.25)] transition-all duration-300 hover:border-cyan-400/80 hover:scale-105 active:scale-90"
+            aria-label="Toggle Music">
+            <!-- Normal Play Icon (OFF state) -->
+            <iconify-icon id="music-play-icon" icon="pixelarticons:play"
+                class="text-lg text-cyan-300 transition-all duration-300"></iconify-icon>
+
+            <!-- Equalizer lines (inside the ball, ON state) -->
+            <div id="music-equalizer"
+                class="absolute flex items-end gap-[2px] h-3.5 w-3.5 opacity-0 scale-50 pointer-events-none transition-all duration-300">
+                <span class="bar bar-1 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-2 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-3 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+            </div>
+        </button>
+
+        <!-- Audio Element (source points to parent directory because projects.html is in a subfolder!) -->
+        <audio id="bg-music" loop preload="none">
+            <source src="../img/web-ost.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Shared Configurations & Pages Controllers -->
+    <script src="projects-data.js"></script>
+    <script src="projects-page.js"></script>
+</body>
+
+</html>
