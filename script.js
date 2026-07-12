@@ -46,12 +46,36 @@ const stackCategories = [
     summaryId: "Fondasi utama browser dan antarmuka aplikasi modern.",
     summaryEn: "Core browser foundations and modern app interfaces.",
     items: [
-      "Vanilla JavaScript (ES6+ Modules)",
-      "HTML5",
-      "CSS3",
-      "TypeScript",
-      "Next.js",
-      "React",
+      {
+        name: "Vanilla JavaScript (ES6+ Modules)",
+        descId: "Dasar pemrograman web murni, modular, cepat, dan tanpa beban dependensi eksternal.",
+        descEn: "Modern modular JavaScript for lightweight, ultra-fast browser logic without external dependencies."
+      },
+      {
+        name: "HTML5",
+        descId: "Struktur semantik dokumen web modern yang ramah SEO dan mudah diakses semua pengguna.",
+        descEn: "Semantic markup structures optimized for accessibility, performance, and SEO best practices."
+      },
+      {
+        name: "CSS3",
+        descId: "Styling tingkat lanjut, tata letak Grid/Flexbox, dan transisi animasi hardware-accelerated.",
+        descEn: "Advanced layouts, animations, transitions, and responsive grid patterns using vanilla styling."
+      },
+      {
+        name: "TypeScript",
+        descId: "Pengetikan ketat statis di atas JavaScript untuk meminimalkan bug runtime pada proyek besar.",
+        descEn: "Statically typed JavaScript to catch structural errors early and maintain clean codebases."
+      },
+      {
+        name: "Next.js",
+        descId: "Framework React dengan Server-Side Rendering (SSR) untuk performa loading secepat kilat.",
+        descEn: "Production-ready React framework enabling server-side rendering and static site generation."
+      },
+      {
+        name: "React",
+        descId: "Arsitektur berbasis komponen reaktif untuk membangun antarmuka web interaktif yang dinamis.",
+        descEn: "Component-based reactive architecture for rendering modular and dynamic user interfaces."
+      }
     ],
   },
   {
@@ -61,13 +85,41 @@ const stackCategories = [
     summaryId: "Lapisan integrasi server, data, dan kriptografi sisi klien.",
     summaryEn: "Server, data, and cryptographic integration layers.",
     items: [
-      "Node.js",
-      "Hono.js",
-      "Prisma ORM",
-      "PostgreSQL",
-      "MySQL",
-      "ethers.js",
-      "bitcoinjs-lib",
+      {
+        name: "Node.js",
+        descId: "Runtime server JavaScript berkinerja tinggi berbasis event-driven untuk skalabilitas tinggi.",
+        descEn: "High-performance JavaScript runtime for scalable backend services and asynchronous processing."
+      },
+      {
+        name: "Hono.js",
+        descId: "Framework web minimalis ultra-cepat untuk edge computing dan arsitektur serverless.",
+        descEn: "Ultrafast, lightweight web framework designed for cloudflare workers and serverless edges."
+      },
+      {
+        name: "Prisma ORM",
+        descId: "Pemetaan basis data tipe-aman untuk menulis query database relasional yang bersih.",
+        descEn: "Type-safe database client and query builder designed for clean and direct schema migrations."
+      },
+      {
+        name: "PostgreSQL",
+        descId: "Sistem database relasional tangguh kelas enterprise untuk konsistensi transaksi data.",
+        descEn: "Enterprise-grade relational database management system for secure transactional consistency."
+      },
+      {
+        name: "MySQL",
+        descId: "Database relasional populer yang cepat, andal, dan efisien untuk berbagai beban kerja.",
+        descEn: "Robust, widely adopted relational database for reliable storage and low-latency queries."
+      },
+      {
+        name: "ethers.js",
+        descId: "Pustaka Javascript untuk interaksi aman dengan blockchain Ethereum dan smart contract.",
+        descEn: "Lightweight utility library to securely interact with Ethereum nodes and smart contracts."
+      },
+      {
+        name: "bitcoinjs-lib",
+        descId: "Pustaka tingkat rendah untuk manipulasi transaksi Bitcoin dan pembuatan dompet kripto.",
+        descEn: "Low-level JavaScript library for building raw Bitcoin transactions and wallet integrations."
+      }
     ],
   },
   {
@@ -77,12 +129,36 @@ const stackCategories = [
     summaryId: "Sistem algoritmik perdagangan dan kecerdasan mesin terapan.",
     summaryEn: "Algorithmic systems and applied machine intelligence.",
     items: [
-      "MQL5 Expert Advisor",
-      "MetaTrader 5",
-      "Grid Strategy",
-      "Martingale Strategy",
-      "YOLOv11",
-      "Gemini API",
+      {
+        name: "MQL5 Expert Advisor",
+        descId: "Pemrograman sistem robot trading otomatis terstruktur untuk analisis pasar real-time.",
+        descEn: "Programming automated algorithmic trading systems for structured real-time market execution."
+      },
+      {
+        name: "MetaTrader 5",
+        descId: "Platform analitik perdagangan multi-aset profesional untuk pengujian strategi historis.",
+        descEn: "Multi-asset financial platform used for backtesting, optimization, and manual trade entry."
+      },
+      {
+        name: "Grid Strategy",
+        descId: "Algoritma eksekusi trading berdasarkan jaring harga untuk memanfaatkan pasar sideways.",
+        descEn: "A systematic trading algorithm placing orders at set intervals to profit from market ranges."
+      },
+      {
+        name: "Martingale Strategy",
+        descId: "Manajemen lot dinamis dengan pengali matematika untuk mengamankan pemulihan kerugian.",
+        descEn: "Dynamic lot sizing strategy with mathematical multipliers designed for loss recovery cycles."
+      },
+      {
+        name: "YOLOv11",
+        descId: "Deteksi objek real-time mutakhir untuk vision AI dengan akurasi dan kecepatan tinggi.",
+        descEn: "State-of-the-art visual AI model engineered for rapid and accurate real-time object detection."
+      },
+      {
+        name: "Gemini API",
+        descId: "Integrasi model AI multimodal Google untuk pemrosesan teks dan penalaran cerdas.",
+        descEn: "Integrating Google's elite multimodal AI models for reasoning, analysis, and generation."
+      }
     ],
   },
   {
@@ -92,12 +168,36 @@ const stackCategories = [
     summaryId: "Eksekusi tim, analisis, dan kepemimpinan operasional.",
     summaryEn: "Team execution, analysis, and operational leadership.",
     items: [
-      "Cross-Functional Leadership",
-      "Project Management",
-      "Technical Data Analysis",
-      "SPSS",
-      "Corporate Finance Analysis",
-      "Statistical Risk Analysis",
+      {
+        name: "Cross-Functional Leadership",
+        descId: "Memimpin tim lintas disiplin ilmu untuk menyatukan visi rekayasa dan kesuksesan operasional.",
+        descEn: "Leading multidisciplinary teams to align engineering rigor with operational targets."
+      },
+      {
+        name: "Project Management",
+        descId: "Perencanaan siklus hidup proyek rekayasa secara tepat waktu dengan mitigasi risiko terukur.",
+        descEn: "Planning project lifecycles, resource allocations, and risk mitigation profiles."
+      },
+      {
+        name: "Technical Data Analysis",
+        descId: "Mengolah data mentah menjadi wawasan bisnis menggunakan visualisasi terstruktur.",
+        descEn: "Processing complex datasets into actionable operational dashboards and insight tables."
+      },
+      {
+        name: "SPSS",
+        descId: "Analisis statistik mendalam untuk validasi data penelitian sosial dan akademis desa.",
+        descEn: "Advanced statistical analysis software used for validating academic and civic field data."
+      },
+      {
+        name: "Corporate Finance Analysis",
+        descId: "Pemodelan keuangan, analisis neraca, dan perencanaan alokasi anggaran modal.",
+        descEn: "Financial modeling, balance sheet analytics, and capital budget projection methods."
+      },
+      {
+        name: "Statistical Risk Analysis",
+        descId: "Pemodelan risiko matematika untuk menilai ketidakpastian dalam proyek dan perdagangan.",
+        descEn: "Applying probability distributions to model operational uncertainties and tail-end risks."
+      }
     ],
   },
 ];
@@ -129,9 +229,9 @@ const techSpotlights = {
       { name: "PostgreSQL", icon: "devicon:postgresql" },
       { name: "MySQL", icon: "devicon:mysql" },
       { name: "Prisma", icon: "devicon:prisma" },
-      { name: "Hono.js", glyph: "H" },
-      { name: "ethers.js", glyph: "Ξ" },
-      { name: "bitcoinjs-lib", glyph: "₿" },
+      { name: "Hono.js", icon: "simple-icons:hono" },
+      { name: "ethers.js", icon: "simple-icons:ethereum" },
+      { name: "bitcoinjs-lib", icon: "simple-icons:bitcoin" },
       { name: "Web3", icon: "mdi:web" },
     ],
   },
@@ -142,28 +242,28 @@ const techSpotlights = {
     copyEn: "Trading automation, machine learning, and practical AI integrations sharpen execution speed.",
     items: [
       { name: "Python", icon: "devicon:python" },
-      { name: "MQL5", glyph: "M5" },
-      { name: "MetaTrader 5", glyph: "MT5" },
-      { name: "YOLOv11", icon: "mdi:target" },
-      { name: "Gemini API", glyph: "G" },
-      { name: "DCA", icon: "mdi:chart-line" },
+      { name: "MQL5", icon: "ph:code-bold" },
+      { name: "MetaTrader 5", icon: "mdi:finance" },
+      { name: "YOLOv11", icon: "mdi:eye-outline" },
+      { name: "Gemini API", icon: "simple-icons:googlegemini" },
+      { name: "DCA", icon: "mdi:trending-up" },
       { name: "Calisthenics", icon: "mdi:dumbbell" },
-      { name: "SPSS", glyph: "S" },
+      { name: "SPSS", icon: "mdi:chart-histogram" },
     ],
   },
   soft: {
     titleId: "Perangkat Kepemimpinan",
     titleEn: "Leadership Toolkit",
-    copyId: "Koordinasi lintas fungsi, kemudi proyek, dan analisis menjaga pekerjaan tetap konsisten dan bermanfaat.",
-    copyEn: "Cross-functional coordination, project steering, and analysis keep the work consistent and useful.",
+    copyId: "Koordinasi lintas fungsi, kemudi proyek, dan alur kerja strategis menjaga hasil tetap berdampak.",
+    copyEn: "Cross-functional coordination, project steering, and strategic workflows keep outputs impactful.",
     items: [
       { name: "Leadership", icon: "mdi:account-group" },
       { name: "Project Mgmt", icon: "mdi:clipboard-text-outline" },
       { name: "Data Analysis", icon: "mdi:chart-box-outline" },
-      { name: "Integrity", glyph: "IQ" },
+      { name: "Integrity", icon: "mdi:shield-check-outline" },
       { name: "Synergy", icon: "mdi:account-multiple" },
       { name: "Focus", icon: "mdi:target" },
-      { name: "Planning", icon: "mdi:route" },
+      { name: "Planning", icon: "mdi:clipboard-edit-outline" },
       { name: "Communication", icon: "mdi:message-text-outline" },
     ],
   },
@@ -987,11 +1087,11 @@ function executeRenderStackPanel(activeKey) {
 
   stackPanel.innerHTML = category.items
     .map(
-      (skill, index) => `
+      (item, index) => `
         <article class="skill-card reveal">
           <p class="skill-index">Skill ${String(index + 1).padStart(2, "0")}</p>
-          <h4 class="skill-title">${skill}</h4>
-          <p class="skill-copy">${isEn ? 'Built for resilient product engineering, clean architecture, and production-grade execution.' : 'Dibuat untuk rekayasa produk yang tangguh, arsitektur bersih, dan eksekusi kelas produksi.'}</p>
+          <h4 class="skill-title">${item.name}</h4>
+          <p class="skill-copy">${isEn ? item.descEn : item.descId}</p>
         </article>
       `,
     )
@@ -1132,7 +1232,7 @@ function executeRenderProjects(activeKey) {
           <div class="relative z-10 space-y-5">
             ${project.images && project.images.length > 0 ? `
               <!-- Project storytelling photo slider -->
-              <div class="project-carousel relative overflow-hidden rounded w-full h-[220px] mb-5 bg-slate-950/40 border border-white/5 group-carousel">
+              <div class="project-carousel relative overflow-hidden rounded-none w-full h-[220px] mb-5 bg-slate-950/40 border border-white/5 group-carousel">
                 <div class="project-slides flex transition-transform duration-500 w-full h-full" id="slides-${project.id}">
                   ${project.images.map(img => `
                     <div class="w-full h-full flex-shrink-0 relative cursor-zoom-in group">
@@ -1145,10 +1245,10 @@ function executeRenderProjects(activeKey) {
                   `).join('')}
                 </div>
                 ${project.images.length > 1 ? `
-                  <button type="button" class="carousel-nav prev-btn absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', -1, event)">
+                  <button type="button" class="carousel-nav prev-btn absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-none bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', -1, event)">
                     <iconify-icon icon="mdi:chevron-left" class="text-base"></iconify-icon>
                   </button>
-                  <button type="button" class="carousel-nav next-btn absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', 1, event)">
+                  <button type="button" class="carousel-nav next-btn absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-none bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', 1, event)">
                     <iconify-icon icon="mdi:chevron-right" class="text-base"></iconify-icon>
                   </button>
                   <div class="carousel-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
@@ -1194,7 +1294,7 @@ function executeRenderProjects(activeKey) {
               
               ${project.story ? `
                 <div id="story-content-${project.id}" class="mt-4 hidden overflow-hidden text-xs leading-6 text-white/70 space-y-4 font-normal">
-                  <div class="rounded bg-white/5 border border-white/5 p-3.5 space-y-3.5 backdrop-blur-md">
+                  <div class="rounded-none bg-white/5 border border-white/5 p-3.5 space-y-3.5 backdrop-blur-md">
                     <div>
                       <p class="font-bold text-cyan-200 uppercase tracking-widest text-[9px] mb-1">${isEn ? "Background" : "Latar Belakang"}</p>
                       <p class="text-white/60 leading-relaxed text-left sm:text-justify">${isEn ? project.story.backgroundEn : project.story.backgroundId}</p>
@@ -1343,11 +1443,11 @@ window.setLanguage = function (lang) {
   const btnEn = document.getElementById("lang-en");
   if (btnId && btnEn) {
     if (lang === "id") {
-      btnId.className = "px-1.5 py-0.5 rounded-sm transition-colors text-cyan-300 bg-cyan-400/15";
-      btnEn.className = "px-1.5 py-0.5 rounded-sm transition-colors text-white/40 hover:text-white/80";
+      btnId.className = "px-1.5 py-0.5 rounded-none transition-colors text-cyan-300 bg-cyan-400/15";
+      btnEn.className = "px-1.5 py-0.5 rounded-none transition-colors text-white/40 hover:text-white/80";
     } else {
-      btnEn.className = "px-1.5 py-0.5 rounded-sm transition-colors text-cyan-300 bg-cyan-400/15";
-      btnId.className = "px-1.5 py-0.5 rounded-sm transition-colors text-white/40 hover:text-white/80";
+      btnEn.className = "px-1.5 py-0.5 rounded-none transition-colors text-cyan-300 bg-cyan-400/15";
+      btnId.className = "px-1.5 py-0.5 rounded-none transition-colors text-white/40 hover:text-white/80";
     }
   }
 
