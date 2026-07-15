@@ -153,14 +153,21 @@
                 <!-- Project storytelling photo slider -->
                 <div class="project-carousel relative overflow-hidden rounded-none w-full h-[220px] mb-5 bg-slate-950/60 border-b border-white/10 group-carousel">
                   <div class="project-slides flex transition-transform duration-500 w-full h-full" id="slides-${project.id}">
-                    ${project.images.map(img => `
+                    ${project.images.map(img => {
+                      const isVid = img.toLowerCase().endsWith('.mp4');
+                      return `
                       <div class="w-full h-full flex-shrink-0 relative cursor-zoom-in group">
-                        <img src="${img}" alt="${project.title}" class="w-full h-full object-cover select-none transition-transform duration-[600ms] group-hover:scale-[1.02]" onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')">
+                        ${isVid ? `
+                          <video src="${img}" class="w-full h-full object-cover select-none" autoplay loop muted playsinline onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')"></video>
+                        ` : `
+                          <img src="${img}" alt="${project.title}" class="w-full h-full object-cover select-none transition-transform duration-[600ms] group-hover:scale-[1.02]" onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')">
+                        `}
                         <div class="absolute bottom-3 left-3 bg-slateInk/85 backdrop-blur-md border border-cyan-400/25 px-2 py-0.5 rounded-none text-[6.5px] sm:text-[7.5px] font-pixel text-cyan-300 uppercase tracking-widest pointer-events-none z-10">
                           DIAGNOSTIC: SECURE
                         </div>
                       </div>
-                    `).join('')}
+                      `;
+                    }).join('')}
                   </div>
                   ${project.images.length > 1 ? `
                     <button type="button" class="carousel-nav prev-btn absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-none bg-slate-950/80 hover:bg-slate-900 border border-white/10 flex items-center justify-center text-white/90 z-20" onclick="window.moveSlide('${project.id}', -1, event)">
@@ -191,23 +198,33 @@
                 ${project.meta.map((item) => `<span class="project-chip project-chip-accent font-mono text-[9px]">${item}</span>`).join("")}
               </div>
               
-              ${(project.story || project.github) ? `
+              ${(project.story || project.github || project.demo) ? `
                 <!-- Project action buttons footer -->
-                <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-4 text-left">
+                <div class="mt-4 pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 text-left">
                   ${project.story ? `
-                    <button type="button" class="flex items-center gap-2 text-xs font-bold text-cyan-300 hover:text-cyan-200 transition-colors uppercase tracking-widest cursor-pointer font-pixel" onclick="window.toggleProjectStory('${project.id}', event)">
-                      <iconify-icon icon="mdi:book-open-outline" class="text-sm animate-pulse" id="story-icon-${project.id}"></iconify-icon>
+                    <button type="button" class="flex items-center gap-1.5 text-[9px] sm:text-xs font-bold text-cyan-300 hover:text-cyan-200 transition-colors uppercase tracking-widest cursor-pointer font-pixel" onclick="window.toggleProjectStory('${project.id}', event)">
+                      <iconify-icon icon="mdi:book-open-outline" class="text-xs sm:text-sm animate-pulse" id="story-icon-${project.id}"></iconify-icon>
                       <span id="story-text-${project.id}">${isEn ? "Read Project Story" : "Baca Cerita Proyek"}</span>
                     </button>
                   ` : '<div></div>'}
                   
-                  ${project.github ? `
-                    <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest group/git-link font-pixel" onclick="event.stopPropagation()">
-                      <iconify-icon icon="mdi:github" class="text-base group-hover/git-link:rotate-12 transition-transform duration-300"></iconify-icon>
-                      <span>${isEn ? "Repository" : "Repositori"}</span>
-                      <iconify-icon icon="mdi:arrow-top-right" class="text-[10px] text-white/40 group-hover/git-link:translate-x-0.5 group-hover/git-link:-translate-y-0.5 transition-transform duration-300"></iconify-icon>
-                    </a>
-                  ` : ''}
+                  <div class="flex flex-wrap items-center gap-3 sm:gap-4 justify-start sm:justify-end">
+                    ${project.demo ? `
+                      <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-[9px] sm:text-xs font-bold text-cyan-300 hover:text-cyan-200 transition-colors uppercase tracking-widest group/demo-link font-pixel" onclick="event.stopPropagation()">
+                        <iconify-icon icon="mdi:web" class="text-xs sm:text-base group-hover/demo-link:scale-110 transition-transform duration-300"></iconify-icon>
+                        <span>${isEn ? "Live Demo" : "Kunjungi"}</span>
+                        <iconify-icon icon="mdi:arrow-top-right" class="text-[8px] sm:text-[10px] text-cyan-300/40 group-hover/demo-link:translate-x-0.5 group-hover/demo-link:-translate-y-0.5 transition-transform duration-300"></iconify-icon>
+                      </a>
+                    ` : ''}
+                    
+                    ${project.github ? `
+                      <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-[9px] sm:text-xs font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest group/git-link font-pixel" onclick="event.stopPropagation()">
+                        <iconify-icon icon="mdi:github" class="text-xs sm:text-base group-hover/git-link:rotate-12 transition-transform duration-300"></iconify-icon>
+                        <span>${isEn ? "Repository" : "Repositori"}</span>
+                        <iconify-icon icon="mdi:arrow-top-right" class="text-[8px] sm:text-[10px] text-white/40 group-hover/git-link:translate-x-0.5 group-hover/git-link:-translate-y-0.5 transition-transform duration-300"></iconify-icon>
+                      </a>
+                    ` : ''}
+                  </div>
                 </div>
                 
                 ${project.story ? `
@@ -389,11 +406,33 @@
   window.openLightbox = function (imageSrc, caption, projectId) {
     const lightboxModal = document.getElementById("lightbox-modal");
     const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxVideo = document.getElementById("lightbox-video");
     const lightboxCaption = document.getElementById("lightbox-caption");
 
-    if (!lightboxModal || !lightboxImg) return;
+    if (!lightboxModal) return;
 
-    lightboxImg.src = imageSrc;
+    const isVid = imageSrc.toLowerCase().endsWith('.mp4');
+
+    if (isVid) {
+      if (lightboxImg) lightboxImg.classList.add("hidden");
+      if (lightboxVideo) {
+        lightboxVideo.classList.remove("hidden");
+        lightboxVideo.src = imageSrc;
+        lightboxVideo.load();
+        lightboxVideo.play().catch(err => console.log("Autoplay check:", err));
+      }
+    } else {
+      if (lightboxVideo) {
+        lightboxVideo.classList.add("hidden");
+        lightboxVideo.src = "";
+        lightboxVideo.load();
+      }
+      if (lightboxImg) {
+        lightboxImg.classList.remove("hidden");
+        lightboxImg.src = imageSrc;
+      }
+    }
+
     if (lightboxCaption) {
       lightboxCaption.textContent = caption;
     }
@@ -427,7 +466,10 @@
 
     if (window.gsap) {
       window.gsap.to(lightboxModal, { opacity: 1, duration: 0.3, ease: "power2.out" });
-      window.gsap.fromTo(lightboxImg, { scale: 0.94 }, { scale: 1, duration: 0.4, ease: "back.out(1.4)" });
+      const targetEl = isVid ? lightboxVideo : lightboxImg;
+      if (targetEl) {
+        window.gsap.fromTo(targetEl, { scale: 0.94 }, { scale: 1, duration: 0.4, ease: "back.out(1.4)" });
+      }
     } else {
       lightboxModal.style.opacity = "1";
     }
@@ -436,6 +478,7 @@
   window.closeLightbox = function () {
     const lightboxModal = document.getElementById("lightbox-modal");
     const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxVideo = document.getElementById("lightbox-video");
     if (!lightboxModal) return;
 
     if (window.gsap) {
@@ -446,11 +489,20 @@
         onComplete: () => {
           lightboxModal.classList.add("pointer-events-none");
           if (lightboxImg) lightboxImg.src = "";
+          if (lightboxVideo) {
+            lightboxVideo.src = "";
+            lightboxVideo.load();
+          }
         }
       });
     } else {
       lightboxModal.classList.add("pointer-events-none");
       lightboxModal.style.opacity = "0";
+      if (lightboxImg) lightboxImg.src = "";
+      if (lightboxVideo) {
+        lightboxVideo.src = "";
+        lightboxVideo.load();
+      }
     }
   };
 
@@ -475,10 +527,33 @@
 
       const newSrc = activeLightboxImages[activeLightboxIndex];
       const lightboxImg = document.getElementById("lightbox-img");
-      if (lightboxImg) {
-        lightboxImg.src = newSrc;
-        if (window.gsap) {
-          window.gsap.fromTo(lightboxImg, { opacity: 0.6, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" });
+      const lightboxVideo = document.getElementById("lightbox-video");
+
+      const isVid = newSrc.toLowerCase().endsWith('.mp4');
+
+      if (isVid) {
+        if (lightboxImg) lightboxImg.classList.add("hidden");
+        if (lightboxVideo) {
+          lightboxVideo.classList.remove("hidden");
+          lightboxVideo.src = newSrc;
+          lightboxVideo.load();
+          lightboxVideo.play().catch(err => console.log("Autoplay check:", err));
+          if (window.gsap) {
+            window.gsap.fromTo(lightboxVideo, { opacity: 0.6, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" });
+          }
+        }
+      } else {
+        if (lightboxVideo) {
+          lightboxVideo.classList.add("hidden");
+          lightboxVideo.src = "";
+          lightboxVideo.load();
+        }
+        if (lightboxImg) {
+          lightboxImg.classList.remove("hidden");
+          lightboxImg.src = newSrc;
+          if (window.gsap) {
+            window.gsap.fromTo(lightboxImg, { opacity: 0.6, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" });
+          }
         }
       }
     };

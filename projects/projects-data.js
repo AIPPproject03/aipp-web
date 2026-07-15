@@ -188,6 +188,51 @@ window.portfolioProjects = [
         "Private Scheduled Consultations: Virtual scheduled appointments with licensed therapists and counselors."
       ]
     }
+  },
+  {
+    id: "desatampa",
+    category: "kkn",
+    labelId: "Ketua Pengabdian Masyarakat & Developer",
+    labelEn: "Community Service Leader & Developer",
+    title: "Desa Tampa Portal",
+    descriptionId: "Portal informasi resmi desa, peta batas wilayah interaktif, dan digitalisasi pemasaran UMKM keripik singkong untuk meningkatkan jangkauan warga Desa Tampa.",
+    descriptionEn: "Official village portal, interactive boundary maps, and digital marketing tools engineered for the local cassava chip cooperative in Tampa Village.",
+    stack: ["HTML5", "CSS3", "Vanilla JavaScript", "Leaflet Maps", "Netlify"],
+    meta: ["KKN 204 Leader", "Tampa Beraksi", "Civic Tech"],
+    github: "https://github.com/AIPPproject03/Website-Desa-Tampa",
+    demo: "https://desatampa.netlify.app/",
+    images: [
+      "../img/DESATAMPA/website-desa-tampa-img.png",
+      "../img/DESATAMPA/website-desa-tampa-vid.mp4"
+    ],
+    story: {
+      backgroundId: "Desa Tampa Portal dikembangkan dalam program Kuliah Kerja Nyata (KKN) Universitas Palangka Raya di Desa Tampa, Barito Timur. Sebagai Ketua KKN Kelompok 204, saya merancang dan membangun platform digital terintegrasi untuk membantu desa memublikasikan kekayaan alam, budaya, dan produk lokal secara mandiri.",
+      backgroundEn: "Desa Tampa Portal was engineered during the University of Palangka Raya Community Service Program (KKN) in Tampa Village, East Barito. Serving as the Group 204 leader, I designed and developed this integrated digital portal to help the village autonomously showcase its resources, local culture, and cooperative products.",
+      objectivesId: [
+        "Akses Informasi Publik: Mengubah pelacakan profil dan administrasi desa menjadi transparan secara online.",
+        "Pemetaan Batas Wilayah: Menyediakan peta interaktif berbasis Leaflet JS untuk mempermudah pemetaan batas wilayah desa.",
+        "Digitalisasi UMKM Lokal: Membangun etalase digital untuk keripik singkong 'Kingkong Tampa' guna melipatgandakan omzet penjualan warga.",
+        "Pemberdayaan Warga: Memberikan pelatihan langsung kepada staf administrasi desa dalam mengelola sistem publikasi web secara berkelanjutan."
+      ],
+      objectivesEn: [
+        "Public Information Access: Transitions physical village profiles and administrative guidelines to a transparent online platform.",
+        "Interactive Geolocation: Implements Leaflet JS mapping systems to establish interactive digital boundaries.",
+        "Cooperative Digitization: Creates an e-commerce catalog for the local 'Kingkong Tampa' cassava chips, amplifying market reach.",
+        "Sustainable Training: Trains village administration officials in web content updates to ensure independent platform maintenance."
+      ],
+      featuresId: [
+        "Peta Leaflet Interaktif: Pemetaan batas wilayah, kekayaan alam, dan fasilitas publik desa.",
+        "Katalog Produk UMKM: Modul promosi digital khusus untuk memasarkan produk keripik singkong khas Desa Tampa.",
+        "Portal Berita & Agenda Desa: Panel manajemen konten sederhana untuk pembaruan kegiatan warga secara real-time.",
+        "Responsive Retro UI: Antarmuka ramah seluler untuk memudahkan akses warga desa melalui smartphone."
+      ],
+      featuresEn: [
+        "Interactive Leaflet Map: Geospatial boundary, resources, and public utility maps designed for residents.",
+        "E-Commerce Catalog Module: Dedicated showcase to catalog and promote the village's signature cassava chips.",
+        "Community Blog Engine: Simple update panel for local news, events, and announcements.",
+        "Responsive UI: Mobile-optimized template enabling seamless access for villagers on standard smartphones."
+      ]
+    }
   }
 ];
 
@@ -196,5 +241,6 @@ window.portfolioProjectFilters = [
   { key: "flagship", labelId: "Unggulan", labelEn: "Flagship" },
   { key: "hackathon", labelId: "Hackathon", labelEn: "Hackathon" },
   { key: "internship", labelId: "Magang", labelEn: "Internship" },
+  { key: "kkn", labelId: "KKN / Sosial", labelEn: "KKN / Civic" },
   { key: "finalist", labelId: "Finalis", labelEn: "Finalist" }
 ];
