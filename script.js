@@ -350,6 +350,8 @@ function setupGsapAnimations() {
   if (!window.gsap) return;
 
   const scrollTrigger = window.ScrollTrigger;
+  const isMobile = window.innerWidth < 768;
+  const dFactor = isMobile ? 0.7 : 1; // Speed up animations on mobile
 
   if (scrollTrigger) {
     gsap.registerPlugin(scrollTrigger);
@@ -379,31 +381,36 @@ function setupGsapAnimations() {
       "[data-hero-stats]",
       "[data-hero-panel]",
     ],
-    { opacity: 0, y: 22 },
+    { opacity: 0, y: 18 },
   );
 
   if (titleEl) {
     gsap.set(".hero-word", { yPercent: 102 });
   }
 
-  // Play hero entrance timeline
+  // Simplified hero entrance timeline (fewer sequential steps)
   const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
   heroTimeline
-    .to("[data-hero-badge]", { opacity: 1, y: 0, duration: 0.65 })
-    .to("[data-hero-kicker]", { opacity: 1, y: 0, duration: 0.4 }, "-=0.35");
+    .to("[data-hero-badge]", { opacity: 1, y: 0, duration: 0.5 * dFactor });
 
   if (titleEl) {
-    heroTimeline.to(".hero-word", { yPercent: 0, duration: 0.8, stagger: 0.08, ease: "power4.out" }, "-=0.25");
+    heroTimeline.to(".hero-word", { yPercent: 0, duration: 0.7 * dFactor, stagger: 0.06, ease: "power4.out" }, "-=0.15");
   } else {
-    heroTimeline.to("[data-hero-title]", { opacity: 1, y: 0, duration: 0.8 }, "-=0.2");
+    heroTimeline.to("[data-hero-title]", { opacity: 1, y: 0, duration: 0.6 * dFactor }, "-=0.1");
   }
 
+  // Batch the remaining hero elements together for snappier feel
   heroTimeline
-    .to("[data-hero-subtitle]", { opacity: 1, y: 0, duration: 0.65 }, "-=0.5")
-    .to("[data-hero-summary]", { opacity: 1, y: 0, duration: 0.65 }, "-=0.45")
-    .to("[data-hero-actions]", { opacity: 1, y: 0, duration: 0.55 }, "-=0.35")
-    .to("[data-hero-stats]", { opacity: 1, y: 0, duration: 0.55 }, "-=0.35")
-    .to("[data-hero-panel]", { opacity: 1, y: 0, duration: 0.8 }, "-=0.65");
+    .to(
+      ["[data-hero-kicker]", "[data-hero-summary]", "[data-hero-actions]"],
+      { opacity: 1, y: 0, duration: 0.5 * dFactor, stagger: 0.08 },
+      "-=0.3"
+    )
+    .to(
+      ["[data-hero-stats]", "[data-hero-panel]"],
+      { opacity: 1, y: 0, duration: 0.6 * dFactor, stagger: 0.1 },
+      "-=0.35"
+    );
 
   // Drifting Background Orbs with Mouse Parallax
   function animateOrbDrift(selector, duration) {
@@ -617,6 +624,7 @@ function setupGsapAnimations() {
 function setupCursorGlow() {
   if (!window.gsap) return;
   if (!window.matchMedia("(pointer: fine)").matches) return;
+  if (window.innerWidth < 1024) return; // Skip on small screens
 
   const cursor = document.querySelector(".custom-cursor");
   const cursorDot = document.querySelector(".custom-cursor-dot");
@@ -643,27 +651,32 @@ function setupCursorGlow() {
   }
 
   let cursorVisible = false;
+  let rafId = null;
 
   document.addEventListener("pointermove", (event) => {
-    const { clientX, clientY } = event;
+    if (rafId) return; // RAF throttle: skip if a frame is already queued
+    rafId = requestAnimationFrame(() => {
+      const { clientX, clientY } = event;
 
-    if (hasGlow) {
-      moveGlowX(clientX);
-      moveGlowY(clientY);
-      glowFadeIn();
-    }
-
-    if (hasCursor) {
-      moveCursorX(clientX);
-      moveCursorY(clientY);
-      moveDotX(clientX);
-      moveDotY(clientY);
-
-      if (!cursorVisible) {
-        gsap.to([cursor, cursorDot], { opacity: 1, duration: 0.3 });
-        cursorVisible = true;
+      if (hasGlow) {
+        moveGlowX(clientX);
+        moveGlowY(clientY);
+        glowFadeIn();
       }
-    }
+
+      if (hasCursor) {
+        moveCursorX(clientX);
+        moveCursorY(clientY);
+        moveDotX(clientX);
+        moveDotY(clientY);
+
+        if (!cursorVisible) {
+          gsap.to([cursor, cursorDot], { opacity: 1, duration: 0.3 });
+          cursorVisible = true;
+        }
+      }
+      rafId = null;
+    });
   });
 
   const onLeave = () => {
@@ -709,6 +722,7 @@ function setupCursorGlow() {
 function setupMagneticInteractions() {
   if (!window.gsap) return;
   if (!window.matchMedia("(pointer: fine)").matches) return;
+  if (window.innerWidth < 1024) return; // Desktop-only interaction
 
   document
     .querySelectorAll(
@@ -892,7 +906,6 @@ function executeRenderStackPanel(activeKey) {
     }
   );
 
-  setupCardTilt();
   renderTechSpotlight(activeKey);
   observeReveals();
 }
@@ -947,7 +960,6 @@ function executeRenderTechSpotlight(activeKey) {
     }
   );
 
-  setupCardTilt();
   observeReveals();
 }
 
@@ -1028,7 +1040,7 @@ function observeReveals() {
         }
       });
     },
-    { threshold: 0.16 },
+    { threshold: 0.12 },
   );
 
   document
