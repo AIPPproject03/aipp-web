@@ -298,12 +298,12 @@ const athleticTimeline = [
 
 const typingRoles = {
   id: [
-    "Rekayasa Informatika",
+    "Duta Teknologi",
     "Spesialis Web3",
     "Atlet Bulu Tangkis",
   ],
   en: [
-    "Informatics Engineer",
+    "Tech Ambassador",
     "Web3 Specialist",
     "Elite Athlete",
   ]
