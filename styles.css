@@ -1271,6 +1271,30 @@ footer {
   animation: eyeBlink 3.2s infinite;
 }
 
+/* JS Visualizer Overrides */
+#music-container.js-visualizer #music-equalizer .bar {
+  animation: none !important;
+}
+#music-container.js-visualizer .playing-robot {
+  animation: none !important;
+}
+#music-container.js-visualizer #robot-antenna {
+  animation: none !important;
+  transition: none !important;
+}
+#music-container.js-visualizer #speaker-light-l,
+#music-container.js-visualizer #speaker-light-r {
+  animation: none !important;
+}
+#music-container.js-visualizer #robot-eye-l,
+#music-container.js-visualizer #robot-eye-r {
+  animation: none !important;
+}
+#music-container.js-visualizer #robot-head,
+#music-container.js-visualizer #robot-body {
+  transition: none !important;
+}
+
 /* ============================================================
    PIXEL PROJECTS PORTAL & CHARACTER ANIMATIONS
    ============================================================ */

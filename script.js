@@ -1179,10 +1179,284 @@ function setupBackgroundMusic() {
 
   if (!musicContainer || !musicToggle || !musicEqualizer || !musicRobot || !playIcon || !bgMusic) return;
 
+  const bar1 = musicEqualizer.querySelector(".bar-1");
+  const bar2 = musicEqualizer.querySelector(".bar-2");
+  const bar3 = musicEqualizer.querySelector(".bar-3");
+  const bar4 = musicEqualizer.querySelector(".bar-4");
+  const bar5 = musicEqualizer.querySelector(".bar-5");
+  const bar6 = musicEqualizer.querySelector(".bar-6");
+  const bar7 = musicEqualizer.querySelector(".bar-7");
+  const bar8 = musicEqualizer.querySelector(".bar-8");
+  const bar9 = musicEqualizer.querySelector(".bar-9");
+  const bar10 = musicEqualizer.querySelector(".bar-10");
+
+  const speakerLightL = musicRobot.querySelector("#speaker-light-l");
+  const speakerLightR = musicRobot.querySelector("#speaker-light-r");
+  const eyeL = musicRobot.querySelector("#robot-eye-l");
+  const eyeR = musicRobot.querySelector("#robot-eye-r");
+  const antenna = musicRobot.querySelector("#robot-antenna");
+  const robotHead = musicRobot.querySelector("#robot-head");
+  const robotBody = musicRobot.querySelector("#robot-body");
+
   // Set comfortable low volume for ambient play
   bgMusic.volume = 0.22;
 
   let isPlaying = false;
+  let audioCtx = null;
+  let analyser = null;
+  let dataArray = null;
+  let visualizerActive = false;
+  let animationFrameId = null;
+
+  // Auto-gain and physics states
+  let currentHeights = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+  let bandMaxes = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]; // Running band maximums for sensitivity normalization
+  let smoothBass = 0;
+  let entryAnimationComplete = false;
+
+  const initAudioVisualizer = () => {
+    try {
+      if (!window.audioCtx) {
+        window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      audioCtx = window.audioCtx;
+
+      if (!window.audioAnalyser) {
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256; // 128 frequency bins, giving much finer resolution for 10 bands
+        window.audioAnalyser = analyser;
+      } else {
+        analyser = window.audioAnalyser;
+      }
+
+      if (!bgMusic.sourceNode) {
+        const source = audioCtx.createMediaElementSource(bgMusic);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        bgMusic.sourceNode = source;
+      }
+
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+      visualizerActive = true;
+      musicContainer.classList.add("js-visualizer");
+    } catch (e) {
+      console.warn("Web Audio API visualizer failed to initialize (likely CORS, file:// protocol, or browser restriction). Falling back to CSS animation.", e);
+      visualizerActive = false;
+      musicContainer.classList.remove("js-visualizer");
+    }
+  };
+
+  const updateVisualizer = () => {
+    if (!isPlaying) return;
+
+    if (visualizerActive && analyser && dataArray) {
+      analyser.getByteFrequencyData(dataArray);
+
+      // 10-Band detailed mapping using 128 bins (fftSize = 256)
+      let b1 = (dataArray[0] + dataArray[1]) / 2; // Sub-bass
+      let b2 = (dataArray[2] + dataArray[3]) / 2; // Bass
+      let b3 = (dataArray[4] + dataArray[5]) / 2; // Low Mids
+      let b4 = (dataArray[6] + dataArray[7] + dataArray[8]) / 3; // Mids
+      let b5 = (dataArray[9] + dataArray[10] + dataArray[11]) / 3; // Mids-highs
+      let b6 = (dataArray[12] + dataArray[13] + dataArray[14] + dataArray[15]) / 4; // High-mids
+      let b7 = 0; // Highs
+      for (let i = 16; i <= 21; i++) b7 += dataArray[i];
+      b7 /= 6;
+      let b8 = 0; // High presence
+      for (let i = 22; i <= 28; i++) b8 += dataArray[i];
+      b8 /= 7;
+      let b9 = 0; // Treble
+      for (let i = 29; i <= 37; i++) b9 += dataArray[i];
+      b9 /= 9;
+      let b10 = 0; // Very high presence
+      for (let i = 38; i <= 50; i++) b10 += dataArray[i];
+      b10 /= 13;
+
+      let rawBands = [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10];
+      let normBands = [];
+
+      for (let i = 0; i < 10; i++) {
+        // Slowly decay the running maximum to adapt to quieter parts, keeping a floor of 30 to prevent noise gain
+        bandMaxes[i] = Math.max(bandMaxes[i] * 0.996, rawBands[i], 30);
+        // Normalize current band amplitude against its dynamic peak
+        normBands.push(Math.min(1.0, rawBands[i] / bandMaxes[i]));
+      }
+
+      // Apply Dual-Rate Physics Easing: Fast snap-up (Attack) and smooth drop-down (Decay)
+      for (let i = 0; i < 10; i++) {
+        let targetH = 3 + normBands[i] * 17; // Container h-5 is 20px, so heights range 3px to 20px
+        if (targetH > currentHeights[i]) {
+          // Snappy Attack
+          currentHeights[i] += (targetH - currentHeights[i]) * 0.55;
+        } else {
+          // Smooth Decay
+          currentHeights[i] += (targetH - currentHeights[i]) * 0.16;
+        }
+      }
+
+      // Update equalizer heights
+      if (bar1) bar1.style.height = `${currentHeights[0]}px`;
+      if (bar2) bar2.style.height = `${currentHeights[1]}px`;
+      if (bar3) bar3.style.height = `${currentHeights[2]}px`;
+      if (bar4) bar4.style.height = `${currentHeights[3]}px`;
+      if (bar5) bar5.style.height = `${currentHeights[4]}px`;
+      if (bar6) bar6.style.height = `${currentHeights[5]}px`;
+      if (bar7) bar7.style.height = `${currentHeights[6]}px`;
+      if (bar8) bar8.style.height = `${currentHeights[7]}px`;
+      if (bar9) bar9.style.height = `${currentHeights[8]}px`;
+      if (bar10) bar10.style.height = `${currentHeights[9]}px`;
+
+      // Calculate bass beat factor for pulsing (decays slower for smooth bobbing)
+      const normBass = (normBands[0] + normBands[1]) / 2;
+      smoothBass += (normBass - smoothBass) * 0.25;
+
+      // Bob the head: shifts down on beat for a rhythmic nod
+      if (robotHead) {
+        const headY = smoothBass * 2.2;
+        robotHead.style.transform = `translateY(${headY}px)`;
+      }
+
+      // Pulse the body: scale body slightly on beat
+      if (robotBody) {
+        const bodyScale = 1 + smoothBass * 0.08;
+        robotBody.style.transform = `scale(${bodyScale})`;
+      }
+
+      // Apply overall translations and sways to the main robot element
+      if (entryAnimationComplete) {
+        // Robot jumps up to -10px, scales up to 1.16, sways to the rhythm
+        const robotY = -smoothBass * 10;
+        const robotScale = 1 + smoothBass * 0.16;
+        const robotRotation = Math.sin(Date.now() * 0.008) * (smoothBass * 9);
+        musicRobot.style.transform = `translateY(${robotY}px) scale(${robotScale}) rotate(${robotRotation}deg)`;
+        musicRobot.style.opacity = "1";
+      }
+
+      // Flash Speaker lights color based on bass intensity (Cyan to vibrant Pink/Purple or Yellow)
+      if (speakerLightL && speakerLightR) {
+        const r = Math.round(34 + smoothBass * (236 - 34));   // 0x22 -> 0xEC
+        const g = Math.round(211 + smoothBass * (72 - 211));  // 0xD3 -> 0x48
+        const b = Math.round(238 + smoothBass * (153 - 238)); // 0xEE -> 0x99
+        const color = `rgb(${r}, ${g}, ${b})`;
+        speakerLightL.setAttribute("fill", color);
+        speakerLightR.setAttribute("fill", color);
+      }
+
+      // Make Eyes glow brighter and slightly larger on beat
+      if (eyeL && eyeR) {
+        const r = Math.round(34 + smoothBass * (255 - 34));
+        const g = Math.round(211 + smoothBass * (255 - 211));
+        const b = Math.round(238 + smoothBass * (255 - 238));
+        const color = `rgb(${r}, ${g}, ${b})`;
+        eyeL.setAttribute("fill", color);
+        eyeR.setAttribute("fill", color);
+
+        // Apply widening scale to the eyes
+        const eyeScaleY = 1 + smoothBass * 0.5;
+        eyeL.style.transform = `scaleY(${eyeScaleY})`;
+        eyeR.style.transform = `scaleY(${eyeScaleY})`;
+      }
+
+      // Sway Antenna dynamically based on beat
+      if (antenna) {
+        const swayAngle = Math.sin(Date.now() * 0.01) * (10 + smoothBass * 15);
+        antenna.style.transform = `rotate(${swayAngle}deg)`;
+      }
+
+      // Pulse Music Toggle Button (Dramatic scale, bg shift, border glow, and outer shadow)
+      if (musicToggle) {
+        const glowRadius = 14 + smoothBass * 22;
+        const glowOpacity = 0.3 + smoothBass * 0.65;
+        // Pulse outer shadow and inner glow
+        musicToggle.style.boxShadow = `0 0 ${glowRadius}px rgba(6, 182, 212, ${glowOpacity}), inset 0 0 ${8 + smoothBass * 10}px rgba(6, 182, 212, ${0.1 + smoothBass * 0.3})`;
+
+        // Border color flashes bright white-cyan on beats
+        const borderR = Math.round(34 + smoothBass * (255 - 34));
+        const borderG = Math.round(211 + smoothBass * (255 - 211));
+        const borderB = Math.round(238 + smoothBass * (255 - 238));
+        musicToggle.style.borderColor = `rgb(${borderR}, ${borderG}, ${borderB})`;
+
+        // Pulse transform (Smooth and highly dramatic scaling)
+        musicToggle.style.transform = `scale(${1 + smoothBass * 0.14})`;
+
+        // Shift background color to a nice cyan-blue under heavy bass
+        const bgR = Math.round(15 + smoothBass * 25);
+        const bgG = Math.round(23 + smoothBass * 55);
+        const bgB = Math.round(42 + smoothBass * 110);
+        const bgO = 0.85 - smoothBass * 0.2;
+        musicToggle.style.backgroundColor = `rgba(${bgR}, ${bgG}, ${bgB}, ${bgO})`;
+      }
+    }
+
+    animationFrameId = requestAnimationFrame(updateVisualizer);
+  };
+
+  const startVisualizer = () => {
+    initAudioVisualizer();
+
+    // Bypass animation lag on the button
+    musicToggle.style.transition = "border-color 0.15s ease, opacity 0.3s ease, background-color 0.35s ease";
+
+    if (visualizerActive && audioCtx && audioCtx.state === "suspended") {
+      audioCtx.resume();
+    }
+
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+    animationFrameId = requestAnimationFrame(updateVisualizer);
+  };
+
+  const resetVisuals = () => {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+
+    // Reset heights
+    if (bar1) bar1.style.height = "3px";
+    if (bar2) bar2.style.height = "3px";
+    if (bar3) bar3.style.height = "3px";
+    if (bar4) bar4.style.height = "3px";
+    if (bar5) bar5.style.height = "3px";
+    if (bar6) bar6.style.height = "3px";
+    if (bar7) bar7.style.height = "3px";
+
+    // Reset robot components transform
+    musicRobot.style.transform = "";
+    if (robotHead) robotHead.style.transform = "";
+    if (robotBody) robotBody.style.transform = "";
+
+    // Reset speakers and eyes fill color
+    if (speakerLightL && speakerLightR) {
+      speakerLightL.setAttribute("fill", "#22d3ee");
+      speakerLightR.setAttribute("fill", "#22d3ee");
+    }
+    if (eyeL && eyeR) {
+      eyeL.setAttribute("fill", "#22d3ee");
+      eyeR.setAttribute("fill", "#22d3ee");
+      eyeL.style.transform = "";
+      eyeR.style.transform = "";
+    }
+
+    // Reset antenna
+    if (antenna) {
+      antenna.style.transform = "";
+    }
+
+    // Reset button glow & scale
+    if (musicToggle) {
+      musicToggle.style.boxShadow = "";
+      musicToggle.style.borderColor = "";
+      musicToggle.style.transform = "";
+      musicToggle.style.transition = "";
+      musicToggle.style.backgroundColor = "";
+    }
+
+    entryAnimationComplete = false;
+    smoothBass = 0;
+    currentHeights = [3, 3, 3, 3, 3, 3, 3];
+  };
 
   const playMusic = () => {
     const savedTime = parseFloat(localStorage.getItem("aipp-music-time")) || 0;
@@ -1192,6 +1466,8 @@ function setupBackgroundMusic() {
       isPlaying = true;
       musicContainer.classList.add("playing");
       musicContainer.classList.add("eq-active");
+
+      startVisualizer();
 
       // GSAP Squash and Stretch Launch Timeline
       const tl = gsap.timeline();
@@ -1234,7 +1510,9 @@ function setupBackgroundMusic() {
           duration: 0.42,
           ease: "back.out(2.2)",
           onComplete: () => {
-            if (isPlaying) musicRobot.classList.add("playing-robot");
+            if (isPlaying) {
+              entryAnimationComplete = true;
+            }
           }
         });
 
@@ -1255,8 +1533,11 @@ function setupBackgroundMusic() {
     musicContainer.classList.remove("playing");
     musicContainer.classList.remove("eq-active");
     musicRobot.classList.remove("playing-robot");
+    musicContainer.classList.remove("js-visualizer");
 
     musicEqualizer.style.pointerEvents = "none";
+
+    resetVisuals();
 
     // Retract robot back inside capsule bubble
     gsap.killTweensOf([musicToggle, musicRobot]);

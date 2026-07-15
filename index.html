@@ -780,29 +780,35 @@
             class="h-12 w-12 opacity-0 pointer-events-none translate-y-4 transition-all duration-300 mb-1 select-none">
             <svg class="h-full w-full" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Antenna with Group for Sway Animation -->
-                <g id="robot-antenna">
+                <g id="robot-antenna" style="transform-origin: 8px 2px;">
                     <rect x="7" y="0" width="2" height="2" fill="#fbbf24" />
                 </g>
-                <!-- Head -->
-                <rect x="4" y="2" width="8" height="6" fill="#475569" />
-                <!-- Ear Left -->
-                <rect x="3" y="4" width="1" height="2" fill="#334155" />
-                <!-- Ear Right -->
-                <rect x="12" y="4" width="1" height="2" fill="#334155" />
-                <!-- Eyes -->
-                <rect id="robot-eye-l" x="5" y="4" width="2" height="2" fill="#22d3ee" />
-                <rect id="robot-eye-r" x="9" y="4" width="2" height="2" fill="#22d3ee" />
+                <!-- Head Group for independent bobbing -->
+                <g id="robot-head" style="transform-origin: 8px 8px;">
+                    <!-- Head -->
+                    <rect x="4" y="2" width="8" height="6" fill="#475569" />
+                    <!-- Ear Left -->
+                    <rect x="3" y="4" width="1" height="2" fill="#334155" />
+                    <!-- Ear Right -->
+                    <rect x="12" y="4" width="1" height="2" fill="#334155" />
+                    <!-- Eyes -->
+                    <rect id="robot-eye-l" x="5" y="4" width="2" height="2" fill="#22d3ee" />
+                    <rect id="robot-eye-r" x="9" y="4" width="2" height="2" fill="#22d3ee" />
+                </g>
                 <!-- Neck -->
                 <rect x="7" y="8" width="2" height="1" fill="#334155" />
-                <!-- Radio Boombox Body -->
-                <rect x="2" y="9" width="12" height="6" fill="#334155" />
-                <!-- Speakers -->
-                <rect x="3" y="10" width="3" height="3" fill="#1e293b" />
-                <rect id="speaker-light-l" x="4" y="11" width="1" height="1" fill="#22d3ee" />
-                <rect x="10" y="10" width="3" height="3" fill="#1e293b" />
-                <rect id="speaker-light-r" x="11" y="11" width="1" height="1" fill="#22d3ee" />
-                <!-- Tape deck -->
-                <rect x="7" y="11" width="2" height="2" fill="#fbbf24" />
+                <!-- Radio Boombox Body Group for independent pulsing -->
+                <g id="robot-body" style="transform-origin: 8px 12px;">
+                    <!-- Radio Body -->
+                    <rect x="2" y="9" width="12" height="6" fill="#334155" />
+                    <!-- Speakers -->
+                    <rect x="3" y="10" width="3" height="3" fill="#1e293b" />
+                    <rect id="speaker-light-l" x="4" y="11" width="1" height="1" fill="#22d3ee" />
+                    <rect x="10" y="10" width="3" height="3" fill="#1e293b" />
+                    <rect id="speaker-light-r" x="11" y="11" width="1" height="1" fill="#22d3ee" />
+                    <!-- Tape deck -->
+                    <rect x="7" y="11" width="2" height="2" fill="#fbbf24" />
+                </g>
             </svg>
         </div>
 
@@ -816,10 +822,17 @@
 
             <!-- Equalizer lines (inside the ball, ON state) -->
             <div id="music-equalizer"
-                class="absolute flex items-end gap-[2px] h-3.5 w-3.5 opacity-0 scale-50 pointer-events-none transition-all duration-300">
+                class="absolute flex items-end gap-[1px] h-5 w-8 opacity-0 scale-50 pointer-events-none transition-all duration-300 justify-center">
                 <span class="bar bar-1 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
                 <span class="bar bar-2 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
                 <span class="bar bar-3 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-4 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-5 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-6 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-7 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-8 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-9 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+                <span class="bar bar-10 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
             </div>
         </button>
 
