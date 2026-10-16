@@ -13,8 +13,8 @@ const foundation = [
     titleId: "Inti Akademik",
     titleEn: "Academic Core",
     value: "S1 Informatika",
-    noteId: "Universitas Palangka Raya • NIM 223020503162 • IPK 3.85/4.00",
-    noteEn: "Universitas Palangka Raya • NIM 223020503162 • GPA 3.85/4.00",
+    noteId: "Universitas Palangka Raya • NIM 223020503162 • IPK 3.86/4.00",
+    noteEn: "Universitas Palangka Raya • NIM 223020503162 • GPA 3.86/4.00",
   },
   {
     titleId: "Psikogram Bersertifikat",
@@ -545,7 +545,7 @@ function setupGsapAnimations() {
     // Metric Count-ups
     const counters = [
       { el: document.querySelector('.metric-card:nth-child(1) .metric-value'), target: 121, template: 'IQ {val}', decimals: 0 },
-      { el: document.querySelector('.metric-card:nth-child(2) .metric-value'), target: 3.85, template: '{val}/4.00', decimals: 2 },
+      { el: document.querySelector('.metric-card:nth-child(2) .metric-value'), target: 3.86, template: '{val}/4.00', decimals: 2 },
       { el: document.querySelector('.stat-card:nth-child(1) .stat-value'), target: 15, template: '{val}', decimals: 0 },
       { el: document.querySelector('.stat-card:nth-child(2) .stat-value'), target: 75, template: '{val}%+', decimals: 0 },
       { el: document.querySelector('.stat-card:nth-child(3) .stat-value'), target: 1, template: '{val}', decimals: 0 }
