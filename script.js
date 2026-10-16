@@ -4,9 +4,10 @@ const limitedDevice = Boolean(
   (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
 );
 const reducedMotionRequested = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const richMotionEnabled = !limitedDevice && !reducedMotionRequested;
-window.aippPerformanceMode = !richMotionEnabled;
-document.documentElement.classList.toggle("performance-mode", !richMotionEnabled);
+const richMotionEnabled = !reducedMotionRequested;
+const performanceMode = limitedDevice || reducedMotionRequested;
+window.aippPerformanceMode = performanceMode;
+document.documentElement.classList.toggle("performance-mode", performanceMode);
 
 const foundation = [
   {
@@ -328,46 +329,21 @@ const projectGrid = document.getElementById("project-grid");
 const athleticTimelineEl = document.getElementById("athletic-timeline");
 const typingRoleEl = document.getElementById("typing-role");
 const yearEl = document.getElementById("year");
-const heroSection = document.getElementById("hero");
-const cursorGlow = document.querySelector(".cursor-glow");
 const techTitle = document.getElementById("tech-title");
 const techCopy = document.getElementById("tech-copy");
 const techGrid = document.getElementById("tech-grid");
-const stackStage = document.getElementById("stack-stage");
-
-function animateFreshContent(root, selector) {
-  if (!window.gsap) return;
-
-  const elements = root.querySelectorAll(selector);
-  if (!elements.length) return;
-
-  gsap.fromTo(
-    elements,
-    { y: 20, opacity: 0, scale: 0.96 },
-    {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      duration: 0.65,
-      ease: "power3.out",
-      stagger: 0.06,
-      clearProps: "transform,opacity",
-    },
-  );
-}
 
 function setupGsapAnimations() {
   if (!window.gsap || !richMotionEnabled) return;
 
   const scrollTrigger = window.ScrollTrigger;
   const isMobile = window.innerWidth < 768;
-  const dFactor = isMobile ? 0.7 : 1; // Speed up animations on mobile
+  const dFactor = isMobile ? 0.78 : 1;
 
   if (scrollTrigger) {
     gsap.registerPlugin(scrollTrigger);
   }
 
-  // Text split word reveal effect for hero title
   const titleEl = document.querySelector("[data-hero-title]");
   if (titleEl) {
     const originalText = titleEl.textContent.trim();
@@ -380,168 +356,40 @@ function setupGsapAnimations() {
       .join(" ");
   }
 
-  // Hide hero elements initially
-  gsap.set(
-    [
-      "[data-hero-badge]",
-      "[data-hero-kicker]",
-      "[data-hero-subtitle]",
-      "[data-hero-summary]",
-      "[data-hero-actions]",
-      "[data-hero-stats]",
-      "[data-hero-panel]",
-    ],
-    { opacity: 0, y: 18 },
-  );
-
-  if (titleEl) {
-    gsap.set(".hero-word", { yPercent: 102 });
-  }
-
-  // Simplified hero entrance timeline (fewer sequential steps)
-  const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
-  heroTimeline
-    .to("[data-hero-badge]", { opacity: 1, y: 0, duration: 0.5 * dFactor });
-
-  if (titleEl) {
-    heroTimeline.to(".hero-word", { yPercent: 0, duration: 0.7 * dFactor, stagger: 0.06, ease: "power4.out" }, "-=0.15");
-  } else {
-    heroTimeline.to("[data-hero-title]", { opacity: 1, y: 0, duration: 0.6 * dFactor }, "-=0.1");
-  }
-
-  // Batch the remaining hero elements together for snappier feel
-  heroTimeline
-    .to(
-      ["[data-hero-kicker]", "[data-hero-summary]", "[data-hero-actions]"],
-      { opacity: 1, y: 0, duration: 0.5 * dFactor, stagger: 0.08 },
-      "-=0.3"
-    )
-    .to(
-      ["[data-hero-stats]", "[data-hero-panel]"],
-      { opacity: 1, y: 0, duration: 0.6 * dFactor, stagger: 0.1 },
-      "-=0.35"
-    );
-
-  // Drifting Background Orbs with Mouse Parallax
-  function animateOrbDrift(selector, duration) {
-    const orb = document.querySelector(selector);
-    if (!orb) return;
-
-    const randomX = () => gsap.utils.random(-80, 80);
-    const randomY = () => gsap.utils.random(-80, 80);
-    const randomScale = () => gsap.utils.random(0.85, 1.25);
-
-    const driftCycle = () => {
-      gsap.to(orb, {
-        x: randomX(),
-        y: randomY(),
-        scale: randomScale(),
-        duration: duration,
-        ease: "sine.inOut",
-        onComplete: driftCycle,
-      });
-    };
-
-    driftCycle();
-
-    if (window.matchMedia("(pointer: fine)").matches) {
-      window.addEventListener("mousemove", (e) => {
-        const shiftX = (e.clientX - window.innerWidth / 2) * -0.015;
-        const shiftY = (e.clientY - window.innerHeight / 2) * -0.015;
-
-        gsap.to(orb, {
-          xPercent: shiftX,
-          yPercent: shiftY,
-          duration: 2.5,
-          ease: "power2.out",
-          overwrite: "auto",
-        });
-      });
-    }
-  }
-
-  if (window.innerWidth >= 1024) {
-    animateOrbDrift(".orb-cyan", 15);
-    animateOrbDrift(".orb-gold", 18);
-    animateOrbDrift(".orb-slate", 22);
-  }
-
-  // Parallax hero panel scroll trigger
-  gsap.to("[data-hero-panel]", {
-    y: -14,
-    ease: "none",
-    scrollTrigger: scrollTrigger
-      ? {
-        trigger: heroSection,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-      }
-      : undefined,
+  const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+  intro.fromTo("[data-hero-badge]", { autoAlpha: 0, y: 12 }, {
+    autoAlpha: 1, y: 0, duration: 0.42 * dFactor,
   });
 
-  // Section titles reveal trigger
-  gsap.utils
-    .toArray(".section-kicker, .section-title, .section-copy")
-    .forEach((element) => {
-      gsap.fromTo(
-        element,
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: scrollTrigger
-            ? {
-              trigger: element,
-              start: "top 88%",
-              once: true,
-            }
-            : undefined,
-        },
-      );
-    });
-
-  if (scrollTrigger && window.innerWidth >= 1024) {
-    // Scroll trigger batches for card entry (Desktop only)
-    scrollTrigger.batch(
-      ".glass-panel, .foundation-card, .skill-card, .project-card, .stat-card, .metric-card",
-      {
-        start: "top 90%",
-        once: true,
-        onEnter: (batch) =>
-          gsap.fromTo(
-            batch,
-            { y: 32, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.75,
-              ease: "power3.out",
-              stagger: 0.06,
-            },
-          ),
-      },
-    );
+  if (titleEl) {
+    gsap.set(".hero-word", { yPercent: 105 });
+    intro.to(".hero-word", {
+      yPercent: 0,
+      duration: 0.72 * dFactor,
+      stagger: 0.045,
+      ease: "power4.out",
+    }, "-=0.12");
   }
 
+  intro.fromTo("[data-hero-kicker], [data-hero-summary]", {
+    autoAlpha: 0, y: 14,
+  }, {
+    autoAlpha: 1, y: 0, duration: 0.46 * dFactor, stagger: 0.08,
+  }, "-=0.18");
+  intro.fromTo("[data-hero-actions]", { autoAlpha: 0, y: 12 }, {
+    autoAlpha: 1, y: 0, duration: 0.42 * dFactor,
+  }, "-=0.22");
+  intro.fromTo("[data-hero-portrait]", { autoAlpha: 0, y: 16, scale: 0.985 }, {
+    autoAlpha: 1, y: 0, scale: 1, duration: 0.62 * dFactor,
+  }, "<+0.04");
+  intro.fromTo("[data-hero-panel]", { autoAlpha: 0, y: 18 }, {
+    autoAlpha: 1, y: 0, duration: 0.55 * dFactor,
+  }, "-=0.34");
+  intro.fromTo("[data-hero-stats]", { autoAlpha: 0, y: 14 }, {
+    autoAlpha: 1, y: 0, duration: 0.44 * dFactor,
+  }, "-=0.3");
+
   if (scrollTrigger) {
-    // Pinned Stack section
-    const matchMedia = gsap.matchMedia();
-    matchMedia.add("(min-width: 1024px)", () => {
-      const pin = scrollTrigger.create({
-        trigger: stackStage,
-        start: "top top+=90",
-        end: "+=120%",
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-      });
-
-      return () => pin.kill();
-    });
-
     // Metric Count-ups
     const counters = [
       { el: document.querySelector('.metric-card:nth-child(1) .metric-value'), target: 121, template: 'IQ {val}', decimals: 0 },
@@ -593,7 +441,7 @@ function setupGsapAnimations() {
       });
     }
 
-    // SVG Timeline line-drawing path
+    // Draw the timeline once on entry instead of tying paint work to every scroll frame.
     const timelinePath = document.getElementById("timeline-path");
     if (timelinePath) {
       const pathLength = timelinePath.getTotalLength();
@@ -605,12 +453,12 @@ function setupGsapAnimations() {
 
       gsap.to(timelinePath, {
         strokeDashoffset: 0,
-        ease: "none",
+        duration: 1.1 * dFactor,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: ".timeline-svg-container",
-          start: "top 60%",
-          end: "bottom 70%",
-          scrub: 0.5
+          start: "top 72%",
+          once: true,
         }
       });
 
@@ -619,10 +467,8 @@ function setupGsapAnimations() {
         scrollTrigger.create({
           trigger: item,
           start: "top 65%",
-          end: "bottom 70%",
+          once: true,
           onEnter: () => item.classList.add("active"),
-          onLeaveBack: () => item.classList.remove("active"),
-          onEnterBack: () => item.classList.add("active")
         });
       });
     }
@@ -631,112 +477,94 @@ function setupGsapAnimations() {
   }
 }
 
-function setupCursorGlow() {
-  if (!window.gsap || !richMotionEnabled) return;
-  if (!window.matchMedia("(pointer: fine)").matches) return;
-  if (window.innerWidth < 1024) return; // Skip on small screens
+function setupCustomCursor() {
+  if (window.innerWidth < 1024 || !window.matchMedia("(pointer: fine)").matches) return;
 
   const cursor = document.querySelector(".custom-cursor");
-  const cursorDot = document.querySelector(".custom-cursor-dot");
+  const dot = document.querySelector(".custom-cursor-dot");
+  if (!cursor || !dot) return;
 
-  const hasGlow = !!cursorGlow;
-  const hasCursor = !!cursor && !!cursorDot;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const position = (element, x, y) => {
+    element.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+  };
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let rafId = 0;
+  let hasPosition = false;
 
-  let moveGlowX, moveGlowY, glowFadeIn, glowFadeOut;
-  if (hasGlow) {
-    moveGlowX = gsap.quickTo(cursorGlow, "x", { duration: 0.45, ease: "power3.out" });
-    moveGlowY = gsap.quickTo(cursorGlow, "y", { duration: 0.45, ease: "power3.out" });
-    glowFadeIn = () => gsap.to(cursorGlow, { opacity: 1, duration: 0.2 });
-    glowFadeOut = () => gsap.to(cursorGlow, { opacity: 0, duration: 0.35 });
-  }
+  const followPointer = () => {
+    const easing = reduceMotion ? 1 : 0.24;
+    currentX += (targetX - currentX) * easing;
+    currentY += (targetY - currentY) * easing;
+    position(cursor, currentX, currentY);
 
-  let moveCursorX, moveCursorY, moveDotX, moveDotY;
-  if (hasCursor) {
-    moveCursorX = gsap.quickTo(cursor, "x", { duration: 0.28, ease: "power3.out" });
-    moveCursorY = gsap.quickTo(cursor, "y", { duration: 0.28, ease: "power3.out" });
-    moveDotX = gsap.quickTo(cursorDot, "x", { duration: 0.08, ease: "power3.out" });
-    moveDotY = gsap.quickTo(cursorDot, "y", { duration: 0.08, ease: "power3.out" });
-
-    gsap.set([cursor, cursorDot], { opacity: 0 });
-  }
-
-  let cursorVisible = false;
-  let rafId = null;
+    const distance = Math.hypot(targetX - currentX, targetY - currentY);
+    if (distance > 0.35) {
+      rafId = requestAnimationFrame(followPointer);
+    } else {
+      currentX = targetX;
+      currentY = targetY;
+      position(cursor, currentX, currentY);
+      rafId = 0;
+    }
+  };
 
   document.addEventListener("pointermove", (event) => {
-    if (rafId) return; // RAF throttle: skip if a frame is already queued
-    rafId = requestAnimationFrame(() => {
-      const { clientX, clientY } = event;
+    if (event.pointerType === "touch") return;
+    targetX = event.clientX;
+    targetY = event.clientY;
 
-      if (hasGlow) {
-        moveGlowX(clientX);
-        moveGlowY(clientY);
-        glowFadeIn();
-      }
-
-      if (hasCursor) {
-        moveCursorX(clientX);
-        moveCursorY(clientY);
-        moveDotX(clientX);
-        moveDotY(clientY);
-
-        if (!cursorVisible) {
-          gsap.to([cursor, cursorDot], { opacity: 1, duration: 0.3 });
-          cursorVisible = true;
-        }
-      }
-      rafId = null;
-    });
-  });
-
-  const onLeave = () => {
-    if (hasGlow) glowFadeOut();
-    if (hasCursor) {
-      gsap.to([cursor, cursorDot], { opacity: 0, duration: 0.35 });
-      cursorVisible = false;
+    if (!hasPosition) {
+      hasPosition = true;
+      currentX = targetX;
+      currentY = targetY;
+      position(cursor, currentX, currentY);
+      position(dot, targetX, targetY);
+      cursor.classList.add("is-visible");
+      dot.classList.add("is-visible");
+    } else {
+      position(dot, targetX, targetY);
     }
+
+    if (!rafId) rafId = requestAnimationFrame(followPointer);
+  }, { passive: true });
+
+  const hideCursor = () => {
+    hasPosition = false;
+    cursor.classList.remove("is-visible", "hovered");
+    dot.classList.remove("is-visible");
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = 0;
   };
 
-  const onEnter = () => {
-    if (hasCursor) {
-      gsap.to([cursor, cursorDot], { opacity: 1, duration: 0.25 });
-      cursorVisible = true;
-    }
-  };
+  document.addEventListener("pointerleave", hideCursor);
+  window.addEventListener("blur", hideCursor);
 
-  document.addEventListener("pointerleave", onLeave);
-  document.addEventListener("mouseleave", onLeave);
-  document.addEventListener("pointerenter", onEnter);
-  document.addEventListener("mouseenter", onEnter);
-
-  // Use event delegation on document body to handle hover state scale-up
-  document.body.addEventListener("mouseover", (event) => {
-    const target = event.target;
-    if (!target) return;
-    const hoverable = target.closest("a, button, .stack-tab, .filter-chip, .tech-card, .project-card, .foundation-card, .metric-card, .mini-ribbon");
-    if (hoverable && hasCursor) {
-      cursor.classList.add("hovered");
-    }
+  document.addEventListener("pointerover", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (target?.closest("a, button, [role='button']")) cursor.classList.add("hovered");
   });
 
-  document.body.addEventListener("mouseout", (event) => {
-    const target = event.target;
-    if (!target) return;
-    const hoverable = target.closest("a, button, .stack-tab, .filter-chip, .tech-card, .project-card, .foundation-card, .metric-card, .mini-ribbon");
-    if (hoverable && hasCursor) {
+  document.addEventListener("pointerout", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const next = event.relatedTarget instanceof Element ? event.relatedTarget : null;
+    if (target?.closest("a, button, [role='button']") && !next?.closest("a, button, [role='button']")) {
       cursor.classList.remove("hovered");
     }
   });
 }
 
 function setupMagneticInteractions() {
-  if (!window.gsap || !richMotionEnabled) return;
+  if (!window.gsap || !richMotionEnabled || limitedDevice) return;
   if (!window.matchMedia("(pointer: fine)").matches) return;
   if (window.innerWidth < 1024) return; // Desktop-only interaction
 
   document
     .querySelectorAll(
-      ".btn-primary, .btn-secondary, .nav-link, .footer-link, .stack-tab, .filter-chip, .tech-card",
+      ".btn-primary, .btn-secondary",
     )
     .forEach((element) => {
       element.addEventListener("mousemove", (event) => {
@@ -766,11 +594,11 @@ function setupMagneticInteractions() {
 }
 
 function setupCardTilt() {
-  if (!window.gsap || !richMotionEnabled) return;
+  if (!window.gsap || !richMotionEnabled || limitedDevice) return;
   if (window.innerWidth < 768) return;
   if (!window.matchMedia("(pointer: fine)").matches) return;
 
-  const cards = document.querySelectorAll(".project-card, .glass-panel, .foundation-card, .metric-card");
+  const cards = document.querySelectorAll(".project-card, .foundation-card, .metric-card");
   cards.forEach((card) => {
     card.classList.add("tilt-card");
 
@@ -998,7 +826,7 @@ function setupTypingEffect() {
   let charIndex = 0;
   let removing = false;
 
-  if (!richMotionEnabled) {
+  if (!richMotionEnabled || limitedDevice) {
     typingRoleEl.textContent = (typingRoles[window.currentLang] || typingRoles.en)[0];
     return;
   }
@@ -1696,7 +1524,7 @@ function init() {
   setupTabs();
   observeReveals();
   setupGsapAnimations();
-  setupCursorGlow();
+  setupCustomCursor();
   setupMagneticInteractions();
   setupCardTilt();
   setupProjectsPortal();

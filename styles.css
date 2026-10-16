@@ -39,29 +39,47 @@ body {
     linear-gradient(180deg, #030712 0%, #090d16 45%, #02040a 100%);
 }
 
-/* ============================================================
-   ADVANCED TRAILING CUSTOM CURSOR (Desktop only)
-   ============================================================ */
-.custom-cursor {
+/* Small pixel-tech pointer for fine-pointer desktop devices. */
+.custom-cursor,
+.custom-cursor-dot {
   display: none;
+  opacity: 0;
 }
 
-@media (pointer: fine) {
+@media (pointer: fine) and (min-width: 1024px) {
   .custom-cursor {
     display: block;
     pointer-events: none;
     position: fixed;
     left: 0;
     top: 0;
-    width: 24px;
-    height: 24px;
-    border: 2px solid rgba(6, 182, 212, 0.65);
-    border-radius: 0px;
+    width: 22px;
+    height: 22px;
     z-index: 9999;
+    border: 1px solid rgba(34, 211, 238, 0.88);
+    background: rgba(3, 7, 18, 0.35);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.08);
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
-    transition: width 0.22s ease, height 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
+    transition: opacity 120ms ease, width 180ms ease, height 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    will-change: transform;
   }
+
+  .custom-cursor.is-visible,
+  .custom-cursor-dot.is-visible {
+    opacity: 1;
+  }
+
+  .custom-cursor::before,
+  .custom-cursor::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fbbf24;
+  }
+
+  .custom-cursor::before { top: -2px; left: -2px; }
+  .custom-cursor::after { right: -2px; bottom: -2px; }
 
   .custom-cursor-dot {
     display: block;
@@ -69,41 +87,22 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    width: 6px;
-    height: 6px;
-    background-color: #06B6D4;
-    border-radius: 0px;
+    width: 5px;
+    height: 5px;
     z-index: 10000;
+    background: #22d3ee;
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.55);
     transform: translate(-50%, -50%);
+    will-change: transform;
   }
 
   .custom-cursor.hovered {
-    width: 44px;
-    height: 44px;
-    background-color: rgba(6, 182, 212, 0.16);
-    border-color: rgba(6, 182, 212, 0.95);
+    width: 34px;
+    height: 34px;
+    border-color: rgba(251, 191, 36, 0.95);
+    background: rgba(6, 182, 212, 0.12);
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
   }
-}
-
-/* Cursor glow — only on desktop */
-.cursor-glow {
-  pointer-events: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 0;
-  width: 28rem;
-  height: 28rem;
-  border-radius: 9999px;
-  opacity: 0;
-  mix-blend-mode: screen;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle,
-      rgba(6, 182, 212, 0.18) 0%,
-      rgba(6, 182, 212, 0.08) 28%,
-      rgba(217, 119, 6, 0.04) 46%,
-      transparent 70%);
-  filter: blur(18px);
 }
 
 /* ============================================================
@@ -138,9 +137,7 @@ body {
   position: fixed;
   z-index: 0;
   border-radius: 9999px;
-  filter: blur(70px);
-  opacity: 0.45;
-  transform: translate3d(0, 0, 0);
+  opacity: 0.34;
 }
 
 .orb-cyan {
@@ -148,7 +145,7 @@ body {
   left: 2%;
   height: 22rem;
   width: 22rem;
-  background: rgba(6, 182, 212, 0.15);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.16), transparent 70%);
 }
 
 .orb-gold {
@@ -156,7 +153,7 @@ body {
   right: -4rem;
   height: 24rem;
   width: 24rem;
-  background: rgba(217, 119, 6, 0.14);
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.14), transparent 70%);
 }
 
 .orb-slate {
@@ -164,7 +161,7 @@ body {
   left: 25%;
   height: 18rem;
   width: 18rem;
-  background: rgba(59, 130, 246, 0.06);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 70%);
 }
 
 /* ============================================================
@@ -839,10 +836,10 @@ footer {
    ============================================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translate3d(0, 16px, 0);
   transition:
-    opacity 500ms ease,
-    transform 500ms ease;
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.is-visible {
@@ -933,10 +930,6 @@ footer {
     display: none;
   }
 
-  .cursor-glow {
-    display: none;
-  }
-
   /* Simplify glass panel on mobile */
   .glass-panel {
     backdrop-filter: none;
@@ -951,10 +944,7 @@ footer {
 
 /* Keep the visual identity while avoiding expensive effects on modest devices. */
 .performance-mode .noise-layer,
-.performance-mode .orb,
-.performance-mode .cursor-glow,
-.performance-mode .custom-cursor,
-.performance-mode .custom-cursor-dot {
+.performance-mode .orb {
   display: none !important;
 }
 
@@ -964,11 +954,6 @@ footer {
 .performance-mode .story-content {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-}
-
-.performance-mode .reveal {
-  opacity: 1 !important;
-  transform: none !important;
 }
 
 .performance-mode .pixel-slime,
