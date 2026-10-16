@@ -5,10 +5,10 @@ window.portfolioProjects = [
     labelId: "Proyek Akademik Unggulan",
     labelEn: "Flagship Academic Project",
     title: "AIPP.Wallet",
-    descriptionId: "Dompet kripto multi-chain non-kustodian yang sangat aman, memprioritaskan keamanan penuh sisi klien dan kontrol pengguna secara mandiri atas kunci privat.",
-    descriptionEn: "A highly secure, non-custodial multi-chain crypto wallet prioritizing complete client-side security and independent user control over private keys.",
+    descriptionId: "Proyek aplikasi web dompet kripto multi-chain non-kustodian yang mengeksplorasi pengelolaan kunci di sisi klien dan kontrol pengguna atas kunci privat.",
+    descriptionEn: "A non-custodial, multi-chain crypto wallet web application project exploring client-side key handling and user control of private keys.",
     stack: ["Vanilla JavaScript", "ethers.js", "bitcoinjs-lib"],
-    meta: ["Client-side signing", "Multi-chain security", "Zero custody"],
+    meta: ["Client-side signing", "Bitcoin & Ethereum testnets", "Non-custodial design"],
     github: "https://github.com/AIPPproject03/aipp-wallet",
     images: [
       "../img/AIPP-WALLET/logo-aipp-wallet.webp",
@@ -23,13 +23,13 @@ window.portfolioProjects = [
         "Keamanan Self-Custody: Menghilangkan ketergantungan pada server backend untuk mengelola kunci privat sehingga meminimalisir risiko peretasan database.",
         "Kompatibilitas Multi-Chain: Membuktikan kelayakan client-side transaction signing pada model UTXO (Bitcoin Testnet) dan model Account-based (Ethereum Sepolia Testnet).",
         "Enkripsi Mnemonic Lokal: Mengamankan seed phrase pengguna di browser secara lokal dengan komputasi kriptografi intensif.",
-        "Efisiensi Signing: Menjamin waktu eksekusi penandatanganan transaksi sangat instan di bawah ambang batas kenyamanan pengguna (500 ms)."
+        "Target Efisiensi Signing: Merancang proses penandatanganan transaksi agar berjalan di bawah target 500 ms."
       ],
       objectivesEn: [
         "Self-Custody Security: Eliminates reliance on backend servers for private key management, minimizing database breach risks.",
         "Multi-Chain Compatibility: Proves client-side transaction signing viability on UTXO model (Bitcoin Testnet) and Account-based model (Ethereum Sepolia Testnet).",
         "Local Mnemonic Encryption: Securely stores user seed phrases locally in the browser using intensive cryptographic calculations.",
-        "Signing Efficiency: Guarantees near-instant transaction signing execution time well below the user comfort threshold (500 ms)."
+        "Signing Efficiency Target: Designed the transaction signing flow with a target below 500 ms."
       ],
       featuresId: [
         "Client-side secp256k1 Signing: Penandatanganan transaksi offline berjalan lokal dengan ECDSA secp256k1.",
@@ -95,24 +95,27 @@ window.portfolioProjects = [
   {
     id: "siwaras",
     category: "internship",
-    labelId: "Kerja Magang Korporat",
-    labelEn: "Enterprise Internship Work",
+    labelId: "Proyek Magang di Universitas Terbuka",
+    labelEn: "Universitas Terbuka Internship Project",
     title: "SIWARAS",
-    descriptionId: "Sistem manajemen inventori web terintegrasi kelas korporat yang dibangun selama magang di Universitas Terbuka (UT) Palangka Raya menggunakan Google Apps Script sebagai backend dan Google Spreadsheet sebagai database.",
-    descriptionEn: "An enterprise-grade integrated web inventory management system built during my internship at Universitas Terbuka (UT) Palangka Raya using Google Apps Script as backend and Google Spreadsheet as database.",
+    descriptionId: "Sistem inventori berbasis web yang dibangun selama magang di Universitas Terbuka (UT) Palangka Raya dengan Google Apps Script dan Google Spreadsheet.",
+    descriptionEn: "A web-based inventory system built during my internship at Universitas Terbuka (UT) Palangka Raya using Google Apps Script and Google Sheets.",
     stack: ["Google Apps Script", "Google Spreadsheet", "RESTful API", "Chart.js", "jsPDF"],
-    meta: ["Enterprise workflows", "Asset control", "Sosprom Logistics"],
+    meta: ["Inventory workflows", "Asset tracking", "Sosprom logistics"],
     github: "https://github.com/AIPPproject03/siwaras-ut-web",
     images: [
       "../img/SIWARAS/siwaras-1.webp",
+      "../img/SIWARAS/siwaras-2.webp",
+      "../img/SIWARAS/siwaras-3.webp",
+      "../img/SIWARAS/siwaras-4.webp",
+      "../img/SIWARAS/siwaras-5.webp",
       "../img/SIWARAS/web-siwaras-1.webp",
       "../img/SIWARAS/web-siwaras-2.webp",
       "../img/SIWARAS/web-siwaras-3.webp",
       "../img/SIWARAS/web-siwaras-4.webp",
       "../img/SIWARAS/web-siwaras-5.webp",
       "../img/SIWARAS/web-siwaras-6.webp",
-      "../img/SIWARAS/web-siwaras-7.webp",
-      "../img/SIWARAS/siwaras-2.webp"
+      "../img/SIWARAS/web-siwaras-7.webp"
     ],
     story: {
       backgroundId: "SIWARAS (Sistem Inventori Wisuda & Rangkaian Sosprom) diimplementasikan pada Universitas Terbuka (UT) Palangka Raya untuk menggantikan pencatatan logistik manual (wisuda, sosprom, ATK, backdrop, sound system) yang sebelumnya menggunakan dokumen fisik & spreadsheet lokal terpisah.",

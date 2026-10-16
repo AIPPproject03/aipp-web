@@ -26,8 +26,8 @@ const foundation = [
   {
     titleId: "Kekuatan Kognitif",
     titleEn: "Cognitive Strengths",
-    valueId: "Adaptasi Tinggi",
-    valueEn: "High Adaptation",
+    valueId: "Adaptif",
+    valueEn: "Adaptable",
     noteId: "Pemahaman konsep, konsistensi, integritas, dan sinergi",
     noteEn: "Concept comprehension, consistency, integrity, and synergy",
   },
@@ -78,8 +78,8 @@ const stackCategories = [
       },
       {
         name: "Next.js",
-        descId: "Framework React dengan Server-Side Rendering (SSR) untuk performa loading secepat kilat.",
-        descEn: "Production-ready React framework enabling server-side rendering and static site generation."
+        descId: "Framework berbasis React dengan dukungan server-side rendering dan pembuatan situs statis.",
+        descEn: "A React framework with support for server-side rendering and static site generation."
       },
       {
         name: "React",
@@ -90,20 +90,20 @@ const stackCategories = [
   },
   {
     key: "backend",
-    labelId: "Back-End & Web3",
-    labelEn: "Back-End & Web3",
-    summaryId: "Lapisan integrasi server, data, dan kriptografi sisi klien.",
-    summaryEn: "Server, data, and cryptographic integration layers.",
+    labelId: "Back-End & Integrasi Aplikasi",
+    labelEn: "Back-End & App Integrations",
+    summaryId: "Teknologi server, basis data, dan pustaka yang pernah digunakan dalam proyek aplikasi.",
+    summaryEn: "Server, database, and libraries explored in application projects.",
     items: [
       {
         name: "Node.js",
-        descId: "Runtime server JavaScript berkinerja tinggi berbasis event-driven untuk skalabilitas tinggi.",
-        descEn: "High-performance JavaScript runtime for scalable backend services and asynchronous processing."
+        descId: "Runtime JavaScript untuk menjalankan kode di sisi server dan membuat layanan backend.",
+        descEn: "A JavaScript runtime for server-side code and backend services."
       },
       {
         name: "Hono.js",
-        descId: "Framework web minimalis ultra-cepat untuk edge computing dan arsitektur serverless.",
-        descEn: "Ultrafast, lightweight web framework designed for cloudflare workers and serverless edges."
+        descId: "Framework web ringan yang digunakan pada proyek backend dan serverless.",
+        descEn: "A lightweight web framework used in backend and serverless projects."
       },
       {
         name: "Prisma ORM",
@@ -112,8 +112,8 @@ const stackCategories = [
       },
       {
         name: "PostgreSQL",
-        descId: "Sistem database relasional tangguh kelas enterprise untuk konsistensi transaksi data.",
-        descEn: "Enterprise-grade relational database management system for secure transactional consistency."
+        descId: "Basis data relasional yang digunakan untuk menyimpan dan mengelola data aplikasi.",
+        descEn: "A relational database used to store and manage application data."
       },
       {
         name: "MySQL",
@@ -122,13 +122,13 @@ const stackCategories = [
       },
       {
         name: "ethers.js",
-        descId: "Pustaka Javascript untuk interaksi aman dengan blockchain Ethereum dan smart contract.",
-        descEn: "Lightweight utility library to securely interact with Ethereum nodes and smart contracts."
+        descId: "Pustaka JavaScript yang digunakan pada proyek wallet untuk berinteraksi dengan jaringan Ethereum.",
+        descEn: "A JavaScript library used in the wallet project to interact with the Ethereum network."
       },
       {
         name: "bitcoinjs-lib",
-        descId: "Pustaka tingkat rendah untuk manipulasi transaksi Bitcoin dan pembuatan dompet kripto.",
-        descEn: "Low-level JavaScript library for building raw Bitcoin transactions and wallet integrations."
+        descId: "Pustaka JavaScript yang digunakan untuk mempelajari pembuatan transaksi Bitcoin pada proyek wallet.",
+        descEn: "A JavaScript library explored for Bitcoin transaction creation in the wallet project."
       }
     ],
   },
@@ -161,13 +161,13 @@ const stackCategories = [
       },
       {
         name: "YOLOv11",
-        descId: "Deteksi objek real-time mutakhir untuk vision AI dengan akurasi dan kecepatan tinggi.",
-        descEn: "State-of-the-art visual AI model engineered for rapid and accurate real-time object detection."
+        descId: "Model deteksi objek yang digunakan pada proyek untuk mengenali objek dari gambar dan video.",
+        descEn: "An object detection model used in a project to identify objects in images and video."
       },
       {
         name: "Gemini API",
-        descId: "Integrasi model AI multimodal Google untuk pemrosesan teks dan penalaran cerdas.",
-        descEn: "Integrating Google's elite multimodal AI models for reasoning, analysis, and generation."
+        descId: "API model AI Google yang digunakan untuk menambahkan pemrosesan bahasa pada aplikasi.",
+        descEn: "Google's AI model API used to add language processing to an application."
       }
     ],
   },
@@ -230,10 +230,10 @@ const techSpotlights = {
     ],
   },
   backend: {
-    titleId: "Sinyal Back-End & Web3",
-    titleEn: "Back-End & Web3 Signals",
-    copyId: "Logika server, integritas data, dan alur kerja kriptografi sisi klien membentuk inti yang aman.",
-    copyEn: "Server logic, data integrity, and client-side cryptographic workflows form the secure core.",
+    titleId: "Integrasi Aplikasi",
+    titleEn: "Application Integrations",
+    copyId: "Beberapa teknologi yang dipelajari dan diterapkan dalam proyek aplikasi, termasuk proyek wallet kripto.",
+    copyEn: "Technologies explored and applied across application projects, including a crypto wallet project.",
     items: [
       { name: "Node.js", icon: "devicon:nodejs" },
       { name: "PostgreSQL", icon: "devicon:postgresql" },
@@ -242,14 +242,14 @@ const techSpotlights = {
       { name: "Hono.js", icon: "simple-icons:hono" },
       { name: "ethers.js", icon: "simple-icons:ethereum" },
       { name: "bitcoinjs-lib", icon: "simple-icons:bitcoin" },
-      { name: "Web3", icon: "mdi:web" },
+      { name: "Crypto Wallet Project", icon: "mdi:wallet-outline" },
     ],
   },
   quant: {
-    titleId: "Persenjataan Quant & AI",
-    titleEn: "Quant AI Arsenal",
-    copyId: "Otomatisasi perdagangan, pembelajaran mesin, dan integrasi AI praktis mempercepat eksekusi.",
-    copyEn: "Trading automation, machine learning, and practical AI integrations sharpen execution speed.",
+    titleId: "Proyek Quant & AI",
+    titleEn: "Quant & AI Projects",
+    copyId: "Teknologi yang dieksplorasi melalui proyek otomasi trading dan integrasi AI.",
+    copyEn: "Technologies explored through trading automation and AI integration projects.",
     items: [
       { name: "Python", icon: "devicon:python" },
       { name: "MQL5", icon: "ph:code-bold" },
@@ -308,14 +308,14 @@ const athleticTimeline = [
 
 const typingRoles = {
   id: [
-    "Duta Teknologi",
-    "Spesialis Web3",
+    "Application Specialist",
+    "Cepat Belajar Teknologi",
     "Atlet Bulu Tangkis",
   ],
   en: [
-    "Tech Ambassador",
-    "Web3 Specialist",
-    "Elite Athlete",
+    "Application Specialist",
+    "Quick Technology Learner",
+    "Badminton Athlete",
   ]
 };
 
