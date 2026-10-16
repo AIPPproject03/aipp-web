@@ -1,3 +1,13 @@
+const limitedDevice = Boolean(
+  navigator.connection?.saveData ||
+  (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+  (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
+);
+const reducedMotionRequested = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const richMotionEnabled = !limitedDevice && !reducedMotionRequested;
+window.aippPerformanceMode = !richMotionEnabled;
+document.documentElement.classList.toggle("performance-mode", !richMotionEnabled);
+
 const foundation = [
   {
     titleId: "Inti Akademik",
@@ -347,7 +357,7 @@ function animateFreshContent(root, selector) {
 }
 
 function setupGsapAnimations() {
-  if (!window.gsap) return;
+  if (!window.gsap || !richMotionEnabled) return;
 
   const scrollTrigger = window.ScrollTrigger;
   const isMobile = window.innerWidth < 768;
@@ -622,7 +632,7 @@ function setupGsapAnimations() {
 }
 
 function setupCursorGlow() {
-  if (!window.gsap) return;
+  if (!window.gsap || !richMotionEnabled) return;
   if (!window.matchMedia("(pointer: fine)").matches) return;
   if (window.innerWidth < 1024) return; // Skip on small screens
 
@@ -720,7 +730,7 @@ function setupCursorGlow() {
 }
 
 function setupMagneticInteractions() {
-  if (!window.gsap) return;
+  if (!window.gsap || !richMotionEnabled) return;
   if (!window.matchMedia("(pointer: fine)").matches) return;
   if (window.innerWidth < 1024) return; // Desktop-only interaction
 
@@ -756,7 +766,7 @@ function setupMagneticInteractions() {
 }
 
 function setupCardTilt() {
-  if (!window.gsap) return;
+  if (!window.gsap || !richMotionEnabled) return;
   if (window.innerWidth < 768) return;
   if (!window.matchMedia("(pointer: fine)").matches) return;
 
@@ -856,7 +866,7 @@ function renderStackTabs(activeKey = "frontend") {
 
 function renderStackPanel(activeKey = "frontend") {
   const cards = stackPanel.querySelectorAll(".skill-card");
-  if (cards.length > 0) {
+  if (cards.length > 0 && window.gsap && richMotionEnabled) {
     gsap.to(cards, {
       opacity: 0,
       scale: 0.95,
@@ -892,19 +902,21 @@ function executeRenderStackPanel(activeKey) {
     .join("");
 
   const newCards = stackPanel.querySelectorAll(".skill-card");
-  gsap.fromTo(
-    newCards,
-    { opacity: 0, scale: 0.95, y: 15 },
-    {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 0.5,
-      stagger: 0.05,
-      ease: "power3.out",
-      clearProps: "transform,opacity"
-    }
-  );
+  if (window.gsap && richMotionEnabled) {
+    gsap.fromTo(
+      newCards,
+      { opacity: 0, scale: 0.95, y: 15 },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "power3.out",
+        clearProps: "transform,opacity"
+      }
+    );
+  }
 
   renderTechSpotlight(activeKey);
   observeReveals();
@@ -912,7 +924,7 @@ function executeRenderStackPanel(activeKey) {
 
 function renderTechSpotlight(activeKey = "frontend") {
   const cards = techGrid.querySelectorAll(".tech-card");
-  if (cards.length > 0) {
+  if (cards.length > 0 && window.gsap && richMotionEnabled) {
     gsap.to(cards, {
       opacity: 0,
       scale: 0.92,
@@ -946,19 +958,21 @@ function executeRenderTechSpotlight(activeKey) {
     .join("");
 
   const newCards = techGrid.querySelectorAll(".tech-card");
-  gsap.fromTo(
-    newCards,
-    { opacity: 0, scale: 0.92, y: 10 },
-    {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 0.45,
-      stagger: 0.04,
-      ease: "power3.out",
-      clearProps: "transform,opacity"
-    }
-  );
+  if (window.gsap && richMotionEnabled) {
+    gsap.fromTo(
+      newCards,
+      { opacity: 0, scale: 0.92, y: 10 },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.45,
+        stagger: 0.04,
+        ease: "power3.out",
+        clearProps: "transform,opacity"
+      }
+    );
+  }
 
   observeReveals();
 }
@@ -983,6 +997,11 @@ function setupTypingEffect() {
   let roleIndex = 0;
   let charIndex = 0;
   let removing = false;
+
+  if (!richMotionEnabled) {
+    typingRoleEl.textContent = (typingRoles[window.currentLang] || typingRoles.en)[0];
+    return;
+  }
 
   const tick = () => {
     const roles = typingRoles[window.currentLang] || typingRoles.en;
@@ -1119,7 +1138,7 @@ function updateActiveNavOnScroll() {
         if (!link.classList.contains("active")) {
           link.classList.add("active");
           const icon = link.querySelector("iconify-icon");
-          if (icon) {
+          if (icon && richMotionEnabled && window.gsap) {
             gsap.fromTo(icon,
               { scale: 0.7, y: 0 },
               { scale: 1.15, y: -3, duration: 0.45, ease: "back.out(2.2)" }
@@ -1130,7 +1149,7 @@ function updateActiveNavOnScroll() {
         if (link.classList.contains("active")) {
           link.classList.remove("active");
           const icon = link.querySelector("iconify-icon");
-          if (icon) {
+          if (icon && richMotionEnabled && window.gsap) {
             gsap.to(icon, { scale: 1, y: 0, duration: 0.3, ease: "power2.out" });
           }
         }
@@ -1145,7 +1164,7 @@ function setupMobileActiveNav() {
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       const icon = link.querySelector("iconify-icon");
-      if (icon) {
+      if (icon && richMotionEnabled && window.gsap) {
         gsap.fromTo(icon,
           { scale: 0.6, y: 0 },
           { scale: 1.25, y: -5, duration: 0.4, ease: "back.out(2.5)" }

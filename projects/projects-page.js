@@ -1,4 +1,14 @@
 (function () {
+  const limitedDevice = Boolean(
+    navigator.connection?.saveData ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
+  );
+  const reducedMotionRequested = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const richMotionEnabled = !limitedDevice && !reducedMotionRequested;
+  window.aippPerformanceMode = !richMotionEnabled;
+  document.documentElement.classList.toggle("performance-mode", !richMotionEnabled);
+
   // Global configurations & selectors
   const projectGrid = document.getElementById("project-grid");
   const filtersContainer = document.getElementById("project-filters");
@@ -110,7 +120,7 @@
   // Projects rendering
   function renderProjects(activeKey = "all") {
     const cards = projectGrid.querySelectorAll(".project-card");
-    if (cards.length > 0 && window.gsap) {
+    if (cards.length > 0 && window.gsap && richMotionEnabled) {
       window.gsap.to(cards, {
         opacity: 0,
         scale: 0.95,
@@ -158,9 +168,9 @@
                       return `
                       <div class="w-full h-full flex-shrink-0 relative cursor-zoom-in group">
                         ${isVid ? `
-                          <video src="${img}" class="w-full h-full object-cover select-none" autoplay loop muted playsinline onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')"></video>
+                          <video src="${img}" class="w-full h-full object-cover select-none" preload="none" poster="../img/DESATAMPA/website-desa-tampa-img.webp" muted playsinline onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')"></video>
                         ` : `
-                          <img src="${img}" alt="${project.title}" class="w-full h-full object-cover select-none transition-transform duration-[600ms] group-hover:scale-[1.02]" onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')">
+                          <img src="${img}" alt="${project.title}" loading="lazy" decoding="async" class="w-full h-full object-cover select-none transition-transform duration-[600ms] group-hover:scale-[1.02]" onclick="window.openLightbox('${img}', '${isEn ? project.labelEn : project.labelId} - ${project.title}', '${project.id}')">
                         `}
                         <div class="absolute bottom-3 left-3 bg-slateInk/85 backdrop-blur-md border border-cyan-400/25 px-2 py-0.5 rounded-none text-[6.5px] sm:text-[7.5px] font-pixel text-cyan-300 uppercase tracking-widest pointer-events-none z-10">
                           DIAGNOSTIC: SECURE
@@ -256,7 +266,7 @@
       )
       .join("");
 
-    if (window.gsap) {
+    if (window.gsap && richMotionEnabled) {
       const newCards = projectGrid.querySelectorAll(".project-card");
       window.gsap.fromTo(
         newCards,
@@ -279,7 +289,7 @@
 
   // Interactive Card Tilt Effect
   function setupCardTilt() {
-    if (!window.gsap || !window.matchMedia("(pointer: fine)").matches) return;
+    if (!window.gsap || !richMotionEnabled || !window.matchMedia("(pointer: fine)").matches) return;
 
     document.querySelectorAll(".project-card").forEach((card) => {
       card.addEventListener("mousemove", (e) => {

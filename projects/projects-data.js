@@ -11,10 +11,10 @@ window.portfolioProjects = [
     meta: ["Client-side signing", "Multi-chain security", "Zero custody"],
     github: "https://github.com/AIPPproject03/aipp-wallet",
     images: [
-      "../img/AIPP-WALLET/logo-aipp-wallet.png",
-      "../img/AIPP-WALLET/aipp-wallet-1.png",
-      "../img/AIPP-WALLET/aipp-wallet-2.png",
-      "../img/AIPP-WALLET/aipp-wallet-3.png"
+      "../img/AIPP-WALLET/logo-aipp-wallet.webp",
+      "../img/AIPP-WALLET/aipp-wallet-1.webp",
+      "../img/AIPP-WALLET/aipp-wallet-2.webp",
+      "../img/AIPP-WALLET/aipp-wallet-3.webp"
     ],
     story: {
       backgroundId: "AIPP.Wallet dikembangkan sebagai solusi pengamanan kunci privat secara mandiri (self-custody) berbasis web untuk mengatasi kerentanan dompet kustodian terhadap kegagalan tunggal (seperti kasus kolapsnya FTX) serta kelemahan validasi transaksi pada ekstensi browser konvensional.",
@@ -57,11 +57,11 @@ window.portfolioProjects = [
     meta: ["Team Leader", "Project Manager", "Team Pyrosentinel"],
     github: "https://github.com/orgs/PyroSentinel/repositories",
     images: [
-      "../img/HACKATHON/hackathon-1.jpg",
-      "../img/HACKATHON/hackathon-2.jpg",
-      "../img/HACKATHON/hackathon-3.jpg",
-      "../img/HACKATHON/hackathon-4.jpg",
-      "../img/HACKATHON/hackathon-5.jpg"
+      "../img/HACKATHON/hackathon-1.webp",
+      "../img/HACKATHON/hackathon-2.webp",
+      "../img/HACKATHON/hackathon-3.webp",
+      "../img/HACKATHON/hackathon-4.webp",
+      "../img/HACKATHON/hackathon-5.webp"
     ],
     story: {
       backgroundId: "ADAAPI (Aplikasi Digital Akselerasi Antisipasi Kebakaran Indonesia) dikembangkan dalam ajang Hackathon PERMIKOMNAS 2025 di BBPSDMP KOMDIGI Makassar (20-21 Juni 2025). Mengusung visi 'Satu detik sangat berharga untuk menyelamatkan nyawa', aplikasi ini dirancang untuk memangkas waktu tanggap pemadam kebakaran yang terhambat akibat pelaporan manual tak terintegrasi.",
@@ -104,15 +104,15 @@ window.portfolioProjects = [
     meta: ["Enterprise workflows", "Asset control", "Sosprom Logistics"],
     github: "https://github.com/AIPPproject03/siwaras-ut-web",
     images: [
-      "../img/SIWARAS/siwaras-1.jpg",
-      "../img/SIWARAS/web-siwaras-1.png",
-      "../img/SIWARAS/web-siwaras-2.png",
-      "../img/SIWARAS/web-siwaras-3.png",
-      "../img/SIWARAS/web-siwaras-4.png",
-      "../img/SIWARAS/web-siwaras-5.png",
-      "../img/SIWARAS/web-siwaras-6.png",
-      "../img/SIWARAS/web-siwaras-7.png",
-      "../img/SIWARAS/siwaras-2.jpg"
+      "../img/SIWARAS/siwaras-1.webp",
+      "../img/SIWARAS/web-siwaras-1.webp",
+      "../img/SIWARAS/web-siwaras-2.webp",
+      "../img/SIWARAS/web-siwaras-3.webp",
+      "../img/SIWARAS/web-siwaras-4.webp",
+      "../img/SIWARAS/web-siwaras-5.webp",
+      "../img/SIWARAS/web-siwaras-6.webp",
+      "../img/SIWARAS/web-siwaras-7.webp",
+      "../img/SIWARAS/siwaras-2.webp"
     ],
     story: {
       backgroundId: "SIWARAS (Sistem Inventori Wisuda & Rangkaian Sosprom) diimplementasikan pada Universitas Terbuka (UT) Palangka Raya untuk menggantikan pencatatan logistik manual (wisuda, sosprom, ATK, backdrop, sound system) yang sebelumnya menggunakan dokumen fisik & spreadsheet lokal terpisah.",
@@ -155,10 +155,10 @@ window.portfolioProjects = [
     meta: ["National finalist", "Software Development", "Health & Recovery Tech"],
     github: "https://github.com/orgs/adanestapp/repositories",
     images: [
-      "../img/GEMASTIK/gemastik-4.png",
-      "../img/GEMASTIK/gemastik-2.jpg",
-      "../img/GEMASTIK/gemastik-3.jpg",
-      "../img/GEMASTIK/gemastik-1.jpg"
+      "../img/GEMASTIK/gemastik-4.webp",
+      "../img/GEMASTIK/gemastik-2.webp",
+      "../img/GEMASTIK/gemastik-3.webp",
+      "../img/GEMASTIK/gemastik-1.webp"
     ],
     story: {
       backgroundId: "Adanest, yang diambil dari pepatah bahasa Latin 'Aegroto dum anima est, spes est' (Selama orang sakit masih memiliki semangat, maka masih ada harapan), merupakan aplikasi perangkat lunak berbasis website yang didedikasikan untuk memberikan harapan, dukungan, dan sumber daya klinis bagi mereka yang berjuang memulihkan diri dari kecanduan PMO (Porn, Masturbation, Orgasm).",
@@ -202,7 +202,7 @@ window.portfolioProjects = [
     github: "https://github.com/AIPPproject03/Website-Desa-Tampa",
     demo: "https://desatampa.netlify.app/",
     images: [
-      "../img/DESATAMPA/website-desa-tampa-img.png",
+      "../img/DESATAMPA/website-desa-tampa-img.webp",
       "../img/DESATAMPA/website-desa-tampa-vid.mp4"
     ],
     story: {
