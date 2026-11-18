@@ -333,6 +333,7 @@
   // Lightbox
   let activeLightboxImages = [];
   let activeLightboxIndex = 0;
+  let preLightboxScrollY = 0;
 
   window.openLightbox = function (imageSrc, caption, projectId) {
     const modal = document.getElementById("lightbox-modal");
@@ -340,6 +341,8 @@
     const vid = document.getElementById("lightbox-video");
     const cap = document.getElementById("lightbox-caption");
     if (!modal) return;
+
+    preLightboxScrollY = window.scrollY || document.documentElement.scrollTop || 0;
 
     const isVid = imageSrc.toLowerCase().endsWith('.mp4');
 
@@ -403,6 +406,7 @@
     modal.classList.add("opacity-0", "pointer-events-none");
     document.documentElement.classList.remove("modal-open");
     document.body.classList.remove("modal-open");
+    window.scrollTo({ top: preLightboxScrollY, behavior: "instant" });
   };
 
   function setupLightboxEvents() {

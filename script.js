@@ -287,11 +287,28 @@
       }
     });
 
+    // Toggle active quote words language in Section 01
+    const quoteId = document.getElementById("quote-words-id");
+    const quoteEn = document.getElementById("quote-words-en");
+    if (quoteId && quoteEn) {
+      if (lang === "en") {
+        quoteId.classList.add("hidden");
+        quoteEn.classList.remove("hidden");
+      } else {
+        quoteEn.classList.add("hidden");
+        quoteId.classList.remove("hidden");
+      }
+    }
+
     // Re-render dynamic sections
     renderFoundation();
     renderLanguages();
-    renderStackTabs(window.activeStackTab || "frontend");
-    renderStackPanel(window.activeStackTab || "frontend");
+    if (window.AippTechStack) {
+      window.AippTechStack.setLanguage(lang);
+    } else {
+      renderStackTabs(window.activeStackTab || "frontend");
+      renderStackPanel(window.activeStackTab || "frontend");
+    }
     renderAthletics();
     renderFeaturedProjects();
   };
@@ -359,8 +376,12 @@
 
   window.onStackTabClick = function (key) {
     window.activeStackTab = key;
-    renderStackTabs(key);
-    renderStackPanel(key);
+    if (window.AippTechStack) {
+      window.AippTechStack.selectTab(key);
+    } else {
+      renderStackTabs(key);
+      renderStackPanel(key);
+    }
   };
 
   function renderStackPanel(activeKey = "frontend") {
@@ -566,12 +587,17 @@
     }
   }
 
-  // 7. PROJECT CASE STUDY MODAL ENGINE
+  // 7. PROJECT CASE STUDY MODAL ENGINE (WITH ACCURATE SCROLL RESTORATION)
+  let preModalScrollY = 0;
+
   window.openProjectModal = function (projectId) {
     if (!window.portfolioProjects) return;
     const project = window.portfolioProjects.find(p => p.id === projectId);
     if (!project) return;
     const isEn = window.currentLang === "en";
+
+    // 0. Remember the exact scroll position before opening the modal
+    preModalScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
 
     const modalBackdrop = document.getElementById("project-modal-backdrop");
     const modalContent = document.getElementById("project-modal-content");
@@ -682,8 +708,8 @@
           </div>
         ` : ""}
 
-        <!-- External Links -->
-        <div class="flex items-center gap-3 pt-5 border-t border-white/10">
+        <!-- External Links & Return to Projects Button -->
+        <div class="flex flex-wrap items-center gap-3 pt-5 border-t border-white/10">
           ${project.github ? `
             <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4">
               <iconify-icon icon="mdi:github" class="text-base"></iconify-icon>
@@ -696,19 +722,20 @@
               <span>Live Application</span>
             </a>
           ` : ""}
-          <button type="button" class="btn-ghost ml-auto text-xs py-2 px-3 text-white/60 hover:text-white" onclick="window.closeProjectModal()">
-            ${isEn ? "Close" : "Tutup"}
+          <button type="button" class="liquid-glass-pill px-3.5 py-2 text-xs text-cyan-300 border-cyan-400/30 hover:border-cyan-400 flex items-center gap-1.5 ml-auto" onclick="window.closeProjectModal()">
+            <iconify-icon icon="solar:arrow-left-linear" class="text-sm"></iconify-icon>
+            <span>${isEn ? "Back to Projects List" : "Kembali ke Daftar Proyek"}</span>
           </button>
         </div>
       </div>
     `;
 
-    // 1. Pause Lenis virtual scrolling immediately so touch/wheel events never scroll the background page
+    // 1. Pause Lenis virtual scrolling
     if (window.lenis) {
       window.lenis.stop();
     }
 
-    // 2. Strict scroll lock on document root and body
+    // 2. Lock scroll without resetting scroll position
     document.documentElement.classList.add("modal-open");
     document.body.classList.add("modal-open");
 
@@ -731,9 +758,13 @@
     document.documentElement.classList.remove("modal-open");
     document.body.classList.remove("modal-open");
 
-    // Resume Lenis smooth scroll
+    // Instantly restore the exact scroll position before modal was opened
+    window.scrollTo({ top: preModalScrollY, behavior: "instant" });
+
+    // Resume Lenis smooth scroll and synchronize position
     if (window.lenis) {
       window.lenis.start();
+      window.lenis.scrollTo(preModalScrollY, { immediate: true });
     }
   };
 
@@ -744,6 +775,12 @@
     if (!lightbox || !lightboxImg) return;
     lightboxImg.src = imgSrc;
     lightbox.classList.add("open");
+
+    // Preserve scroll position if modal is not already holding it
+    const modalBackdrop = document.getElementById("project-modal-backdrop");
+    if (!modalBackdrop || !modalBackdrop.classList.contains("open")) {
+      preModalScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    }
 
     if (window.lenis) {
       window.lenis.stop();
@@ -763,11 +800,93 @@
     if (!modalBackdrop || !modalBackdrop.classList.contains("open")) {
       document.documentElement.classList.remove("modal-open");
       document.body.classList.remove("modal-open");
+      window.scrollTo({ top: preModalScrollY, behavior: "instant" });
       if (window.lenis) {
         window.lenis.start();
+        window.lenis.scrollTo(preModalScrollY, { immediate: true });
       }
     }
   };
+
+  // 8.5 MOBILE NAVIGATION DRAWER & BOTTOM QUICK-DOCK ENGINE
+  window.toggleMobileNav = function () {
+    const drawer = document.getElementById("mobile-nav-drawer");
+    const toggleBtn = document.getElementById("mobile-nav-toggle");
+    if (!drawer) return;
+    const isOpen = drawer.classList.contains("open");
+    if (isOpen) {
+      window.closeMobileNav();
+    } else {
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden", "false");
+      if (toggleBtn) {
+        toggleBtn.classList.add("active");
+        toggleBtn.setAttribute("aria-expanded", "true");
+      }
+      document.documentElement.classList.add("drawer-open");
+      document.body.classList.add("drawer-open");
+    }
+  };
+
+  window.closeMobileNav = function () {
+    const drawer = document.getElementById("mobile-nav-drawer");
+    const toggleBtn = document.getElementById("mobile-nav-toggle");
+    if (!drawer) return;
+    drawer.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true");
+    if (toggleBtn) {
+      toggleBtn.classList.remove("active");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    }
+    document.documentElement.classList.remove("drawer-open");
+    document.body.classList.remove("drawer-open");
+  };
+
+  function setupMobileNavigation() {
+    // Mobile Quick Dock Scroll-Spy Active Indicator
+    const quickDock = document.getElementById("mobile-quick-dock");
+    if (!quickDock) return;
+
+    const dockItems = quickDock.querySelectorAll(".dock-item[data-section]");
+    const trackedSections = [
+      { id: "hero", target: "hero" },
+      { id: "about", target: "about" },
+      { id: "athletics", target: "about" },
+      { id: "stack", target: "stack" },
+      { id: "projects", target: "projects" },
+      { id: "impact", target: "projects" },
+      { id: "contact", target: "projects" }
+    ];
+
+    const updateActiveDock = () => {
+      const scrollPos = (window.scrollY || window.pageYOffset || 0) + 160;
+      let currentSection = "hero";
+
+      for (let i = trackedSections.length - 1; i >= 0; i--) {
+        const item = trackedSections[i];
+        const el = document.getElementById(item.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const docTop = rect.top + (window.scrollY || window.pageYOffset || 0);
+          if (scrollPos >= docTop) {
+            currentSection = item.target;
+            break;
+          }
+        }
+      }
+
+      dockItems.forEach((btn) => {
+        if (btn.getAttribute("data-section") === currentSection) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", updateActiveDock, { passive: true });
+    updateActiveDock();
+  }
 
   // 9. REDESIGNED FUTURISTIC MUSIC PLAYER & WEB AUDIO API SPECTRUM
   function setupAudioHub() {
@@ -880,6 +999,9 @@
 
       bgMusic.play().then(() => {
         isPlaying = true;
+        const floatingAudioHub = document.getElementById("floating-audio-hub");
+        if (floatingAudioHub) floatingAudioHub.classList.add("is-playing");
+        if (audioToggle) audioToggle.classList.add("is-playing");
         if (audioLabel) audioLabel.textContent = window.currentLang === "en" ? "PLAYING" : "MEMUTAR";
         if (audioIcon) audioIcon.setAttribute("icon", "solar:pause-bold");
         if (robotCompanion) robotCompanion.classList.add("active");
@@ -895,6 +1017,9 @@
     const pause = () => {
       bgMusic.pause();
       isPlaying = false;
+      const floatingAudioHub = document.getElementById("floating-audio-hub");
+      if (floatingAudioHub) floatingAudioHub.classList.remove("is-playing");
+      if (audioToggle) audioToggle.classList.remove("is-playing");
       if (audioLabel) audioLabel.textContent = window.currentLang === "en" ? "AUDIO OST" : "AUDIO OST";
       if (audioIcon) audioIcon.setAttribute("icon", "solar:play-bold");
       if (robotCompanion) robotCompanion.classList.remove("active");
@@ -1009,91 +1134,106 @@
 
   // 12. LENIS SMOOTH SCROLL & GSAP ANIMATIONS
   function setupSmoothScrollAndGsap() {
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+
     // Lenis integration
     if (typeof window.Lenis !== "undefined" && richMotion) {
       const lenis = new window.Lenis({
-        duration: 1.15,
+        duration: 1.05,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: "vertical",
         gestureOrientation: "vertical",
         smoothWheel: true,
-        smoothTouch: false, // Essential: native touch inertia on mobile devices
+        smoothTouch: false, // Native touch inertia on mobile devices
         touchMultiplier: 1.5
       });
       window.lenis = lenis;
 
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      if (window.ScrollTrigger) {
+      // Ensure ONLY one driver calls lenis.raf to prevent double-stepping and stutter
+      if (ScrollTrigger && gsap) {
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
           lenis.raf(time * 1000);
         });
         gsap.ticker.lagSmoothing(0);
+      } else {
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
       }
 
-      // Smooth scroll for in-page anchors
+      // Unified High-Performance Smooth Scroll for all in-page anchors
+      window.scrollToAnchor = function (targetId, customOffset) {
+        if (!targetId || targetId === "#") return;
+        const targetEl = document.querySelector(targetId);
+        if (!targetEl) return;
+
+        window.closeMobileNav();
+
+        const isMobile = window.innerWidth < 768;
+        const offset = customOffset !== undefined ? customOffset : (isMobile ? -58 : -75);
+
+        if (window.lenis) {
+          window.lenis.scrollTo(targetEl, {
+            offset: offset,
+            duration: 1.05,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+          });
+        } else {
+          const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset + offset;
+          window.scrollTo({
+            top: targetY,
+            behavior: "smooth"
+          });
+        }
+      };
+
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', function (e) {
           const targetId = this.getAttribute('href');
           if (targetId && targetId !== '#') {
-            const targetEl = document.querySelector(targetId);
-            if (targetEl) {
-              e.preventDefault();
-              window.lenis.scrollTo(targetEl, { offset: -70, duration: 1.1 });
-            }
+            e.preventDefault();
+            window.scrollToAnchor(targetId);
+          }
+        });
+      });
+    } else {
+      // Fallback anchor scroll without Lenis
+      window.scrollToAnchor = function (targetId, customOffset) {
+        if (!targetId || targetId === "#") return;
+        const targetEl = document.querySelector(targetId);
+        if (!targetEl) return;
+        window.closeMobileNav();
+        const isMobile = window.innerWidth < 768;
+        const offset = customOffset !== undefined ? customOffset : (isMobile ? -58 : -75);
+        const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset + offset;
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      };
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            e.preventDefault();
+            window.scrollToAnchor(targetId);
           }
         });
       });
     }
 
-    if (!window.gsap || !richMotion) return;
+    if (!gsap || !richMotion) return;
 
-    const gsap = window.gsap;
-    const ScrollTrigger = window.ScrollTrigger;
     if (ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
     }
 
-    // Hero entrance sequence
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl.fromTo(".hero-kicker-badge", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6 })
-      .fromTo(".editorial-headline", { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.3")
-      .fromTo(".hero-summary-text", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
-      .fromTo(".hero-action-buttons", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.3")
-      .fromTo(".portrait-frame", { opacity: 0, scale: 0.96, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.9 }, "<")
-      .fromTo(".floating-telemetry-badge", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, stagger: 0.15 }, "-=0.4")
-      .fromTo(".metric-pill", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }, "-=0.3");
-
-    // Metric Count-ups
-    if (ScrollTrigger) {
-      const counters = [
-        { el: document.querySelector('#metric-iq'), target: 121, template: 'IQ {val}', decimals: 0 },
-        { el: document.querySelector('#metric-gpa'), target: 3.86, template: '{val}/4.00', decimals: 2 }
-      ];
-
-      counters.forEach(item => {
-        if (!item.el) return;
-        const obj = { value: 0 };
-        gsap.fromTo(obj, { value: 0 }, {
-          value: item.target,
-          scrollTrigger: {
-            trigger: item.el,
-            start: "top 92%",
-            once: true
-          },
-          duration: 1.6,
-          ease: "power2.out",
-          onUpdate: () => {
-            const valFormatted = obj.value.toFixed(item.decimals);
-            item.el.textContent = item.template.replace('{val}', valFormatted);
-          }
-        });
-      });
+    // Initialize Animations Module (Global reading progress & Hero character entrance)
+    if (window.AippAnimations) {
+      window.AippAnimations.initGlobalProgress();
+      window.AippAnimations.initHeroAnimations();
     }
   }
 
@@ -1138,6 +1278,652 @@
     }
   }
 
+  // ==========================================================================
+  // SECTION 01: COGNITIVE FOUNDATION SCROLL STORYTELLING
+  // 4 Scenes • Pinned Stage • Three.js 3D Exploded View + CSS 3D Fallback
+  // ==========================================================================
+  function setupSection01Storytelling() {
+    const section = document.getElementById("about");
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || !window.gsap) {
+      section.classList.add("reduced-motion");
+      const arc = document.getElementById("gauge-arc-path");
+      if (arc) arc.style.strokeDashoffset = "10.45";
+      const gpa = document.getElementById("gauge-gpa-count");
+      if (gpa) gpa.textContent = "3.86";
+      const line = document.getElementById("timeline-active-line");
+      if (line) line.style.height = "100%";
+      const spark = document.getElementById("sparkline-path");
+      if (spark) spark.style.strokeDashoffset = "0";
+      const dot = document.getElementById("sparkline-dot");
+      if (dot) dot.style.opacity = "1";
+      document.querySelectorAll(".lang-fill-bar").forEach(bar => {
+        bar.style.width = bar.getAttribute("data-target") || "100%";
+      });
+      return;
+    }
+
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+    if (!ScrollTrigger) return;
+
+    // Check WebGL support
+    function isWebGLAvailable() {
+      try {
+        const c = document.createElement("canvas");
+        return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl")));
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // 3D Engine Variables
+    let threeScene = null;
+    let threeCamera = null;
+    let threeRenderer = null;
+    let foundationGroup = null;
+    let layerMeshes = [];
+    let isThreeRendering = false;
+    let threeRafId = null;
+    let threeLoaded = false;
+    let threeFailed = false;
+
+    const canvasWrapper = document.getElementById("foundation-canvas-wrapper");
+    const canvas = document.getElementById("foundation-canvas");
+    const css3dFallback = document.getElementById("foundation-css3d");
+
+    // Slabs initial compact and exploded positions
+    const compactY = [0.58, 0.19, -0.19, -0.58];
+    const explodedY = [1.85, 0.62, -0.62, -1.85];
+    const explodeState = { progress: 0 };
+
+    function activateCss3dFallback() {
+      threeFailed = true;
+      if (canvas) canvas.style.display = "none";
+      if (css3dFallback) css3dFallback.classList.remove("hidden");
+    }
+
+    function initThreeScene(THREE) {
+      if (!canvas || !canvasWrapper) return;
+      try {
+        const rect = canvasWrapper.getBoundingClientRect();
+        const width = rect.width || 480;
+        const height = rect.height || 420;
+
+        threeScene = new THREE.Scene();
+        threeCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 50);
+        threeCamera.position.set(0, 0, window.innerWidth < 768 ? 9.2 : 7.6);
+
+        threeRenderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          alpha: true,
+          antialias: true,
+          powerPreference: "high-performance"
+        });
+        threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        threeRenderer.setSize(width, height);
+
+        // Lighting
+        const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+        threeScene.add(ambient);
+
+        const dir1 = new THREE.DirectionalLight(0x78c9f5, 1.4);
+        dir1.position.set(5, 8, 6);
+        threeScene.add(dir1);
+
+        const dir2 = new THREE.DirectionalLight(0x38bdf8, 0.8);
+        dir2.position.set(-6, -4, -4);
+        threeScene.add(dir2);
+
+        const point = new THREE.PointLight(0x00f0ff, 1.5, 10);
+        point.position.set(0, 0, 3.5);
+        threeScene.add(point);
+
+        foundationGroup = new THREE.Group();
+        foundationGroup.rotation.x = 0.24;
+        foundationGroup.rotation.y = -0.32;
+        threeScene.add(foundationGroup);
+
+        // Create 4 Glass Slabs
+        const layerConfigs = [
+          { base: 0x0a1c2a, edge: 0x78c9f5, core: 0x38bdf8 },
+          { base: 0x082233, edge: 0x38bdf8, core: 0x0ea5e9 },
+          { base: 0x062130, edge: 0x22d3ee, core: 0x06b6d4 },
+          { base: 0x0c1e2b, edge: 0xa4dfff, core: 0x78c9f5 }
+        ];
+
+        function createSlabGeom() {
+          try {
+            const shape = new THREE.Shape();
+            const w = 3.2, d = 1.8, r = 0.22;
+            const hw = w / 2 - r, hd = d / 2 - r;
+            shape.moveTo(-hw, -d / 2);
+            shape.lineTo(hw, -d / 2);
+            shape.quadraticCurveTo(w / 2, -d / 2, w / 2, -hd);
+            shape.lineTo(w / 2, hd);
+            shape.quadraticCurveTo(w / 2, d / 2, hw, d / 2);
+            shape.lineTo(-hw, d / 2);
+            shape.quadraticCurveTo(-w / 2, d / 2, -w / 2, hd);
+            shape.lineTo(-w / 2, -hd);
+            shape.quadraticCurveTo(-w / 2, -d / 2, -hw, -d / 2);
+            const geom = new THREE.ExtrudeGeometry(shape, {
+              depth: 0.30,
+              bevelEnabled: true,
+              bevelSegments: 2,
+              steps: 1,
+              bevelSize: 0.04,
+              bevelThickness: 0.04
+            });
+            geom.center();
+            return geom;
+          } catch (e) {
+            return new THREE.BoxGeometry(3.2, 0.34, 1.8);
+          }
+        }
+
+        const slabGeom = createSlabGeom();
+
+        layerMeshes = [];
+        for (let i = 0; i < 4; i++) {
+          const cfg = layerConfigs[i];
+          const mat = new THREE.MeshPhysicalMaterial({
+            color: cfg.base,
+            metalness: 0.12,
+            roughness: 0.12,
+            transmission: 0.78,
+            transparent: true,
+            opacity: 0.85,
+            reflectivity: 0.9,
+            clearcoat: 0.85
+          });
+
+          const mesh = new THREE.Mesh(slabGeom, mat);
+          mesh.position.y = compactY[i];
+
+          // Edge outline
+          const edges = new THREE.EdgesGeometry(slabGeom, 20);
+          const line = new THREE.LineSegments(
+            edges,
+            new THREE.LineBasicMaterial({
+              color: cfg.edge,
+              transparent: true,
+              opacity: 0.8,
+              linewidth: 1.5
+            })
+          );
+          mesh.add(line);
+
+          // Glowing inner core plate
+          const coreGeom = new THREE.PlaneGeometry(2.4, 1.1);
+          const coreMat = new THREE.MeshBasicMaterial({
+            color: cfg.core,
+            transparent: true,
+            opacity: 0.24,
+            side: THREE.DoubleSide
+          });
+          const coreMesh = new THREE.Mesh(coreGeom, coreMat);
+          coreMesh.rotation.x = Math.PI / 2;
+          mesh.add(coreMesh);
+
+          foundationGroup.add(mesh);
+          layerMeshes.push(mesh);
+        }
+
+        threeLoaded = true;
+        updateExplodedVisuals(explodeState.progress);
+        startThreeRender();
+      } catch (err) {
+        console.warn("Three.js init error, switching to CSS 3D fallback:", err);
+        activateCss3dFallback();
+      }
+    }
+
+    function startThreeRender() {
+      if (!isThreeRendering && threeScene && threeCamera && threeRenderer) {
+        isThreeRendering = true;
+        threeLoop();
+      }
+    }
+
+    function stopThreeRender() {
+      isThreeRendering = false;
+      if (threeRafId) {
+        cancelAnimationFrame(threeRafId);
+        threeRafId = null;
+      }
+    }
+
+    let idleClock = 0;
+    function threeLoop() {
+      if (!isThreeRendering) return;
+      threeRafId = requestAnimationFrame(threeLoop);
+      idleClock += 0.012;
+      if (foundationGroup) {
+        foundationGroup.position.y = Math.sin(idleClock) * 0.05;
+      }
+      threeRenderer.render(threeScene, threeCamera);
+    }
+
+    // Lazy load Three.js via CDN when section is approached
+    function lazyLoadThreeJs(cb) {
+      if (window.THREE) {
+        cb(window.THREE);
+        return;
+      }
+      if (!isWebGLAvailable()) {
+        activateCss3dFallback();
+        cb(null);
+        return;
+      }
+      const s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+      s.async = true;
+      s.onload = () => cb(window.THREE);
+      s.onerror = () => {
+        activateCss3dFallback();
+        cb(null);
+      };
+      document.head.appendChild(s);
+    }
+
+    // Intersection observer for lazy load
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            lazyLoadThreeJs((THREE) => {
+              if (THREE) initThreeScene(THREE);
+            });
+            io.disconnect();
+          }
+        });
+      }, { rootMargin: "600px 0px" });
+      io.observe(section);
+    } else {
+      lazyLoadThreeJs((THREE) => {
+        if (THREE) initThreeScene(THREE);
+      });
+    }
+
+    // Update 3D or CSS 3D exploded view
+    function updateExplodedVisuals(p) {
+      // If Three.js is loaded
+      if (threeLoaded && layerMeshes.length === 4 && foundationGroup) {
+        for (let i = 0; i < 4; i++) {
+          layerMeshes[i].position.y = compactY[i] + (explodedY[i] - compactY[i]) * p;
+        }
+        foundationGroup.rotation.y = -0.32 + p * 0.70;
+        foundationGroup.rotation.x = 0.24 + p * 0.12;
+        if (!isThreeRendering) {
+          threeRenderer.render(threeScene, threeCamera);
+        }
+      }
+      // If CSS 3D fallback is active
+      if (threeFailed || !threeLoaded) {
+        const s0 = document.getElementById("css-slab-0");
+        const s1 = document.getElementById("css-slab-1");
+        const s2 = document.getElementById("css-slab-2");
+        const s3 = document.getElementById("css-slab-3");
+        if (s0 && s1 && s2 && s3) {
+          const rx = 24 + p * 8;
+          const ry = -18 + p * 36;
+          s0.style.transform = `translateY(${-p * 75}px) translateZ(${p * 35}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+          s1.style.transform = `translateY(${-p * 25}px) translateZ(${p * 12}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+          s2.style.transform = `translateY(${p * 25}px) translateZ(${-p * 12}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+          s3.style.transform = `translateY(${p * 75}px) translateZ(${-p * 35}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        }
+      }
+    }
+
+    // Pause Three.js render loop when out of viewport
+    ScrollTrigger.create({
+      trigger: "#about",
+      start: "top bottom",
+      end: "bottom top",
+      onEnter: () => startThreeRender(),
+      onLeave: () => stopThreeRender(),
+      onEnterBack: () => startThreeRender(),
+      onLeaveBack: () => stopThreeRender()
+    });
+
+    // MASTER STORYTELLING PINNED TIMELINE
+    const storyTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#about",
+        start: "top top",
+        end: () => (window.innerWidth < 768 ? "+=2200" : "+=3400"),
+        pin: true,
+        scrub: 0.8,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const p = self.progress;
+
+          // Update mini progress bar
+          const miniBar = document.getElementById("story-mini-bar");
+          if (miniBar) miniBar.style.width = `${Math.min(100, Math.max(0, p * 100))}%`;
+
+          // Update active HUD step and label
+          const stepNum = document.getElementById("story-step-num");
+          const stepLabel = document.getElementById("story-step-label");
+          const isEn = window.currentLang === "en";
+
+          let num = "01 / 04";
+          let labelId = "INKUIRI";
+          let labelEn = "INQUIRY";
+
+          if (p < 0.24) {
+            num = "01 / 04";
+            labelId = "INKUIRI";
+            labelEn = "INQUIRY";
+          } else if (p < 0.49) {
+            num = "02 / 04";
+            labelId = "FONDASI 3D";
+            labelEn = "3D FOUNDATION";
+          } else if (p < 0.74) {
+            num = "03 / 04";
+            labelId = "BUKTI TERUKUR";
+            labelEn = "EMPIRICAL METRICS";
+          } else {
+            num = "04 / 04";
+            labelId = "DISIPLIN HARIAN";
+            labelEn = "DAILY DISCIPLINE";
+          }
+
+          if (stepNum) stepNum.textContent = num;
+          if (stepLabel) {
+            stepLabel.setAttribute("data-lang-id", labelId);
+            stepLabel.setAttribute("data-lang-en", labelEn);
+            stepLabel.textContent = isEn ? labelEn : labelId;
+          }
+
+          // Active pointer events & visibility toggle (prevents any ghosting between scenes)
+          const s1 = document.getElementById("story-scene-1");
+          const s2 = document.getElementById("story-scene-2");
+          const s3 = document.getElementById("story-scene-3");
+          const s4 = document.getElementById("story-scene-4");
+
+          if (s1) {
+            const v1 = p < 0.24;
+            s1.style.visibility = v1 ? "visible" : "hidden";
+            s1.style.pointerEvents = v1 ? "auto" : "none";
+          }
+          if (s2) {
+            const v2 = p >= 0.24 && p < 0.49;
+            s2.style.visibility = v2 ? "visible" : "hidden";
+            s2.style.pointerEvents = v2 ? "auto" : "none";
+          }
+          if (s3) {
+            const v3 = p >= 0.49 && p < 0.74;
+            s3.style.visibility = v3 ? "visible" : "hidden";
+            s3.style.pointerEvents = v3 ? "auto" : "none";
+          }
+          if (s4) {
+            const v4 = p >= 0.74;
+            s4.style.visibility = v4 ? "visible" : "hidden";
+            s4.style.pointerEvents = v4 ? "auto" : "none";
+          }
+        }
+      }
+    });
+
+    // --------------------------------------------------------------------------
+    // SCENE INITIAL STATES
+    // --------------------------------------------------------------------------
+    gsap.set("#story-scene-1", { opacity: 1, scale: 1, y: 0, visibility: "visible" });
+    gsap.set(["#story-scene-2", "#story-scene-3", "#story-scene-4"], {
+      opacity: 0,
+      scale: 0.95,
+      y: 25,
+      visibility: "hidden"
+    });
+
+    // --------------------------------------------------------------------------
+    // ADEGAN 1: PERTANYAAN (0.00 - 1.00)
+    // --------------------------------------------------------------------------
+    // Word by word reveal on non-accent q-word elements cleanly without blur
+    storyTl.fromTo(
+      "#story-scene-1 .q-word:not(.q-accent)",
+      { opacity: 0.22, y: 6, color: "rgba(255, 255, 255, 0.35)" },
+      { opacity: 1, y: 0, color: "#FFFFFF", stagger: 0.015, ease: "power2.out", duration: 0.22 },
+      0.02
+    );
+
+    // Accent keyword reveal (dipertanyakan / unexamined)
+    storyTl.fromTo(
+      "#story-scene-1 .q-word.q-accent",
+      { opacity: 0.25, y: 6, color: "rgba(120, 201, 245, 0.45)" },
+      { opacity: 1, y: 0, color: "#78C9F5", ease: "power2.out", duration: 0.22 },
+      0.10
+    );
+
+    // Scene 1 description reveals
+    storyTl.fromTo(
+      ".scene1-desc",
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, ease: "power2.out", duration: 0.2 },
+      0.20
+    );
+
+    // Scene 1 holds from 0.35 to 0.75, then exits smoothly
+    storyTl.to(
+      "#story-scene-1",
+      { opacity: 0, scale: 0.94, y: -25, ease: "power2.inOut", duration: 0.18 },
+      0.75
+    );
+    storyTl.set("#story-scene-1", { visibility: "hidden" }, 0.98);
+
+    // --------------------------------------------------------------------------
+    // ADEGAN 2: FONDASI TERBUKA (1.00 - 2.00)
+    // --------------------------------------------------------------------------
+    storyTl.set("#story-scene-2", { visibility: "visible" }, 1.00);
+    // Scene 2 enters (fade in, scale 0.96 -> 1, y 25 -> 0)
+    storyTl.fromTo(
+      "#story-scene-2",
+      { opacity: 0, scale: 0.96, y: 25 },
+      { opacity: 1, scale: 1, y: 0, ease: "power2.out", duration: 0.18 },
+      1.02
+    );
+
+    // Explode 3D layers
+    storyTl.to(
+      explodeState,
+      {
+        progress: 1,
+        ease: "power1.inOut",
+        duration: 0.42,
+        onUpdate: () => updateExplodedVisuals(explodeState.progress)
+      },
+      1.15
+    );
+
+    // SVG leader lines draw
+    storyTl.to(
+      ".leader-path",
+      { strokeDashoffset: 0, ease: "power1.inOut", duration: 0.42 },
+      1.15
+    );
+
+    // Callout cards reveal
+    storyTl.fromTo(
+      ".callout-card",
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, stagger: 0.08, ease: "power2.out", duration: 0.32 },
+      1.22
+    );
+
+    // Scene 2 holds from 1.55 to 1.78, then exits
+    storyTl.to(
+      "#story-scene-2",
+      { opacity: 0, scale: 0.92, y: -25, ease: "power2.inOut", duration: 0.18 },
+      1.78
+    );
+    storyTl.set("#story-scene-2", { visibility: "hidden" }, 1.98);
+
+    // --------------------------------------------------------------------------
+    // ADEGAN 3: BUKTI TERUKUR (2.00 - 3.00)
+    // --------------------------------------------------------------------------
+    storyTl.set("#story-scene-3", { visibility: "visible" }, 2.00);
+    // Scene 3 enters
+    storyTl.fromTo(
+      "#story-scene-3",
+      { opacity: 0, scale: 0.96, y: 25 },
+      { opacity: 1, scale: 1, y: 0, ease: "power2.out", duration: 0.18 },
+      2.02
+    );
+
+    // Gauge arc fills to 96.5% (stroke-dashoffset from 298.45 to 10.45)
+    storyTl.to(
+      "#gauge-arc-path",
+      { strokeDashoffset: 10.45, ease: "power2.out", duration: 0.42 },
+      2.15
+    );
+
+    // GPA counter count-up
+    const gpaCountObj = { val: 0 };
+    storyTl.to(
+      gpaCountObj,
+      {
+        val: 3.86,
+        ease: "power2.out",
+        duration: 0.42,
+        onUpdate: () => {
+          const el = document.getElementById("gauge-gpa-count");
+          if (el) el.textContent = gpaCountObj.val.toFixed(2);
+        }
+      },
+      2.15
+    );
+
+    // Psychometric rows stagger in
+    storyTl.fromTo(
+      ".psych-metric-row",
+      { opacity: 0, x: -15 },
+      { opacity: 1, x: 0, stagger: 0.07, ease: "power2.out", duration: 0.32 },
+      2.22
+    );
+
+    // Multilingual progress bars fill
+    storyTl.to(
+      ".lang-fill-bar",
+      {
+        width: (idx, target) => target.getAttribute("data-target") || "100%",
+        stagger: 0.05,
+        ease: "power2.out",
+        duration: 0.38
+      },
+      2.28
+    );
+
+    // Scene 3 holds from 2.58 to 2.78, then exits
+    storyTl.to(
+      "#story-scene-3",
+      { opacity: 0, scale: 0.92, y: -25, ease: "power2.inOut", duration: 0.18 },
+      2.78
+    );
+    storyTl.set("#story-scene-3", { visibility: "hidden" }, 2.98);
+
+    // --------------------------------------------------------------------------
+    // ADEGAN 4: DISIPLIN HARIAN (3.00 - 4.00)
+    // --------------------------------------------------------------------------
+    storyTl.set("#story-scene-4", { visibility: "visible" }, 3.00);
+    // Scene 4 enters
+    storyTl.fromTo(
+      "#story-scene-4",
+      { opacity: 0, scale: 0.96, y: 25 },
+      { opacity: 1, scale: 1, y: 0, ease: "power2.out", duration: 0.18 },
+      3.02
+    );
+
+    // Timeline stem fill height
+    storyTl.to(
+      "#timeline-active-line",
+      { height: "100%", ease: "none", duration: 0.55 },
+      3.10
+    );
+
+    // Step cards stagger in
+    storyTl.fromTo(
+      "#timeline-step-1",
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, ease: "power2.out", duration: 0.22 },
+      3.12
+    );
+
+    storyTl.fromTo(
+      "#timeline-step-2",
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, ease: "power2.out", duration: 0.22 },
+      3.26
+    );
+
+    storyTl.fromTo(
+      "#timeline-step-3",
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, ease: "power2.out", duration: 0.22 },
+      3.40
+    );
+
+    // Bitcoin DCA Sparkline path draws
+    storyTl.to(
+      "#sparkline-path",
+      { strokeDashoffset: 0, ease: "power1.inOut", duration: 0.25 },
+      3.46
+    );
+
+    // Sparkline peak dot
+    storyTl.to(
+      "#sparkline-dot",
+      { opacity: 1, duration: 0.12 },
+      3.60
+    );
+
+    // Closing Climax Banner
+    storyTl.fromTo(
+      "#story-closing-banner",
+      { opacity: 0, scale: 0.95, y: 15 },
+      { opacity: 1, scale: 1, y: 0, ease: "power2.out", duration: 0.25 },
+      3.65
+    );
+
+    // Resize listener for 3D canvas
+    window.addEventListener("resize", () => {
+      if (threeLoaded && threeCamera && threeRenderer && canvasWrapper) {
+        const r = canvasWrapper.getBoundingClientRect();
+        const w = r.width || 480;
+        const h = r.height || 420;
+        threeCamera.aspect = w / h;
+        threeCamera.position.z = window.innerWidth < 768 ? 9.2 : 7.6;
+        threeCamera.updateProjectionMatrix();
+        threeRenderer.setSize(w, h);
+        if (!isThreeRendering) {
+          threeRenderer.render(threeScene, threeCamera);
+        }
+      }
+      ScrollTrigger.refresh();
+    });
+  }
+
+  // 14.5 HEADER SCROLL OBSERVER (SOLID LIQUID GLASS DOCK)
+  function setupHeaderScrollObserver() {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+
+    const onScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      if (scrollY > 20) {
+        header.classList.add("is-scrolled");
+      } else {
+        header.classList.remove("is-scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
   // 15. INITIALIZATION LIFECYCLE
   function init() {
     // Set Year
@@ -1147,16 +1933,20 @@
     // Setup Components
     window.setLanguage(window.currentLang);
     setupAudioHub();
+    setupMobileNavigation();
+    setupHeaderScrollObserver();
     setupTypingEffect();
     setupCustomCursor();
     setupSmoothScrollAndGsap();
+    setupSection01Storytelling();
     setupModalScrollIsolation();
 
-    // Close Modals on ESC key
+    // Close Modals & Drawers on ESC key
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         window.closeProjectModal();
         window.closeLightbox();
+        window.closeMobileNav();
       }
     });
   }

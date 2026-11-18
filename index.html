@@ -113,6 +113,9 @@
 </head>
 
 <body>
+    <!-- Global Scroll Reading Progress Bar -->
+    <div id="global-scroll-progress" class="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cyan-400 via-iceBlue to-white origin-left scale-x-0 z-[100] transition-none pointer-events-none" aria-hidden="true"></div>
+
     <!-- Custom Desktop Cursor -->
     <div class="custom-cursor-follower" aria-hidden="true"></div>
     <div class="custom-cursor-dot" aria-hidden="true"></div>
@@ -137,35 +140,111 @@
                 </div>
             </a>
 
-            <!-- Desktop Nav Links -->
+            <!-- Desktop Nav Links (Mind • Muscle • Code Story Arc) -->
             <div class="nav-links-desktop">
-                <a href="#about" class="nav-link" data-lang-id="Tentang" data-lang-en="About">About</a>
+                <a href="#about" class="nav-link" data-lang-id="Mind" data-lang-en="Mind">Mind</a>
+                <a href="#athletics" class="nav-link" data-lang-id="Muscle" data-lang-en="Muscle">Muscle</a>
                 <a href="#stack" class="nav-link" data-lang-id="Keahlian" data-lang-en="Expertise">Expertise</a>
                 <a href="#projects" class="nav-link" data-lang-id="Proyek" data-lang-en="Projects">Projects</a>
-                <a href="#athletics" class="nav-link" data-lang-id="Atletik" data-lang-en="Athletics">Athletics</a>
                 <a href="#impact" class="nav-link" data-lang-id="Dampak" data-lang-en="Impact">Impact</a>
                 <a href="#contact" class="nav-link" data-lang-id="Kontak" data-lang-en="Contact">Contact</a>
             </div>
 
-            <!-- Action Pill (Language Switcher & GitHub) -->
-            <div class="flex items-center gap-3">
-                <!-- Language Switcher -->
-                <div class="lang-switch" role="group" aria-label="Language Selector">
-                    <button type="button" id="lang-id" class="lang-btn active"
-                        onclick="window.setLanguage('id')">ID</button>
-                    <button type="button" id="lang-en" class="lang-btn" onclick="window.setLanguage('en')">EN</button>
+                <!-- Action Pill (Language Switcher, GitHub, Mobile Menu) -->
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <!-- Language Switcher -->
+                    <div class="lang-switch" role="group" aria-label="Language Selector">
+                        <button type="button" id="lang-id" class="lang-btn active"
+                            onclick="window.setLanguage('id')">ID</button>
+                        <button type="button" id="lang-en" class="lang-btn" onclick="window.setLanguage('en')">EN</button>
+                    </div>
+
+                    <!-- GitHub Button (Desktop) -->
+                    <a href="https://github.com/AIPPproject03" target="_blank" rel="noopener noreferrer"
+                        class="liquid-glass-pill hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-white/85"
+                        aria-label="GitHub Profile">
+                        <iconify-icon icon="mdi:github" class="text-base"></iconify-icon>
+                        <span>GitHub</span>
+                    </a>
+
+                    <!-- Mobile Navigation Hamburger Button -->
+                    <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle"
+                        aria-label="Toggle Mobile Navigation" aria-expanded="false" onclick="window.toggleMobileNav()">
+                        <span class="hamburger-bar bar-1"></span>
+                        <span class="hamburger-bar bar-2"></span>
+                        <span class="hamburger-bar bar-3"></span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Mobile Navigation Full Drawer Sheet -->
+        <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true">
+            <div class="mobile-nav-backdrop" onclick="window.closeMobileNav()"></div>
+            <div class="mobile-nav-panel">
+                <div class="mobile-nav-header">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span class="font-mono text-xs uppercase tracking-widest text-cyan-300">AIPP PROTOCOL // NAV</span>
+                    </div>
+                    <button type="button" class="mobile-nav-close" onclick="window.closeMobileNav()" aria-label="Tutup Navigasi">
+                        <iconify-icon icon="solar:close-circle-linear" class="text-2xl"></iconify-icon>
+                    </button>
                 </div>
 
-                <!-- GitHub Button -->
-                <a href="https://github.com/AIPPproject03" target="_blank" rel="noopener noreferrer"
-                    class="liquid-glass-pill hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-white/85"
-                    aria-label="GitHub Profile">
-                    <iconify-icon icon="mdi:github" class="text-base"></iconify-icon>
-                    <span>GitHub</span>
-                </a>
+                <nav class="mobile-nav-links">
+                    <a href="#hero" class="mobile-nav-item" onclick="window.closeMobileNav()">
+                        <span class="nav-item-num font-mono">00 //</span>
+                        <span class="nav-item-name" data-lang-id="Beranda (Hero)" data-lang-en="Home (Hero)">Beranda (Hero)</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" class="nav-item-arrow"></iconify-icon>
+                    </a>
+                    <a href="#about" class="mobile-nav-item" onclick="window.closeMobileNav()">
+                        <span class="nav-item-num font-mono">01 //</span>
+                        <span class="nav-item-name" data-lang-id="Mind (Fondasi Kognitif)" data-lang-en="Mind (Cognitive Core)">Mind (Fondasi Kognitif)</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" class="nav-item-arrow"></iconify-icon>
+                    </a>
+                    <a href="#athletics" class="mobile-nav-item" onclick="window.closeMobileNav()">
+                        <span class="nav-item-num font-mono">02 //</span>
+                        <span class="nav-item-name" data-lang-id="Muscle (Turnamen & Disiplin)" data-lang-en="Muscle (Athletics & Discipline)">Muscle (Turnamen & Disiplin)</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" class="nav-item-arrow"></iconify-icon>
+                    </a>
+                    <a href="#stack" class="mobile-nav-item" onclick="window.closeMobileNav()">
+                        <span class="nav-item-num font-mono">03 //</span>
+                        <span class="nav-item-name" data-lang-id="Keahlian (Tumpukan Teknologi)" data-lang-en="Expertise (Tech Stack)">Keahlian (Tumpukan Teknologi)</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" class="nav-item-arrow"></iconify-icon>
+                    </a>
+                    <a href="#projects" class="mobile-nav-item" onclick="window.closeMobileNav()">
+                        <span class="nav-item-num font-mono">04 //</span>
+                        <span class="nav-item-name" data-lang-id="Proyek (Studi Kasus Unggulan)" data-lang-en="Projects (Featured Case Studies)">Proyek (Studi Kasus Unggulan)</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" class="nav-item-arrow"></iconify-icon>
+                    </a>
+                    <a href="#impact" class="mobile-nav-item" onclick="window.closeMobileNav()">
+                        <span class="nav-item-num font-mono">05 //</span>
+                        <span class="nav-item-name" data-lang-id="Dampak (KKN 204 & Kepemimpinan)" data-lang-en="Civic Impact (KKN 204 Leadership)">Dampak (KKN 204 & Kepemimpinan)</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" class="nav-item-arrow"></iconify-icon>
+                    </a>
+                    <a href="#contact" class="mobile-nav-item" onclick="window.closeMobileNav()">
+                        <span class="nav-item-num font-mono">06 //</span>
+                        <span class="nav-item-name" data-lang-id="Kontak & Kolaborasi" data-lang-en="Contact & Collaboration">Kontak & Kolaborasi</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" class="nav-item-arrow"></iconify-icon>
+                    </a>
+                </nav>
+
+                <div class="mobile-nav-footer">
+                    <a href="projects/projects.html" class="btn-primary w-full text-center flex items-center justify-center gap-2 py-3 text-xs" onclick="window.closeMobileNav()">
+                        <span data-lang-id="Buka Arsip Proyek Lengkap (5 Proyek)" data-lang-en="Open Full Projects Archive (5 Projects)">Buka Arsip Proyek Lengkap (5 Proyek)</span>
+                        <iconify-icon icon="solar:folder-with-files-linear"></iconify-icon>
+                    </a>
+                    <div class="flex items-center justify-between pt-2.5 text-xs font-mono text-white/50 border-t border-white/5">
+                        <a href="https://github.com/AIPPproject03" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 flex items-center gap-1.5 text-white/70">
+                            <iconify-icon icon="mdi:github" class="text-base"></iconify-icon>
+                            <span>GitHub</span>
+                        </a>
+                        <span class="text-[11px] text-cyan-400/70">MIND • MUSCLE • CODE</span>
+                    </div>
+                </div>
             </div>
-        </nav>
-    </header>
+        </div>
 
     <main>
         <!-- ====================================================================
@@ -176,12 +255,12 @@
                 <!-- Text Column -->
                 <div class="space-y-6">
                     <div class="hero-kicker-badge flex justify-center lg:justify-start">
-                        <span class="editorial-kicker" data-lang-id="PORTOFOLIO DIGITAL RESMI"
-                            data-lang-en="OFFICIAL DIGITAL PORTFOLIO">OFFICIAL DIGITAL PORTFOLIO</span>
+                        <span class="editorial-kicker" data-lang-id="// INKUIRI 00 • SIAPA YANG BERDIRI DI BALIK SISTEM INI?"
+                            data-lang-en="// INQUIRY 00 • WHO STANDS BEHIND THIS SYSTEM?">// INQUIRY 00 • WHO STANDS BEHIND THIS SYSTEM?</span>
                     </div>
 
                     <div class="space-y-4">
-                        <h1 class="editorial-headline">
+                        <h1 class="editorial-headline" id="hero-headline">
                             AGUSTINUS IRWIN PUTRA PANGESTI
                         </h1>
                         <div
@@ -233,8 +312,7 @@
                         <article class="metric-pill">
                             <p class="metric-label" data-lang-id="Tingkat Atletik" data-lang-en="Athletic Level">
                                 Athletic Level</p>
-                            <h3 class="metric-value text-iceBlue" data-lang-id="Nasional" data-lang-en="National">
-                                National</h3>
+                            <h3 class="metric-value text-iceBlue"><span id="metric-athletic-count">0</span>+ <span data-lang-id="Tahun" data-lang-en="Years">Tahun</span></h3>
                             <p class="metric-detail" data-lang-id="Emas PORPROV & Seleknas PBSI"
                                 data-lang-en="PORPROV Gold & PBSI Delegate">PORPROV Gold & PBSI Delegate</p>
                         </article>
@@ -279,101 +357,519 @@
         </section>
 
         <!-- ====================================================================
-         SECTION 02: ABOUT ME / COGNITIVE FOUNDATION & STORY
+         SECTION 01: COGNITIVE FOUNDATION & SCROLL STORYTELLING
+         (ARCHITECTURE & ETHOS: 4-STAGE PINNED SCROLL EXPERIENCE)
          ==================================================================== -->
-        <section id="about" class="section-shell">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="editorial-kicker">// 01 ARCHITECTURE & ETHOS</span>
-                    <h2 class="section-headline mt-2" data-lang-id="Fondasi Kognitif & Kejernihan Sikap"
-                        data-lang-en="The Cognitive Foundation & Mental Clarity">The Cognitive Foundation & Mental
-                        Clarity</h2>
-                    <p class="section-desc mt-3"
-                        data-lang-id="Kombinasi antara analitis psikometrik superior, ketahanan fisik turnamen, dan kemampuan adaptasi teknologi yang cepat."
-                        data-lang-en="A rare convergence of superior psychometric analysis, tournament-tested physical stamina, and rapid technological assimilation.">
-                        A rare convergence of superior psychometric analysis, tournament-tested physical stamina, and
-                        rapid technological assimilation.
-                    </p>
+        <section id="about" class="story-section" aria-label="Fondasi Kognitif & Kejernihan Sikap">
+            <!-- Pinned Storytelling Stage -->
+            <div class="story-stage" id="story-stage">
+
+                <!-- Ambient Atmospheric Glows for Section -->
+                <div class="story-ambient-glow story-glow-top" aria-hidden="true"></div>
+                <div class="story-ambient-glow story-glow-bottom" aria-hidden="true"></div>
+
+                <!-- Top Storytelling Navigation & Progress HUD -->
+                <div class="story-hud">
+                    <div class="flex items-center gap-3">
+                        <span class="story-hud-kicker">// 01 ARCHITECTURE & ETHOS</span>
+                        <span class="story-hud-divider" aria-hidden="true">•</span>
+                        <span class="story-hud-sub" data-lang-id="FONDASI KOGNITIF" data-lang-en="COGNITIVE FOUNDATION">FONDASI KOGNITIF</span>
+                    </div>
+                    <!-- Progress Indicator Pill -->
+                    <div class="story-indicator-pill">
+                        <span class="story-step-num" id="story-step-num">01 / 04</span>
+                        <div class="story-mini-progress">
+                            <div class="story-mini-bar" id="story-mini-bar"></div>
+                        </div>
+                        <span class="story-step-label font-mono text-[11px] uppercase tracking-wider text-cyan-300"
+                            id="story-step-label" data-lang-id="INKUIRI" data-lang-en="INQUIRY">INKUIRI</span>
+                    </div>
                 </div>
 
-                <div class="grid gap-6 lg:grid-cols-[1.12fr_.88fr]">
-                    <!-- Left: Foundation Cards -->
-                    <div class="space-y-6">
-                        <div id="foundation-grid" class="grid gap-4 sm:grid-cols-2"></div>
+                <!-- SCENE VIEWPORT -->
+                <div class="story-scenes-viewport">
 
-                        <!-- Lifestyle & Long-Term Mindset -->
-                        <article class="liquid-glass-card p-6 sm:p-8">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="p-2 rounded-xl bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">
-                                    <iconify-icon icon="solar:dumbbell-large-minimalistic-linear"
-                                        class="text-xl"></iconify-icon>
+                    <!-- ==============================================================
+                         ADEGAN 1 - PERTANYAAN (THE INQUIRY)
+                         ============================================================== -->
+                    <div class="story-scene story-scene-1 active" id="story-scene-1">
+                        <div class="scene-content max-w-4xl text-center px-4 sm:px-6">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-300 font-mono text-xs mb-6">
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                                <span data-lang-id="PREMIS FILOSOFIS" data-lang-en="PHILOSOPHICAL PREMISE">PREMIS FILOSOFIS</span>
+                            </div>
+
+                            <!-- Quote with word-by-word reveal -->
+                            <blockquote class="story-quote font-display text-xl sm:text-2xl md:text-3xl lg:text-[2.65rem] xl:text-[2.85rem] font-bold text-white leading-[1.3] tracking-tight mb-8 max-w-5xl mx-auto">
+                                <span class="quote-words block" id="quote-words-id">
+                                    <span class="quote-line block md:whitespace-nowrap"><span class="q-word">Hidup</span><span class="q-word">yang</span><span class="q-word">tak</span><span class="q-word">pernah</span><span class="q-word q-accent text-[#78C9F5]">dipertanyakan</span></span>
+                                    <span class="quote-line block mt-1.5 sm:mt-2.5 md:whitespace-nowrap"><span class="q-word">adalah</span><span class="q-word">hidup</span><span class="q-word">yang</span><span class="q-word">tak</span><span class="q-word">pantas</span><span class="q-word">dijalani.</span></span>
                                 </span>
-                                <div>
-                                    <h4 class="text-lg font-bold text-white"
-                                        data-lang-id="Filosofi Gaya Hidup & Alokasi Modal"
-                                        data-lang-en="Lifestyle Philosophy & Capital Allocation">Lifestyle Philosophy &
-                                        Capital Allocation</h4>
-                                    <p class="text-xs text-white/50 font-mono" data-lang-id="DISIPLIN HARIAN"
-                                        data-lang-en="DAILY DISCIPLINE">DAILY DISCIPLINE</p>
+                                <span class="quote-words block hidden" id="quote-words-en">
+                                    <span class="quote-line block md:whitespace-nowrap"><span class="q-word">The</span><span class="q-word q-accent text-[#78C9F5]">unexamined</span><span class="q-word">life</span></span>
+                                    <span class="quote-line block mt-1.5 sm:mt-2.5 md:whitespace-nowrap"><span class="q-word">is</span><span class="q-word">not</span><span class="q-word">worth</span><span class="q-word">living.</span></span>
+                                </span>
+                            </blockquote>
+
+                            <div class="scene1-desc max-w-2xl mx-auto">
+                                <p class="text-sm sm:text-base text-white/60 leading-relaxed font-body"
+                                    data-lang-id="Kombinasi antara analitis psikometrik superior, ketahanan fisik turnamen, dan kemampuan adaptasi teknologi yang cepat."
+                                    data-lang-en="A rare convergence of superior psychometric analysis, tournament-tested physical stamina, and rapid technological assimilation.">
+                                    Kombinasi antara analitis psikometrik superior, ketahanan fisik turnamen, dan kemampuan adaptasi teknologi yang cepat.
+                                </p>
+                                <div class="flex items-center justify-center gap-2 mt-6 text-white/40 text-xs font-mono">
+                                    <iconify-icon icon="solar:mouse-minimalistic-linear" class="text-base text-cyan-400 animate-bounce"></iconify-icon>
+                                    <span data-lang-id="GULIR UNTUK MEMBUKA FONDASI" data-lang-en="SCROLL TO EXPLODE FOUNDATION">GULIR UNTUK MEMBUKA FONDASI</span>
                                 </div>
                             </div>
-                            <p class="text-sm text-white/70 leading-relaxed"
-                                data-lang-id="Menjalani kalistenik harian, latihan fisik hibrida, dan mempertahankan 62 kg massa otot tanpa lemak dengan siklus mobilitas terstruktur. Disiplin yang sama diterapkan dalam pola pikir investor sistematis melalui strategi Dollar-Cost Averaging (DCA) Bitcoin jangka panjang."
-                                data-lang-en="Practicing daily calisthenics, hybrid training, and maintaining 62 kg of lean muscle mass through structured mobility cycles. The same discipline informs a systematic long-term investor mindset executed through disciplined Bitcoin Dollar-Cost Averaging (DCA).">
-                                Practicing daily calisthenics, hybrid training, and maintaining 62 kg of lean muscle
-                                mass through structured mobility cycles. The same discipline informs a systematic
-                                long-term investor mindset executed through disciplined Bitcoin Dollar-Cost Averaging
-                                (DCA).
-                            </p>
-                        </article>
+                        </div>
                     </div>
 
-                    <!-- Right: Multilingual Presence & Interpretive Strengths -->
-                    <div class="space-y-6">
-                        <article class="liquid-glass-card p-6 sm:p-8">
-                            <span class="font-mono text-xs uppercase tracking-widest text-cyan-300 block mb-1"
-                                data-lang-id="JANGKAUAN GLOBAL" data-lang-en="GLOBAL REACH">GLOBAL REACH</span>
-                            <h3 class="text-2xl font-bold text-white mb-6" data-lang-id="Kemampuan Multibahasa"
-                                data-lang-en="Multilingual Proficiency">Multilingual Proficiency</h3>
-                            <div id="language-list" class="space-y-4"></div>
-                        </article>
+                    <!-- ==============================================================
+                         ADEGAN 2 - FONDASI TERBUKA (3D EXPLODED VIEW)
+                         ============================================================== -->
+                    <div class="story-scene story-scene-2" id="story-scene-2">
+                        <div class="scene2-container relative w-full h-full max-w-6xl mx-auto flex flex-col items-center justify-center px-4">
+                            
+                            <!-- Scene Title (top) -->
+                            <div class="scene2-header text-center mb-2 pointer-events-none z-20">
+                                <h3 class="font-display text-lg sm:text-2xl font-bold text-white"
+                                    data-lang-id="Fondasi Kognitif & Kejernihan Sikap"
+                                    data-lang-en="The Cognitive Foundation & Mental Clarity">
+                                    Fondasi Kognitif & Kejernihan Sikap
+                                </h3>
+                                <p class="font-mono text-[11px] sm:text-xs text-cyan-300/80 mt-0.5"
+                                    data-lang-id="EXPLODED VIEW // 4 PILAR UTAMA"
+                                    data-lang-en="EXPLODED VIEW // 4 CORE PILLARS">
+                                    EXPLODED VIEW // 4 PILAR UTAMA
+                                </p>
+                            </div>
 
-                        <article class="liquid-glass-card p-6 sm:p-8">
-                            <span class="font-mono text-xs uppercase tracking-widest text-cyan-300 block mb-1"
-                                data-lang-id="INTEGRITAS PSIKOMETRIK" data-lang-en="PSYCHOMETRIC INTEGRITY">PSYCHOMETRIC
-                                INTEGRITY</span>
-                            <h3 class="text-2xl font-bold text-white mb-4" data-lang-id="Kekuatan Interpretatif Teruji"
-                                data-lang-en="Validated Interpretive Strengths">Validated Interpretive Strengths</h3>
+                            <!-- Center 3D Stage / Canvas Wrapper -->
+                            <div class="foundation-canvas-wrapper" id="foundation-canvas-wrapper">
+                                <canvas id="foundation-canvas" class="foundation-canvas" aria-label="3D Cognitive Foundation Layers"></canvas>
 
-                            <div class="space-y-3">
-                                <div
-                                    class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 text-sm">
-                                    <span class="text-white/80" data-lang-id="Pemahaman Konsep Tinggi"
-                                        data-lang-en="High Concept Comprehension">High Concept Comprehension</span>
-                                    <span class="font-mono text-xs text-cyan-300 font-semibold">VERIFIED</span>
-                                </div>
-                                <div
-                                    class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 text-sm">
-                                    <span class="text-white/80" data-lang-id="Konsistensi Sikap Ekstrem"
-                                        data-lang-en="Extreme Attitude Consistency">Extreme Attitude Consistency</span>
-                                    <span class="font-mono text-xs text-cyan-300 font-semibold">CONSTANT</span>
-                                </div>
-                                <div
-                                    class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 text-sm">
-                                    <span class="text-white/80" data-lang-id="Integritas & Tanggung Jawab"
-                                        data-lang-en="High Integrity & Accountability">High Integrity &
-                                        Accountability</span>
-                                    <span class="font-mono text-xs text-cyan-300 font-semibold">ASSURED</span>
-                                </div>
-                                <div
-                                    class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 text-sm">
-                                    <span class="text-white/80" data-lang-id="Sinergi Kolaborasi Kelompok"
-                                        data-lang-en="Excellent Group Synergy">Excellent Group Synergy</span>
-                                    <span class="font-mono text-xs text-cyan-300 font-semibold">TEAM</span>
+                                <!-- CSS 3D Fallback (activated if WebGL not supported or Three.js fails) -->
+                                <div id="foundation-css3d" class="foundation-css3d hidden" aria-hidden="true">
+                                    <div class="css3d-viewport">
+                                        <div class="css3d-slab slab-0" id="css-slab-0">
+                                            <div class="slab-inner">
+                                                <span class="slab-tag">01 // AKADEMIK</span>
+                                                <span class="slab-title">S1 Informatika • IPK 3.86</span>
+                                            </div>
+                                        </div>
+                                        <div class="css3d-slab slab-1" id="css-slab-1">
+                                            <div class="slab-inner">
+                                                <span class="slab-tag">02 // KOGNITIF</span>
+                                                <span class="slab-title">IQ 121 • Adaptif & Analitis</span>
+                                            </div>
+                                        </div>
+                                        <div class="css3d-slab slab-2" id="css-slab-2">
+                                            <div class="slab-inner">
+                                                <span class="slab-tag">03 // DISIPLIN</span>
+                                                <span class="slab-title">Atlet Nasional • 62 kg Lean Mass</span>
+                                            </div>
+                                        </div>
+                                        <div class="css3d-slab slab-3" id="css-slab-3">
+                                            <div class="slab-inner">
+                                                <span class="slab-tag">04 // INTEGRITAS</span>
+                                                <span class="slab-title">Tanggung Jawab & Sinergi Tim</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </article>
+
+                            <!-- SVG Callout Leader Lines (Desktop/Tablet) -->
+                            <svg class="scene2-svg-overlay hidden md:block" id="scene2-svg-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
+                                <defs>
+                                    <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feGaussianBlur stdDeviation="2" result="blur" />
+                                        <feMerge>
+                                            <feMergeNode in="blur" />
+                                            <feMergeNode in="SourceGraphic" />
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                <!-- Callout Path 0 (Top-Left - Akademik) -->
+                                <g class="leader-group leader-group-0">
+                                    <path class="leader-path" id="leader-path-0" d="M 430 180 L 330 180 L 290 145 L 210 145" filter="url(#cyanGlow)" />
+                                    <circle class="leader-dot" cx="430" cy="180" r="3.5" />
+                                </g>
+                                <!-- Callout Path 1 (Top-Right - Kognitif) -->
+                                <g class="leader-group leader-group-1">
+                                    <path class="leader-path" id="leader-path-1" d="M 570 250 L 670 250 L 710 220 L 790 220" filter="url(#cyanGlow)" />
+                                    <circle class="leader-dot" cx="570" cy="250" r="3.5" />
+                                </g>
+                                <!-- Callout Path 2 (Bottom-Left - Disiplin) -->
+                                <g class="leader-group leader-group-2">
+                                    <path class="leader-path" id="leader-path-2" d="M 430 350 L 330 350 L 290 385 L 210 385" filter="url(#cyanGlow)" />
+                                    <circle class="leader-dot" cx="430" cy="350" r="3.5" />
+                                </g>
+                                <!-- Callout Path 3 (Bottom-Right - Integritas) -->
+                                <g class="leader-group leader-group-3">
+                                    <path class="leader-path" id="leader-path-3" d="M 570 420 L 670 420 L 710 455 L 790 455" filter="url(#cyanGlow)" />
+                                    <circle class="leader-dot" cx="570" cy="420" r="3.5" />
+                                </g>
+                            </svg>
+
+                            <!-- 4 Callout Cards -->
+                            <div class="scene2-callouts" id="scene2-callouts">
+                                <!-- Card 0: Akademik -->
+                                <article class="callout-card callout-0 liquid-glass-card" id="callout-card-0">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300">// 01 AKADEMIK</span>
+                                        <iconify-icon icon="solar:diploma-outline" class="text-base text-cyan-400"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-base sm:text-lg font-bold text-white mb-1"
+                                        data-lang-id="S1 Informatika, IPK 3.86" data-lang-en="Informatics, GPA 3.86">
+                                        S1 Informatika, IPK 3.86
+                                    </h4>
+                                    <p class="text-xs text-white/60 font-body"
+                                        data-lang-id="Universitas Palangka Raya • NIM 223020503162 • IPK 3.86/4.00"
+                                        data-lang-en="Universitas Palangka Raya • NIM 223020503162 • GPA 3.86/4.00">
+                                        Universitas Palangka Raya • NIM 223020503162 • IPK 3.86/4.00
+                                    </p>
+                                </article>
+
+                                <!-- Card 1: Kognitif -->
+                                <article class="callout-card callout-1 liquid-glass-card" id="callout-card-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300">// 02 KOGNITIF</span>
+                                        <iconify-icon icon="solar:brain-outline" class="text-base text-cyan-400"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-base sm:text-lg font-bold text-white mb-1"
+                                        data-lang-id="IQ 121, Adaptif & Analitis" data-lang-en="IQ 121, Adaptive & Analytical">
+                                        IQ 121, Adaptif & Analitis
+                                    </h4>
+                                    <p class="text-xs text-white/60 font-body"
+                                        data-lang-id="Skala Wechsler • Kategori Superior"
+                                        data-lang-en="Wechsler Scale • Superior Category">
+                                        Skala Wechsler • Kategori Superior
+                                    </p>
+                                </article>
+
+                                <!-- Card 2: Disiplin -->
+                                <article class="callout-card callout-2 liquid-glass-card" id="callout-card-2">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300">// 03 DISIPLIN</span>
+                                        <iconify-icon icon="solar:medal-ribbons-star-outline" class="text-base text-cyan-400"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-base sm:text-lg font-bold text-white mb-1"
+                                        data-lang-id="Atlet Nasional, 62 kg Lean Mass" data-lang-en="National Athlete, 62 kg Lean Mass">
+                                        Atlet Nasional, 62 kg Lean Mass
+                                    </h4>
+                                    <p class="text-xs text-white/60 font-body"
+                                        data-lang-id="Eksekusi rekayasa perangkat lunak diperkuat disiplin atletik kompetitif"
+                                        data-lang-en="Software engineering execution reinforced by competitive athletic discipline">
+                                        Eksekusi rekayasa perangkat lunak diperkuat disiplin atletik kompetitif
+                                    </p>
+                                </article>
+
+                                <!-- Card 3: Integritas -->
+                                <article class="callout-card callout-3 liquid-glass-card" id="callout-card-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300">// 04 INTEGRITAS</span>
+                                        <iconify-icon icon="solar:users-group-two-rounded-bold" class="text-base text-cyan-400"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-base sm:text-lg font-bold text-white mb-1"
+                                        data-lang-id="Tanggung Jawab & Sinergi Tim" data-lang-en="Accountability & Team Synergy">
+                                        Tanggung Jawab & Sinergi Tim
+                                    </h4>
+                                    <p class="text-xs text-white/60 font-body"
+                                        data-lang-id="Pemahaman konsep mendalam, konsistensi sikap, dan integritas tinggi"
+                                        data-lang-en="High concept comprehension, attitude consistency, and absolute integrity">
+                                        Pemahaman konsep mendalam, konsistensi sikap, dan integritas tinggi
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- ==============================================================
+                         ADEGAN 3 - BUKTI TERUKUR (MEASURED PROOF)
+                         ============================================================== -->
+                    <div class="story-scene story-scene-3" id="story-scene-3">
+                        <div class="scene-content max-w-5xl w-full px-4 sm:px-6">
+                            <div class="liquid-glass-card p-6 sm:p-8 lg:p-10 border-cyan-400/20">
+                                <!-- Card Header -->
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8 pb-4 border-b border-white/10">
+                                    <div>
+                                        <span class="font-mono text-[11px] uppercase tracking-widest text-cyan-300 block mb-1">
+                                            // 02 EMPIRICAL VALIDATION
+                                        </span>
+                                        <h3 class="font-display text-xl sm:text-2xl font-bold text-white"
+                                            data-lang-id="Bukti Terukur & Integritas Psikometrik"
+                                            data-lang-en="Empirical Proof & Psychometric Integrity">
+                                            Bukti Terukur & Integritas Psikometrik
+                                        </h3>
+                                    </div>
+                                    <span class="self-start sm:self-auto font-mono text-[11px] px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">
+                                        AUDITED & VERIFIED
+                                    </span>
+                                </div>
+
+                                <!-- Card Grid: Left Gauge, Right Rows + Languages -->
+                                <div class="grid gap-8 lg:grid-cols-12 items-center">
+                                    
+                                    <!-- Left: Semi-circle Gauge -->
+                                    <div class="lg:col-span-5 flex flex-col items-center justify-center text-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                                        <div class="relative w-[240px] h-[135px] flex items-end justify-center mb-2">
+                                            <svg class="w-full h-full overflow-visible" viewBox="0 0 240 135">
+                                                <defs>
+                                                    <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                        <stop offset="0%" stop-color="#38bdf8" />
+                                                        <stop offset="70%" stop-color="#78c9f5" />
+                                                        <stop offset="100%" stop-color="#ffffff" />
+                                                    </linearGradient>
+                                                    <filter id="gaugeGlow">
+                                                        <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#78c9f5" flood-opacity="0.4" />
+                                                    </filter>
+                                                </defs>
+                                                <!-- Track Arc (semi-circle radius 95, cx 120, cy 120) -->
+                                                <path d="M 25 120 A 95 95 0 0 1 215 120" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="14" stroke-linecap="round" />
+                                                <!-- Progress Arc -->
+                                                <path id="gauge-arc-path" d="M 25 120 A 95 95 0 0 1 215 120" fill="none" stroke="url(#gaugeGrad)" stroke-width="14" stroke-linecap="round" filter="url(#gaugeGlow)" stroke-dasharray="298.45" stroke-dashoffset="298.45" />
+                                            </svg>
+                                            
+                                            <!-- Inside Arc Text -->
+                                            <div class="absolute bottom-1 left-0 right-0 flex flex-col items-center pointer-events-none">
+                                                <div class="flex items-baseline gap-1">
+                                                    <span id="gauge-gpa-count" class="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">0.00</span>
+                                                    <span class="font-mono text-base text-cyan-300 font-semibold">/4.00</span>
+                                                </div>
+                                                <span class="font-mono text-[10px] uppercase tracking-wider text-white/70"
+                                                    data-lang-id="IPK KUMULATIF" data-lang-en="CUMULATIVE GPA">IPK KUMULATIF</span>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-xs text-white/50 font-body mt-2"
+                                            data-lang-id="Universitas Palangka Raya • S1 Informatika"
+                                            data-lang-en="Universitas Palangka Raya • B.Sc. Informatics">
+                                            Universitas Palangka Raya • S1 Informatika
+                                        </p>
+                                        <div class="mt-3 inline-flex items-center gap-1.5 font-mono text-[11px] text-cyan-300 bg-cyan-400/10 px-2.5 py-1 rounded-md border border-cyan-400/20">
+                                            <iconify-icon icon="solar:verified-check-linear"></iconify-icon>
+                                            <span>3.86 / 4.00 (96.5% INDEX)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Psychometric Integrity Table & Multilingual Proficiency -->
+                                    <div class="lg:col-span-7 space-y-6">
+                                        <!-- 4 Psychometric Rows -->
+                                        <div class="space-y-2.5">
+                                            <div class="psych-metric-row flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5 transition-all">
+                                                <div class="flex items-center gap-2.5">
+                                                    <iconify-icon icon="solar:check-circle-bold" class="text-cyan-400 text-base"></iconify-icon>
+                                                    <span class="text-sm text-white/85" data-lang-id="Pemahaman Konsep Tinggi" data-lang-en="High Concept Comprehension">Pemahaman Konsep Tinggi</span>
+                                                </div>
+                                                <span class="font-mono text-[11px] text-cyan-300 font-semibold px-2 py-0.5 rounded bg-cyan-400/10 border border-cyan-400/20">VERIFIED</span>
+                                            </div>
+
+                                            <div class="psych-metric-row flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5 transition-all">
+                                                <div class="flex items-center gap-2.5">
+                                                    <iconify-icon icon="solar:shield-check-bold" class="text-cyan-400 text-base"></iconify-icon>
+                                                    <span class="text-sm text-white/85" data-lang-id="Konsistensi Sikap Ekstrem" data-lang-en="Extreme Attitude Consistency">Konsistensi Sikap Ekstrem</span>
+                                                </div>
+                                                <span class="font-mono text-[11px] text-cyan-300 font-semibold px-2 py-0.5 rounded bg-cyan-400/10 border border-cyan-400/20">CONSTANT</span>
+                                            </div>
+
+                                            <div class="psych-metric-row flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5 transition-all">
+                                                <div class="flex items-center gap-2.5">
+                                                    <iconify-icon icon="solar:document-medicine-bold" class="text-cyan-400 text-base"></iconify-icon>
+                                                    <span class="text-sm text-white/85" data-lang-id="Integritas & Tanggung Jawab" data-lang-en="High Integrity & Accountability">Integritas & Tanggung Jawab</span>
+                                                </div>
+                                                <span class="font-mono text-[11px] text-cyan-300 font-semibold px-2 py-0.5 rounded bg-cyan-400/10 border border-cyan-400/20">ASSURED</span>
+                                            </div>
+
+                                            <div class="psych-metric-row flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5 transition-all">
+                                                <div class="flex items-center gap-2.5">
+                                                    <iconify-icon icon="solar:users-group-two-rounded-bold" class="text-cyan-400 text-base"></iconify-icon>
+                                                    <span class="text-sm text-white/85" data-lang-id="Sinergi Kolaborasi Kelompok" data-lang-en="Excellent Group Synergy">Sinergi Kolaborasi Kelompok</span>
+                                                </div>
+                                                <span class="font-mono text-[11px] text-cyan-300 font-semibold px-2 py-0.5 rounded bg-cyan-400/10 border border-cyan-400/20">TEAM</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Languages Progress Bars -->
+                                        <div class="pt-2 border-t border-white/5">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300"
+                                                    data-lang-id="KEMAMPUAN MULTIBAHASA" data-lang-en="MULTILINGUAL PROFICIENCY">
+                                                    KEMAMPUAN MULTIBAHASA
+                                                </span>
+                                                <span class="font-mono text-[10px] text-white/40">4 LANGUAGES</span>
+                                            </div>
+                                            
+                                            <div class="space-y-3" id="story-language-list">
+                                                <!-- Indonesia -->
+                                                <div class="space-y-1">
+                                                    <div class="flex justify-between text-xs font-mono">
+                                                        <span class="text-white/85 font-medium">Bahasa Indonesia</span>
+                                                        <span class="text-white/50" data-lang-id="Bahasa Ibu" data-lang-en="Native">Bahasa Ibu</span>
+                                                    </div>
+                                                    <div class="h-1.5 w-full rounded-full bg-white/5 overflow-hidden border border-white/5">
+                                                        <div class="lang-fill-bar h-full rounded-full bg-gradient-to-r from-cyan-400 to-white" data-target="100%" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- English -->
+                                                <div class="space-y-1">
+                                                    <div class="flex justify-between text-xs font-mono">
+                                                        <span class="text-white/85 font-medium">English</span>
+                                                        <span class="text-white/50" data-lang-id="Kerja Terbatas" data-lang-en="Limited Working">Kerja Terbatas</span>
+                                                    </div>
+                                                    <div class="h-1.5 w-full rounded-full bg-white/5 overflow-hidden border border-white/5">
+                                                        <div class="lang-fill-bar h-full rounded-full bg-gradient-to-r from-cyan-400 to-white" data-target="68%" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- Japanese -->
+                                                <div class="space-y-1">
+                                                    <div class="flex justify-between text-xs font-mono">
+                                                        <span class="text-white/85 font-medium">Japanese</span>
+                                                        <span class="text-white/50" data-lang-id="Dasar" data-lang-en="Elementary">Dasar</span>
+                                                    </div>
+                                                    <div class="h-1.5 w-full rounded-full bg-white/5 overflow-hidden border border-white/5">
+                                                        <div class="lang-fill-bar h-full rounded-full bg-gradient-to-r from-cyan-400 to-white" data-target="28%" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- Latin -->
+                                                <div class="space-y-1">
+                                                    <div class="flex justify-between text-xs font-mono">
+                                                        <span class="text-white/85 font-medium">Latin</span>
+                                                        <span class="text-white/50" data-lang-id="Dasar" data-lang-en="Elementary">Dasar</span>
+                                                    </div>
+                                                    <div class="h-1.5 w-full rounded-full bg-white/5 overflow-hidden border border-white/5">
+                                                        <div class="lang-fill-bar h-full rounded-full bg-gradient-to-r from-cyan-400 to-white" data-target="18%" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==============================================================
+                         ADEGAN 4 - DISIPLIN HARIAN (DAILY DISCIPLINE & TIMELINE)
+                         ============================================================== -->
+                    <div class="story-scene story-scene-4" id="story-scene-4">
+                        <div class="scene-content max-w-4xl w-full px-4 sm:px-6">
+                            
+                            <!-- Scene Header -->
+                            <div class="text-center mb-6 sm:mb-8">
+                                <span class="font-mono text-[11px] uppercase tracking-widest text-cyan-300 block mb-1">
+                                    // 03 DISCIPLINE & CAPITAL ALLOCATION
+                                </span>
+                                <h3 class="font-display text-xl sm:text-2xl font-bold text-white"
+                                    data-lang-id="Filosofi Gaya Hidup & Alokasi Modal"
+                                    data-lang-en="Lifestyle Philosophy & Capital Allocation">
+                                    Filosofi Gaya Hidup & Alokasi Modal
+                                </h3>
+                            </div>
+
+                            <!-- Vertical Timeline with Drawn Connector -->
+                            <div class="relative pl-6 sm:pl-10 space-y-4 sm:space-y-6">
+                                <!-- Timeline Track and Animated Fill Line -->
+                                <div class="absolute left-2.5 sm:left-4 top-2 bottom-6 w-[2px] bg-white/10 rounded-full" aria-hidden="true">
+                                    <div class="timeline-active-line w-full bg-gradient-to-b from-cyan-400 via-cyan-300 to-white rounded-full transition-none" id="timeline-active-line" style="height: 0%;"></div>
+                                </div>
+
+                                <!-- Step 1: Kalistenik Harian -->
+                                <div class="timeline-step-card liquid-glass-card p-4 sm:p-5 relative" id="timeline-step-1">
+                                    <div class="timeline-node-dot absolute -left-[27px] sm:-left-[35px] top-6 w-3.5 h-3.5 rounded-full bg-charcoal border-2 border-cyan-400 shadow-[0_0_8px_rgba(120,201,245,0.6)]"></div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300">06:00 AM // RUTINITAS FISIK</span>
+                                        <iconify-icon icon="solar:dumbbell-large-minimalistic-linear" class="text-cyan-400 text-lg"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-base font-bold text-white mb-1"
+                                        data-lang-id="Kalistenik Harian & Latihan Fisik Hibrida"
+                                        data-lang-en="Daily Calisthenics & Hybrid Training">
+                                        Kalistenik Harian & Latihan Fisik Hibrida
+                                    </h4>
+                                    <p class="text-xs text-white/70 leading-relaxed font-body"
+                                        data-lang-id="Menjalani rutinitas kalistenik harian, mobilitas terstruktur, dan pembiasaan fisik untuk ketahanan di bawah tekanan tinggi."
+                                        data-lang-en="Practicing daily calisthenics, hybrid training, and structured mobility cycles to build unshakeable endurance under pressure.">
+                                        Menjalani rutinitas kalistenik harian, mobilitas terstruktur, dan pembiasaan fisik untuk ketahanan di bawah tekanan tinggi.
+                                    </p>
+                                </div>
+
+                                <!-- Step 2: 62 kg Massa Otot -->
+                                <div class="timeline-step-card liquid-glass-card p-4 sm:p-5 relative" id="timeline-step-2">
+                                    <div class="timeline-node-dot absolute -left-[27px] sm:-left-[35px] top-6 w-3.5 h-3.5 rounded-full bg-charcoal border-2 border-cyan-400 shadow-[0_0_8px_rgba(120,201,245,0.6)]"></div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300">BODY METRIC // ATHLETIC PEAK</span>
+                                        <iconify-icon icon="solar:heart-pulse-linear" class="text-cyan-400 text-lg"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-base font-bold text-white mb-1"
+                                        data-lang-id="62 kg Massa Otot Tanpa Lemak"
+                                        data-lang-en="62 kg Lean Muscle Mass">
+                                        62 kg Massa Otot Tanpa Lemak
+                                    </h4>
+                                    <p class="text-xs text-white/70 leading-relaxed font-body"
+                                        data-lang-id="Mempertahankan 62 kg massa otot tanpa lemak dengan siklus mobilitas terstruktur dan kontrol nutrisi yang disiplin."
+                                        data-lang-en="Maintaining 62 kg of lean muscle mass through structured mobility cycles and rigorous nutritional discipline.">
+                                        Mempertahankan 62 kg massa otot tanpa lemak dengan siklus mobilitas terstruktur dan kontrol nutrisi yang disiplin.
+                                    </p>
+                                </div>
+
+                                <!-- Step 3: DCA Bitcoin + Sparkline -->
+                                <div class="timeline-step-card liquid-glass-card p-4 sm:p-5 relative" id="timeline-step-3">
+                                    <div class="timeline-node-dot absolute -left-[27px] sm:-left-[35px] top-6 w-3.5 h-3.5 rounded-full bg-charcoal border-2 border-cyan-400 shadow-[0_0_8px_rgba(120,201,245,0.6)]"></div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300">CAPITAL ALLOCATION // BTC DCA</span>
+                                        <iconify-icon icon="solar:chart-2-linear" class="text-cyan-400 text-lg"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-base font-bold text-white mb-1"
+                                        data-lang-id="Strategi DCA Bitcoin Jangka Panjang"
+                                        data-lang-en="Disciplined Bitcoin Dollar-Cost Averaging">
+                                        Strategi DCA Bitcoin Jangka Panjang
+                                    </h4>
+                                    <p class="text-xs text-white/70 leading-relaxed font-body mb-3"
+                                        data-lang-id="Pola pikir investor sistematis melalui strategi Dollar-Cost Averaging (DCA) Bitcoin jangka panjang, bebas dari kepanikan emosional jangka pendek."
+                                        data-lang-en="A systematic long-term investor mindset executed through disciplined Bitcoin Dollar-Cost Averaging (DCA), immune to short-term market noise.">
+                                        Pola pikir investor sistematis melalui strategi Dollar-Cost Averaging (DCA) Bitcoin jangka panjang, bebas dari kepanikan emosional jangka pendek.
+                                    </p>
+
+                                    <!-- SVG Sparkline Chart -->
+                                    <div class="w-full h-12 bg-white/[0.02] rounded-xl p-2 border border-white/5 relative overflow-hidden flex items-center">
+                                        <svg class="w-full h-full overflow-visible" viewBox="0 0 300 40" preserveAspectRatio="none">
+                                            <defs>
+                                                <linearGradient id="sparkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                    <stop offset="0%" stop-color="#78c9f5" stop-opacity="0.35" />
+                                                    <stop offset="100%" stop-color="#78c9f5" stop-opacity="0.0" />
+                                                </linearGradient>
+                                            </defs>
+                                            <!-- Area Fill -->
+                                            <path id="sparkline-area" d="M 0 36 C 50 34, 90 28, 140 25 C 190 22, 230 14, 290 6 L 290 40 L 0 40 Z" fill="url(#sparkGrad)" />
+                                            <!-- Stroke Line -->
+                                            <path id="sparkline-path" d="M 0 36 C 50 34, 90 28, 140 25 C 190 22, 230 14, 290 6" fill="none" stroke="#78c9f5" stroke-width="2" stroke-linecap="round" stroke-dasharray="320" stroke-dashoffset="320" />
+                                            <!-- Glowing Peak Indicator Dot -->
+                                            <circle id="sparkline-dot" cx="290" cy="6" r="3.5" fill="#ffffff" stroke="#78c9f5" stroke-width="2" class="opacity-0 transition-opacity" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!-- Closing Climax Banner -->
+                                <div class="closing-banner liquid-glass-card p-3.5 sm:p-5 text-center border-cyan-400/30 mt-4 sm:mt-5" id="story-closing-banner">
+                                    <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300 block mb-1">
+                                        // SIKAP INTI • CORE ETHOS
+                                    </span>
+                                    <p class="font-display text-base sm:text-xl md:text-2xl font-bold text-white leading-snug"
+                                        data-lang-id="Disiplin yang sama, diterapkan pada semua hal."
+                                        data-lang-en="The same discipline, applied to everything.">
+                                        "Disiplin yang sama, diterapkan pada semua hal."
+                                    </p>
+                                    <p class="font-mono text-[10px] sm:text-[11px] text-white/50 mt-1.5 tracking-widest">
+                                        MIND • MUSCLE • CODE
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -384,11 +880,12 @@
         <section id="stack" class="section-shell">
             <div class="section-container">
                 <div class="section-header">
-                    <span class="editorial-kicker">// 02 CAPABILITIES & STACK</span>
-                    <h2 class="section-headline mt-2" data-lang-id="Tumpukan Teknologi & Instrumen Rekayasa"
+                    <span class="editorial-kicker" data-lang-id="// 02 — Apa yang dibangun dari fondasi itu?"
+                        data-lang-en="// 02 — What is built from that foundation?">// 02 — Apa yang dibangun dari fondasi itu?</span>
+                    <h2 class="section-headline mt-2" id="stack-headline" data-lang-id="Tumpukan Teknologi & Instrumen Rekayasa"
                         data-lang-en="Core Tech Stack & Engineering Instruments">Core Tech Stack & Engineering
                         Instruments</h2>
-                    <p class="section-desc mt-3"
+                    <p class="section-desc mt-3" id="stack-desc"
                         data-lang-id="Mempelajari teknologi mutakhir secara mandiri dan mengimplementasikannya ke dalam proyek nyata, mulai dari aplikasi web modern dan enkripsi sisi klien hingga otomasi perdagangan dan visi komputer."
                         data-lang-en="Rapidly absorbing state-of-the-art technologies and deploying them through production-grade projects: modern web applications, client-side cryptography, trading automation, and computer vision.">
                         Rapidly absorbing state-of-the-art technologies and deploying them through production-grade
@@ -397,11 +894,29 @@
                     </p>
                 </div>
 
+                <!-- Layer Depth Indicator (4 Metaphor Layers: Face -> Engine -> Brain -> Hands) -->
+                <div id="stack-layer-indicator" class="stack-depth-indicator"></div>
+
                 <!-- Filter Tabs for Stack Categories -->
                 <div id="stack-tabs" class="skills-nav"></div>
 
-                <!-- Skill Cards Grid -->
+                <!-- Skill Cards Bento Grid -->
                 <div id="stack-panel" class="skills-grid"></div>
+
+                <!-- Section 02 Narrative Closing Note -->
+                <div id="stack-closing" class="stack-closing-banner">
+                    <div class="closing-glow-line"></div>
+                    <p class="closing-quote-text"
+                        data-lang-id="“Dari tampilan sampai logika, semuanya dipelajari, dipertanyakan, lalu dibangun.”"
+                        data-lang-en="“From interface to logic, everything is studied, questioned, then built.”">
+                        “Dari tampilan sampai logika, semuanya dipelajari, dipertanyakan, lalu dibangun.”
+                    </p>
+                    <div class="closing-badge-sub font-mono">
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span data-lang-id="Rekayasa Berkelanjutan // Mind • Muscle • Code"
+                            data-lang-en="Continuous Engineering // Mind • Muscle • Code">Rekayasa Berkelanjutan // Mind • Muscle • Code</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -671,6 +1186,32 @@
     </footer>
 
     <!-- ====================================================================
+       MOBILE BOTTOM FLOATING QUICK-NAV DOCK (THUMB REACHABLE)
+       ==================================================================== -->
+    <nav class="mobile-quick-dock" id="mobile-quick-dock" aria-label="Quick Mobile Navigation">
+        <a href="#hero" class="dock-item active" data-section="hero" aria-label="Beranda">
+            <iconify-icon icon="solar:home-2-linear" class="dock-icon"></iconify-icon>
+            <span class="dock-text">Home</span>
+        </a>
+        <a href="#about" class="dock-item" data-section="about" aria-label="Mind">
+            <iconify-icon icon="solar:brain-outline" class="dock-icon"></iconify-icon>
+            <span class="dock-text">Mind</span>
+        </a>
+        <a href="#stack" class="dock-item" data-section="stack" aria-label="Stack">
+            <iconify-icon icon="solar:layers-minimalistic-linear" class="dock-icon"></iconify-icon>
+            <span class="dock-text">Stack</span>
+        </a>
+        <a href="#projects" class="dock-item" data-section="projects" aria-label="Projects">
+            <iconify-icon icon="solar:folder-with-files-linear" class="dock-icon"></iconify-icon>
+            <span class="dock-text">Projects</span>
+        </a>
+        <button type="button" class="dock-item dock-item-menu" onclick="window.toggleMobileNav()" aria-label="Buka Semua Menu">
+            <iconify-icon icon="solar:hamburger-menu-linear" class="dock-icon"></iconify-icon>
+            <span class="dock-text">Menu</span>
+        </button>
+    </nav>
+
+    <!-- ====================================================================
        FLOATING LIQUID GLASS AUDIO HUB & FUTURISTIC ROBOT COMPANION
        ==================================================================== -->
     <div class="floating-audio-hub" id="floating-audio-hub">
@@ -798,6 +1339,8 @@
 
     <!-- Scripts -->
     <script src="projects/projects-data.js"></script>
+    <script src="animations.js"></script>
+    <script src="tech-stack.js"></script>
     <script src="script.js"></script>
 </body>
 
