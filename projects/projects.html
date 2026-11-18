@@ -1,406 +1,227 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Explore application projects by Agustinus Irwin Putra Pangesti, including a web-based crypto wallet, AI integrations, automation, and civic technology." />
-    <meta name="keywords" content="AIPP Projects, Agustinus Irwin Putra Pangesti, Application Development, Web Applications, Crypto Wallet Project, AI Integrations, Civic Technology, Portfolio" />
-    <meta name="author" content="Agustinus Irwin Putra Pangesti" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://aipp-site.netlify.app/projects/projects.html" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Complete engineering projects archive of Agustinus Irwin Putra Pangesti (AIPP) — including client-side crypto wallet, emergency response platform, civic technology, and serverless architectures." />
+  <meta name="keywords"
+    content="AIPP Projects, Agustinus Irwin Putra Pangesti, Crypto Wallet, Civic Technology, Computer Vision, YOLOv11, Next.js, Case Studies" />
+  <meta name="author" content="Agustinus Irwin Putra Pangesti" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://aipp-site.netlify.app/projects/projects.html" />
-    <meta property="og:title" content="Projects Portal | Agustinus Irwin Putra Pangesti" />
-    <meta property="og:description" content="Explore application projects by Agustinus Irwin Putra Pangesti, including a web-based crypto wallet, AI integrations, automation, and civic technology." />
-    <meta property="og:image" content="https://aipp-site.netlify.app/img/aipp-logo.webp" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://aipp-site.netlify.app/projects/projects.html" />
-    <meta property="twitter:title" content="Projects Portal | Agustinus Irwin Putra Pangesti" />
-    <meta property="twitter:description" content="Explore application projects by Agustinus Irwin Putra Pangesti, including a web-based crypto wallet, AI integrations, automation, and civic technology." />
-    <meta property="twitter:image" content="https://aipp-site.netlify.app/img/aipp-logo.webp" />
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://aipp-site.netlify.app/projects/projects.html" />
 
-    <title>Projects Portal | Agustinus Irwin Putra Pangesti</title>
-    <link rel="icon" type="image/png" href="../img/aipp-icon.png" />
-    <link rel="apple-touch-icon" href="../img/aipp-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        slateInk: '#0F172A',
-                        cyanNeon: '#06B6D4',
-                        gold: {
-                            100: '#FEF3C7',
-                            200: '#FCD34D',
-                            400: '#D97706',
-                        },
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        pixel: ['Silkscreen', 'monospace'],
-                    },
-                },
-            },
-        };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
-    <link rel="stylesheet" href="../styles.css" />
-    <style>
-        /* Immersive Pixel Theme Specific Classes */
-        .pixel-border-double {
-            border: 4px double rgba(6, 182, 212, 0.4);
-            box-shadow: 0 0 0 2px rgba(15, 23, 42, 1), 0 0 0 4px rgba(6, 182, 212, 0.3);
-        }
-        .pixel-border-double-gold {
-            border: 4px double rgba(245, 158, 11, 0.4);
-            box-shadow: 0 0 0 2px rgba(15, 23, 42, 1), 0 0 0 4px rgba(245, 158, 11, 0.3);
-        }
-        .pixel-btn {
-            font-family: 'Silkscreen', monospace;
-            border-style: solid;
-            border-width: 3px;
-            border-color: rgba(6, 182, 212, 0.8) rgba(6, 182, 212, 0.3) rgba(6, 182, 212, 0.3) rgba(6, 182, 212, 0.8);
-            background: rgba(15, 23, 42, 0.9);
-            box-shadow: 2px 2px 0 0 rgba(0,0,0,0.5);
-            transition: all 120ms steps(2);
-        }
-        .pixel-btn:hover {
-            border-color: rgba(6, 182, 212, 1);
-            background: rgba(6, 182, 212, 0.15);
-            transform: translate(1px, 1px);
-            box-shadow: 1px 1px 0 0 rgba(0,0,0,0.5);
-        }
-        .pixel-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0 0 rgba(0,0,0,0.5);
-        }
-        .pixel-sprite {
-            image-rendering: pixelated;
-            display: inline-block;
-        }
-        
-        /* Animated SVG Pixel Character Placements */
-        .character-floating-box {
-            position: absolute;
-            pointer-events: none;
-            z-index: 10;
-        }
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aipp-site.netlify.app/projects/projects.html" />
+  <meta property="og:title" content="Projects Archive | Agustinus Irwin Putra Pangesti" />
+  <meta property="og:description"
+    content="Complete engineering projects archive of Agustinus Irwin Putra Pangesti (AIPP)." />
+  <meta property="og:image" content="https://aipp-site.netlify.app/img/aipp-logo.webp" />
 
-        /* Scanlines Overlay */
-        .retro-scanlines::after {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 9999;
-            background-size: 100% 3px, 3px 100%;
-            pointer-events: none;
-        }
-    </style>
+  <title>Projects Archive | Agustinus Irwin Putra Pangesti</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../img/aipp-icon.png" />
+  <link rel="apple-touch-icon" href="../img/aipp-icon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+  <!-- Iconify -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- Unified Stylesheet -->
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 
-<body class="bg-slateInk text-slate-100 antialiased selection:bg-cyan-400/30 selection:text-white retro-scanlines relative min-h-screen pb-20">
-    <!-- Background Grid Noise Layer -->
-    <div class="noise-layer"></div>
+<body class="min-h-screen pb-24">
+  <!-- Desktop Custom Cursor -->
+  <div class="custom-cursor-follower" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
 
-    <!-- Background Orbs -->
-    <div class="orb orb-cyan" style="top: 15%; left: 5%;"></div>
-    <div class="orb orb-gold" style="bottom: 10%; right: 5%;"></div>
+  <!-- Ambient Glows -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-gradient-1"></div>
+    <div class="ambient-gradient-2"></div>
+    <div class="ambient-gradient-3"></div>
+    <div class="subtle-grid-layer"></div>
+  </div>
 
-    <div class="custom-cursor" aria-hidden="true"></div>
-    <div class="custom-cursor-dot" aria-hidden="true"></div>
-
-    <!-- Sticky Navigation -->
-    <nav class="sticky top-0 z-50 border-b border-white/5 bg-slateInk/80 backdrop-filter backdrop-blur-md">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                <a href="../index.html" class="flex items-center gap-2 group">
-                    <img src="../img/aipp-logo.webp" class="h-7 w-7 transition-transform duration-300 group-hover:rotate-12" alt="Logo" />
-                    <span class="font-pixel text-[10px] sm:text-xs tracking-wider text-cyan-300 group-hover:text-cyan-200">AIPP.SYSTEMS</span>
-                </a>
-                
-                <div class="flex items-center gap-4">
-                    <!-- Language Selection -->
-                    <div class="flex rounded border border-white/10 bg-white/5 p-0.5 text-xs font-semibold">
-                        <button onclick="setLanguage('id')" id="lang-id" class="rounded px-2.5 py-1 transition-all">ID</button>
-                        <button onclick="setLanguage('en')" id="lang-en" class="rounded px-2.5 py-1 transition-all">EN</button>
-                    </div>
-
-                    <!-- Return Gate Button -->
-                    <a href="../index.html" class="pixel-btn text-[9px] sm:text-[10px] px-3 py-1.5 text-cyan-300 border-cyan-400 flex items-center gap-1.5">
-                        <iconify-icon icon="mdi:home-export-outline" class="text-xs"></iconify-icon>
-                        <span data-lang-id="KEMBALI KE BERANDA" data-lang-en="RETURN HOME">RETURN HOME</span>
-                    </a>
-                </div>
-            </div>
+  <!-- STICKY LIQUID GLASS NAVIGATION -->
+  <header class="site-header">
+    <nav class="nav-dock" aria-label="Navigation">
+      <a href="../index.html" class="nav-brand">
+        <img src="../img/aipp-icon.png" alt="AIPP Logo" class="nav-brand-logo" />
+        <div>
+          <span class="nav-brand-title block">AIPP PROTOCOL</span>
+          <span class="nav-brand-subtitle block">PROJECTS ARCHIVE</span>
         </div>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <!-- Language Switcher -->
+        <div class="lang-switch" role="group" aria-label="Language Selector">
+          <button type="button" id="lang-id" class="lang-btn active" onclick="window.setLanguage('id')">ID</button>
+          <button type="button" id="lang-en" class="lang-btn" onclick="window.setLanguage('en')">EN</button>
+        </div>
+
+        <!-- Return Home Button -->
+        <a href="../index.html" class="btn-primary text-xs py-2 px-4" data-lang-id="Kembali ke Portofolio"
+          data-lang-en="Back to Portfolio">
+          <iconify-icon icon="solar:arrow-left-linear" class="text-base"></iconify-icon>
+          <span>Back to Portfolio</span>
+        </a>
+      </div>
     </nav>
+  </header>
 
-    <!-- Main Content Stage -->
-    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 relative">
-        
-        <!-- Flying Bat (Top Area) -->
-        <div class="character-floating-box top-4 right-10 sm:right-32">
-            <svg class="pixel-sprite pixel-bat" viewBox="0 0 16 16" width="72" height="72">
-                <g fill="#1e293b">
-                    <!-- Wings & Body shape -->
-                    <rect x="2" y="5" width="2" height="1"/>
-                    <rect x="4" y="4" width="2" height="1"/>
-                    <rect x="6" y="5" width="4" height="4"/>
-                    <rect x="10" y="4" width="2" height="1"/>
-                    <rect x="12" y="5" width="2" height="1"/>
-                    <rect x="1" y="6" width="2" height="1"/>
-                    <rect x="13" y="6" width="2" height="1"/>
-                    <rect x="0" y="7" width="2" height="1"/>
-                    <rect x="14" y="7" width="2" height="1"/>
-                    <rect x="1" y="8" width="1" height="2"/>
-                    <rect x="14" y="8" width="1" height="2"/>
-                    <rect x="5" y="9" width="6" height="1"/>
-                    <rect x="7" y="10" width="2" height="2"/>
-                    <!-- Head & Ears -->
-                    <rect x="6" y="2" width="1" height="2"/>
-                    <rect x="9" y="2" width="1" height="2"/>
-                    <rect x="7" y="3" width="2" height="2"/>
-                    <!-- Eyes (Glow) -->
-                    <rect x="7" y="4" width="1" height="1" fill="#ef4444"/>
-                    <rect x="8" y="4" width="1" height="1" fill="#ef4444"/>
-                </g>
-            </svg>
-        </div>
+  <!-- MAIN ARCHIVE STAGE -->
+  <main class="section-container px-4 sm:px-6 lg:px-8 mt-12 relative z-10">
+    <header class="text-center max-w-3xl mx-auto space-y-4 mb-14">
+      <span class="editorial-kicker justify-center" data-lang-id="// REPOSITORI & STUDI KASUS"
+        data-lang-en="// REPOSITORIES & CASE STUDIES">// REPOSITORIES & CASE STUDIES</span>
+      <h1 class="section-headline" data-lang-id="Arsip Portofolio Proyek"
+        data-lang-en="Engineering Project Archive">Engineering Project Archive</h1>
+      <p class="section-desc mx-auto text-sm sm:text-base"
+        data-lang-id="Eksplorasi mendalam atas lima sistem rekayasa perangkat lunak yang dibangun oleh Agustinus Irwin Putra Pangesti, mencakup arsitektur teknis, dokumentasi pembuktian, dan implementasi kode."
+        data-lang-en="In-depth exploration of five software engineering systems architected by Agustinus Irwin Putra Pangesti, covering technical architectures, proof-of-work documentation, and codebases.">
+        In-depth exploration of five software engineering systems architected by Agustinus Irwin Putra Pangesti, covering technical architectures, proof-of-work documentation, and codebases.
+      </p>
+    </header>
 
-        <!-- Header Title block -->
-        <header class="text-center max-w-3xl mx-auto space-y-4 mb-16 relative">
-            
-            <!-- Wizard (Floating Left) -->
-            <div class="absolute -top-12 -left-8 sm:-left-16 hidden sm:block">
-                <svg class="pixel-sprite pixel-wizard" viewBox="0 0 16 16" width="76" height="76">
-                    <!-- Hat -->
-                    <rect x="7" y="0" width="2" height="1" fill="#4f46e5"/>
-                    <rect x="6" y="1" width="4" height="1" fill="#4338ca"/>
-                    <rect x="5" y="2" width="6" height="1" fill="#312e81"/>
-                    <rect x="4" y="3" width="8" height="1" fill="#1e1b4b"/>
-                    <rect x="2" y="4" width="12" height="1" fill="#22d3ee"/> <!-- Hat Brim -->
-                    <!-- Head / Eyes -->
-                    <rect x="5" y="5" width="6" height="3" fill="#ffedd5"/>
-                    <rect x="5" y="6" width="1" height="1" fill="#000"/>
-                    <rect x="9" y="6" width="1" height="1" fill="#000"/>
-                    <!-- Beard -->
-                    <rect x="4" y="8" width="8" height="3" fill="#f8fafc"/>
-                    <rect x="5" y="11" width="6" height="1" fill="#f8fafc"/>
-                    <!-- Robe -->
-                    <rect x="3" y="12" width="10" height="3" fill="#312e81"/>
-                    <!-- Staff -->
-                    <rect x="13" y="4" width="1" height="11" fill="#78350f"/>
-                    <rect x="12" y="3" width="3" height="1" fill="#eab308"/>
-                    <rect x="13" y="2" width="1" height="1" fill="#eab308"/>
-                    <circle cx="13.5" cy="2.5" r="1" fill="#fbbf24" class="animate-pulse"/>
-                </svg>
-            </div>
+    <!-- Filter Pills Panel -->
+    <section class="mb-12 flex justify-center">
+      <div class="flex flex-wrap justify-center gap-2.5 max-w-2xl" id="project-filters"></div>
+    </section>
 
-            <p class="font-pixel text-xs tracking-[0.25em] text-gold-200 uppercase" data-lang-id="ARSIF PORTAL PROYEK" data-lang-en="PROJECT PORTAL ARCHIVES">PROJECT PORTAL ARCHIVES</p>
-            <h1 class="font-pixel text-2xl sm:text-4xl text-white tracking-wide uppercase leading-normal" data-lang-id="DUNIA PIXEL KARYA" data-lang-en="PIXEL PROJECTS WORLD">PIXEL PROJECTS WORLD</h1>
-            <p class="text-xs sm:text-sm text-white/60 leading-relaxed font-mono" data-lang-id="Selamat datang di terminal arsip portofolio terpadu. Klik tab filter untuk memanggil repositori, dan buka 'Project Story' untuk mengeksplorasi dokumentasi." data-lang-en="Welcome to the unified portfolio archive terminal. Click filter tabs to query repositories, and open 'Project Story' to explore complete documentations.">Welcome to the unified portfolio archive terminal. Click filter tabs to query repositories, and open 'Project Story' to explore complete documentations.</p>
-        </header>
+    <!-- Project Cards Grid -->
+    <div id="project-grid" class="grid gap-8 lg:grid-cols-2"></div>
+  </main>
 
-        <!-- Category Filter Panel -->
-        <section class="mb-12 relative">
-            <!-- Cute Robot (Hovering Right) -->
-            <div class="absolute -top-10 right-4">
-                <svg class="pixel-sprite pixel-cute-robot" viewBox="0 0 16 16" width="60" height="60">
-                    <!-- Head -->
-                    <rect x="4" y="3" width="8" height="5" fill="#475569"/>
-                    <rect x="3" y="4" width="10" height="3" fill="#64748b"/>
-                    <!-- Eye slot -->
-                    <rect x="4" y="5" width="8" height="1" fill="#000"/>
-                    <rect x="5" y="5" width="2" height="1" fill="#22d3ee"/> <!-- cyan eyes -->
-                    <rect x="9" y="5" width="2" height="1" fill="#22d3ee"/>
-                    <!-- Antenna -->
-                    <rect x="7" y="1" width="2" height="2" fill="#ef4444"/>
-                    <!-- Body -->
-                    <rect x="5" y="9" width="6" height="4" fill="#334155"/>
-                    <rect x="6" y="10" width="4" height="2" fill="#22d3ee"/>
-                    <!-- Arms -->
-                    <rect x="3" y="9" width="1" height="3" fill="#64748b"/>
-                    <rect x="12" y="9" width="1" height="3" fill="#64748b"/>
-                    <!-- Jet thrust -->
-                    <rect x="6" y="13" width="4" height="2" fill="#f97316"/>
-                </svg>
-            </div>
+  <!-- FOOTER -->
+  <footer class="mt-24 text-center py-10 border-t border-white/5 mx-auto max-w-7xl px-4 text-xs text-white/45 font-mono">
+    <p>© <span id="current-year"></span> Agustinus Irwin Putra Pangesti • AIPP Protocol</p>
+  </footer>
 
-            <div class="flex flex-wrap justify-center gap-3" id="project-filters"></div>
-        </section>
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal"
+    class="lightbox-backdrop fixed inset-0 z-[10000] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <button id="lightbox-close"
+      class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center text-white text-xl transition-transform hover:scale-110 z-[10001]"
+      type="button" aria-label="Close Lightbox">
+      <iconify-icon icon="solar:close-circle-linear"></iconify-icon>
+    </button>
+    <div class="max-w-5xl max-h-[82vh] px-4 flex items-center justify-center relative">
+      <img id="lightbox-img" src="" alt="Enlarged Project Visual"
+        class="lightbox-image max-w-full max-h-[82vh] object-contain rounded-xl border border-white/10 shadow-2xl transition-transform duration-300" />
+      <video id="lightbox-video" src="" controls autoplay loop playsinline
+        class="lightbox-image max-w-full max-h-[82vh] object-contain rounded-xl border border-white/10 shadow-2xl transition-transform duration-300 hidden"></video>
 
-        <!-- Bouncing Slime (Guarding Grid) -->
-        <div class="mb-4 ml-4 flex items-center gap-2">
-            <svg class="pixel-sprite pixel-slime" viewBox="0 0 16 16" width="56" height="56">
-                <!-- Outer Border -->
-                <rect x="4" y="12" width="8" height="1" fill="#000"/>
-                <rect x="3" y="11" width="1" height="1" fill="#000"/>
-                <rect x="12" y="11" width="1" height="1" fill="#000"/>
-                <rect x="2" y="8" width="1" height="3" fill="#000"/>
-                <rect x="13" y="8" width="1" height="3" fill="#000"/>
-                <rect x="3" y="7" width="1" height="1" fill="#000"/>
-                <rect x="12" y="7" width="1" height="1" fill="#000"/>
-                <rect x="4" y="6" width="8" height="1" fill="#000"/>
-                <!-- Body cyan -->
-                <rect x="4" y="7" width="8" height="5" fill="#06b6d4"/>
-                <rect x="3" y="8" width="10" height="3" fill="#22d3ee"/>
-                <!-- Eyes -->
-                <rect x="5" y="8" width="1" height="1" fill="#fff"/>
-                <rect x="10" y="8" width="1" height="1" fill="#fff"/>
-                <rect x="5" y="9" width="1" height="1" fill="#000"/>
-                <rect x="10" y="9" width="1" height="1" fill="#000"/>
-            </svg>
-            <span class="font-pixel text-[9px] tracking-widest text-cyan-400 animate-pulse uppercase" data-lang-id="Penjaga Repositori: Aktif" data-lang-en="Repository Guard: Active">Repository Guard: Active</span>
-        </div>
+      <button id="lightbox-prev"
+        class="absolute -left-2 sm:left-4 w-10 h-10 rounded-full bg-black/60 border border-white/10 hover:bg-black/80 flex items-center justify-center text-white text-xl z-[10001] hidden"
+        type="button" aria-label="Previous">
+        <iconify-icon icon="solar:alt-arrow-left-linear"></iconify-icon>
+      </button>
+      <button id="lightbox-next"
+        class="absolute -right-2 sm:right-4 w-10 h-10 rounded-full bg-black/60 border border-white/10 hover:bg-black/80 flex items-center justify-center text-white text-xl z-[10001] hidden"
+        type="button" aria-label="Next">
+        <iconify-icon icon="solar:alt-arrow-right-linear"></iconify-icon>
+      </button>
+    </div>
+    <p id="lightbox-caption" class="mt-4 text-xs font-mono text-cyan-300 uppercase tracking-widest text-center max-w-xl px-4"></p>
+  </div>
 
-        <!-- Project Grid Stage -->
-        <div id="project-grid" class="grid gap-8 lg:grid-cols-2"></div>
-        
-    </main>
+  <!-- FLOATING LIQUID GLASS AUDIO HUB -->
+  <div class="floating-audio-hub" id="floating-audio-hub">
+    <!-- Futuristic Mascot -->
+    <div class="robot-companion" id="robot-companion" aria-label="Futuristic Audio Companion">
+      <svg id="robot-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+        <defs>
+          <linearGradient id="metal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#E5E9EE" />
+            <stop offset="50%" stop-color="#C8CDD3" />
+            <stop offset="100%" stop-color="#858D98" />
+          </linearGradient>
+          <linearGradient id="metal-chassis" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#242B35" />
+            <stop offset="100%" stop-color="#11151B" />
+          </linearGradient>
+          <linearGradient id="visor-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#78C9F5" />
+            <stop offset="100%" stop-color="#A4DFFF" />
+          </linearGradient>
+          <filter id="ice-glow-filter" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" result="glow" />
+            <feComposite in="SourceGraphic" in2="glow" operator="over" />
+          </filter>
+        </defs>
 
-    <!-- Footer Guard Knight -->
-    <footer class="mt-24 text-center relative pt-8 border-t border-white/5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="absolute -top-12 left-10 sm:left-24">
-            <svg class="pixel-sprite pixel-knight" viewBox="0 0 16 16" width="70" height="70">
-                <!-- Helmet -->
-                <rect x="5" y="2" width="6" height="1" fill="#000"/>
-                <rect x="4" y="3" width="8" height="5" fill="#475569"/>
-                <rect x="4" y="5" width="8" height="1" fill="#000"/>
-                <rect x="6" y="5" width="4" height="1" fill="#f59e0b"/> <!-- gold visor glow -->
-                <rect x="7" y="1" width="2" height="1" fill="#ef4444"/> <!-- feather -->
-                <!-- Armor Body -->
-                <rect x="3" y="8" width="10" height="5" fill="#334155"/>
-                <!-- Sword -->
-                <rect x="11" y="5" width="1" height="7" fill="#cbd5e1"/>
-                <rect x="10" y="9" width="3" height="1" fill="#d97706"/>
-                <!-- Shield -->
-                <rect x="2" y="9" width="3" height="4" fill="#06b6d4"/>
-                <rect x="3" y="10" width="1" height="2" fill="#fff"/>
-                <!-- Feet -->
-                <rect x="5" y="13" width="2" height="1" fill="#1e293b"/>
-                <rect x="9" y="13" width="2" height="1" fill="#1e293b"/>
-            </svg>
-        </div>
+        <!-- Antenna -->
+        <g id="robot-antenna-group" style="transform-origin: 24px 10px;">
+          <line x1="24" y1="10" x2="24" y2="4" stroke="#C8CDD3" stroke-width="1.5" stroke-linecap="round" />
+          <circle id="robot-antenna-node" cx="24" cy="3" r="2" fill="#78C9F5" filter="url(#ice-glow-filter)" />
+        </g>
 
-        <p class="font-pixel text-[10px] tracking-widest text-white/45">© 2026 AIPP.SYSTEMS • ALL RIGS RESERVED</p>
-    </footer>
+        <!-- Head Chassis -->
+        <g id="robot-head-group" style="transform-origin: 24px 20px;">
+          <rect x="10" y="10" width="28" height="20" rx="6" fill="url(#metal-grad)" stroke="#C8CDD3" stroke-width="0.75" />
+          <rect x="13" y="13" width="22" height="14" rx="4" fill="url(#metal-chassis)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
+          <rect id="robot-visor-eye" x="16" y="18" width="16" height="4" rx="2" fill="url(#visor-grad)" filter="url(#ice-glow-filter)" />
+        </g>
 
-    <!-- Image Lightbox Modal -->
-    <div id="lightbox-modal"
-        class="fixed inset-0 z-[10000] bg-slate-950/95 backdrop-blur-md flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-        <button id="lightbox-close"
-            class="absolute top-6 right-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001]"
-            type="button">
-            <iconify-icon icon="mdi:close"></iconify-icon>
-        </button>
-        <div class="max-w-5xl max-h-[80vh] px-4 flex items-center justify-center relative">
-            <img id="lightbox-img" src="" alt="Storytelling detail"
-                class="max-w-full max-h-[80vh] object-contain rounded-none border border-white/5 shadow-2xl scale-95 transition-transform duration-300">
-            <video id="lightbox-video" src="" controls autoplay loop playsinline
-                class="max-w-full max-h-[80vh] object-contain rounded-none border border-white/5 shadow-2xl scale-95 transition-transform duration-300 hidden"></video>
-
-            <button id="lightbox-prev"
-                class="absolute -left-4 sm:left-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001] hidden"
-                type="button">
-                <iconify-icon icon="mdi:chevron-left"></iconify-icon>
-            </button>
-            <button id="lightbox-next"
-                class="absolute -right-4 sm:right-6 w-12 h-12 rounded-none border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-white text-2xl transition hover:-translate-y-0.5 z-[10001] hidden"
-                type="button">
-                <iconify-icon icon="mdi:chevron-right"></iconify-icon>
-            </button>
-        </div>
-        <p id="lightbox-caption"
-            class="mt-6 text-sm font-semibold tracking-wider text-cyan-200 uppercase text-center max-w-xl px-4"></p>
+        <!-- Floating Body Chassis -->
+        <g id="robot-body-group" style="transform-origin: 24px 36px;">
+          <path d="M16 32 H32 L28 40 H20 Z" fill="url(#metal-grad)" stroke="#C8CDD3" stroke-width="0.75" />
+          <ellipse id="robot-thruster" cx="24" cy="41" rx="4" ry="1.5" fill="#78C9F5" filter="url(#ice-glow-filter)" />
+        </g>
+      </svg>
     </div>
 
-    <!-- Floating Music Toggle Bubble Container -->
-    <div id="music-container" class="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-center">
-        <!-- The Pixel Robot (pops out) -->
-        <div id="music-robot"
-            class="h-12 w-12 opacity-0 pointer-events-none translate-y-4 transition-all duration-300 mb-1 select-none">
-            <svg class="h-full w-full" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Antenna with Group for Sway Animation -->
-                <g id="robot-antenna" style="transform-origin: 8px 2px;">
-                    <rect x="7" y="0" width="2" height="2" fill="#fbbf24" />
-                </g>
-                <!-- Head Group for independent bobbing -->
-                <g id="robot-head" style="transform-origin: 8px 8px;">
-                    <!-- Head -->
-                    <rect x="4" y="2" width="8" height="6" fill="#475569" />
-                    <!-- Ear Left -->
-                    <rect x="3" y="4" width="1" height="2" fill="#334155" />
-                    <!-- Ear Right -->
-                    <rect x="12" y="4" width="1" height="2" fill="#334155" />
-                    <!-- Eyes -->
-                    <rect id="robot-eye-l" x="5" y="4" width="2" height="2" fill="#22d3ee" />
-                    <rect id="robot-eye-r" x="9" y="4" width="2" height="2" fill="#22d3ee" />
-                </g>
-                <!-- Neck -->
-                <rect x="7" y="8" width="2" height="1" fill="#334155" />
-                <!-- Radio Boombox Body Group for independent pulsing -->
-                <g id="robot-body" style="transform-origin: 8px 12px;">
-                    <!-- Radio Body -->
-                    <rect x="2" y="9" width="12" height="6" fill="#334155" />
-                    <!-- Speakers -->
-                    <rect x="3" y="10" width="3" height="3" fill="#1e293b" />
-                    <rect id="speaker-light-l" x="4" y="11" width="1" height="1" fill="#22d3ee" />
-                    <rect x="10" y="10" width="3" height="3" fill="#1e293b" />
-                    <rect id="speaker-light-r" x="11" y="11" width="1" height="1" fill="#22d3ee" />
-                    <!-- Tape deck -->
-                    <rect x="7" y="11" width="2" height="2" fill="#fbbf24" />
-                </g>
-            </svg>
-        </div>
+    <!-- Floating Audio Capsule Controller -->
+    <button type="button" class="floating-audio-controller" id="floating-audio-toggle" aria-label="Toggle Soundtrack Music">
+      <iconify-icon icon="solar:play-bold" class="audio-play-icon" id="audio-toggle-icon"></iconify-icon>
+      <div class="audio-meta-text">
+        <span class="audio-label">AIPP OST</span>
+        <span class="audio-status" id="audio-status-label">AUDIO OST</span>
+      </div>
 
-        <!-- The Capsule/Bubble trigger button -->
-        <button id="music-toggle"
-            class="relative flex h-11 w-11 items-center justify-center rounded-none border border-cyan-400/30 bg-slateInk/85 backdrop-blur-md shadow-[0_0_12px_rgba(6,182,212,0.25)] transition-all duration-300 hover:border-cyan-400/80 hover:scale-105 active:scale-90"
-            aria-label="Toggle Music">
-            <!-- Normal Play Icon (OFF state) -->
-            <iconify-icon id="music-play-icon" icon="pixelarticons:play"
-                class="text-lg text-cyan-300 transition-all duration-300"></iconify-icon>
+      <div class="audio-spectrum-canvas" aria-hidden="true">
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+      </div>
+    </button>
 
-            <!-- Equalizer lines (inside the ball, ON state) -->
-            <div id="music-equalizer"
-                class="absolute flex items-end gap-[1px] h-5 w-8 opacity-0 scale-50 pointer-events-none transition-all duration-300 justify-center">
-                <span class="bar bar-1 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-2 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-3 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-4 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-5 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-6 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-7 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-8 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-9 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-10 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-            </div>
-        </button>
+    <audio id="bg-music" loop preload="none">
+      <source src="../img/web-ost.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
 
-        <!-- Audio Element (source points to parent directory because projects.html is in a subfolder!) -->
-        <audio id="bg-music" loop preload="none">
-            <source src="../img/web-ost.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-
-    <!-- Shared Configurations & Pages Controllers -->
-    <script src="projects-data.js"></script>
-    <script src="projects-page.js"></script>
+  <script src="projects-data.js"></script>
+  <script src="projects-page.js"></script>
 </body>
 
 </html>

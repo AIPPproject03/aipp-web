@@ -1,1534 +1,1170 @@
-const limitedDevice = Boolean(
-  navigator.connection?.saveData ||
-  (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
-  (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
-);
-const reducedMotionRequested = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const richMotionEnabled = !reducedMotionRequested;
-const performanceMode = limitedDevice || reducedMotionRequested;
-window.aippPerformanceMode = performanceMode;
-document.documentElement.classList.toggle("performance-mode", performanceMode);
-
-const foundation = [
-  {
-    titleId: "Inti Akademik",
-    titleEn: "Academic Core",
-    value: "S1 Informatika",
-    noteId: "Universitas Palangka Raya • NIM 223020503162 • IPK 3.86/4.00",
-    noteEn: "Universitas Palangka Raya • NIM 223020503162 • GPA 3.86/4.00",
-  },
-  {
-    titleId: "Psikogram Bersertifikat",
-    titleEn: "Certified Psychogram",
-    value: "IQ 121",
-    noteId: "Skala Wechsler • Kategori Superior",
-    noteEn: "Wechsler scale • Superior category",
-  },
-  {
-    titleId: "Kekuatan Kognitif",
-    titleEn: "Cognitive Strengths",
-    valueId: "Adaptif",
-    valueEn: "Adaptable",
-    noteId: "Pemahaman konsep, konsistensi, integritas, dan sinergi",
-    noteEn: "Concept comprehension, consistency, integrity, and synergy",
-  },
-  {
-    titleId: "Etos Profil",
-    titleEn: "Profile Ethos",
-    valueId: "Membangun dengan Disiplin",
-    valueEn: "Build with discipline",
-    noteId: "Eksekusi rekayasa yang diperkuat oleh struktur atletik",
-    noteEn: "Engineering execution reinforced by athletic structure",
-  },
-];
-
-const languages = [
-  { name: "Bahasa Indonesia", levelId: "Bahasa Ibu", levelEn: "Native", width: "100%" },
-  { name: "English", levelId: "Kerja Terbatas", levelEn: "Limited Working", width: "68%" },
-  { name: "Japanese", levelId: "Dasar", levelEn: "Elementary", width: "28%" },
-  { name: "Latin", levelId: "Dasar", levelEn: "Elementary", width: "18%" },
-];
-
-const stackCategories = [
-  {
-    key: "frontend",
-    labelId: "Inti Front-End",
-    labelEn: "Front-End Core",
-    summaryId: "Fondasi utama browser dan antarmuka aplikasi modern.",
-    summaryEn: "Core browser foundations and modern app interfaces.",
-    items: [
-      {
-        name: "Vanilla JavaScript (ES6+ Modules)",
-        descId: "Dasar pemrograman web murni, modular, cepat, dan tanpa beban dependensi eksternal.",
-        descEn: "Modern modular JavaScript for lightweight, ultra-fast browser logic without external dependencies."
-      },
-      {
-        name: "HTML5",
-        descId: "Struktur semantik dokumen web modern yang ramah SEO dan mudah diakses semua pengguna.",
-        descEn: "Semantic markup structures optimized for accessibility, performance, and SEO best practices."
-      },
-      {
-        name: "CSS3",
-        descId: "Styling tingkat lanjut, tata letak Grid/Flexbox, dan transisi animasi hardware-accelerated.",
-        descEn: "Advanced layouts, animations, transitions, and responsive grid patterns using vanilla styling."
-      },
-      {
-        name: "TypeScript",
-        descId: "Pengetikan ketat statis di atas JavaScript untuk meminimalkan bug runtime pada proyek besar.",
-        descEn: "Statically typed JavaScript to catch structural errors early and maintain clean codebases."
-      },
-      {
-        name: "Next.js",
-        descId: "Framework berbasis React dengan dukungan server-side rendering dan pembuatan situs statis.",
-        descEn: "A React framework with support for server-side rendering and static site generation."
-      },
-      {
-        name: "React",
-        descId: "Arsitektur berbasis komponen reaktif untuk membangun antarmuka web interaktif yang dinamis.",
-        descEn: "Component-based reactive architecture for rendering modular and dynamic user interfaces."
-      }
-    ],
-  },
-  {
-    key: "backend",
-    labelId: "Back-End & Integrasi Aplikasi",
-    labelEn: "Back-End & App Integrations",
-    summaryId: "Teknologi server, basis data, dan pustaka yang pernah digunakan dalam proyek aplikasi.",
-    summaryEn: "Server, database, and libraries explored in application projects.",
-    items: [
-      {
-        name: "Node.js",
-        descId: "Runtime JavaScript untuk menjalankan kode di sisi server dan membuat layanan backend.",
-        descEn: "A JavaScript runtime for server-side code and backend services."
-      },
-      {
-        name: "Hono.js",
-        descId: "Framework web ringan yang digunakan pada proyek backend dan serverless.",
-        descEn: "A lightweight web framework used in backend and serverless projects."
-      },
-      {
-        name: "Prisma ORM",
-        descId: "Pemetaan basis data tipe-aman untuk menulis query database relasional yang bersih.",
-        descEn: "Type-safe database client and query builder designed for clean and direct schema migrations."
-      },
-      {
-        name: "PostgreSQL",
-        descId: "Basis data relasional yang digunakan untuk menyimpan dan mengelola data aplikasi.",
-        descEn: "A relational database used to store and manage application data."
-      },
-      {
-        name: "MySQL",
-        descId: "Database relasional populer yang cepat, andal, dan efisien untuk berbagai beban kerja.",
-        descEn: "Robust, widely adopted relational database for reliable storage and low-latency queries."
-      },
-      {
-        name: "ethers.js",
-        descId: "Pustaka JavaScript yang digunakan pada proyek wallet untuk berinteraksi dengan jaringan Ethereum.",
-        descEn: "A JavaScript library used in the wallet project to interact with the Ethereum network."
-      },
-      {
-        name: "bitcoinjs-lib",
-        descId: "Pustaka JavaScript yang digunakan untuk mempelajari pembuatan transaksi Bitcoin pada proyek wallet.",
-        descEn: "A JavaScript library explored for Bitcoin transaction creation in the wallet project."
-      }
-    ],
-  },
-  {
-    key: "quant",
-    labelId: "Quant Trading & AI",
-    labelEn: "Quant Trading & AI",
-    summaryId: "Sistem algoritmik perdagangan dan kecerdasan mesin terapan.",
-    summaryEn: "Algorithmic systems and applied machine intelligence.",
-    items: [
-      {
-        name: "MQL5 Expert Advisor",
-        descId: "Pemrograman sistem robot trading otomatis terstruktur untuk analisis pasar real-time.",
-        descEn: "Programming automated algorithmic trading systems for structured real-time market execution."
-      },
-      {
-        name: "MetaTrader 5",
-        descId: "Platform analitik perdagangan multi-aset profesional untuk pengujian strategi historis.",
-        descEn: "Multi-asset financial platform used for backtesting, optimization, and manual trade entry."
-      },
-      {
-        name: "Grid Strategy",
-        descId: "Algoritma eksekusi trading berdasarkan jaring harga untuk memanfaatkan pasar sideways.",
-        descEn: "A systematic trading algorithm placing orders at set intervals to profit from market ranges."
-      },
-      {
-        name: "Martingale Strategy",
-        descId: "Manajemen lot dinamis dengan pengali matematika untuk mengamankan pemulihan kerugian.",
-        descEn: "Dynamic lot sizing strategy with mathematical multipliers designed for loss recovery cycles."
-      },
-      {
-        name: "YOLOv11",
-        descId: "Model deteksi objek yang digunakan pada proyek untuk mengenali objek dari gambar dan video.",
-        descEn: "An object detection model used in a project to identify objects in images and video."
-      },
-      {
-        name: "Gemini API",
-        descId: "API model AI Google yang digunakan untuk menambahkan pemrosesan bahasa pada aplikasi.",
-        descEn: "Google's AI model API used to add language processing to an application."
-      }
-    ],
-  },
-  {
-    key: "soft",
-    labelId: "Soft Skills",
-    labelEn: "Soft Skills",
-    summaryId: "Eksekusi tim, analisis, dan kepemimpinan operasional.",
-    summaryEn: "Team execution, analysis, and operational leadership.",
-    items: [
-      {
-        name: "Cross-Functional Leadership",
-        descId: "Memimpin tim lintas disiplin ilmu untuk menyatukan visi rekayasa dan kesuksesan operasional.",
-        descEn: "Leading multidisciplinary teams to align engineering rigor with operational targets."
-      },
-      {
-        name: "Project Management",
-        descId: "Perencanaan siklus hidup proyek rekayasa secara tepat waktu dengan mitigasi risiko terukur.",
-        descEn: "Planning project lifecycles, resource allocations, and risk mitigation profiles."
-      },
-      {
-        name: "Technical Data Analysis",
-        descId: "Mengolah data mentah menjadi wawasan bisnis menggunakan visualisasi terstruktur.",
-        descEn: "Processing complex datasets into actionable operational dashboards and insight tables."
-      },
-      {
-        name: "SPSS",
-        descId: "Analisis statistik mendalam untuk validasi data penelitian sosial dan akademis desa.",
-        descEn: "Advanced statistical analysis software used for validating academic and civic field data."
-      },
-      {
-        name: "Corporate Finance Analysis",
-        descId: "Pemodelan keuangan, analisis neraca, dan perencanaan alokasi anggaran modal.",
-        descEn: "Financial modeling, balance sheet analytics, and capital budget projection methods."
-      },
-      {
-        name: "Statistical Risk Analysis",
-        descId: "Pemodelan risiko matematika untuk menilai ketidakpastian dalam proyek dan perdagangan.",
-        descEn: "Applying probability distributions to model operational uncertainties and tail-end risks."
-      }
-    ],
-  },
-];
-
-const techSpotlights = {
-  frontend: {
-    titleId: "Instrumen Front-End",
-    titleEn: "Front-End Instruments",
-    copyId: "Polesan visual, kecepatan antarmuka, dan disiplin komponen digerakkan oleh alat-alat ini.",
-    copyEn: "Visual polish, interface speed, and component discipline are driven by these tools.",
-    items: [
-      { name: "VS Code", icon: "devicon:vscode" },
-      { name: "JavaScript", icon: "devicon:javascript" },
-      { name: "TypeScript", icon: "devicon:typescript" },
-      { name: "HTML5", icon: "devicon:html5" },
-      { name: "CSS3", icon: "devicon:css3" },
-      { name: "React", icon: "devicon:react" },
-      { name: "Next.js", icon: "devicon:nextjs" },
-      { name: "Tailwind", icon: "devicon:tailwindcss" },
-    ],
-  },
-  backend: {
-    titleId: "Integrasi Aplikasi",
-    titleEn: "Application Integrations",
-    copyId: "Beberapa teknologi yang dipelajari dan diterapkan dalam proyek aplikasi, termasuk proyek wallet kripto.",
-    copyEn: "Technologies explored and applied across application projects, including a crypto wallet project.",
-    items: [
-      { name: "Node.js", icon: "devicon:nodejs" },
-      { name: "PostgreSQL", icon: "devicon:postgresql" },
-      { name: "MySQL", icon: "devicon:mysql" },
-      { name: "Prisma", icon: "devicon:prisma" },
-      { name: "Hono.js", icon: "simple-icons:hono" },
-      { name: "ethers.js", icon: "simple-icons:ethereum" },
-      { name: "bitcoinjs-lib", icon: "simple-icons:bitcoin" },
-      { name: "Crypto Wallet Project", icon: "mdi:wallet-outline" },
-    ],
-  },
-  quant: {
-    titleId: "Proyek Quant & AI",
-    titleEn: "Quant & AI Projects",
-    copyId: "Teknologi yang dieksplorasi melalui proyek otomasi trading dan integrasi AI.",
-    copyEn: "Technologies explored through trading automation and AI integration projects.",
-    items: [
-      { name: "Python", icon: "devicon:python" },
-      { name: "MQL5", icon: "ph:code-bold" },
-      { name: "MetaTrader 5", icon: "mdi:finance" },
-      { name: "YOLOv11", icon: "mdi:eye-outline" },
-      { name: "Gemini API", icon: "simple-icons:googlegemini" },
-      { name: "DCA", icon: "mdi:trending-up" },
-      { name: "Calisthenics", icon: "mdi:dumbbell" },
-      { name: "SPSS", icon: "mdi:chart-histogram" },
-    ],
-  },
-  soft: {
-    titleId: "Perangkat Kepemimpinan",
-    titleEn: "Leadership Toolkit",
-    copyId: "Koordinasi lintas fungsi, kemudi proyek, dan alur kerja strategis menjaga hasil tetap berdampak.",
-    copyEn: "Cross-functional coordination, project steering, and strategic workflows keep outputs impactful.",
-    items: [
-      { name: "Leadership", icon: "mdi:account-group" },
-      { name: "Project Mgmt", icon: "mdi:clipboard-text-outline" },
-      { name: "Data Analysis", icon: "mdi:chart-box-outline" },
-      { name: "Integrity", icon: "mdi:shield-check-outline" },
-      { name: "Synergy", icon: "mdi:account-multiple" },
-      { name: "Focus", icon: "mdi:target" },
-      { name: "Planning", icon: "mdi:clipboard-edit-outline" },
-      { name: "Communication", icon: "mdi:message-text-outline" },
-    ],
-  },
-};
-
-const athleticTimeline = [
-  {
-    titleId: "Juara I Beregu Putra & Juara I Ganda Taruna Putra",
-    titleEn: "1st Place Men's Team & 1st Place Men's Junior Doubles",
-    detailId: "PORPROV XII Kalimantan Tengah 2023",
-    detailEn: "PORPROV XII Central Kalimantan 2023",
-  },
-  {
-    titleId: "Atlet Delegasi",
-    titleEn: "Delegate Athlete",
-    detailId: "Seleksi Nasional (Seleknas) PBSI di Pelatnas Cipayung 2022",
-    detailEn: "National Selection (Seleknas) PBSI at Pelatnas Cipayung 2022",
-  },
-  {
-    titleId: "Kompetitor Nasional",
-    titleEn: "National Competitor",
-    detailId: "POMNAS XVII (2022) & XVIII (2023)",
-    detailEn: "POMNAS XVII (2022) & XVIII (2023)",
-  },
-  {
-    titleId: "Kompetitor Nasional",
-    titleEn: "National Competitor",
-    detailId: "O2SN SMP 2017",
-    detailEn: "O2SN Junior High School 2017",
-  },
-];
-
-const typingRoles = {
-  id: [
-    "Application Specialist",
-    "Cepat Belajar Teknologi",
-    "Atlet Bulu Tangkis",
-  ],
-  en: [
-    "Application Specialist",
-    "Quick Technology Learner",
-    "Badminton Athlete",
-  ]
-};
-
-const foundationGrid = document.getElementById("foundation-grid");
-const languageList = document.getElementById("language-list");
-const stackTabs = document.getElementById("stack-tabs");
-const stackPanel = document.getElementById("stack-panel");
-const projectFiltersEl = document.getElementById("project-filters");
-const projectGrid = document.getElementById("project-grid");
-const athleticTimelineEl = document.getElementById("athletic-timeline");
-const typingRoleEl = document.getElementById("typing-role");
-const yearEl = document.getElementById("year");
-const techTitle = document.getElementById("tech-title");
-const techCopy = document.getElementById("tech-copy");
-const techGrid = document.getElementById("tech-grid");
-
-function setupGsapAnimations() {
-  if (!window.gsap || !richMotionEnabled) return;
-
-  const scrollTrigger = window.ScrollTrigger;
-  const isMobile = window.innerWidth < 768;
-  const dFactor = isMobile ? 0.78 : 1;
-
-  if (scrollTrigger) {
-    gsap.registerPlugin(scrollTrigger);
-  }
-
-  const titleEl = document.querySelector("[data-hero-title]");
-  if (titleEl) {
-    const originalText = titleEl.textContent.trim();
-    const words = originalText.split(/\s+/);
-    titleEl.innerHTML = words
-      .map(
-        (word) =>
-          `<span class="inline-block overflow-hidden pb-1"><span class="hero-word inline-block">${word}</span></span>`
-      )
-      .join(" ");
-  }
-
-  const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
-  intro.fromTo("[data-hero-badge]", { autoAlpha: 0, y: 12 }, {
-    autoAlpha: 1, y: 0, duration: 0.42 * dFactor,
-  });
-
-  if (titleEl) {
-    gsap.set(".hero-word", { yPercent: 105 });
-    intro.to(".hero-word", {
-      yPercent: 0,
-      duration: 0.72 * dFactor,
-      stagger: 0.045,
-      ease: "power4.out",
-    }, "-=0.12");
-  }
-
-  intro.fromTo("[data-hero-kicker], [data-hero-summary]", {
-    autoAlpha: 0, y: 14,
-  }, {
-    autoAlpha: 1, y: 0, duration: 0.46 * dFactor, stagger: 0.08,
-  }, "-=0.18");
-  intro.fromTo("[data-hero-actions]", { autoAlpha: 0, y: 12 }, {
-    autoAlpha: 1, y: 0, duration: 0.42 * dFactor,
-  }, "-=0.22");
-  intro.fromTo("[data-hero-portrait]", { autoAlpha: 0, y: 16, scale: 0.985 }, {
-    autoAlpha: 1, y: 0, scale: 1, duration: 0.62 * dFactor,
-  }, "<+0.04");
-  intro.fromTo("[data-hero-panel]", { autoAlpha: 0, y: 18 }, {
-    autoAlpha: 1, y: 0, duration: 0.55 * dFactor,
-  }, "-=0.34");
-  intro.fromTo("[data-hero-stats]", { autoAlpha: 0, y: 14 }, {
-    autoAlpha: 1, y: 0, duration: 0.44 * dFactor,
-  }, "-=0.3");
-
-  if (scrollTrigger) {
-    // Metric Count-ups
-    const counters = [
-      { el: document.querySelector('.metric-card:nth-child(1) .metric-value'), target: 121, template: 'IQ {val}', decimals: 0 },
-      { el: document.querySelector('.metric-card:nth-child(2) .metric-value'), target: 3.86, template: '{val}/4.00', decimals: 2 },
-      { el: document.querySelector('.stat-card:nth-child(1) .stat-value'), target: 15, template: '{val}', decimals: 0 },
-      { el: document.querySelector('.stat-card:nth-child(2) .stat-value'), target: 75, template: '{val}%+', decimals: 0 },
-      { el: document.querySelector('.stat-card:nth-child(3) .stat-value'), target: 1, template: '{val}', decimals: 0 }
-    ];
-
-    counters.forEach(item => {
-      if (!item.el) return;
-
-      const obj = { value: 0 };
-      gsap.fromTo(obj, { value: 0 }, {
-        value: item.target,
-        scrollTrigger: {
-          trigger: item.el,
-          start: "top 92%",
-          once: true
-        },
-        duration: 1.8,
-        ease: "power2.out",
-        onUpdate: () => {
-          const valFormatted = obj.value.toFixed(item.decimals);
-          item.el.textContent = item.template.replace('{val}', valFormatted);
-        }
-      });
-    });
-
-    // Discipline index fill & value text count up
-    const dispVal = document.querySelector('.hero-panel p.font-pixel');
-    const dispBar = document.querySelector('.hero-panel .mt-3 div > div');
-    if (dispVal && dispBar) {
-      gsap.set(dispBar, { width: "0%" });
-      const obj = { val: 0 };
-      gsap.fromTo(obj, { val: 0 }, {
-        val: 92,
-        scrollTrigger: {
-          trigger: dispVal,
-          start: "top 92%",
-          once: true
-        },
-        duration: 1.6,
-        ease: "power3.out",
-        onUpdate: () => {
-          dispVal.textContent = Math.round(obj.val) + "%";
-          dispBar.style.width = obj.val + "%";
-        }
-      });
-    }
-
-    // Draw the timeline once on entry instead of tying paint work to every scroll frame.
-    const timelinePath = document.getElementById("timeline-path");
-    if (timelinePath) {
-      const pathLength = timelinePath.getTotalLength();
-
-      gsap.set(timelinePath, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength
-      });
-
-      gsap.to(timelinePath, {
-        strokeDashoffset: 0,
-        duration: 1.1 * dFactor,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".timeline-svg-container",
-          start: "top 72%",
-          once: true,
-        }
-      });
-
-      const timelineItems = document.querySelectorAll(".timeline-item");
-      timelineItems.forEach((item) => {
-        scrollTrigger.create({
-          trigger: item,
-          start: "top 65%",
-          once: true,
-          onEnter: () => item.classList.add("active"),
-        });
-      });
-    }
-
-    scrollTrigger.refresh();
-  }
-}
-
-function setupCustomCursor() {
-  if (window.innerWidth < 1024 || !window.matchMedia("(pointer: fine)").matches) return;
-
-  const cursor = document.querySelector(".custom-cursor");
-  const dot = document.querySelector(".custom-cursor-dot");
-  if (!cursor || !dot) return;
-
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const position = (element, x, y) => {
-    element.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
-  };
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let rafId = 0;
-  let hasPosition = false;
-
-  const followPointer = () => {
-    const easing = reduceMotion ? 1 : 0.24;
-    currentX += (targetX - currentX) * easing;
-    currentY += (targetY - currentY) * easing;
-    position(cursor, currentX, currentY);
-
-    const distance = Math.hypot(targetX - currentX, targetY - currentY);
-    if (distance > 0.35) {
-      rafId = requestAnimationFrame(followPointer);
-    } else {
-      currentX = targetX;
-      currentY = targetY;
-      position(cursor, currentX, currentY);
-      rafId = 0;
-    }
-  };
-
-  document.addEventListener("pointermove", (event) => {
-    if (event.pointerType === "touch") return;
-    targetX = event.clientX;
-    targetY = event.clientY;
-
-    if (!hasPosition) {
-      hasPosition = true;
-      currentX = targetX;
-      currentY = targetY;
-      position(cursor, currentX, currentY);
-      position(dot, targetX, targetY);
-      cursor.classList.add("is-visible");
-      dot.classList.add("is-visible");
-    } else {
-      position(dot, targetX, targetY);
-    }
-
-    if (!rafId) rafId = requestAnimationFrame(followPointer);
-  }, { passive: true });
-
-  const hideCursor = () => {
-    hasPosition = false;
-    cursor.classList.remove("is-visible", "hovered");
-    dot.classList.remove("is-visible");
-    if (rafId) cancelAnimationFrame(rafId);
-    rafId = 0;
-  };
-
-  document.addEventListener("pointerleave", hideCursor);
-  window.addEventListener("blur", hideCursor);
-
-  document.addEventListener("pointerover", (event) => {
-    const target = event.target instanceof Element ? event.target : null;
-    if (target?.closest("a, button, [role='button']")) cursor.classList.add("hovered");
-  });
-
-  document.addEventListener("pointerout", (event) => {
-    const target = event.target instanceof Element ? event.target : null;
-    const next = event.relatedTarget instanceof Element ? event.relatedTarget : null;
-    if (target?.closest("a, button, [role='button']") && !next?.closest("a, button, [role='button']")) {
-      cursor.classList.remove("hovered");
-    }
-  });
-}
-
-function setupMagneticInteractions() {
-  if (!window.gsap || !richMotionEnabled || limitedDevice) return;
-  if (!window.matchMedia("(pointer: fine)").matches) return;
-  if (window.innerWidth < 1024) return; // Desktop-only interaction
-
-  document
-    .querySelectorAll(
-      ".btn-primary, .btn-secondary",
-    )
-    .forEach((element) => {
-      element.addEventListener("mousemove", (event) => {
-        const rect = element.getBoundingClientRect();
-        const x = (event.clientX - rect.left - rect.width / 2) * 0.18;
-        const y = (event.clientY - rect.top - rect.height / 2) * 0.15;
-
-        gsap.to(element, {
-          x: x,
-          y: y,
-          scale: 1.02,
-          duration: 0.3,
-          ease: "power3.out"
-        });
-      });
-
-      element.addEventListener("mouseleave", () => {
-        gsap.to(element, {
-          x: 0,
-          y: 0,
-          scale: 1.0,
-          duration: 0.5,
-          ease: "power3.out"
-        });
-      });
-    });
-}
-
-function setupCardTilt() {
-  if (!window.gsap || !richMotionEnabled || limitedDevice) return;
-  if (window.innerWidth < 768) return;
-  if (!window.matchMedia("(pointer: fine)").matches) return;
-
-  const cards = document.querySelectorAll(".project-card, .foundation-card, .metric-card");
-  cards.forEach((card) => {
-    card.classList.add("tilt-card");
-
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = ((y - centerY) / centerY) * -12;
-      const rotateY = ((x - centerX) / centerX) * 12;
-
-      gsap.to(card, {
-        rotateX: rotateX,
-        rotateY: rotateY,
-        transformOrigin: "center center",
-        duration: 0.35,
-        ease: "power2.out",
-        overwrite: "auto"
-      });
-
-      card.style.setProperty("--mouse-x", `${x}px`);
-      card.style.setProperty("--mouse-y", `${y}px`);
-    });
-
-    card.addEventListener("mouseleave", () => {
-      gsap.to(card, {
-        rotateX: 0,
-        rotateY: 0,
-        duration: 0.65,
-        ease: "power3.out",
-        overwrite: "auto"
-      });
-    });
-  });
-}
-
-function renderFoundation() {
-  const isEn = window.currentLang === "en";
-  foundationGrid.innerHTML = foundation
-    .map(
-      (item) => `
-        <article class="foundation-card">
-          <p class="foundation-kicker">${isEn ? item.titleEn : item.titleId}</p>
-          <h4 class="foundation-value">${isEn ? (item.valueEn || item.value) : (item.valueId || item.value)}</h4>
-          <p class="foundation-note">${isEn ? item.noteEn : item.noteId}</p>
-        </article>
-      `,
-    )
-    .join("");
-}
-
-function renderLanguages() {
-  const isEn = window.currentLang === "en";
-  languageList.innerHTML = languages
-    .map(
-      (language) => `
-        <div class="language-item">
-          <div class="language-row">
-            <span class="language-name">${language.name}</span>
-            <span class="language-level">${isEn ? language.levelEn : language.levelId}</span>
-          </div>
-          <div class="language-bar">
-            <div class="language-fill" style="width: ${language.width}"></div>
-          </div>
-        </div>
-      `,
-    )
-    .join("");
-}
-
-function renderStackTabs(activeKey = "frontend") {
-  const isEn = window.currentLang === "en";
-  stackTabs.innerHTML = stackCategories
-    .map(
-      (category) => `
-        <button
-          class="stack-tab"
-          type="button"
-          role="tab"
-          aria-selected="${category.key === activeKey}"
-          data-stack-tab="${category.key}"
-        >
-          <span class="stack-tab-title">${isEn ? category.labelEn : category.labelId}</span>
-          <span class="stack-tab-desc">${isEn ? category.summaryEn : category.summaryId}</span>
-        </button>
-      `,
-    )
-    .join("");
-}
-
-function renderStackPanel(activeKey = "frontend") {
-  const cards = stackPanel.querySelectorAll(".skill-card");
-  if (cards.length > 0 && window.gsap && richMotionEnabled) {
-    gsap.to(cards, {
-      opacity: 0,
-      scale: 0.95,
-      y: -10,
-      duration: 0.2,
-      stagger: 0.02,
-      ease: "power2.in",
-      onComplete: () => {
-        executeRenderStackPanel(activeKey);
-      }
-    });
-  } else {
-    executeRenderStackPanel(activeKey);
-  }
-}
-
-function executeRenderStackPanel(activeKey) {
-  const isEn = window.currentLang === "en";
-  const category =
-    stackCategories.find((entry) => entry.key === activeKey) ??
-    stackCategories[0];
-
-  stackPanel.innerHTML = category.items
-    .map(
-      (item, index) => `
-        <article class="skill-card reveal">
-          <p class="skill-index">Skill ${String(index + 1).padStart(2, "0")}</p>
-          <h4 class="skill-title">${item.name}</h4>
-          <p class="skill-copy">${isEn ? item.descEn : item.descId}</p>
-        </article>
-      `,
-    )
-    .join("");
-
-  const newCards = stackPanel.querySelectorAll(".skill-card");
-  if (window.gsap && richMotionEnabled) {
-    gsap.fromTo(
-      newCards,
-      { opacity: 0, scale: 0.95, y: 15 },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.05,
-        ease: "power3.out",
-        clearProps: "transform,opacity"
-      }
-    );
-  }
-
-  renderTechSpotlight(activeKey);
-  observeReveals();
-}
-
-function renderTechSpotlight(activeKey = "frontend") {
-  const cards = techGrid.querySelectorAll(".tech-card");
-  if (cards.length > 0 && window.gsap && richMotionEnabled) {
-    gsap.to(cards, {
-      opacity: 0,
-      scale: 0.92,
-      duration: 0.18,
-      stagger: 0.02,
-      ease: "power2.in",
-      onComplete: () => {
-        executeRenderTechSpotlight(activeKey);
-      }
-    });
-  } else {
-    executeRenderTechSpotlight(activeKey);
-  }
-}
-
-function executeRenderTechSpotlight(activeKey) {
-  const isEn = window.currentLang === "en";
-  const spotlight = techSpotlights[activeKey] ?? techSpotlights.frontend;
-  techTitle.textContent = isEn ? spotlight.titleEn : spotlight.titleId;
-  techCopy.textContent = isEn ? spotlight.copyEn : spotlight.copyId;
-
-  techGrid.innerHTML = spotlight.items
-    .map(
-      (item) => `
-        <article class="tech-card reveal">
-          ${item.icon ? `<iconify-icon icon="${item.icon}" class="tech-icon"></iconify-icon>` : `<span class="tech-glyph">${item.glyph}</span>`}
-          <span class="tech-name">${item.name}</span>
-        </article>
-      `,
-    )
-    .join("");
-
-  const newCards = techGrid.querySelectorAll(".tech-card");
-  if (window.gsap && richMotionEnabled) {
-    gsap.fromTo(
-      newCards,
-      { opacity: 0, scale: 0.92, y: 10 },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.45,
-        stagger: 0.04,
-        ease: "power3.out",
-        clearProps: "transform,opacity"
-      }
-    );
-  }
-
-  observeReveals();
-}
-
-
-
-function renderAthletics() {
-  const isEn = window.currentLang === "en";
-  athleticTimelineEl.innerHTML = athleticTimeline
-    .map(
-      (item) => `
-        <div class="timeline-item pb-4">
-          <p class="timeline-title">${isEn ? item.titleEn : item.titleId}</p>
-          <p class="timeline-detail">${isEn ? item.detailEn : item.detailId}</p>
-        </div>
-      `,
-    )
-    .join("");
-}
-
-function setupTypingEffect() {
-  let roleIndex = 0;
-  let charIndex = 0;
-  let removing = false;
-
-  if (!richMotionEnabled || limitedDevice) {
-    typingRoleEl.textContent = (typingRoles[window.currentLang] || typingRoles.en)[0];
-    return;
-  }
-
-  const tick = () => {
-    const roles = typingRoles[window.currentLang] || typingRoles.en;
-    const activeRole = roles[roleIndex % roles.length];
-    const nextText = removing
-      ? activeRole.slice(0, Math.max(0, charIndex - 1))
-      : activeRole.slice(0, charIndex + 1);
-    typingRoleEl.textContent = nextText;
-    charIndex = removing ? charIndex - 1 : charIndex + 1;
-
-    if (!removing && charIndex === activeRole.length) {
-      removing = true;
-      setTimeout(tick, 1300);
-      return;
-    }
-
-    if (removing && charIndex === 0) {
-      removing = false;
-      roleIndex = (roleIndex + 1) % roles.length;
-      setTimeout(tick, 280);
-      return;
-    }
-
-    setTimeout(tick, removing ? 55 : 85);
-  };
-
-  tick();
-}
-
-function setupTabs() {
-  stackTabs.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-stack-tab]");
-    if (!button) return;
-    const { stackTab } = button.dataset;
-    renderStackTabs(stackTab);
-    renderStackPanel(stackTab);
-    observeReveals();
-  });
-}
-
-
-
-let revealObserver;
-function observeReveals() {
-  if (revealObserver) {
-    revealObserver.disconnect();
-  }
-
-  revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 },
+/**
+ * AIPP PROTOCOL — CORE DIGITAL EXPERIENCE ENGINE
+ * Agustinus Irwin Putra Pangesti — Master Portfolio Architecture
+ * Visual Identity • Liquid Glass • Web Audio API Spectrum • Case Study Engine
+ */
+
+(function () {
+  'use strict';
+
+  // 1. PERFORMANCE & DEVICE HEURISTICS
+  const limitedDevice = Boolean(
+    navigator.connection?.saveData ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
   );
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const richMotion = !reducedMotion && !limitedDevice;
 
-  document
-    .querySelectorAll(".reveal")
-    .forEach((node) => revealObserver.observe(node));
-}
-
-window.currentLang = localStorage.getItem("aipp-lang") || "id";
-
-window.setLanguage = function (lang) {
-  window.currentLang = lang;
-  localStorage.setItem("aipp-lang", lang);
-
-  // Update navbar language switcher buttons active states
-  const btnId = document.getElementById("lang-id");
-  const btnEn = document.getElementById("lang-en");
-  if (btnId && btnEn) {
-    if (lang === "id") {
-      btnId.className = "px-1.5 py-0.5 rounded-none transition-colors text-cyan-300 bg-cyan-400/15";
-      btnEn.className = "px-1.5 py-0.5 rounded-none transition-colors text-white/40 hover:text-white/80";
-    } else {
-      btnEn.className = "px-1.5 py-0.5 rounded-none transition-colors text-cyan-300 bg-cyan-400/15";
-      btnId.className = "px-1.5 py-0.5 rounded-none transition-colors text-white/40 hover:text-white/80";
+  // 2. DATA ARCHITECTURE
+  const foundation = [
+    {
+      titleId: "Inti Akademik",
+      titleEn: "Academic Core",
+      value: "S1 Informatika",
+      noteId: "Universitas Palangka Raya • NIM 223020503162 • IPK 3.86/4.00",
+      noteEn: "Universitas Palangka Raya • NIM 223020503162 • GPA 3.86/4.00",
+      icon: "solar:diploma-outline"
+    },
+    {
+      titleId: "Psikogram Bersertifikat",
+      titleEn: "Certified Psychogram",
+      value: "IQ 121",
+      noteId: "Skala Wechsler • Kategori Superior",
+      noteEn: "Wechsler Scale • Superior Category",
+      icon: "solar:brain-outline"
+    },
+    {
+      titleId: "Kekuatan Kognitif",
+      titleEn: "Cognitive Strengths",
+      valueId: "Adaptif & Analitis",
+      valueEn: "Adaptive & Analytical",
+      noteId: "Pemahaman konsep mendalam, konsistensi sikap, integritas, dan sinergi kelompok",
+      noteEn: "High concept comprehension, attitude consistency, integrity, and team synergy",
+      icon: "solar:chart-square-outline"
+    },
+    {
+      titleId: "Etos Profil",
+      titleEn: "Profile Ethos",
+      valueId: "Membangun dengan Disiplin",
+      valueEn: "Build with Discipline",
+      noteId: "Eksekusi rekayasa perangkat lunak yang diperkuat oleh disiplin atletik kompetitif",
+      noteEn: "Software engineering execution reinforced by competitive athletic discipline",
+      icon: "solar:medal-ribbons-star-outline"
     }
-  }
+  ];
 
-  // Update all static HTML elements with translation attributes
-  document.querySelectorAll("[data-lang-id]").forEach((el) => {
-    el.innerHTML = lang === "id" ? el.getAttribute("data-lang-id") : el.getAttribute("data-lang-en");
-  });
+  const languages = [
+    { name: "Bahasa Indonesia", levelId: "Bahasa Ibu", levelEn: "Native", width: "100%" },
+    { name: "English", levelId: "Kerja Terbatas", levelEn: "Limited Working", width: "68%" },
+    { name: "Japanese", levelId: "Dasar", levelEn: "Elementary", width: "28%" },
+    { name: "Latin", levelId: "Dasar", levelEn: "Elementary", width: "18%" }
+  ];
 
-  // Re-render dynamic elements
-  renderFoundation();
-  renderLanguages();
-
-  // Pick active stack panel keys to preserve selection
-  const activeTabBtn = document.querySelector("[data-stack-tab][aria-selected='true']");
-  const activeTabKey = activeTabBtn ? activeTabBtn.getAttribute("data-stack-tab") : "frontend";
-  renderStackTabs(activeTabKey);
-  renderStackPanel(activeTabKey);
-
-
-
-  renderAthletics();
-};
-
-function updateActiveNavOnScroll() {
-  const sections = ["foundation", "stack", "projects", "athletics", "impact"];
-  const navLinks = document.querySelectorAll(".mobile-nav-link");
-  if (!navLinks.length) return;
-
-  let currentSectionId = "";
-  // Check the section occupying the top third of the viewport
-  const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-  sections.forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const top = el.offsetTop;
-      const height = el.offsetHeight;
-      if (scrollPosition >= top && scrollPosition < top + height) {
-        currentSectionId = id;
-      }
-    }
-  });
-
-  // Force active state for the final section when scrolled to the very bottom
-  if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 80) {
-    currentSectionId = "impact";
-  }
-
-  if (currentSectionId) {
-    navLinks.forEach((link) => {
-      const href = link.getAttribute("href").substring(1);
-      if (href === currentSectionId) {
-        if (!link.classList.contains("active")) {
-          link.classList.add("active");
-          const icon = link.querySelector("iconify-icon");
-          if (icon && richMotionEnabled && window.gsap) {
-            gsap.fromTo(icon,
-              { scale: 0.7, y: 0 },
-              { scale: 1.15, y: -3, duration: 0.45, ease: "back.out(2.2)" }
-            );
-          }
+  const stackCategories = [
+    {
+      key: "frontend",
+      labelId: "Front-End Core",
+      labelEn: "Front-End Core",
+      summaryId: "Fondasi browser murni, performa render tinggi, dan arsitektur komponen modern.",
+      summaryEn: "Core browser foundations, high-performance rendering, and modular architecture.",
+      items: [
+        {
+          name: "Vanilla JavaScript (ES6+)",
+          descId: "Pemrograman web modular murni tanpa overhead dependensi, cepat dan efisien.",
+          descEn: "Modern modular JavaScript for lightweight, ultra-fast browser logic without runtime overhead."
+        },
+        {
+          name: "TypeScript",
+          descId: "Pengetikan statis ketat untuk arsitektur kode berskala besar yang aman dari bug.",
+          descEn: "Statically typed JavaScript to catch structural errors early and maintain clean codebases."
+        },
+        {
+          name: "Next.js & React",
+          descId: "Pengembangan web reaktif modern dengan SSR, optimalisasi SEO, dan rendering dinamis.",
+          descEn: "Component-based reactive architecture with server-side rendering and static optimization."
+        },
+        {
+          name: "HTML5 & Semantic SEO",
+          descId: "Struktur semantik dokumen web modern yang ramah aksesibilitas dan mesin pencari.",
+          descEn: "Semantic markup structures optimized for accessibility, SEO, and structural integrity."
+        },
+        {
+          name: "CSS3 & Tailwind CSS",
+          descId: "Desain antarmuka hardware-accelerated, sistem Liquid Glass, dan tata letak responsif.",
+          descEn: "Hardware-accelerated layouts, responsive grid patterns, and refined Liquid Glass styling."
         }
-      } else {
-        if (link.classList.contains("active")) {
-          link.classList.remove("active");
-          const icon = link.querySelector("iconify-icon");
-          if (icon && richMotionEnabled && window.gsap) {
-            gsap.to(icon, { scale: 1, y: 0, duration: 0.3, ease: "power2.out" });
-          }
+      ]
+    },
+    {
+      key: "backend",
+      labelId: "Back-End & Web3",
+      labelEn: "Back-End & Web3",
+      summaryId: "Layanan server, basis data relasional, dan eksplorasi kriptografi sisi klien.",
+      summaryEn: "Server services, relational databases, and client-side cryptography exploration.",
+      items: [
+        {
+          name: "Node.js & Hono.js",
+          descId: "Runtime cepat dan framework backend modern untuk layanan API berlatensi rendah.",
+          descEn: "Ultra-fast JavaScript runtime and lightweight framework for low-latency backend APIs."
+        },
+        {
+          name: "PostgreSQL & Prisma ORM",
+          descId: "Manajemen basis data relasional bertipe aman dengan integritas skema data terjamin.",
+          descEn: "Type-safe database modeling and low-overhead SQL queries for robust applications."
+        },
+        {
+          name: "Client-Side Cryptography (ethers.js / bitcoinjs-lib)",
+          descId: "Eksplorasi penandatanganan transaksi mandiri offline (secp256k1, BIP-39/44/84).",
+          descEn: "Implementation of offline ECDSA key derivation, PBKDF2, and non-custodial wallet flows."
+        },
+        {
+          name: "RESTful API Architecture",
+          descId: "Perancangan endpoint standar industri dengan validasi payload dan struktur respons bersih.",
+          descEn: "Standardized API design with secure payload validations and clean resource serialization."
         }
-      }
-    });
-  }
-}
-
-function setupMobileActiveNav() {
-  const navLinks = document.querySelectorAll(".mobile-nav-link");
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      const icon = link.querySelector("iconify-icon");
-      if (icon && richMotionEnabled && window.gsap) {
-        gsap.fromTo(icon,
-          { scale: 0.6, y: 0 },
-          { scale: 1.25, y: -5, duration: 0.4, ease: "back.out(2.5)" }
-        );
-      }
-    });
-  });
-
-  let ticking = false;
-  const onScroll = () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateActiveNavOnScroll();
-        ticking = false;
-      });
-      ticking = true;
+      ]
+    },
+    {
+      key: "quant",
+      labelId: "Quant & Terapan AI",
+      labelEn: "Quant & Applied AI",
+      summaryId: "Sistem otomasi perdagangan algoritmik dan integrasi computer vision terapan.",
+      summaryEn: "Algorithmic trading systems and applied computer vision integrations.",
+      items: [
+        {
+          name: "MQL5 & MetaTrader 5",
+          descId: "Pemrograman sistem robot trading otomatis terstruktur dengan manajemen risiko kuantitatif.",
+          descEn: "Algorithmic Expert Advisor systems with mathematical risk controls and live market execution."
+        },
+        {
+          name: "YOLOv11 Computer Vision",
+          descId: "Deteksi objek visual real-time yang diterapkan pada sistem verifikasi bahaya kebakaran darurat.",
+          descEn: "Real-time object detection models applied to instant emergency fire and smoke verification."
+        },
+        {
+          name: "Gemini API",
+          descId: "Integrasi model kecerdasan buatan Google untuk pemrosesan konteks dan asistensi bahasa alami.",
+          descEn: "Applied natural language processing and intelligent multimodal query augmentation."
+        },
+        {
+          name: "Systematic DCA & Risk Analytics",
+          descId: "Pola pikir kuantitatif jangka panjang dengan alokasi modal dan pemodelan statistik.",
+          descEn: "Disciplined capital allocation models and quantitative probabilistic risk assessment."
+        }
+      ]
+    },
+    {
+      key: "leadership",
+      labelId: "Kepemimpinan & Analisis",
+      labelEn: "Leadership & Analytics",
+      summaryId: "Manajemen tim lintas disiplin, ketegasan operasional, dan analisis data bisnis.",
+      summaryEn: "Cross-functional team coordination, operational rigor, and structured data analysis.",
+      items: [
+        {
+          name: "Cross-Functional Leadership",
+          descId: "Memimpin tim mahasiswa multi-disiplin dalam proyek sipil dan pengabdian masyarakat.",
+          descEn: "Steering multidisciplinary teams to deliver civic technology impact and measurable outcomes."
+        },
+        {
+          name: "Project Lifecycle Management",
+          descId: "Perencanaan alur kerja rekayasa, mitigasi hambatan teknis, dan eksekusi tepat sasaran.",
+          descEn: "Structuring product milestones, technical risk assessments, and timely delivery schedules."
+        },
+        {
+          name: "Statistical Analysis (SPSS)",
+          descId: "Pengolahan data empiris dan visualisasi analitik untuk validasi riset akademik.",
+          descEn: "Empirical data modeling and statistical significance testing for academic publications."
+        },
+        {
+          name: "Tournament Resilience",
+          descId: "Ketangguhan mental dan eksekusi presisi di bawah tekanan yang ditempa lewat bulu tangkis.",
+          descEn: "Mental fortitude and decisive precision under pressure honed through national competition."
+        }
+      ]
     }
+  ];
+
+  const athleticTimeline = [
+    {
+      year: "2025",
+      titleId: "Ketua KKN 204 TAMPA BERAKSI",
+      titleEn: "Leader of Community Service Program (KKN 204)",
+      detailId: "Memimpin tim 15 mahasiswa di Desa Tampa, membangun portal digital desa dan publikasi akademik.",
+      detailEn: "Led 15-student multidisciplinary team in Tampa Village, built civic portal and authored academic report.",
+      tag: "Leadership"
+    },
+    {
+      year: "2025",
+      titleId: "Juara 3 Hackathon Nasional PERMIKOMNAS",
+      titleEn: "3rd Place National Hackathon PERMIKOMNAS",
+      detailId: "BBPSDMP KOMDIGI Makassar — Team Leader Pyrosentinel, platform darurat ADAAPI & YOLOv11.",
+      detailEn: "BBPSDMP KOMDIGI Makassar — Team Leader Pyrosentinel, ADAAPI fire emergency detection platform.",
+      tag: "Competition"
+    },
+    {
+      year: "2024",
+      titleId: "Juara 1 Ganda Campuran & Beregu Dewasa",
+      titleEn: "1st Place Mixed Doubles & Men's Team",
+      detailId: "Kejuaraan Bulu Tangkis Rektor UPR Cup 2024 & Pengayoman Cup Se-Kalteng 2024.",
+      detailEn: "UPR Rector Cup 2024 & Central Kalimantan Inter-Agency Pengayoman Cup 2024.",
+      tag: "Badminton"
+    },
+    {
+      year: "2023",
+      titleId: "Finalis Nasional GEMASTIK XVI",
+      titleEn: "National Finalist GEMASTIK XVI",
+      detailId: "Divisi Pengembangan Perangkat Lunak (Software Development) — Aplikasi Pemulihan Adanest.",
+      detailEn: "Software Development Division — Adanest Health & PMO Recovery Web Platform.",
+      tag: "Academic Tech"
+    },
+    {
+      year: "2023",
+      titleId: "Juara 1 Beregu Putra & Juara 1 Ganda Taruna",
+      titleEn: "1st Place Men's Team & Junior Doubles Gold",
+      detailId: "Pekan Olahraga Provinsi (PORPROV) XII Kalimantan Tengah 2023.",
+      detailEn: "PORPROV XII Central Kalimantan Provincial Games 2023.",
+      tag: "Badminton"
+    },
+    {
+      year: "2022",
+      titleId: "Atlet Delegasi Seleksi Nasional (Seleknas) PBSI",
+      titleEn: "Delegate Athlete — National Selection (Seleknas) PBSI",
+      detailId: "Pelatnas PBSI Cipayung, Jakarta Timur — mewakili atlet terbaik daerah ke pusat pelatihan nasional.",
+      detailEn: "PBSI National Training Center, Cipayung — regional delegate for national squad selection.",
+      tag: "National PBSI"
+    },
+    {
+      year: "2022 – 2023",
+      titleId: "Kompetitor Pekan Olahraga Mahasiswa Nasional (POMNAS)",
+      titleEn: "National Competitor — POMNAS XVII & XVIII",
+      detailId: "Padang (2022) & Kalimantan Selatan (2023) mewakili Kontingen Universitas Palangka Raya.",
+      detailEn: "Padang (2022) & South Kalimantan (2023) representing Universitas Palangka Raya contingent.",
+      tag: "Badminton"
+    }
+  ];
+
+  const typingRoles = {
+    id: [
+      "Application Specialist",
+      "Informatics Engineer (IPK 3.86)",
+      "Atlet Bulu Tangkis Nasional",
+      "Web & AI Builder"
+    ],
+    en: [
+      "Application Specialist",
+      "Informatics Engineer (GPA 3.86)",
+      "National Badminton Athlete",
+      "Web & AI Builder"
+    ]
   };
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  updateActiveNavOnScroll();
-}
+  // 3. LANGUAGE STATE & PERSISTENCE
+  window.currentLang = localStorage.getItem("aipp-lang") || "id";
 
-function setupBackgroundMusic() {
-  const musicContainer = document.getElementById("music-container");
-  const musicToggle = document.getElementById("music-toggle");
-  const musicEqualizer = document.getElementById("music-equalizer");
-  const musicRobot = document.getElementById("music-robot");
-  const playIcon = document.getElementById("music-play-icon");
-  const bgMusic = document.getElementById("bg-music");
+  window.setLanguage = function (lang) {
+    window.currentLang = lang;
+    localStorage.setItem("aipp-lang", lang);
 
-  if (!musicContainer || !musicToggle || !musicEqualizer || !musicRobot || !playIcon || !bgMusic) return;
-
-  const bar1 = musicEqualizer.querySelector(".bar-1");
-  const bar2 = musicEqualizer.querySelector(".bar-2");
-  const bar3 = musicEqualizer.querySelector(".bar-3");
-  const bar4 = musicEqualizer.querySelector(".bar-4");
-  const bar5 = musicEqualizer.querySelector(".bar-5");
-  const bar6 = musicEqualizer.querySelector(".bar-6");
-  const bar7 = musicEqualizer.querySelector(".bar-7");
-  const bar8 = musicEqualizer.querySelector(".bar-8");
-  const bar9 = musicEqualizer.querySelector(".bar-9");
-  const bar10 = musicEqualizer.querySelector(".bar-10");
-
-  const speakerLightL = musicRobot.querySelector("#speaker-light-l");
-  const speakerLightR = musicRobot.querySelector("#speaker-light-r");
-  const eyeL = musicRobot.querySelector("#robot-eye-l");
-  const eyeR = musicRobot.querySelector("#robot-eye-r");
-  const antenna = musicRobot.querySelector("#robot-antenna");
-  const robotHead = musicRobot.querySelector("#robot-head");
-  const robotBody = musicRobot.querySelector("#robot-body");
-
-  // Set comfortable low volume for ambient play
-  bgMusic.volume = 0.22;
-
-  let isPlaying = false;
-  let audioCtx = null;
-  let analyser = null;
-  let dataArray = null;
-  let visualizerActive = false;
-  let animationFrameId = null;
-
-  // Auto-gain and physics states
-  let currentHeights = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
-  let bandMaxes = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]; // Running band maximums for sensitivity normalization
-  let smoothBass = 0;
-  let entryAnimationComplete = false;
-
-  const initAudioVisualizer = () => {
-    try {
-      if (!window.audioCtx) {
-        window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      audioCtx = window.audioCtx;
-
-      if (!window.audioAnalyser) {
-        analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 256; // 128 frequency bins, giving much finer resolution for 10 bands
-        window.audioAnalyser = analyser;
+    // Update Language Toggle Switch
+    const btnId = document.getElementById("lang-id");
+    const btnEn = document.getElementById("lang-en");
+    if (btnId && btnEn) {
+      if (lang === "id") {
+        btnId.classList.add("active");
+        btnEn.classList.remove("active");
       } else {
-        analyser = window.audioAnalyser;
+        btnEn.classList.add("active");
+        btnId.classList.remove("active");
       }
-
-      if (!bgMusic.sourceNode) {
-        const source = audioCtx.createMediaElementSource(bgMusic);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        bgMusic.sourceNode = source;
-      }
-
-      dataArray = new Uint8Array(analyser.frequencyBinCount);
-      visualizerActive = true;
-      musicContainer.classList.add("js-visualizer");
-    } catch (e) {
-      console.warn("Web Audio API visualizer failed to initialize (likely CORS, file:// protocol, or browser restriction). Falling back to CSS animation.", e);
-      visualizerActive = false;
-      musicContainer.classList.remove("js-visualizer");
     }
+
+    // Translate DOM elements with data-lang attributes
+    document.querySelectorAll("[data-lang-id]").forEach((el) => {
+      const translation = lang === "id" ? el.getAttribute("data-lang-id") : el.getAttribute("data-lang-en");
+      if (translation) {
+        el.innerHTML = translation;
+      }
+    });
+
+    // Re-render dynamic sections
+    renderFoundation();
+    renderLanguages();
+    renderStackTabs(window.activeStackTab || "frontend");
+    renderStackPanel(window.activeStackTab || "frontend");
+    renderAthletics();
+    renderFeaturedProjects();
   };
 
-  const updateVisualizer = () => {
-    if (!isPlaying) return;
+  // 4. RENDERERS
+  function renderFoundation() {
+    const container = document.getElementById("foundation-grid");
+    if (!container) return;
+    const isEn = window.currentLang === "en";
 
-    if (visualizerActive && analyser && dataArray) {
-      analyser.getByteFrequencyData(dataArray);
+    container.innerHTML = foundation
+      .map((item) => `
+        <article class="liquid-glass-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs uppercase tracking-widest text-cyan-300">${isEn ? item.titleEn : item.titleId}</span>
+              <iconify-icon icon="${item.icon}" class="text-xl text-white/50"></iconify-icon>
+            </div>
+            <h4 class="text-2xl font-bold text-white mb-2">${isEn ? (item.valueEn || item.value) : (item.valueId || item.value)}</h4>
+          </div>
+          <p class="text-xs text-white/60 leading-relaxed pt-3 border-t border-white/5">${isEn ? item.noteEn : item.noteId}</p>
+        </article>
+      `)
+      .join("");
+  }
 
-      // 10-Band detailed mapping using 128 bins (fftSize = 256)
-      let b1 = (dataArray[0] + dataArray[1]) / 2; // Sub-bass
-      let b2 = (dataArray[2] + dataArray[3]) / 2; // Bass
-      let b3 = (dataArray[4] + dataArray[5]) / 2; // Low Mids
-      let b4 = (dataArray[6] + dataArray[7] + dataArray[8]) / 3; // Mids
-      let b5 = (dataArray[9] + dataArray[10] + dataArray[11]) / 3; // Mids-highs
-      let b6 = (dataArray[12] + dataArray[13] + dataArray[14] + dataArray[15]) / 4; // High-mids
-      let b7 = 0; // Highs
-      for (let i = 16; i <= 21; i++) b7 += dataArray[i];
-      b7 /= 6;
-      let b8 = 0; // High presence
-      for (let i = 22; i <= 28; i++) b8 += dataArray[i];
-      b8 /= 7;
-      let b9 = 0; // Treble
-      for (let i = 29; i <= 37; i++) b9 += dataArray[i];
-      b9 /= 9;
-      let b10 = 0; // Very high presence
-      for (let i = 38; i <= 50; i++) b10 += dataArray[i];
-      b10 /= 13;
+  function renderLanguages() {
+    const container = document.getElementById("language-list");
+    if (!container) return;
+    const isEn = window.currentLang === "en";
 
-      let rawBands = [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10];
-      let normBands = [];
+    container.innerHTML = languages
+      .map((lang) => `
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-xs font-mono">
+            <span class="text-white/85 font-medium">${lang.name}</span>
+            <span class="text-white/50">${isEn ? lang.levelEn : lang.levelId}</span>
+          </div>
+          <div class="h-1.5 w-full rounded-full bg-white/5 overflow-hidden border border-white/5">
+            <div class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-white" style="width: ${lang.width};"></div>
+          </div>
+        </div>
+      `)
+      .join("");
+  }
 
-      for (let i = 0; i < 10; i++) {
-        // Slowly decay the running maximum to adapt to quieter parts, keeping a floor of 30 to prevent noise gain
-        bandMaxes[i] = Math.max(bandMaxes[i] * 0.996, rawBands[i], 30);
-        // Normalize current band amplitude against its dynamic peak
-        normBands.push(Math.min(1.0, rawBands[i] / bandMaxes[i]));
-      }
+  function renderStackTabs(activeKey = "frontend") {
+    const container = document.getElementById("stack-tabs");
+    if (!container) return;
+    const isEn = window.currentLang === "en";
+    window.activeStackTab = activeKey;
 
-      // Apply Dual-Rate Physics Easing: Fast snap-up (Attack) and smooth drop-down (Decay)
-      for (let i = 0; i < 10; i++) {
-        let targetH = 3 + normBands[i] * 17; // Container h-5 is 20px, so heights range 3px to 20px
-        if (targetH > currentHeights[i]) {
-          // Snappy Attack
-          currentHeights[i] += (targetH - currentHeights[i]) * 0.55;
+    container.innerHTML = stackCategories
+      .map((cat) => `
+        <button
+          type="button"
+          class="skill-tab-btn ${cat.key === activeKey ? 'active' : ''}"
+          onclick="window.onStackTabClick('${cat.key}')"
+        >
+          ${isEn ? cat.labelEn : cat.labelId}
+        </button>
+      `)
+      .join("");
+  }
+
+  window.onStackTabClick = function (key) {
+    window.activeStackTab = key;
+    renderStackTabs(key);
+    renderStackPanel(key);
+  };
+
+  function renderStackPanel(activeKey = "frontend") {
+    const container = document.getElementById("stack-panel");
+    if (!container) return;
+    const isEn = window.currentLang === "en";
+    const category = stackCategories.find((c) => c.key === activeKey) || stackCategories[0];
+
+    container.innerHTML = category.items
+      .map((item, idx) => `
+        <article class="skill-card">
+          <div>
+            <div class="skill-header">
+              <span class="skill-badge">${category.key.toUpperCase()} // 0${idx + 1}</span>
+            </div>
+            <h4 class="skill-title">${item.name}</h4>
+          </div>
+          <p class="skill-desc">${isEn ? item.descEn : item.descId}</p>
+        </article>
+      `)
+      .join("");
+  }
+
+  function renderAthletics() {
+    const container = document.getElementById("athletic-timeline");
+    if (!container) return;
+    const isEn = window.currentLang === "en";
+
+    container.innerHTML = athleticTimeline
+      .map((item) => `
+        <div class="timeline-node">
+          <div class="timeline-marker"></div>
+          <article class="timeline-card">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="timeline-year">${item.year}</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/5 text-white/60 border border-white/5">${item.tag}</span>
+            </div>
+            <h4 class="timeline-title">${isEn ? item.titleEn : item.titleId}</h4>
+            <p class="timeline-desc">${isEn ? item.detailEn : item.detailId}</p>
+          </article>
+        </div>
+      `)
+      .join("");
+  }
+
+  // 5. FEATURED PROJECTS CASE STUDIES RENDERER
+  function renderFeaturedProjects() {
+    const container = document.getElementById("featured-projects-list");
+    if (!container || !window.portfolioProjects) return;
+    const isEn = window.currentLang === "en";
+
+    container.innerHTML = window.portfolioProjects
+      .map((project, idx) => {
+        const isDesaTampa = project.id === "desatampa";
+        const isWallet = project.id === "wallet";
+        const primaryImg = project.images && project.images[0] ? project.images[0].replace("../", "") : "img/aipp-logo.webp";
+
+        // Layout media: For Desa Tampa, render the custom Liquid Glass video player!
+        let mediaHtml = "";
+        if (isDesaTampa) {
+          mediaHtml = `
+            <div class="mobile-showcase-stage">
+              <!-- Ambient Halo Glow -->
+              <div class="mobile-ambient-halo"></div>
+
+              <!-- Stage Top Badges -->
+              <div class="absolute top-3.5 left-4 z-10 flex items-center gap-2 pointer-events-none">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+                  ${isEn ? "MOBILE VIEW DEMO" : "DEMO TAMPILAN MOBILE"}
+                </span>
+              </div>
+              <div class="absolute top-3.5 right-4 z-10 font-mono text-[10px] text-white/50 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 pointer-events-none">
+                372×810 PWA
+              </div>
+
+              <!-- Titanium Smartphone Mockup (Ambient Autoplay Living Showcase) -->
+              <div class="smartphone-chassis cursor-pointer group/phone" id="desa-tampa-video-wrapper" onclick="window.openProjectModal('desatampa')" title="${isEn ? 'Inspect Case Study' : 'Lihat Studi Kasus'}">
+                <div class="smartphone-notch">
+                  <span class="w-2 h-2 rounded-full bg-[#151515] border border-cyan-400/20"></span>
+                </div>
+                <div class="smartphone-screen">
+                  <video id="desa-tampa-video" class="video-player-element" autoplay loop muted playsinline preload="auto" poster="img/DESATAMPA/website-desa-tampa-mobile-poster.webp">
+                    <source src="img/DESATAMPA/website-desa-tampa-vid.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                  </video>
+                </div>
+              </div>
+
+              <!-- Bottom Inspect Pill -->
+              <div class="absolute bottom-3.5 right-4 z-10 pointer-events-auto">
+                <button type="button" class="liquid-glass-pill px-3 py-1 text-xs text-white/90 flex items-center gap-1.5" onclick="window.openProjectModal('desatampa')">
+                  <span>${isEn ? "Inspect Case Study" : "Lihat Studi Kasus"}</span>
+                  <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
+                </button>
+              </div>
+            </div>
+          `;
         } else {
-          // Smooth Decay
-          currentHeights[i] += (targetH - currentHeights[i]) * 0.16;
+          mediaHtml = `
+            <div class="project-media-col cursor-pointer" onclick="window.openProjectModal('${project.id}')">
+              <img src="${primaryImg}" alt="${project.title}" class="project-media-preview" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#080A0D]/90 via-transparent to-transparent pointer-events-none"></div>
+              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                <span class="font-mono text-[11px] text-white/70 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                  ${project.images ? project.images.length : 1} ${isEn ? "Assets & Docs" : "Dokumentasi & Aset"}
+                </span>
+                <span class="liquid-glass-pill px-3 py-1 text-xs text-white/90 flex items-center gap-1.5">
+                  ${isEn ? "Inspect Case Study" : "Lihat Studi Kasus"}
+                  <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
+                </span>
+              </div>
+            </div>
+          `;
+        }
+
+        return `
+          <article class="project-case-card" id="project-${project.id}">
+            <div class="project-inner-grid ${idx % 2 === 1 ? 'lg:[&>.project-media-col]:order-2' : ''}">
+              ${mediaHtml}
+              <div class="project-info-col">
+                <div class="flex items-center justify-between">
+                  <span class="project-category-tag">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                    ${isEn ? project.labelEn : project.labelId}
+                  </span>
+                  <span class="font-mono text-xs text-white/40">// 0${idx + 1}</span>
+                </div>
+                <h3 class="project-case-title">${project.title}</h3>
+                <p class="project-case-summary">${isEn ? project.descriptionEn : project.descriptionId}</p>
+
+                <!-- Key Tech Stack Tags -->
+                <div class="project-stack-tags">
+                  ${project.stack ? project.stack.map(s => `<span class="stack-tag">${s}</span>`).join("") : ""}
+                </div>
+
+                <!-- Action Links -->
+                <div class="project-action-row pt-3 border-t border-white/5">
+                  <button type="button" class="btn-primary" onclick="window.openProjectModal('${project.id}')">
+                    <span>${isEn ? "Case Study & Architecture" : "Studi Kasus & Arsitektur"}</span>
+                    <iconify-icon icon="solar:document-text-linear" class="text-base"></iconify-icon>
+                  </button>
+                  ${project.github ? `
+                    <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="GitHub Repository">
+                      <iconify-icon icon="mdi:github" class="text-base"></iconify-icon>
+                      <span>GitHub</span>
+                    </a>
+                  ` : ""}
+                  ${project.demo ? `
+                    <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Live Demo">
+                      <iconify-icon icon="solar:link-circle-linear" class="text-base"></iconify-icon>
+                      <span>Live Demo</span>
+                    </a>
+                  ` : ""}
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+
+    initDesaTampaVideoPlayer();
+  }
+
+  // 6. BESPOKE DESATAMPA AMBIENT AUTOPLAY ENGINE
+  function initDesaTampaVideoPlayer() {
+    const video = document.getElementById("desa-tampa-video");
+    if (!video) return;
+
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+
+    const startAutoplay = () => {
+      video.play().catch(() => {
+        const resumeOnGesture = () => {
+          video.play().catch(() => {});
+          window.removeEventListener("scroll", resumeOnGesture);
+          window.removeEventListener("touchstart", resumeOnGesture);
+          window.removeEventListener("click", resumeOnGesture);
+        };
+        window.addEventListener("scroll", resumeOnGesture, { once: true });
+        window.addEventListener("touchstart", resumeOnGesture, { once: true });
+        window.addEventListener("click", resumeOnGesture, { once: true });
+      });
+    };
+
+    startAutoplay();
+
+    // IntersectionObserver: smoothly plays while in viewport and pauses when scrolled away
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(video);
+    }
+  }
+
+  // 7. PROJECT CASE STUDY MODAL ENGINE
+  window.openProjectModal = function (projectId) {
+    if (!window.portfolioProjects) return;
+    const project = window.portfolioProjects.find(p => p.id === projectId);
+    if (!project) return;
+    const isEn = window.currentLang === "en";
+
+    const modalBackdrop = document.getElementById("project-modal-backdrop");
+    const modalContent = document.getElementById("project-modal-content");
+    const modalBadge = document.getElementById("project-modal-badge");
+    const modalBody = document.getElementById("project-modal-body");
+    if (!modalBackdrop || !modalContent) return;
+
+    if (modalBadge) {
+      modalBadge.textContent = isEn ? project.labelEn : project.labelId;
+    }
+
+    modalContent.innerHTML = `
+      <div class="space-y-6">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">${project.title}</h2>
+          <p class="text-sm sm:text-base text-white/75 mt-2.5 leading-relaxed">${isEn ? project.descriptionEn : project.descriptionId}</p>
+        </div>
+
+        <!-- Tech Stack -->
+        <div>
+          <h4 class="font-mono text-xs uppercase tracking-widest text-white/40 mb-2.5">${isEn ? "Engineering Stack" : "Tumpukan Teknologi"}</h4>
+          <div class="flex flex-wrap gap-2">
+            ${project.stack ? project.stack.map(s => `<span class="stack-tag text-xs">${s}</span>`).join("") : ""}
+          </div>
+        </div>
+
+        <!-- Story Background -->
+        ${project.story && (project.story.backgroundId || project.story.backgroundEn) ? `
+          <div class="liquid-glass-card p-5 sm:p-6 border border-white/10">
+            <h4 class="font-mono text-xs uppercase tracking-widest text-cyan-300 mb-2">${isEn ? "Context & Background" : "Konteks & Latar Belakang"}</h4>
+            <p class="text-xs sm:text-sm text-white/80 leading-relaxed">${isEn ? project.story.backgroundEn : project.story.backgroundId}</p>
+          </div>
+        ` : ""}
+
+        <!-- Objectives & Architecture -->
+        ${project.story && (project.story.objectivesId || project.story.objectivesEn) ? `
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="liquid-glass-card p-5">
+              <h4 class="font-mono text-xs uppercase tracking-widest text-white/40 mb-2.5">${isEn ? "Architectural Goals" : "Tujuan Arsitektur"}</h4>
+              <ul class="space-y-1.5 text-xs text-white/75 leading-relaxed list-disc list-inside">
+                ${(isEn ? project.story.objectivesEn : project.story.objectivesId).map(obj => `<li>${obj}</li>`).join("")}
+              </ul>
+            </div>
+            <div class="liquid-glass-card p-5">
+              <h4 class="font-mono text-xs uppercase tracking-widest text-cyan-300 mb-2.5">${isEn ? "Core Technical Features" : "Fitur Teknis Unggulan"}</h4>
+              <ul class="space-y-1.5 text-xs text-white/75 leading-relaxed list-disc list-inside">
+                ${(isEn ? project.story.featuresEn : project.story.featuresId).map(feat => `<li>${feat}</li>`).join("")}
+              </ul>
+            </div>
+          </div>
+        ` : ""}
+
+        <!-- Image & Media Showcase -->
+        ${project.images && project.images.length > 0 ? `
+          <div>
+            <h4 class="font-mono text-xs uppercase tracking-widest text-white/40 mb-3">${isEn ? "Visual Assets & Proof of Work" : "Dokumentasi Visual & Bukti Proyek"}</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              ${project.images.map(img => {
+                const cleanImg = img.replace("../", "");
+                const isVideo = cleanImg.toLowerCase().endsWith(".mp4");
+                if (isVideo) {
+                  return `
+                    <div class="col-span-2 sm:col-span-3 rounded-2xl overflow-hidden border border-cyan-400/25 bg-gradient-to-b from-[#141A23] to-[#0A0D12] shadow-xl p-5 sm:p-7 flex flex-col md:flex-row items-center gap-6">
+                      <!-- Smartphone Frame with Full Vertical Mobile Demo (372 / 810) -->
+                      <div class="smartphone-chassis w-[210px] sm:w-[230px] flex-shrink-0">
+                        <div class="smartphone-notch">
+                          <span class="w-2 h-2 rounded-full bg-[#151515] border border-cyan-400/20"></span>
+                        </div>
+                        <div class="smartphone-screen">
+                          <video src="${cleanImg}" autoplay loop muted playsinline preload="auto" poster="img/DESATAMPA/website-desa-tampa-mobile-poster.webp" class="w-full h-full object-cover bg-black"></video>
+                        </div>
+                      </div>
+
+                      <!-- Mobile Architecture & Proof Context -->
+                      <div class="space-y-4 text-left flex-1">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-300 font-mono text-xs">
+                          <iconify-icon icon="solar:smartphone-linear" class="text-base"></iconify-icon>
+                          <span>${isEn ? "Mobile-First Civic Architecture" : "Arsitektur Ramah Seluler (Mobile View)"}</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">${isEn ? "Mobile Web Application Demo" : "Demonstrasi Antarmuka Web Seluler"}</h3>
+                        <p class="text-xs sm:text-sm text-white/75 leading-relaxed">
+                          ${isEn
+                            ? "This application demonstration video documents the live mobile interface designed for village residents. Every view, including interactive Leaflet maps and UMKM cooperatives, was architected for optimal performance on low-bandwidth rural smartphone connections."
+                            : "Video demonstrasi ini merekam pengujian langsung antarmuka mobile portal Desa Tampa. Seluruh modul navigasi, peta batas wilayah Leaflet Maps, dan katalog digital UMKM singkong dirancang khusus agar ringan, responsif, dan mudah dioperasikan warga melalui smartphone."
+                          }
+                        </p>
+                        <div class="grid grid-cols-2 gap-2 text-[11px] font-mono text-white/60 pt-1">
+                          <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
+                            <span class="text-cyan-300 font-bold block text-xs">9:19.5 (372×810)</span>
+                            <span>${isEn ? "Native Mobile View" : "Rasio Layar Ponsel"}</span>
+                          </div>
+                          <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
+                            <span class="text-cyan-300 font-bold block text-xs">PWA & Leaflet</span>
+                            <span>${isEn ? "Touch Geo-Mapping" : "Navigasi Sentuh"}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }
+                return `
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer group bg-black/40" onclick="window.openLightbox('${cleanImg}')">
+                    <img src="${cleanImg}" alt="${project.title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        ` : ""}
+
+        <!-- External Links -->
+        <div class="flex items-center gap-3 pt-5 border-t border-white/10">
+          ${project.github ? `
+            <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4">
+              <iconify-icon icon="mdi:github" class="text-base"></iconify-icon>
+              <span>GitHub Code</span>
+            </a>
+          ` : ""}
+          ${project.demo ? `
+            <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-2 px-4">
+              <iconify-icon icon="solar:link-circle-linear" class="text-base"></iconify-icon>
+              <span>Live Application</span>
+            </a>
+          ` : ""}
+          <button type="button" class="btn-ghost ml-auto text-xs py-2 px-3 text-white/60 hover:text-white" onclick="window.closeProjectModal()">
+            ${isEn ? "Close" : "Tutup"}
+          </button>
+        </div>
+      </div>
+    `;
+
+    // 1. Pause Lenis virtual scrolling immediately so touch/wheel events never scroll the background page
+    if (window.lenis) {
+      window.lenis.stop();
+    }
+
+    // 2. Strict scroll lock on document root and body
+    document.documentElement.classList.add("modal-open");
+    document.body.classList.add("modal-open");
+
+    // 3. Reset modal body scroll position to top
+    if (modalBody) {
+      modalBody.scrollTop = 0;
+    }
+
+    // 4. Reveal modal
+    modalBackdrop.classList.add("open");
+  };
+
+  window.closeProjectModal = function () {
+    const modalBackdrop = document.getElementById("project-modal-backdrop");
+    if (modalBackdrop) {
+      modalBackdrop.classList.remove("open");
+    }
+
+    // Release strict scroll lock
+    document.documentElement.classList.remove("modal-open");
+    document.body.classList.remove("modal-open");
+
+    // Resume Lenis smooth scroll
+    if (window.lenis) {
+      window.lenis.start();
+    }
+  };
+
+  // 8. IMAGE LIGHTBOX ENGINE
+  window.openLightbox = function (imgSrc) {
+    const lightbox = document.getElementById("lightbox-backdrop");
+    const lightboxImg = document.getElementById("lightbox-img");
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = imgSrc;
+    lightbox.classList.add("open");
+
+    if (window.lenis) {
+      window.lenis.stop();
+    }
+    document.documentElement.classList.add("modal-open");
+    document.body.classList.add("modal-open");
+  };
+
+  window.closeLightbox = function () {
+    const lightbox = document.getElementById("lightbox-backdrop");
+    if (lightbox) {
+      lightbox.classList.remove("open");
+    }
+
+    // Only restore scroll if case study modal is not still open
+    const modalBackdrop = document.getElementById("project-modal-backdrop");
+    if (!modalBackdrop || !modalBackdrop.classList.contains("open")) {
+      document.documentElement.classList.remove("modal-open");
+      document.body.classList.remove("modal-open");
+      if (window.lenis) {
+        window.lenis.start();
+      }
+    }
+  };
+
+  // 9. REDESIGNED FUTURISTIC MUSIC PLAYER & WEB AUDIO API SPECTRUM
+  function setupAudioHub() {
+    const bgMusic = document.getElementById("bg-music");
+    const audioToggle = document.getElementById("floating-audio-toggle");
+    const audioLabel = document.getElementById("audio-status-label");
+    const audioIcon = document.getElementById("audio-toggle-icon");
+    const robotCompanion = document.getElementById("robot-companion");
+    const robotHead = document.getElementById("robot-head-group");
+    const robotBody = document.getElementById("robot-body-group");
+    const robotVisor = document.getElementById("robot-visor-eye");
+    const robotAntenna = document.getElementById("robot-antenna-group");
+    const spectrumBars = document.querySelectorAll(".spectrum-bar");
+
+    if (!bgMusic || !audioToggle) return;
+
+    let isPlaying = false;
+    let audioCtx = null;
+    let analyser = null;
+    let dataArray = null;
+    let animFrame = null;
+    let smoothBass = 0;
+
+    bgMusic.volume = 0.25;
+
+    const initWebAudio = () => {
+      try {
+        if (!window.audioCtx) {
+          window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        audioCtx = window.audioCtx;
+
+        if (!window.audioAnalyser) {
+          analyser = audioCtx.createAnalyser();
+          analyser.fftSize = 64; // 32 bins, perfect for 16 bands
+          window.audioAnalyser = analyser;
+        } else {
+          analyser = window.audioAnalyser;
+        }
+
+        if (!bgMusic.sourceNode) {
+          const source = audioCtx.createMediaElementSource(bgMusic);
+          source.connect(analyser);
+          analyser.connect(audioCtx.destination);
+          bgMusic.sourceNode = source;
+        }
+
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
+      } catch (e) {
+        console.warn("Web Audio API not supported or blocked by sandbox:", e);
+      }
+    };
+
+    const updateAudioVisualization = () => {
+      if (!isPlaying) return;
+
+      if (analyser && dataArray) {
+        analyser.getByteFrequencyData(dataArray);
+
+        // Update 16 spectrum bars
+        for (let i = 0; i < spectrumBars.length; i++) {
+          const val = dataArray[i] || 0;
+          const heightPx = Math.max(3, (val / 255) * 18);
+          spectrumBars[i].style.height = `${heightPx}px`;
+        }
+
+        // Bass frequency for companion mascot physics (bins 0-3)
+        const bassVal = (dataArray[0] + dataArray[1] + dataArray[2]) / (3 * 255);
+        smoothBass += (bassVal - smoothBass) * 0.28;
+
+        // Animate companion mascot
+        if (robotCompanion && robotCompanion.classList.contains("active")) {
+          // Subtle hover bob & slight tilt with bass beat
+          const bobY = -smoothBass * 8;
+          const swayRot = Math.sin(Date.now() * 0.006) * (smoothBass * 6);
+          robotCompanion.style.transform = `translateY(${bobY}px) rotate(${swayRot}deg)`;
+
+          // Bob head
+          if (robotHead) {
+            robotHead.style.transform = `translateY(${smoothBass * 1.5}px)`;
+          }
+
+          // Pulse body scale
+          if (robotBody) {
+            robotBody.style.transform = `scale(${1 + smoothBass * 0.08})`;
+          }
+
+          // Visor eye brightness & scale
+          if (robotVisor) {
+            const glowOpacity = 0.5 + smoothBass * 0.5;
+            robotVisor.style.filter = `drop-shadow(0 0 ${4 + smoothBass * 8}px rgba(120, 201, 245, ${glowOpacity}))`;
+          }
+
+          // Antenna sway
+          if (robotAntenna) {
+            const antAngle = Math.sin(Date.now() * 0.008) * (8 + smoothBass * 12);
+            robotAntenna.style.transform = `rotate(${antAngle}deg)`;
+          }
         }
       }
 
-      // Update equalizer heights
-      if (bar1) bar1.style.height = `${currentHeights[0]}px`;
-      if (bar2) bar2.style.height = `${currentHeights[1]}px`;
-      if (bar3) bar3.style.height = `${currentHeights[2]}px`;
-      if (bar4) bar4.style.height = `${currentHeights[3]}px`;
-      if (bar5) bar5.style.height = `${currentHeights[4]}px`;
-      if (bar6) bar6.style.height = `${currentHeights[5]}px`;
-      if (bar7) bar7.style.height = `${currentHeights[6]}px`;
-      if (bar8) bar8.style.height = `${currentHeights[7]}px`;
-      if (bar9) bar9.style.height = `${currentHeights[8]}px`;
-      if (bar10) bar10.style.height = `${currentHeights[9]}px`;
+      animFrame = requestAnimationFrame(updateAudioVisualization);
+    };
 
-      // Calculate bass beat factor for pulsing (decays slower for smooth bobbing)
-      const normBass = (normBands[0] + normBands[1]) / 2;
-      smoothBass += (normBass - smoothBass) * 0.25;
-
-      // Bob the head: shifts down on beat for a rhythmic nod
-      if (robotHead) {
-        const headY = smoothBass * 2.2;
-        robotHead.style.transform = `translateY(${headY}px)`;
+    const play = () => {
+      initWebAudio();
+      if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume();
       }
 
-      // Pulse the body: scale body slightly on beat
-      if (robotBody) {
-        const bodyScale = 1 + smoothBass * 0.08;
-        robotBody.style.transform = `scale(${bodyScale})`;
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        if (audioLabel) audioLabel.textContent = window.currentLang === "en" ? "PLAYING" : "MEMUTAR";
+        if (audioIcon) audioIcon.setAttribute("icon", "solar:pause-bold");
+        if (robotCompanion) robotCompanion.classList.add("active");
+
+        cancelAnimationFrame(animFrame);
+        animFrame = requestAnimationFrame(updateAudioVisualization);
+        localStorage.setItem("aipp-music-enabled", "true");
+      }).catch(err => {
+        console.log("Audio autoplay prevented by user-interaction policy:", err);
+      });
+    };
+
+    const pause = () => {
+      bgMusic.pause();
+      isPlaying = false;
+      if (audioLabel) audioLabel.textContent = window.currentLang === "en" ? "AUDIO OST" : "AUDIO OST";
+      if (audioIcon) audioIcon.setAttribute("icon", "solar:play-bold");
+      if (robotCompanion) robotCompanion.classList.remove("active");
+
+      cancelAnimationFrame(animFrame);
+      spectrumBars.forEach(bar => { bar.style.height = "3px"; });
+
+      if (robotCompanion) {
+        robotCompanion.style.transform = "";
       }
 
-      // Apply overall translations and sways to the main robot element
-      if (entryAnimationComplete) {
-        // Robot jumps up to -10px, scales up to 1.16, sways to the rhythm
-        const robotY = -smoothBass * 10;
-        const robotScale = 1 + smoothBass * 0.16;
-        const robotRotation = Math.sin(Date.now() * 0.008) * (smoothBass * 9);
-        musicRobot.style.transform = `translateY(${robotY}px) scale(${robotScale}) rotate(${robotRotation}deg)`;
-        musicRobot.style.opacity = "1";
+      localStorage.setItem("aipp-music-enabled", "false");
+    };
+
+    audioToggle.addEventListener("click", () => {
+      if (isPlaying) {
+        pause();
+      } else {
+        play();
+      }
+    });
+
+    // Autoplay check if user previously engaged
+    if (localStorage.getItem("aipp-music-enabled") === "true") {
+      const startOnGesture = () => {
+        play();
+        window.removeEventListener("click", startOnGesture);
+        window.removeEventListener("scroll", startOnGesture);
+        window.removeEventListener("touchstart", startOnGesture);
+      };
+      window.addEventListener("click", startOnGesture, { once: true });
+      window.addEventListener("scroll", startOnGesture, { once: true });
+      window.addEventListener("touchstart", startOnGesture, { once: true });
+    }
+  }
+
+  // 10. TYPING EFFECT
+  function setupTypingEffect() {
+    const el = document.getElementById("typing-role");
+    if (!el) return;
+
+    let roleIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+
+    const tick = () => {
+      const list = typingRoles[window.currentLang] || typingRoles.en;
+      const currentWord = list[roleIdx % list.length];
+      const targetText = isDeleting
+        ? currentWord.substring(0, charIdx - 1)
+        : currentWord.substring(0, charIdx + 1);
+
+      el.textContent = targetText;
+      charIdx = isDeleting ? charIdx - 1 : charIdx + 1;
+
+      if (!isDeleting && charIdx === currentWord.length) {
+        isDeleting = true;
+        setTimeout(tick, 1800);
+        return;
       }
 
-      // Flash Speaker lights color based on bass intensity (Cyan to vibrant Pink/Purple or Yellow)
-      if (speakerLightL && speakerLightR) {
-        const r = Math.round(34 + smoothBass * (236 - 34));   // 0x22 -> 0xEC
-        const g = Math.round(211 + smoothBass * (72 - 211));  // 0xD3 -> 0x48
-        const b = Math.round(238 + smoothBass * (153 - 238)); // 0xEE -> 0x99
-        const color = `rgb(${r}, ${g}, ${b})`;
-        speakerLightL.setAttribute("fill", color);
-        speakerLightR.setAttribute("fill", color);
+      if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        roleIdx = (roleIdx + 1) % list.length;
+        setTimeout(tick, 300);
+        return;
       }
 
-      // Make Eyes glow brighter and slightly larger on beat
-      if (eyeL && eyeR) {
-        const r = Math.round(34 + smoothBass * (255 - 34));
-        const g = Math.round(211 + smoothBass * (255 - 211));
-        const b = Math.round(238 + smoothBass * (255 - 238));
-        const color = `rgb(${r}, ${g}, ${b})`;
-        eyeL.setAttribute("fill", color);
-        eyeR.setAttribute("fill", color);
+      setTimeout(tick, isDeleting ? 45 : 75);
+    };
 
-        // Apply widening scale to the eyes
-        const eyeScaleY = 1 + smoothBass * 0.5;
-        eyeL.style.transform = `scaleY(${eyeScaleY})`;
-        eyeR.style.transform = `scaleY(${eyeScaleY})`;
+    tick();
+  }
+
+  // 11. CUSTOM CURSOR
+  function setupCustomCursor() {
+    if (!window.matchMedia("(pointer: fine)").matches || window.innerWidth < 1024) return;
+
+    const follower = document.querySelector(".custom-cursor-follower");
+    const dot = document.querySelector(".custom-cursor-dot");
+    if (!follower || !dot) return;
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let followerX = -100;
+    let followerY = -100;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+
+      if (!follower.classList.contains("is-visible")) {
+        follower.classList.add("is-visible");
+        dot.classList.add("is-visible");
+      }
+    });
+
+    const render = () => {
+      followerX += (mouseX - followerX) * 0.18;
+      followerY += (mouseY - followerY) * 0.18;
+      follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
+      requestAnimationFrame(render);
+    };
+    render();
+
+    document.querySelectorAll("a, button, [role='button'], input, textarea").forEach((el) => {
+      el.addEventListener("mouseenter", () => follower.classList.add("hovered"));
+      el.addEventListener("mouseleave", () => follower.classList.remove("hovered"));
+    });
+  }
+
+  // 12. LENIS SMOOTH SCROLL & GSAP ANIMATIONS
+  function setupSmoothScrollAndGsap() {
+    // Lenis integration
+    if (typeof window.Lenis !== "undefined" && richMotion) {
+      const lenis = new window.Lenis({
+        duration: 1.15,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        smoothTouch: false, // Essential: native touch inertia on mobile devices
+        touchMultiplier: 1.5
+      });
+      window.lenis = lenis;
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      if (window.ScrollTrigger) {
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
       }
 
-      // Sway Antenna dynamically based on beat
-      if (antenna) {
-        const swayAngle = Math.sin(Date.now() * 0.01) * (10 + smoothBass * 15);
-        antenna.style.transform = `rotate(${swayAngle}deg)`;
-      }
-
-      // Pulse Music Toggle Button (Dramatic scale, bg shift, border glow, and outer shadow)
-      if (musicToggle) {
-        const glowRadius = 14 + smoothBass * 22;
-        const glowOpacity = 0.3 + smoothBass * 0.65;
-        // Pulse outer shadow and inner glow
-        musicToggle.style.boxShadow = `0 0 ${glowRadius}px rgba(6, 182, 212, ${glowOpacity}), inset 0 0 ${8 + smoothBass * 10}px rgba(6, 182, 212, ${0.1 + smoothBass * 0.3})`;
-
-        // Border color flashes bright white-cyan on beats
-        const borderR = Math.round(34 + smoothBass * (255 - 34));
-        const borderG = Math.round(211 + smoothBass * (255 - 211));
-        const borderB = Math.round(238 + smoothBass * (255 - 238));
-        musicToggle.style.borderColor = `rgb(${borderR}, ${borderG}, ${borderB})`;
-
-        // Pulse transform (Smooth and highly dramatic scaling)
-        musicToggle.style.transform = `scale(${1 + smoothBass * 0.14})`;
-
-        // Shift background color to a nice cyan-blue under heavy bass
-        const bgR = Math.round(15 + smoothBass * 25);
-        const bgG = Math.round(23 + smoothBass * 55);
-        const bgB = Math.round(42 + smoothBass * 110);
-        const bgO = 0.85 - smoothBass * 0.2;
-        musicToggle.style.backgroundColor = `rgba(${bgR}, ${bgG}, ${bgB}, ${bgO})`;
-      }
-    }
-
-    animationFrameId = requestAnimationFrame(updateVisualizer);
-  };
-
-  const startVisualizer = () => {
-    initAudioVisualizer();
-
-    // Bypass animation lag on the button
-    musicToggle.style.transition = "border-color 0.15s ease, opacity 0.3s ease, background-color 0.35s ease";
-
-    if (visualizerActive && audioCtx && audioCtx.state === "suspended") {
-      audioCtx.resume();
-    }
-
-    if (animationFrameId) {
-      cancelAnimationFrame(animationFrameId);
-    }
-    animationFrameId = requestAnimationFrame(updateVisualizer);
-  };
-
-  const resetVisuals = () => {
-    if (animationFrameId) {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = null;
-    }
-
-    // Reset heights
-    if (bar1) bar1.style.height = "3px";
-    if (bar2) bar2.style.height = "3px";
-    if (bar3) bar3.style.height = "3px";
-    if (bar4) bar4.style.height = "3px";
-    if (bar5) bar5.style.height = "3px";
-    if (bar6) bar6.style.height = "3px";
-    if (bar7) bar7.style.height = "3px";
-
-    // Reset robot components transform
-    musicRobot.style.transform = "";
-    if (robotHead) robotHead.style.transform = "";
-    if (robotBody) robotBody.style.transform = "";
-
-    // Reset speakers and eyes fill color
-    if (speakerLightL && speakerLightR) {
-      speakerLightL.setAttribute("fill", "#22d3ee");
-      speakerLightR.setAttribute("fill", "#22d3ee");
-    }
-    if (eyeL && eyeR) {
-      eyeL.setAttribute("fill", "#22d3ee");
-      eyeR.setAttribute("fill", "#22d3ee");
-      eyeL.style.transform = "";
-      eyeR.style.transform = "";
-    }
-
-    // Reset antenna
-    if (antenna) {
-      antenna.style.transform = "";
-    }
-
-    // Reset button glow & scale
-    if (musicToggle) {
-      musicToggle.style.boxShadow = "";
-      musicToggle.style.borderColor = "";
-      musicToggle.style.transform = "";
-      musicToggle.style.transition = "";
-      musicToggle.style.backgroundColor = "";
-    }
-
-    entryAnimationComplete = false;
-    smoothBass = 0;
-    currentHeights = [3, 3, 3, 3, 3, 3, 3];
-  };
-
-  const playMusic = () => {
-    const savedTime = parseFloat(localStorage.getItem("aipp-music-time")) || 0;
-    bgMusic.currentTime = savedTime;
-
-    bgMusic.play().then(() => {
-      isPlaying = true;
-      musicContainer.classList.add("playing");
-      musicContainer.classList.add("eq-active");
-
-      startVisualizer();
-
-      // GSAP Squash and Stretch Launch Timeline
-      const tl = gsap.timeline();
-      gsap.killTweensOf([musicToggle, musicRobot]);
-      musicRobot.classList.remove("playing-robot");
-
-      // Squish capsule
-      tl.to(musicToggle, {
-        scaleY: 0.72,
-        scaleX: 1.28,
-        duration: 0.15,
-        ease: "power1.out"
-      })
-        // Bounce capsule back to normal
-        .to(musicToggle, {
-          scaleY: 1,
-          scaleX: 1,
-          duration: 0.35,
-          ease: "elastic.out(1.2, 0.4)"
-        }, "+=0.04")
-        // Launch robot upward with spin rotation
-        .fromTo(musicRobot,
-          { opacity: 0, y: 35, scale: 0.4, rotation: -12, pointerEvents: "none" },
-          {
-            opacity: 1,
-            y: -14,
-            scale: 1.1,
-            rotation: 8,
-            pointerEvents: "auto",
-            duration: 0.35,
-            ease: "power2.out"
-          },
-          "<" // start exactly when capsule rebounds
-        )
-        // Settle robot down to dancing state
-        .to(musicRobot, {
-          y: 0,
-          scale: 1,
-          rotation: 0,
-          duration: 0.42,
-          ease: "back.out(2.2)",
-          onComplete: () => {
-            if (isPlaying) {
-              entryAnimationComplete = true;
+      // Smooth scroll for in-page anchors
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              window.lenis.scrollTo(targetEl, { offset: -70, duration: 1.1 });
             }
           }
         });
-
-      // Icon toggle
-      gsap.to(playIcon, { scale: 0, opacity: 0, duration: 0.25 });
-
-      localStorage.setItem("aipp-music-enabled", "true");
-    }).catch((err) => {
-      console.log("Autoplay blocked by browser policy, waiting for interaction:", err);
-    });
-  };
-
-  const pauseMusic = () => {
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
-    localStorage.setItem("aipp-music-time", "0");
-    isPlaying = false;
-    musicContainer.classList.remove("playing");
-    musicContainer.classList.remove("eq-active");
-    musicRobot.classList.remove("playing-robot");
-    musicContainer.classList.remove("js-visualizer");
-
-    musicEqualizer.style.pointerEvents = "none";
-
-    resetVisuals();
-
-    // Retract robot back inside capsule bubble
-    gsap.killTweensOf([musicToggle, musicRobot]);
-    const tl = gsap.timeline();
-
-    // Robot anticipation hop
-    tl.to(musicRobot, {
-      y: -6,
-      scaleY: 1.15,
-      scaleX: 0.88,
-      rotation: -6,
-      duration: 0.15,
-      ease: "power1.out"
-    })
-      // Dive back inside
-      .to(musicRobot, {
-        opacity: 0,
-        y: 35,
-        scale: 0.4,
-        rotation: 12,
-        pointerEvents: "none",
-        duration: 0.4,
-        ease: "power2.in"
-      })
-      // Squish the capsule when the robot lands inside
-      .to(musicToggle, {
-        scaleY: 0.78,
-        scaleX: 1.22,
-        duration: 0.12,
-        ease: "power1.out"
-      }, "-=0.15")
-      // Rebound back to normal
-      .to(musicToggle, {
-        scaleY: 1,
-        scaleX: 1,
-        duration: 0.35,
-        ease: "elastic.out(1.2, 0.4)"
       });
-
-    // Icon toggle
-    gsap.to(playIcon, { scale: 1, opacity: 1, duration: 0.25 });
-
-    localStorage.setItem("aipp-music-enabled", "false");
-  };
-
-  musicToggle.addEventListener("click", () => {
-    if (isPlaying) {
-      pauseMusic();
-    } else {
-      playMusic();
     }
-  });
 
-  bgMusic.addEventListener("timeupdate", () => {
-    if (isPlaying) {
-      localStorage.setItem("aipp-music-time", bgMusic.currentTime);
+    if (!window.gsap || !richMotion) return;
+
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+    if (ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
     }
-  });
 
-  // Autoplay bypass on first user interaction if previously enabled
-  const isEnabledBefore = localStorage.getItem("aipp-music-enabled");
-  if (isEnabledBefore === "true") {
-    const handleFirstInteraction = () => {
-      playMusic();
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("touchstart", handleFirstInteraction);
-      document.removeEventListener("scroll", handleFirstInteraction);
-    };
-    document.addEventListener("click", handleFirstInteraction);
-    document.addEventListener("touchstart", handleFirstInteraction);
-    document.addEventListener("scroll", handleFirstInteraction);
+    // Hero entrance sequence
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    tl.fromTo(".hero-kicker-badge", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6 })
+      .fromTo(".editorial-headline", { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.3")
+      .fromTo(".hero-summary-text", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
+      .fromTo(".hero-action-buttons", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.3")
+      .fromTo(".portrait-frame", { opacity: 0, scale: 0.96, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.9 }, "<")
+      .fromTo(".floating-telemetry-badge", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, stagger: 0.15 }, "-=0.4")
+      .fromTo(".metric-pill", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }, "-=0.3");
+
+    // Metric Count-ups
+    if (ScrollTrigger) {
+      const counters = [
+        { el: document.querySelector('#metric-iq'), target: 121, template: 'IQ {val}', decimals: 0 },
+        { el: document.querySelector('#metric-gpa'), target: 3.86, template: '{val}/4.00', decimals: 2 }
+      ];
+
+      counters.forEach(item => {
+        if (!item.el) return;
+        const obj = { value: 0 };
+        gsap.fromTo(obj, { value: 0 }, {
+          value: item.target,
+          scrollTrigger: {
+            trigger: item.el,
+            start: "top 92%",
+            once: true
+          },
+          duration: 1.6,
+          ease: "power2.out",
+          onUpdate: () => {
+            const valFormatted = obj.value.toFixed(item.decimals);
+            item.el.textContent = item.template.replace('{val}', valFormatted);
+          }
+        });
+      });
+    }
   }
-}
 
-
-
-function setupProjectsPortal() {
-  const portalLink = document.querySelector('a[href="projects/projects.html"]');
-  const portalOverlay = document.getElementById("portal-overlay");
-  const portalLoader = document.getElementById("portal-loader");
-  const portalIframe = document.getElementById("portal-iframe");
-
-  if (portalLink && portalOverlay && portalIframe) {
-    portalLink.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      // Show portal overlay
-      portalOverlay.classList.remove("pointer-events-none");
-      gsap.to(portalOverlay, { opacity: 1, duration: 0.4, ease: "power2.out" });
-
-      // Show loader
-      if (portalLoader) {
-        portalLoader.style.opacity = "1";
-        portalLoader.style.pointerEvents = "auto";
+  // 13. COPY EMAIL TOAST NOTIFICATION
+  window.copyEmailToClipboard = function (email = "aippirwin@gmail.com") {
+    navigator.clipboard.writeText(email).then(() => {
+      const toast = document.getElementById("copy-toast");
+      if (toast) {
+        toast.classList.add("show");
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2200);
       }
+    }).catch(err => {
+      console.log("Failed to copy email:", err);
+    });
+  };
 
-      // Load iframe
-      portalIframe.src = "projects/projects.html";
+  // 14. MODAL TOUCH & WHEEL SCROLL ISOLATION
+  function setupModalScrollIsolation() {
+    const modalBackdrop = document.getElementById("project-modal-backdrop");
+    const modalBody = document.getElementById("project-modal-body");
 
-      // When iframe loads, hide loading screen
-      portalIframe.onload = () => {
-        if (portalLoader) {
-          gsap.to(portalLoader, {
-            opacity: 0,
-            duration: 0.5,
-            delay: 0.3,
-            onComplete: () => {
-              portalLoader.style.pointerEvents = "none";
-            }
-          });
+    if (modalBackdrop) {
+      modalBackdrop.addEventListener("touchmove", function (e) {
+        // Prevent background page touch scrolling when dragging outside the scrollable body
+        if (!e.target.closest("#project-modal-body")) {
+          e.preventDefault();
         }
-      };
+      }, { passive: false });
+    }
+
+    if (modalBody) {
+      // Isolate wheel and touch events within the modal dialog
+      modalBody.addEventListener("wheel", function (e) {
+        e.stopPropagation();
+      }, { passive: true });
+
+      modalBody.addEventListener("touchmove", function (e) {
+        e.stopPropagation();
+      }, { passive: true });
+    }
+  }
+
+  // 15. INITIALIZATION LIFECYCLE
+  function init() {
+    // Set Year
+    const yearEl = document.getElementById("current-year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Setup Components
+    window.setLanguage(window.currentLang);
+    setupAudioHub();
+    setupTypingEffect();
+    setupCustomCursor();
+    setupSmoothScrollAndGsap();
+    setupModalScrollIsolation();
+
+    // Close Modals on ESC key
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        window.closeProjectModal();
+        window.closeLightbox();
+      }
     });
   }
 
-  // Global window function so iframe can call it to close itself
-  window.closeProjectsPortal = function () {
-    if (portalOverlay && portalIframe) {
-      gsap.to(portalOverlay, {
-        opacity: 0,
-        duration: 0.4,
-        ease: "power2.in",
-        onComplete: () => {
-          portalOverlay.classList.add("pointer-events-none");
-          portalIframe.src = ""; // unload iframe to save resources
-        }
-      });
-    }
-  };
-}
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 
-function init() {
-  window.setLanguage(window.currentLang);
-  setupMobileActiveNav();
-  setupBackgroundMusic();
-  setupTypingEffect();
-  setupTabs();
-  observeReveals();
-  setupGsapAnimations();
-  setupCustomCursor();
-  setupMagneticInteractions();
-  setupCardTilt();
-  setupProjectsPortal();
-  yearEl.textContent = new Date().getFullYear();
-}
-
-init();
+})();

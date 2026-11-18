@@ -1,863 +1,742 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description"
-        content="Portfolio of Agustinus Irwin Putra Pangesti, an informatics student and application specialist who learns new technologies quickly and applies them through practical projects." />
-    <meta name="keywords"
-        content="Agustinus Irwin Putra Pangesti, AIPP, Informatics, Application Specialist, Web Application Projects, Crypto Wallet Project, Technology Adaptability, Badminton, Portfolio" />
-    <meta name="robots" content="index, follow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Agustinus Irwin Putra Pangesti (AIPP) — Informatics engineer, application specialist, and national badminton competitor. Merging cognitive rigor, software craftsmanship, and competitive athletic discipline." />
+  <meta name="keywords"
+    content="Agustinus Irwin Putra Pangesti, AIPP, Portfolio, Informatics Engineer, Application Specialist, Web Application Projects, Crypto Wallet, React, Next.js, Badminton Athlete, Liquid Glass" />
+  <meta name="author" content="Agustinus Irwin Putra Pangesti" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://aipp-site.netlify.app/" />
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://aipp-site.netlify.app/" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://aipp-site.netlify.app/" />
-    <meta property="og:title" content="Agustinus Irwin Putra Pangesti | Symphony of Mind, Muscle, and Code" />
-    <meta property="og:description"
-        content="Explore the portfolio of Agustinus Irwin Putra Pangesti, an informatics student and application specialist who learns new technologies through practical projects." />
-    <meta property="og:image" content="https://aipp-site.netlify.app/img/aipp-logo.webp" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aipp-site.netlify.app/" />
+  <meta property="og:title" content="Agustinus Irwin Putra Pangesti | AIPP Protocol" />
+  <meta property="og:description"
+    content="Explore the personal digital portfolio of Agustinus Irwin Putra Pangesti. Cognitive rigor, software craftsmanship, and athletic discipline." />
+  <meta property="og:image" content="https://aipp-site.netlify.app/img/aipp-logo.webp" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://aipp-site.netlify.app/" />
-    <meta property="twitter:title" content="Agustinus Irwin Putra Pangesti | Symphony of Mind, Muscle, and Code" />
-    <meta property="twitter:description"
-        content="Explore the portfolio of Agustinus Irwin Putra Pangesti, an informatics student and application specialist who learns new technologies through practical projects." />
-    <meta property="twitter:image" content="https://aipp-site.netlify.app/img/aipp-logo.webp" />
+  <!-- Twitter / X -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://aipp-site.netlify.app/" />
+  <meta property="twitter:title" content="Agustinus Irwin Putra Pangesti | AIPP Protocol" />
+  <meta property="twitter:description"
+    content="Explore the personal digital portfolio of Agustinus Irwin Putra Pangesti. Cognitive rigor, software craftsmanship, and athletic discipline." />
+  <meta property="twitter:image" content="https://aipp-site.netlify.app/img/aipp-logo.webp" />
 
-    <title>Agustinus Irwin Putra Pangesti | Symphony of Mind, Muscle, and Code</title>
-    <!-- AIPP Custom Monogram Favicon -->
-    <link rel="icon" type="image/png" href="img/aipp-icon.png" />
-    <link rel="apple-touch-icon" href="img/aipp-icon.png" />
+  <title>Agustinus Irwin Putra Pangesti | AIPP Protocol</title>
 
-    <!-- Structured Data (Schema.org JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Agustinus Irwin Putra Pangesti",
-      "jobTitle": "Informatics Student & Application Specialist",
-      "url": "https://aipp-site.netlify.app/",
-      "image": "https://aipp-site.netlify.app/img/aipp-logo.webp",
-      "sameAs": [
-        "https://github.com/AIPPproject03",
-        "https://www.linkedin.com/in/"
-      ],
-      "knowsAbout": [
-        "Informatics Engineering",
-        "Web Application Development",
-        "Client-Side Crypto Wallet Project",
-        "Learning New Technologies",
-        "Practical AI Integrations",
-        "Algorithmic Trading Projects",
-        "Badminton"
-      ],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Universitas Palangka Raya"
-      }
+  <!-- AIPP Monogram Favicon -->
+  <link rel="icon" type="image/png" href="img/aipp-icon.png" />
+  <link rel="apple-touch-icon" href="img/aipp-icon.png" />
+
+  <!-- Structured Data (Schema.org JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Agustinus Irwin Putra Pangesti",
+    "jobTitle": "Informatics Student & Application Specialist",
+    "url": "https://aipp-site.netlify.app/",
+    "image": "https://aipp-site.netlify.app/img/aipp-hero-transparent.webp",
+    "sameAs": [
+      "https://github.com/AIPPproject03",
+      "https://www.linkedin.com/in/"
+    ],
+    "knowsAbout": [
+      "Software Engineering",
+      "Web Applications",
+      "Client-Side Crypto Wallet",
+      "Algorithmic Trading",
+      "Computer Vision",
+      "Badminton"
+    ],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Universitas Palangka Raya"
     }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap"
-        rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        slateInk: '#0F172A',
-                        cyanNeon: '#06B6D4',
-                        gold: {
-                            100: '#FEF3C7',
-                            200: '#FCD34D',
-                            400: '#D97706',
-                        },
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        pixel: ['Silkscreen', 'monospace'],
-                    },
-                    boxShadow: {
-                        halo: '0 0 0 1px rgba(6,182,212,.2), 0 20px 80px rgba(2,132,199,.18)',
-                    },
-                },
+  }
+  </script>
+
+  <!-- Typography: Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind CSS Configuration -->
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              obsidian: '#080A0D',
+              charcoal: '#11151B',
+              iceBlue: '#78C9F5',
+              iceBlueSoft: '#A4DFFF',
+              silver: '#C8CDD3',
+              platinum: '#F2F4F6',
+              muted: '#858D98',
             },
-        };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
-    <link rel="stylesheet" href="styles.css" />
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP 3.12.5 + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+  <!-- Iconify Framework -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- AIPP Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
-<body class="bg-slateInk text-slate-100 antialiased selection:bg-cyan-400/30 selection:text-white">
-    <div class="custom-cursor" aria-hidden="true"></div>
-    <div class="custom-cursor-dot" aria-hidden="true"></div>
-    <div class="noise-layer"></div>
-    <div class="orb orb-cyan"></div>
-    <div class="orb orb-gold"></div>
-    <div class="orb orb-slate"></div>
+<body>
+  <!-- Custom Desktop Cursor -->
+  <div class="custom-cursor-follower" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
 
-    <header class="sticky top-0 z-50 border-b border-white/5 bg-slateInk/75 backdrop-blur-xl">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-            <a href="#hero" class="group flex items-center gap-3">
-                <img src="img/aipp-logo.webp" alt="AIPP"
-                    class="h-9 w-9 object-contain select-none transition-transform duration-300 group-hover:scale-105" />
-                <div>
-                    <p class="text-xs font-pixel tracking-[0.15em] text-white/85">AIPP PROTOCOL</p>
-                    <p class="text-[9px] uppercase tracking-[0.35em] text-white/40">Mind, Muscle, Code</p>
-                </div>
-            </a>
+  <!-- Ambient Environmental Glows & Grid Layer -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-gradient-1"></div>
+    <div class="ambient-gradient-2"></div>
+    <div class="ambient-gradient-3"></div>
+    <div class="subtle-grid-layer"></div>
+  </div>
 
-            <nav class="hidden items-center gap-8 text-sm text-white/70 md:flex">
-                <a class="nav-link" href="#foundation" data-lang-id="Fondasi" data-lang-en="Foundation">Foundation</a>
-                <a class="nav-link" href="#stack" data-lang-id="Teknologi" data-lang-en="Stack">Stack</a>
-                <a class="nav-link" href="#projects" data-lang-id="Proyek" data-lang-en="Projects">Projects</a>
-                <a class="nav-link" href="#athletics" data-lang-id="Atletik" data-lang-en="Athletics">Athletics</a>
-                <a class="nav-link" href="#impact" data-lang-id="Dampak" data-lang-en="Impact">Impact</a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <!-- Language Toggle Switch -->
-                <div
-                    class="flex items-center gap-0.5 bg-slate-950/60 border border-white/10 p-0.5 rounded-none font-pixel text-[8px] sm:text-[9px] uppercase tracking-wider z-20">
-                    <button id="lang-id"
-                        class="px-1.5 py-0.5 rounded-none transition-colors text-cyan-300 bg-cyan-400/15"
-                        onclick="window.setLanguage('id')">ID</button>
-                    <button id="lang-en"
-                        class="px-1.5 py-0.5 rounded-none transition-colors text-white/40 hover:text-white/80"
-                        onclick="window.setLanguage('en')">EN</button>
-                </div>
-
-                <a href="https://github.com/AIPPproject03" target="_blank" rel="noreferrer"
-                    class="hidden rounded-none border border-cyan-400/30 bg-cyan-400/10 px-3.5 py-1.5 text-xs font-semibold font-pixel text-cyan-200 transition hover:-translate-y-0.5 hover:bg-cyan-400/20 sm:inline-flex shadow-halo active:translate-y-0.5">
-                    GitHub Portfolio
-                </a>
-            </div>
+  <!-- SITE HEADER / FLOATING LIQUID GLASS NAVIGATION DOCK -->
+  <header class="site-header">
+    <nav class="nav-dock" aria-label="Main Navigation">
+      <!-- Logo Branding -->
+      <a href="#hero" class="nav-brand">
+        <img src="img/aipp-icon.png" alt="AIPP Monogram" class="nav-brand-logo" />
+        <div>
+          <span class="nav-brand-title block">AIPP PROTOCOL</span>
+          <span class="nav-brand-subtitle block">MIND • MUSCLE • CODE</span>
         </div>
-    </header>
+      </a>
 
-    <main>
-        <section id="hero" class="relative overflow-hidden">
-            <div
-                class="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:py-24">
-                <div class="reveal space-y-8">
-                    <div data-hero-badge data-lang-id="Simfoni Pikiran, Otot, dan Kode"
-                        data-lang-en="The Symphony of Mind, Muscle, and Code"
-                        class="inline-flex items-center gap-3 rounded-none border border-cyan-400/35 bg-cyan-400/5 px-3 py-1.5 text-[9px] font-pixel uppercase tracking-widest text-cyan-300/90 shadow-halo">
-                        The Symphony of Mind, Muscle, and Code
-                    </div>
+      <!-- Desktop Nav Links -->
+      <div class="nav-links-desktop">
+        <a href="#about" class="nav-link" data-lang-id="Tentang" data-lang-en="About">About</a>
+        <a href="#stack" class="nav-link" data-lang-id="Keahlian" data-lang-en="Expertise">Expertise</a>
+        <a href="#projects" class="nav-link" data-lang-id="Proyek" data-lang-en="Projects">Projects</a>
+        <a href="#athletics" class="nav-link" data-lang-id="Atletik" data-lang-en="Athletics">Athletics</a>
+        <a href="#impact" class="nav-link" data-lang-id="Dampak" data-lang-en="Impact">Impact</a>
+        <a href="#contact" class="nav-link" data-lang-id="Kontak" data-lang-en="Contact">Contact</a>
+      </div>
 
-                    <div class="space-y-5">
-                        <p data-hero-kicker data-lang-id="PORTFOLIO PRIBADI" data-lang-en="PERSONAL PORTFOLIO"
-                            class="text-sm font-semibold uppercase tracking-[0.5em] text-white/55">
-                            Personal Portfolio</p>
-                        <h1 data-hero-title
-                            class="max-w-4xl text-4xl font-black leading-[0.95] tracking-[-0.04em] text-white sm:text-5xl md:text-7xl">
-                            AGUSTINUS IRWIN PUTRA PANGESTI
-                        </h1>
-                        <p class="max-w-3xl text-lg leading-8 text-white/72 sm:text-xl">
-                            <span data-lang-id="Teknik Informatika" data-lang-en="Informatics Engineer">Informatics
-                                Engineer</span> |
-                            <span class="typing-wrap"><span id="typing-role" class="typing-role"></span><span
-                                    class="typing-caret">|</span>
-                            <p data-hero-summary
-                                    data-lang-id="Cepat mempelajari teknologi baru dan menerapkannya dalam proyek aplikasi, dengan disiplin yang dibentuk oleh olahraga kompetitif."
-                                    data-lang-en="Quick to learn new technologies and apply them through application projects, with discipline shaped by competitive sport."
-                                    class="max-w-3xl text-base leading-8 text-white/65 sm:text-lg">
-                                    Quick to learn new technologies and apply them through application projects, with discipline shaped by competitive sport.
-                                </p>
-                    </div>
-
-                    <div class="storyline-strip">
-                        <div class="story-node">
-                            <p class="story-step font-pixel text-cyan-300">01</p>
-                            <p class="story-title" data-lang-id="Akademik" data-lang-en="Academics">Academics</p>
-                            <p class="story-copy"
-                                data-lang-id="Pembelajaran terstruktur, IPK kuat, dan kedalaman analisis."
-                                data-lang-en="Structured learning, strong GPA, and analytical depth.">Structured
-                                learning, strong GPA, and analytical depth.</p>
-                        </div>
-                        <div class="story-arrow font-pixel text-cyan-400/55">→</div>
-                        <div class="story-node">
-                            <p class="story-step font-pixel text-cyan-300">02</p>
-                            <p class="story-title" data-lang-id="Rekayasa" data-lang-en="Engineering">Engineering</p>
-                            <p class="story-copy" data-lang-id="Mempelajari teknologi baru dan menerapkannya lewat proyek nyata."
-                                data-lang-en="Learning new technologies and applying them through practical projects.">Learning new technologies and applying them through practical projects.</p>
-                        </div>
-                        <div class="story-arrow font-pixel text-cyan-400/55">→</div>
-                        <div class="story-node">
-                            <p class="story-step font-pixel text-cyan-300">03</p>
-                            <p class="story-title" data-lang-id="Atletik" data-lang-en="Athletics">Athletics</p>
-                            <p class="story-copy"
-                                data-lang-id="Disiplin bulu tangkis nasional yang diwujudkan dalam performa."
-                                data-lang-en="National badminton discipline translated into performance.">National
-                                badminton discipline translated into performance.</p>
-                        </div>
-                    </div>
-
-                    <div data-hero-actions class="flex flex-col gap-4 sm:flex-row">
-                        <a href="#foundation" class="btn-primary" data-lang-id="Jelajahi Perjalanan Saya"
-                            data-lang-en="Explore My Journey">Explore My Journey</a>
-                        <a href="https://github.com/AIPPproject03" target="_blank" rel="noreferrer"
-                            class="btn-secondary" data-lang-id="Lihat Portofolio GitHub"
-                            data-lang-en="View GitHub Portfolio">View GitHub Portfolio</a>
-                    </div>
-
-                    <div data-hero-stats class="grid gap-4 sm:grid-cols-3">
-                        <article class="metric-card reveal-delay-1">
-                            <p class="metric-label" data-lang-id="Tingkat Kognitif" data-lang-en="Cognitive Tier">
-                                Cognitive Tier</p>
-                            <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300">IQ 121</p>
-                            <p class="metric-note" data-lang-id="Kategori Superior" data-lang-en="Superior category">
-                                Superior category</p>
-                        </article>
-                        <article class="metric-card reveal-delay-2">
-                            <p class="metric-label" data-lang-id="IPK Akademik" data-lang-en="Academic GPA">Academic GPA
-                            </p>
-                            <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300">3.86/4.00
-                            </p>
-                            <p class="metric-note" data-lang-id="S1 Informatika" data-lang-en="Informatics Undergrad">S1
-                                Informatika</p>
-                        </article>
-                        <article class="metric-card reveal-delay-3">
-                            <p class="metric-label" data-lang-id="Tingkat Atletik" data-lang-en="Athletic Level">
-                                Athletic Level</p>
-                            <p class="metric-value font-pixel text-[1.3rem] sm:text-[1.5rem] text-cyan-300"
-                                data-lang-id="Nasional" data-lang-en="National">National</p>
-                            <p class="metric-note" data-lang-id="Pengalaman kompetisi nasional" data-lang-en="National competition experience">
-                                National competition experience</p>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="reveal space-y-8">
-                    <!-- Profile Image Card -->
-                    <div data-hero-portrait
-                        class="glass-panel p-3 overflow-hidden rounded-none aspect-[4/5] sm:aspect-square md:aspect-[4/5] max-h-[460px] flex items-center justify-center relative group">
-                        <!-- High-tech HUD diagnostic lines -->
-                        <div
-                            class="absolute top-4 left-5 font-pixel text-[6.5px] sm:text-[7.5px] text-cyan-400/60 uppercase tracking-widest z-20">
-                            SYSTEM: ONLINE</div>
-                        <div
-                            class="absolute top-4 right-5 font-pixel text-[6.5px] sm:text-[7.5px] text-gold-400/60 uppercase tracking-widest z-20">
-                            AIPP_PROTOCOL_V3.0</div>
-                        <div
-                            class="absolute bottom-4 left-5 font-pixel text-[6.5px] sm:text-[7.5px] text-white/35 tracking-widest z-20">
-                            LATENCY: 12ms</div>
-                        <div
-                            class="absolute bottom-4 right-5 font-pixel text-[6.5px] sm:text-[7.5px] text-cyan-400/60 tracking-widest z-20">
-                            SECURE_ENV: TRUE</div>
-
-                        <!-- Neon Corner Accents -->
-                        <div class="absolute top-3 left-4 w-4 h-4 border-t-2 border-l-2 border-cyan-400/50 z-20"></div>
-                        <div class="absolute top-3 right-4 w-4 h-4 border-t-2 border-r-2 border-cyan-400/50 z-20"></div>
-                        <div class="absolute bottom-3 left-4 w-4 h-4 border-b-2 border-l-2 border-cyan-400/50 z-20">
-                        </div>
-                        <div class="absolute bottom-3 right-4 w-4 h-4 border-b-2 border-r-2 border-cyan-400/50 z-20">
-                        </div>
-
-                        <!-- Profile Image -->
-                        <img src="img/aipp-hero.webp" alt="Agustinus Irwin Putra Pangesti"
-                            class="w-full h-full object-cover rounded-none transition-transform duration-[750ms] group-hover:scale-103 filter saturate-[0.98] contrast-[1.01] z-10">
-
-                        <!-- Ambient lighting gradient mask -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-slateInk/80 via-transparent to-transparent pointer-events-none z-15">
-                        </div>
-                    </div>
-
-                    <!-- Live Profile Signal Dashboard -->
-                    <div data-hero-panel class="hero-panel glass-panel p-6 sm:p-8">
-                        <div class="flex flex-wrap items-start justify-between gap-4 border-b border-white/10 pb-5">
-                            <div class="space-y-2">
-                                <p class="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-200/80"
-                                    data-lang-id="Sinyal Profil Langsung" data-lang-en="Live Profile Signal">Live
-                                    Profile Signal</p>
-                                <h2 class="text-2xl font-bold text-white sm:text-3xl"
-                                    data-lang-id="Kognitif, Atletik, Rekayasa"
-                                    data-lang-en="Cognitive, Athletic, Engineering">Cognitive, Athletic, Engineering
-                                </h2>
-                            </div>
-                            <span
-                                class="rounded-none border border-gold-400/30 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-200"
-                                data-lang-id="Unggul" data-lang-en="Superior">Superior</span>
-                        </div>
-
-                        <div class="mt-6 grid gap-4 sm:grid-cols-2">
-                            <div class="glass-inner p-4">
-                                <p class="text-xs uppercase tracking-[0.35em] text-white/40"
-                                    data-lang-id="Identitas Inti" data-lang-en="Core Identity">Core Identity</p>
-                                <p class="mt-2 text-lg font-semibold text-white"
-                                    data-lang-id="Rekayasawan / Atlet / Pembuat"
-                                    data-lang-en="Engineer / Athlete / Builder">Engineer / Athlete / Builder</p>
-                                <p class="mt-2 text-sm leading-7 text-white/65"
-                                    data-lang-id="Menyeimbangkan akademis yang ketat, arsitektur kode, dan disiplin fisik tingkat kompetisi."
-                                    data-lang-en="Balancing rigorous academics, code architecture, and competition-grade physical discipline.">
-                                    Balancing rigorous academics, code architecture, and competition-grade physical
-                                    discipline.</p>
-                            </div>
-                            <div class="glass-inner p-4">
-                                <p class="text-xs uppercase tracking-[0.35em] text-white/40" data-lang-id="Mode Operasi"
-                                    data-lang-en="Operating Mode">Operating Mode</p>
-                                <p class="mt-2 text-lg font-semibold text-white" data-lang-id="Belajar lewat Proyek"
-                                    data-lang-en="Learning by Building">Learning by Building</p>
-                                <p class="mt-2 text-sm leading-7 text-white/65"
-                                    data-lang-id="Mengeksplorasi teknologi baru melalui proyek aplikasi web, wallet kripto, dan integrasi AI."
-                                    data-lang-en="Exploring new technologies through web application, crypto wallet, and AI integration projects.">
-                                    Exploring new technologies through web application, crypto wallet, and AI integration projects.</p>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 grid gap-4 sm:grid-cols-3">
-                            <div class="stack-chip">Vanilla JS</div>
-                            <div class="stack-chip">Web Apps</div>
-                            <div class="stack-chip">AI</div>
-                        </div>
-                        <div class="mt-6 rounded-none border border-white/10 bg-slate-950/35 p-5">
-                            <div class="flex items-center justify-between gap-4">
-                                <p class="text-sm font-semibold text-white/70" data-lang-id="Indeks Disiplin"
-                                    data-lang-en="Discipline Index">Discipline Index</p>
-                                <p class="font-pixel text-xs text-cyan-300">92%</p>
-                            </div>
-                            <div class="mt-3 h-3 rounded-none bg-white/8 border border-white/10 overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-gold-400"
-                                    style="width: 92%; background-image: repeating-linear-gradient(90deg, transparent, transparent 5px, #0f172a 5px, #0f172a 7px), linear-gradient(90deg, #22d3ee, #d97706);">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-5 grid gap-3 sm:grid-cols-2">
-                            <div class="mini-ribbon">
-                                <p class="mini-label" data-lang-id="Fokus" data-lang-en="Focus">Focus</p>
-                                <p class="mini-value" data-lang-id="Adaptasi teknologi"
-                                    data-lang-en="Technology adaptability">Technology adaptability</p>
-                            </div>
-                            <div class="mini-ribbon mini-ribbon-gold">
-                                <p class="mini-label" data-lang-id="Keunggulan" data-lang-en="Edge">Edge</p>
-                                <p class="mini-value" data-lang-id="Ketangguhan turnamen"
-                                    data-lang-en="Tournament resilience">Tournament resilience</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="pixel-divider"></div>
-
-        <section id="foundation" class="section-shell">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker" data-lang-id="Bagian A" data-lang-en="Section A">Section A</p>
-                    <h2 class="section-title" data-lang-id="Fondasi Kognitif" data-lang-en="The Cognitive Foundation">
-                        The Cognitive Foundation</h2>
-                    <p class="section-copy"
-                        data-lang-id="Keunggulan akademik, kejernihan psikometrik, dan jangkauan multibahasa."
-                        data-lang-en="Academic excellence, psychometric clarity, and multilingual reach.">
-                        Academic excellence, psychometric clarity, and multilingual reach.
-                    </p>
-                </div>
-
-                <div class="mt-10 grid gap-6 lg:grid-cols-[1.08fr_.92fr]">
-                    <article class="reveal glass-panel p-6 sm:p-8">
-                        <div class="flex items-center justify-between gap-4">
-                            <div>
-                                <p class="text-xs uppercase tracking-[0.4em] text-cyan-200/70"
-                                    data-lang-id="Psikogram & Akademik" data-lang-en="Psychogram & Academics">Psychogram
-                                    & Academics
-                                </p>
-                                <h3 class="mt-2 text-2xl font-bold text-white"
-                                    data-lang-id="Dasbor Kecerdasan Terstruktur"
-                                    data-lang-en="Structured Intelligence Dashboard">Structured Intelligence Dashboard
-                                </h3>
-                            </div>
-                            <span
-                                class="rounded-none border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/65"
-                                data-lang-id="Sumber Terverifikasi" data-lang-en="Certified Source">Certified
-                                Source</span>
-                        </div>
-                        <div id="foundation-grid" class="mt-6 grid gap-4 md:grid-cols-2"></div>
-                    </article>
-
-                    <aside class="reveal glass-panel p-6 sm:p-8">
-                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80" data-lang-id="Peta Bahasa"
-                            data-lang-en="Language Map">Language Map</p>
-                        <h3 class="mt-2 text-2xl font-bold text-white" data-lang-id="Kehadiran Multibahasa"
-                            data-lang-en="Multilingual Presence">Multilingual Presence</h3>
-                        <div id="language-list" class="mt-6 space-y-4"></div>
-                        <div class="mt-8 rounded-none border border-cyan-400/15 bg-cyan-400/8 p-5">
-                            <p class="text-sm font-semibold text-cyan-100" data-lang-id="Kekuatan Interpretatif"
-                                data-lang-en="Interpretive Strengths">Interpretive Strengths</p>
-                            <div class="mt-4 grid gap-3 text-sm text-white/72">
-                                <div class="flex items-center justify-between gap-3 rounded-none bg-white/5 px-4 py-3">
-                                    <span data-lang-id="Pemahaman konsep yang tinggi"
-                                        data-lang-en="High concept comprehension">High concept comprehension</span><span
-                                        class="font-mono text-cyan-200 font-pixel text-[10px]">NEW</span>
-                                </div>
-                                <div class="flex items-center justify-between gap-3 rounded-none bg-white/5 px-4 py-3">
-                                    <span data-lang-id="Konsistensi sikap yang tinggi"
-                                        data-lang-en="Extreme consistency in attitude">Extreme consistency in
-                                        attitude</span><span
-                                        class="font-mono text-gold-200 font-pixel text-[10px]">LOCKED</span>
-                                </div>
-                                <div class="flex items-center justify-between gap-3 rounded-none bg-white/5 px-4 py-3">
-                                    <span data-lang-id="Integritas yang tinggi" data-lang-en="High integrity">High
-                                        integrity</span><span
-                                        class="font-mono text-white/80 font-pixel text-[10px]">TRUSTED</span>
-                                </div>
-                                <div class="flex items-center justify-between gap-3 rounded-none bg-white/5 px-4 py-3">
-                                    <span data-lang-id="Sinergi kelompok yang sangat baik"
-                                        data-lang-en="Excellent group synergy">Excellent group synergy</span><span
-                                        class="font-mono text-cyan-200 font-pixel text-[10px]">TEAM</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <div class="pixel-divider"></div>
-
-        <section id="stack" class="section-shell">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker" data-lang-id="Bagian B" data-lang-en="Section B">Section B</p>
-                    <h2 class="section-title" data-lang-id="Tumpukan Teknologi & Keterampilan Rekayasa"
-                        data-lang-en="Core Tech Stack & Engineering Skills">Core Tech Stack & Engineering Skills</h2>
-                    <p class="section-copy"
-                        data-lang-id="Saya mempelajari teknologi baru lewat proyek praktis, dari aplikasi web dan wallet kripto hingga integrasi AI dan otomasi."
-                        data-lang-en="I learn new technologies through practical projects, from web applications and a crypto wallet to AI integrations and automation.">
-                        I learn new technologies through practical projects, from web applications and a crypto wallet to AI integrations and automation.</p>
-                </div>
-
-                <div id="stack-stage" class="stack-stage mt-10 grid gap-6 xl:grid-cols-[1.12fr_.88fr]">
-                    <div class="space-y-6">
-                        <div
-                            class="rounded-none border border-white/10 bg-white/5 p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
-                            <div id="stack-tabs" class="grid gap-2 md:grid-cols-4"></div>
-                        </div>
-
-                        <div id="stack-panel" class="grid gap-4 md:grid-cols-2 xl:grid-cols-4"></div>
-                    </div>
-
-                    <aside class="tech-spotlight glass-panel p-6 sm:p-8">
-                        <div class="flex items-start justify-between gap-4">
-                            <div>
-                                <p class="text-xs font-semibold uppercase tracking-[0.45em] text-cyan-200/70"
-                                    data-lang-id="Konstelasi Teknologi" data-lang-en="Tech Constellation">Tech
-                                    Constellation</p>
-                                <h3 id="tech-title" class="mt-2 text-2xl font-bold text-white">Front-End Instruments
-                                </h3>
-                            </div>
-                            <span
-                                class="rounded-none border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100"
-                                data-lang-id="Aktif" data-lang-en="Live">Live</span>
-                        </div>
-
-                        <p id="tech-copy" class="mt-4 text-sm leading-8 text-white/68">
-                            The primary tools I use to shape interfaces, interactions, and production-ready digital
-                            experiences.
-                        </p>
-
-                        <div id="tech-grid" class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3"></div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <div class="pixel-divider"></div>
-
-        <section id="projects" class="section-shell">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker" data-lang-id="Bagian C" data-lang-en="Section C">Section C</p>
-                    <h2 class="section-title" data-lang-id="Portofolio Proyek"
-                        data-lang-en="The Revolutionary Portfolio">The Revolutionary Portfolio</h2>
-                    <p class="section-copy"
-                        data-lang-id="Empat proyek yang memadukan keamanan, teknologi sipil, AI, dan riset terapan."
-                        data-lang-en="Four projects blending security, civic tech, AI, and applied research.">
-                        Four projects blending security, civic tech, AI, and applied research.</p>
-                </div>
-
-                <!-- Interactive Arcade Portal Gate -->
-                <div class="mt-10 flex justify-center items-center">
-                    <div
-                        class="reveal w-full max-w-2xl bg-slate-950/60 p-6 sm:p-10 text-center relative overflow-hidden pixel-border-double-gold rounded-none select-none">
-                        <!-- Portal Background Scanlines -->
-                        <div class="absolute inset-0 bg-cyan-950/5 pointer-events-none"></div>
-
-                        <!-- Floating sprites inside the cabinet -->
-                        <div class="flex justify-center items-center gap-6 mb-6">
-                            <!-- Gold Slime -->
-                            <svg class="pixel-sprite pixel-slime" viewBox="0 0 16 16" width="48" height="48">
-                                <rect x="4" y="12" width="8" height="1" fill="#000" />
-                                <rect x="3" y="11" width="1" height="1" fill="#000" />
-                                <rect x="12" y="11" width="1" height="1" fill="#000" />
-                                <rect x="2" y="8" width="1" height="3" fill="#000" />
-                                <rect x="13" y="8" width="1" height="3" fill="#000" />
-                                <rect x="3" y="7" width="1" height="1" fill="#000" />
-                                <rect x="12" y="7" width="1" height="1" fill="#000" />
-                                <rect x="4" y="6" width="8" height="1" fill="#000" />
-                                <rect x="4" y="7" width="8" height="5" fill="#d97706" />
-                                <rect x="3" y="8" width="10" height="3" fill="#f59e0b" />
-                                <rect x="5" y="8" width="1" height="1" fill="#fff" />
-                                <rect x="10" y="8" width="1" height="1" fill="#fff" />
-                                <rect x="5" y="9" width="1" height="1" fill="#000" />
-                                <rect x="10" y="9" width="1" height="1" fill="#000" />
-                            </svg>
-                            <!-- Arcade Label -->
-                            <div
-                                class="px-5 py-1.5 bg-slate-900 border border-cyan-400/20 text-cyan-400 font-pixel text-[9px] tracking-widest uppercase">
-                                Arcade Cabinet v1.0
-                            </div>
-                            <!-- Cute Robot -->
-                            <svg class="pixel-sprite pixel-cute-robot" viewBox="0 0 16 16" width="48" height="48">
-                                <rect x="4" y="3" width="8" height="5" fill="#475569" />
-                                <rect x="3" y="4" width="10" height="3" fill="#64748b" />
-                                <rect x="4" y="5" width="8" height="1" fill="#000" />
-                                <rect x="5" y="5" width="2" height="1" fill="#22d3ee" />
-                                <rect x="9" y="5" width="2" height="1" fill="#22d3ee" />
-                                <rect x="7" y="1" width="2" height="2" fill="#ef4444" />
-                                <rect x="5" y="9" width="6" height="4" fill="#334155" />
-                                <rect x="6" y="10" width="4" height="2" fill="#22d3ee" />
-                                <rect x="3" y="9" width="1" height="3" fill="#64748b" />
-                                <rect x="12" y="9" width="1" height="3" fill="#64748b" />
-                                <rect x="6" y="13" width="4" height="2" fill="#f97316" />
-                            </svg>
-                        </div>
-
-                        <h3 class="font-pixel text-xs sm:text-sm text-gold-200 tracking-wider mb-2 uppercase"
-                            data-lang-id="MEMULAI KONEKSI SISTEM" data-lang-en="ESTABLISHING CONNECTION">ESTABLISHING
-                            CONNECTION</h3>
-                        <p class="font-mono text-[11px] text-white/50 mb-6 max-w-md mx-auto leading-relaxed"
-                            data-lang-id="Gerbang repositori proyek tervalidasi. Siap memasuki simulasi visual interaktif."
-                            data-lang-en="Validated project repository gate. Ready for interactive visual simulation.">
-                            Validated project repository gate. Ready for interactive visual simulation.</p>
-
-                        <!-- Glowing Gateway Button -->
-                        <div class="relative inline-block group/portal">
-                            <div
-                                class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-amber-400 rounded-none blur opacity-25 group-hover/portal:opacity-75 transition duration-300">
-                            </div>
-                            <a href="projects/projects.html"
-                                class="relative pixel-btn block text-center text-[10px] sm:text-xs px-8 py-3.5 text-cyan-300 border-cyan-400 tracking-widest uppercase">
-                                <iconify-icon icon="mdi:gamepad-variant-outline"
-                                    class="mr-2 text-base align-middle animate-bounce"></iconify-icon>
-                                <span data-lang-id="MASUK PORTAL PROYEK" data-lang-en="ENTER PROJECTS PORTAL">ENTER
-                                    PROJECTS PORTAL</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="pixel-divider"></div>
-
-        <section id="athletics" class="section-shell">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker" data-lang-id="Bagian D" data-lang-en="Section D">Section D</p>
-                    <h2 class="section-title" data-lang-id="Pengalaman & Disiplin Atletik"
-                        data-lang-en="Athletic Experience & Discipline">Athletic Experience & Discipline</h2>
-                    <p class="section-copy"
-                        data-lang-id="Bulu tangkis kompetitif menempa sifat yang sama yang dituntut oleh rekayasa, disiplin, fokus, eksekusi di bawah tekanan."
-                        data-lang-en="Competitive badminton forged the same traits demanded by engineering, discipline, focus, execution under pressure.">
-                        Competitive badminton forged the same traits demanded by engineering,
-                        discipline, focus, execution under pressure.</p>
-                </div>
-
-                <div class="mt-10 grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
-                    <article class="reveal glass-panel p-6 sm:p-8">
-                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80">Persona</p>
-                        <h3 class="mt-2 text-2xl font-bold text-white" data-lang-id="Atlet Bulu Tangkis dengan Pengalaman Kompetisi Nasional"
-                            data-lang-en="Badminton Athlete with National Competition Experience">Badminton Athlete with National Competition Experience</h3>
-                        <div class="mt-6 space-y-4">
-                            <div class="rounded border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-semibold text-white" data-lang-id="Filosofi Gaya Hidup"
-                                    data-lang-en="Lifestyle Philosophy">Lifestyle Philosophy</p>
-                                <p class="mt-2 text-sm leading-7 text-white/65"
-                                    data-lang-id="Kalistenik harian, latihan hibrida, dan pola pikir investor jangka panjang yang sistematis dengan DCA untuk Bitcoin."
-                                    data-lang-en="Daily calisthenics, hybrid training, and a systematic long-term investor mindset with DCA for Bitcoin.">
-                                    Daily calisthenics, hybrid training, and
-                                    a systematic long-term investor mindset with DCA for Bitcoin.</p>
-                            </div>
-                            <div class="rounded border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-semibold text-white" data-lang-id="Target Fisik"
-                                    data-lang-en="Physical Target">Physical Target</p>
-                                <p class="mt-2 text-sm leading-7 text-white/65"
-                                    data-lang-id="Mempertahankan 62 kg massa otot tanpa lemak dengan komposisi disiplin, mobilitas, dan siklus pengkondisian."
-                                    data-lang-en="Maintaining 62 kg lean muscle mass with disciplined composition, mobility, and conditioning cycles.">
-                                    Maintaining 62 kg lean muscle mass with
-                                    disciplined composition, mobility, and conditioning cycles.</p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="reveal glass-panel p-6 sm:p-8">
-                        <p class="text-xs uppercase tracking-[0.4em] text-cyan-200/80" data-lang-id="Linimasa Kompetisi"
-                            data-lang-en="Competitive Timeline">Competitive Timeline</p>
-                        <div class="relative mt-6">
-                            <div class="timeline-svg-container">
-                                <svg width="100%" height="100%" viewBox="0 0 2 100" preserveAspectRatio="none"
-                                    fill="none">
-                                    <defs>
-                                        <linearGradient id="timeline-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="#06B6D4" />
-                                            <stop offset="100%" stop-color="#F59E0B" />
-                                        </linearGradient>
-                                    </defs>
-                                    <line x1="1" y1="0" x2="1" y2="100" class="timeline-svg-line"
-                                        vector-effect="non-scaling-stroke"></line>
-                                    <path id="timeline-path" d="M 1 0 L 1 100" class="timeline-svg-progress"
-                                        vector-effect="non-scaling-stroke" fill="none"></path>
-                                </svg>
-                            </div>
-                            <div id="athletic-timeline" class="space-y-6"></div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <div class="pixel-divider"></div>
-
-        <section id="impact" class="section-shell pb-24">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="reveal max-w-3xl space-y-4">
-                    <p class="section-kicker" data-lang-id="Bagian E" data-lang-en="Section E">Section E</p>
-                    <h2 class="section-title" data-lang-id="Dampak & Kepemimpinan Komunitas"
-                        data-lang-en="Impact & Community Leadership">Impact & Community Leadership</h2>
-                    <p class="section-copy"
-                        data-lang-id="Ketegasan operasional yang diterapkan pada pengabdian masyarakat dan adopsi digital tingkat desa."
-                        data-lang-en="Operational rigor applied to community service and village-level digital adoption.">
-                        Operational rigor applied to community service and village-level digital adoption.
-                    </p>
-                </div>
-
-                <div class="mt-10 grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
-                    <article class="reveal glass-panel p-6 sm:p-8">
-                        <div class="flex flex-wrap items-center gap-3">
-                            <span
-                                class="rounded-none border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100">KKN
-                                204</span>
-                            <span
-                                class="rounded-none border border-gold-400/20 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-100">TAMPA
-                                BERAKSI</span>
-                            <span
-                                class="rounded-none border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/65"
-                                data-lang-id="Juli - Agustus 2025" data-lang-en="July - August 2025">July
-                                - August 2025</span>
-                        </div>
-                        <h3 class="mt-5 text-2xl font-bold text-white" data-lang-id="Ketua Pengabdian Masyarakat (KKN)"
-                            data-lang-en="Leader of Community Service Program">Leader of Community Service Program</h3>
-                        <p class="mt-4 text-sm leading-8 text-white/68"
-                            data-lang-id="Memimpin tim 15 mahasiswa di Desa Tampa, Barito Timur. Membangun portal resmi desa dan sistem pemasaran digital untuk koperasi lokal, meningkatkan keterlibatan masyarakat lebih dari 75%."
-                            data-lang-en="Led a 15-member team in Desa Tampa, Barito Timur. Built the official village portal and digital marketing systems for the local cooperative, boosting community engagement by 75%+.">
-                            Led a 15-member team in Desa Tampa, Barito Timur. Built the official village portal and
-                            digital marketing systems for the local cooperative, boosting community engagement by 75%+.
-                        </p>
-                        <div class="mt-6 grid gap-4 sm:grid-cols-2">
-                            <div class="rounded-none border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-semibold text-white" data-lang-id="Portal Desa"
-                                    data-lang-en="Village Portal">Village Portal</p>
-                                <a href="https://desatampa.netlify.app/" target="_blank" rel="noopener noreferrer"
-                                    class="mt-2 inline-flex items-center gap-1.5 text-sm text-cyan-300 hover:text-cyan-200 transition-colors hover:underline font-mono">
-                                    desatampa.netlify.app
-                                    <iconify-icon icon="mdi:arrow-top-right" class="text-xs"></iconify-icon>
-                                </a>
-                            </div>
-                            <div class="rounded border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-semibold text-white" data-lang-id="Publikasi"
-                                    data-lang-en="Publication">Publication</p>
-                                <p class="mt-2 text-sm text-white/65" data-lang-id="Laporan akademik TAMPA BERAKSI"
-                                    data-lang-en="TAMPA BERAKSI academic report">TAMPA BERAKSI academic report</p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <aside class="reveal glass-panel p-6 sm:p-8">
-                        <p class="text-xs uppercase tracking-[0.4em] text-gold-200/80" data-lang-id="Publikasi Akademik"
-                            data-lang-en="Academic Publication">Academic Publication</p>
-                        <blockquote class="mt-4 border-l-2 border-cyan-400/40 pl-5 text-lg leading-8 text-white/80">
-                            “TAMPA BERAKSI: Penguatan Pendidikan, Kesehatan, dan Lingkungan Melalui Kuliah Kerja Nyata
-                            Universitas Palangka Raya di Desa Tampa”
-                        </blockquote>
-                        <div class="mt-8 grid gap-4 sm:grid-cols-3">
-                            <div class="stat-card">
-                                <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">15</p>
-                                <p class="stat-label" data-lang-id="Mhs dipimpin" data-lang-en="Students led">Students
-                                    led</p>
-                            </div>
-                            <div class="stat-card">
-                                <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">75%+</p>
-                                <p class="stat-label" data-lang-id="Kenaikan interaksi" data-lang-en="Engagement lift">
-                                    Engagement lift</p>
-                            </div>
-                            <div class="stat-card">
-                                <p class="stat-value font-pixel text-[1.2rem] sm:text-[1.4rem] text-cyan-300">1</p>
-                                <p class="stat-label" data-lang-id="Portal desa" data-lang-en="Village portal">Village
-                                    portal</p>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="border-t border-white/10 bg-black/25">
-        <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-            <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-                <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.45em] text-white/45" data-lang-id="Kontak"
-                        data-lang-en="Contact">Contact</p>
-                    <h2 class="mt-3 text-2xl font-bold text-white"
-                        data-lang-id="Bangun, bertanding, dan berkreasi dengan presisi."
-                        data-lang-en="Build, compete, and create with precision.">Build, compete, and create with
-                        precision.</h2>
-                </div>
-                <div class="flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap">
-                    <a class="footer-link" href="mailto:aippirwin@gmail.com">aippirwin@gmail.com</a>
-                    <a class="footer-link" href="https://github.com/AIPPproject03" target="_blank"
-                        rel="noreferrer">github.com/AIPPproject03</a>
-                    <a class="footer-link" href="https://www.linkedin.com/in/" target="_blank"
-                        rel="noreferrer">LinkedIn</a>
-                </div>
-            </div>
-            <p class="mt-8 text-xs uppercase tracking-[0.4em] text-white/35">© <span id="year"></span> Agustinus Irwin
-                Putra Pangesti</p>
+      <!-- Action Pill (Language Switcher & GitHub) -->
+      <div class="flex items-center gap-3">
+        <!-- Language Switcher -->
+        <div class="lang-switch" role="group" aria-label="Language Selector">
+          <button type="button" id="lang-id" class="lang-btn active" onclick="window.setLanguage('id')">ID</button>
+          <button type="button" id="lang-en" class="lang-btn" onclick="window.setLanguage('en')">EN</button>
         </div>
-    </footer>
 
-    <!-- Mobile Bottom Navigation Dock -->
-    <nav
-        class="fixed bottom-4 left-4 right-4 z-50 flex items-center justify-around bg-slateInk/85 backdrop-blur-lg border border-cyan-400/20 p-2 rounded-none shadow-[4px_4px_0px_rgba(6,182,212,0.85)] md:hidden">
-        <a href="#foundation"
-            class="mobile-nav-link flex flex-col items-center justify-center gap-0.5 text-[8px] font-pixel py-1 px-2.5">
-            <iconify-icon icon="pixelarticons:book-open" class="text-base"></iconify-icon>
-            <span data-lang-id="Fondasi" data-lang-en="Foundation">Foundation</span>
+        <!-- GitHub Button -->
+        <a href="https://github.com/AIPPproject03" target="_blank" rel="noopener noreferrer"
+          class="liquid-glass-pill hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-white/85"
+          aria-label="GitHub Profile">
+          <iconify-icon icon="mdi:github" class="text-base"></iconify-icon>
+          <span>GitHub</span>
         </a>
-        <a href="#stack"
-            class="mobile-nav-link flex flex-col items-center justify-center gap-0.5 text-[8px] font-pixel py-1 px-2.5">
-            <iconify-icon icon="pixelarticons:code" class="text-base"></iconify-icon>
-            <span data-lang-id="Teknologi" data-lang-en="Stack">Stack</span>
-        </a>
-        <a href="#projects"
-            class="mobile-nav-link flex flex-col items-center justify-center gap-0.5 text-[8px] font-pixel py-1 px-2.5">
-            <iconify-icon icon="pixelarticons:briefcase" class="text-base"></iconify-icon>
-            <span data-lang-id="Proyek" data-lang-en="Projects">Projects</span>
-        </a>
-        <a href="#athletics"
-            class="mobile-nav-link flex flex-col items-center justify-center gap-0.5 text-[8px] font-pixel py-1 px-2.5">
-            <iconify-icon icon="pixelarticons:trophy" class="text-base"></iconify-icon>
-            <span data-lang-id="Atletik" data-lang-en="Athletics">Athletics</span>
-        </a>
-        <a href="#impact"
-            class="mobile-nav-link flex flex-col items-center justify-center gap-0.5 text-[8px] font-pixel py-1 px-2.5">
-            <iconify-icon icon="pixelarticons:group" class="text-base"></iconify-icon>
-            <span data-lang-id="Dampak" data-lang-en="Impact">Impact</span>
-        </a>
+      </div>
     </nav>
+  </header>
 
-    <!-- Floating Music Toggle Bubble Container -->
-    <div id="music-container" class="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-center">
-        <!-- The Pixel Robot (pops out) -->
-        <div id="music-robot"
-            class="h-12 w-12 opacity-0 pointer-events-none translate-y-4 transition-all duration-300 mb-1 select-none">
-            <svg class="h-full w-full" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Antenna with Group for Sway Animation -->
-                <g id="robot-antenna" style="transform-origin: 8px 2px;">
-                    <rect x="7" y="0" width="2" height="2" fill="#fbbf24" />
-                </g>
-                <!-- Head Group for independent bobbing -->
-                <g id="robot-head" style="transform-origin: 8px 8px;">
-                    <!-- Head -->
-                    <rect x="4" y="2" width="8" height="6" fill="#475569" />
-                    <!-- Ear Left -->
-                    <rect x="3" y="4" width="1" height="2" fill="#334155" />
-                    <!-- Ear Right -->
-                    <rect x="12" y="4" width="1" height="2" fill="#334155" />
-                    <!-- Eyes -->
-                    <rect id="robot-eye-l" x="5" y="4" width="2" height="2" fill="#22d3ee" />
-                    <rect id="robot-eye-r" x="9" y="4" width="2" height="2" fill="#22d3ee" />
-                </g>
-                <!-- Neck -->
-                <rect x="7" y="8" width="2" height="1" fill="#334155" />
-                <!-- Radio Boombox Body Group for independent pulsing -->
-                <g id="robot-body" style="transform-origin: 8px 12px;">
-                    <!-- Radio Body -->
-                    <rect x="2" y="9" width="12" height="6" fill="#334155" />
-                    <!-- Speakers -->
-                    <rect x="3" y="10" width="3" height="3" fill="#1e293b" />
-                    <rect id="speaker-light-l" x="4" y="11" width="1" height="1" fill="#22d3ee" />
-                    <rect x="10" y="10" width="3" height="3" fill="#1e293b" />
-                    <rect id="speaker-light-r" x="11" y="11" width="1" height="1" fill="#22d3ee" />
-                    <!-- Tape deck -->
-                    <rect x="7" y="11" width="2" height="2" fill="#fbbf24" />
-                </g>
-            </svg>
+  <main>
+    <!-- ====================================================================
+         SECTION 01: HERO / MASTER EDITORIAL PRESENTATION
+         ==================================================================== -->
+    <section id="hero" class="hero-section">
+      <div class="hero-grid">
+        <!-- Text Column -->
+        <div class="space-y-6">
+          <div class="hero-kicker-badge flex justify-center lg:justify-start">
+            <span class="editorial-kicker" data-lang-id="PORTOFOLIO DIGITAL RESMI"
+              data-lang-en="OFFICIAL DIGITAL PORTFOLIO">OFFICIAL DIGITAL PORTFOLIO</span>
+          </div>
+
+          <div class="space-y-4">
+            <h1 class="editorial-headline">
+              AGUSTINUS IRWIN PUTRA PANGESTI
+            </h1>
+            <div class="flex items-center justify-center lg:justify-start gap-2 font-mono text-base sm:text-lg text-iceBlue">
+              <span class="text-white/40">&gt;</span>
+              <span id="typing-role" class="font-medium text-white/90"></span>
+              <span class="animate-pulse text-iceBlue">|</span>
+            </div>
+            <p class="hero-summary-text text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed"
+              data-lang-id="Mengharmonisasikan kedalaman kognitif, rekayasa perangkat lunak modern, dan disiplin fisik kompetisi atletik nasional untuk menciptakan solusi digital berdampak nyata."
+              data-lang-en="Harmonizing cognitive depth, modern software engineering, and national athletic discipline to architect high-impact digital experiences.">
+              Harmonizing cognitive depth, modern software engineering, and national athletic discipline to architect high-impact digital experiences.
+            </p>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-action-buttons flex flex-wrap items-center gap-4 pt-2">
+            <a href="#projects" class="btn-primary" data-lang-id="Jelajahi Karya Unggulan"
+              data-lang-en="Explore Selected Works">
+              <span>Explore Selected Works</span>
+              <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+            </a>
+            <a href="projects/projects.html" class="btn-secondary" data-lang-id="Arsip Semua Proyek"
+              data-lang-en="All Projects Archive">
+              <iconify-icon icon="solar:folder-with-files-linear" class="text-base"></iconify-icon>
+              <span>All Projects Archive</span>
+            </a>
+          </div>
+
+          <!-- Key Metrics Strip -->
+          <div class="metric-strip">
+            <article class="metric-pill">
+              <p class="metric-label" data-lang-id="Skala Kognitif" data-lang-en="Cognitive Scale">Cognitive Scale</p>
+              <h3 id="metric-iq" class="metric-value text-iceBlue">IQ 121</h3>
+              <p class="metric-detail" data-lang-id="Wechsler • Kategori Superior"
+                data-lang-en="Wechsler • Superior Category">Wechsler • Superior Category</p>
+            </article>
+
+            <article class="metric-pill">
+              <p class="metric-label" data-lang-id="IPK Akademik" data-lang-en="Academic GPA">Academic GPA</p>
+              <h3 id="metric-gpa" class="metric-value text-iceBlue">3.86/4.00</h3>
+              <p class="metric-detail" data-lang-id="S1 Teknik Informatika UPR"
+                data-lang-en="B.Sc Informatics UPR">B.Sc Informatics UPR</p>
+            </article>
+
+            <article class="metric-pill">
+              <p class="metric-label" data-lang-id="Tingkat Atletik" data-lang-en="Athletic Level">Athletic Level</p>
+              <h3 class="metric-value text-iceBlue" data-lang-id="Nasional" data-lang-en="National">National</h3>
+              <p class="metric-detail" data-lang-id="Emas PORPROV & Seleknas PBSI"
+                data-lang-en="PORPROV Gold & PBSI Delegate">PORPROV Gold & PBSI Delegate</p>
+            </article>
+          </div>
         </div>
 
-        <!-- The Capsule/Bubble trigger button -->
-        <button id="music-toggle"
-            class="relative flex h-11 w-11 items-center justify-center rounded-none border border-cyan-400/30 bg-slateInk/85 backdrop-blur-md shadow-[0_0_12px_rgba(6,182,212,0.25)] transition-all duration-300 hover:border-cyan-400/80 hover:scale-105 active:scale-90"
-            aria-label="Toggle Music">
-            <!-- Normal Play Icon (OFF state) -->
-            <iconify-icon id="music-play-icon" icon="pixelarticons:play"
-                class="text-lg text-cyan-300 transition-all duration-300"></iconify-icon>
-
-            <!-- Equalizer lines (inside the ball, ON state) -->
-            <div id="music-equalizer"
-                class="absolute flex items-end gap-[1px] h-5 w-8 opacity-0 scale-50 pointer-events-none transition-all duration-300 justify-center">
-                <span class="bar bar-1 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-2 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-3 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-4 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-5 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-6 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-7 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-8 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-9 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
-                <span class="bar bar-10 bg-cyan-400 w-[2px] h-[3px] rounded-none"></span>
+        <!-- Master Portrait Column (Extracted Subject with Liquid Glass Aura) -->
+        <div class="portrait-aura-wrapper">
+          <div class="relative w-full max-w-[340px] sm:max-w-[410px] mx-auto">
+            <div class="portrait-glow-halo"></div>
+            <div class="portrait-frame">
+              <!-- Transparent portrait extracted using RMBG 2.0 -->
+              <img src="img/aipp-hero-transparent.webp" alt="Agustinus Irwin Putra Pangesti" class="portrait-image" />
             </div>
+
+            <!-- Telemetry Badges (Desktop: floating corners; Mobile: centered horizontal row beneath portrait) -->
+            <div class="hero-telemetry-row">
+              <div class="floating-telemetry-badge badge-desktop-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+                <div class="text-left">
+                  <p class="font-mono text-[9px] uppercase tracking-widest text-white/40" data-lang-id="STATUS"
+                    data-lang-en="STATUS">STATUS</p>
+                  <p class="font-display text-xs font-semibold text-white/95" data-lang-id="Aktif Berkarya"
+                    data-lang-en="Active & Ready">Active & Ready</p>
+                </div>
+              </div>
+
+              <div class="floating-telemetry-badge badge-desktop-2">
+                <iconify-icon icon="solar:shield-check-linear" class="text-cyan-400 text-lg flex-shrink-0"></iconify-icon>
+                <div class="text-left">
+                  <p class="font-mono text-[9px] uppercase tracking-widest text-white/40" data-lang-id="FILOSOFI INTI"
+                    data-lang-en="CORE ETHOS">CORE ETHOS</p>
+                  <p class="font-display text-xs font-semibold text-white/95">Mind, Muscle, Code</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 02: ABOUT ME / COGNITIVE FOUNDATION & STORY
+         ==================================================================== -->
+    <section id="about" class="section-shell">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="editorial-kicker">// 01 ARCHITECTURE & ETHOS</span>
+          <h2 class="section-headline mt-2" data-lang-id="Fondasi Kognitif & Kejernihan Sikap"
+            data-lang-en="The Cognitive Foundation & Mental Clarity">The Cognitive Foundation & Mental Clarity</h2>
+          <p class="section-desc mt-3"
+            data-lang-id="Kombinasi antara analitis psikometrik superior, ketahanan fisik turnamen, dan kemampuan adaptasi teknologi yang cepat."
+            data-lang-en="A rare convergence of superior psychometric analysis, tournament-tested physical stamina, and rapid technological assimilation.">
+            A rare convergence of superior psychometric analysis, tournament-tested physical stamina, and rapid technological assimilation.
+          </p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.12fr_.88fr]">
+          <!-- Left: Foundation Cards -->
+          <div class="space-y-6">
+            <div id="foundation-grid" class="grid gap-4 sm:grid-cols-2"></div>
+
+            <!-- Lifestyle & Long-Term Mindset -->
+            <article class="liquid-glass-card p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="p-2 rounded-xl bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">
+                  <iconify-icon icon="solar:dumbbell-large-minimalistic-linear" class="text-xl"></iconify-icon>
+                </span>
+                <div>
+                  <h4 class="text-lg font-bold text-white" data-lang-id="Filosofi Gaya Hidup & Alokasi Modal"
+                    data-lang-en="Lifestyle Philosophy & Capital Allocation">Lifestyle Philosophy & Capital Allocation</h4>
+                  <p class="text-xs text-white/50 font-mono" data-lang-id="DISIPLIN HARIAN"
+                    data-lang-en="DAILY DISCIPLINE">DAILY DISCIPLINE</p>
+                </div>
+              </div>
+              <p class="text-sm text-white/70 leading-relaxed"
+                data-lang-id="Menjalani kalistenik harian, latihan fisik hibrida, dan mempertahankan 62 kg massa otot tanpa lemak dengan siklus mobilitas terstruktur. Disiplin yang sama diterapkan dalam pola pikir investor sistematis melalui strategi Dollar-Cost Averaging (DCA) Bitcoin jangka panjang."
+                data-lang-en="Practicing daily calisthenics, hybrid training, and maintaining 62 kg of lean muscle mass through structured mobility cycles. The same discipline informs a systematic long-term investor mindset executed through disciplined Bitcoin Dollar-Cost Averaging (DCA).">
+                Practicing daily calisthenics, hybrid training, and maintaining 62 kg of lean muscle mass through structured mobility cycles. The same discipline informs a systematic long-term investor mindset executed through disciplined Bitcoin Dollar-Cost Averaging (DCA).
+              </p>
+            </article>
+          </div>
+
+          <!-- Right: Multilingual Presence & Interpretive Strengths -->
+          <div class="space-y-6">
+            <article class="liquid-glass-card p-6 sm:p-8">
+              <span class="font-mono text-xs uppercase tracking-widest text-cyan-300 block mb-1"
+                data-lang-id="JANGKAUAN GLOBAL" data-lang-en="GLOBAL REACH">GLOBAL REACH</span>
+              <h3 class="text-2xl font-bold text-white mb-6" data-lang-id="Kemampuan Multibahasa"
+                data-lang-en="Multilingual Proficiency">Multilingual Proficiency</h3>
+              <div id="language-list" class="space-y-4"></div>
+            </article>
+
+            <article class="liquid-glass-card p-6 sm:p-8">
+              <span class="font-mono text-xs uppercase tracking-widest text-cyan-300 block mb-1"
+                data-lang-id="INTEGRITAS PSIKOMETRIK" data-lang-en="PSYCHOMETRIC INTEGRITY">PSYCHOMETRIC INTEGRITY</span>
+              <h3 class="text-2xl font-bold text-white mb-4" data-lang-id="Kekuatan Interpretatif Teruji"
+                data-lang-en="Validated Interpretive Strengths">Validated Interpretive Strengths</h3>
+
+              <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 text-sm">
+                  <span class="text-white/80" data-lang-id="Pemahaman Konsep Tinggi"
+                    data-lang-en="High Concept Comprehension">High Concept Comprehension</span>
+                  <span class="font-mono text-xs text-cyan-300 font-semibold">VERIFIED</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 text-sm">
+                  <span class="text-white/80" data-lang-id="Konsistensi Sikap Ekstrem"
+                    data-lang-en="Extreme Attitude Consistency">Extreme Attitude Consistency</span>
+                  <span class="font-mono text-xs text-cyan-300 font-semibold">CONSTANT</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 text-sm">
+                  <span class="text-white/80" data-lang-id="Integritas & Tanggung Jawab"
+                    data-lang-en="High Integrity & Accountability">High Integrity & Accountability</span>
+                  <span class="font-mono text-xs text-cyan-300 font-semibold">ASSURED</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 text-sm">
+                  <span class="text-white/80" data-lang-id="Sinergi Kolaborasi Kelompok"
+                    data-lang-en="Excellent Group Synergy">Excellent Group Synergy</span>
+                  <span class="font-mono text-xs text-cyan-300 font-semibold">TEAM</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 03: TECH STACK & ENGINEERING CAPABILITIES
+         ==================================================================== -->
+    <section id="stack" class="section-shell">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="editorial-kicker">// 02 CAPABILITIES & STACK</span>
+          <h2 class="section-headline mt-2" data-lang-id="Tumpukan Teknologi & Instrumen Rekayasa"
+            data-lang-en="Core Tech Stack & Engineering Instruments">Core Tech Stack & Engineering Instruments</h2>
+          <p class="section-desc mt-3"
+            data-lang-id="Mempelajari teknologi mutakhir secara mandiri dan mengimplementasikannya ke dalam proyek nyata, mulai dari aplikasi web modern dan enkripsi sisi klien hingga otomasi perdagangan dan visi komputer."
+            data-lang-en="Rapidly absorbing state-of-the-art technologies and deploying them through production-grade projects: modern web applications, client-side cryptography, trading automation, and computer vision.">
+            Rapidly absorbing state-of-the-art technologies and deploying them through production-grade projects: modern web applications, client-side cryptography, trading automation, and computer vision.
+          </p>
+        </div>
+
+        <!-- Filter Tabs for Stack Categories -->
+        <div id="stack-tabs" class="skills-nav"></div>
+
+        <!-- Skill Cards Grid -->
+        <div id="stack-panel" class="skills-grid"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 04: FEATURED PROJECTS (THE CORE PORTFOLIO)
+         ==================================================================== -->
+    <section id="projects" class="section-shell">
+      <div class="section-container">
+        <div class="section-header flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span class="editorial-kicker">// 03 SELECTED WORKS</span>
+            <h2 class="section-headline mt-2" data-lang-id="Koleksi Portofolio Unggulan"
+              data-lang-en="Featured Case Studies & Systems">Featured Case Studies & Systems</h2>
+            <p class="section-desc mt-3"
+              data-lang-id="Lima proyek rekayasa nyata yang memadukan kriptografi client-side, teknologi sipil kemasyarakatan, platform tanggap darurat, AI terapan, dan otomasi serverless."
+              data-lang-en="Five practical engineering projects blending client-side cryptography, civic technology, emergency alerting, applied AI, and serverless architectures.">
+              Five practical engineering projects blending client-side cryptography, civic technology, emergency alerting, applied AI, and serverless architectures.
+            </p>
+          </div>
+          <a href="projects/projects.html" class="btn-secondary self-start md:self-auto"
+            data-lang-id="Buka Arsip Lengkap" data-lang-en="Open Full Archive">
+            <span>Open Full Archive</span>
+            <iconify-icon icon="solar:arrow-right-up-linear" class="text-base"></iconify-icon>
+          </a>
+        </div>
+
+        <!-- Featured Projects List -->
+        <div id="featured-projects-list" class="projects-container"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 05: EXPERIENCE & ATHLETIC DISCIPLINE
+         ==================================================================== -->
+    <section id="athletics" class="section-shell">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="editorial-kicker">// 04 DISCIPLINE & ATHLETICS</span>
+          <h2 class="section-headline mt-2" data-lang-id="Pengalaman Kompetisi & Jejak Disiplin"
+            data-lang-en="Competitive Athletics & Leadership Journey">Competitive Athletics & Leadership Journey</h2>
+          <p class="section-desc mt-3"
+            data-lang-id="Bulu tangkis kompetitif tingkat nasional menempa ketahanan mental, eksekusi di bawah tekanan, dan konsistensi harian yang menjadi modal utama dalam rekayasa teknologi."
+            data-lang-en="National competitive badminton forged mental stamina, precise execution under pressure, and relentless consistency — the same attributes required in high-stakes software engineering.">
+            National competitive badminton forged mental stamina, precise execution under pressure, and relentless consistency — the same attributes required in high-stakes software engineering.
+          </p>
+        </div>
+
+        <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
+          <!-- Timeline Track -->
+          <div id="athletic-timeline" class="timeline-track"></div>
+
+          <!-- Athletic Identity Feature Card -->
+          <div class="space-y-6">
+            <article class="liquid-glass-card p-8">
+              <span class="font-mono text-xs uppercase tracking-widest text-cyan-300 block mb-2"
+                data-lang-id="PROFIL ATLET" data-lang-en="ATHLETE PROFILE">ATHLETE PROFILE</span>
+              <h3 class="text-2xl font-bold text-white mb-4"
+                data-lang-id="Atlet Bulu Tangkis Tingkat Nasional"
+                data-lang-en="National-Tier Badminton Competitor">National-Tier Badminton Competitor</h3>
+              <p class="text-sm text-white/75 leading-relaxed mb-6"
+                data-lang-id="Telah bertanding di panggung sirkuit nasional (SIRNAS), Pekan Olahraga Mahasiswa Nasional (POMNAS), dan terpilih sebagai atlet delegasi pada Seleksi Nasional (Seleknas) PBSI di Pelatnas Cipayung 2022."
+                data-lang-en="Competed across the national badminton circuit (SIRNAS), National University Games (POMNAS), and selected as a regional representative for the PBSI National Selection at the Cipayung National Training Center in 2022.">
+                Competed across the national badminton circuit (SIRNAS), National University Games (POMNAS), and selected as a regional representative for the PBSI National Selection at the Cipayung National Training Center in 2022.
+              </p>
+
+              <div class="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
+                <div class="p-4 rounded-xl bg-white/5 border border-white/5 text-center">
+                  <span class="font-display text-2xl font-extrabold text-cyan-300 block">6+</span>
+                  <span class="text-xs text-white/60 font-mono" data-lang-id="Tahun Kompetisi"
+                    data-lang-en="Years Competing">Years Competing</span>
+                </div>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/5 text-center">
+                  <span class="font-display text-2xl font-extrabold text-cyan-300 block">Gold</span>
+                  <span class="text-xs text-white/60 font-mono" data-lang-id="Juara 1 PORPROV XII"
+                    data-lang-en="PORPROV XII Champion">PORPROV XII Champion</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Quotes Box -->
+            <blockquote class="liquid-glass-card p-6 border-l-4 border-l-cyan-400">
+              <p class="text-sm italic text-white/80 leading-relaxed"
+                data-lang-id="“Kemenangan di lapangan bukan ditentukan saat bertanding, melainkan pada ribuan jam latihan sunyi dalam repetisi dan disiplin tanpa kompromi.”"
+                data-lang-en="“Victory on the court is not decided during the match, but through thousands of solitary hours in relentless repetition and uncompromising discipline.”">
+                “Victory on the court is not decided during the match, but through thousands of solitary hours in relentless repetition and uncompromising discipline.”
+              </p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 06: IMPACT & COMMUNITY LEADERSHIP
+         ==================================================================== -->
+    <section id="impact" class="section-shell">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="editorial-kicker">// 05 CIVIC IMPACT & FIELD LEADERSHIP</span>
+          <h2 class="section-headline mt-2" data-lang-id="Kepemimpinan & Dampak Nyata Masyarakat"
+            data-lang-en="Civic Impact & Community Leadership">Civic Impact & Community Leadership</h2>
+          <p class="section-desc mt-3"
+            data-lang-id="Menerapkan ketegasan rekayasa dan kapabilitas digital untuk memberdayakan masyarakat pedesaan secara nyata."
+            data-lang-en="Translating technical engineering rigor and digital tools into measurable community empowerment and civic progress.">
+            Translating technical engineering rigor and digital tools into measurable community empowerment and civic progress.
+          </p>
+        </div>
+
+        <article class="impact-hero-card">
+          <div class="space-y-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="stack-tag text-cyan-300 border-cyan-400/30">KKN 204</span>
+              <span class="stack-tag">TAMPA BERAKSI</span>
+              <span class="stack-tag font-mono">July – August 2025</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white"
+              data-lang-id="Ketua Pengabdian Masyarakat (KKN) Desa Tampa"
+              data-lang-en="Leader of Community Service Program (KKN) Tampa Village">Leader of Community Service Program (KKN) Tampa Village</h3>
+            <p class="text-sm sm:text-base text-white/70 leading-relaxed"
+              data-lang-id="Memimpin kontingen 15 mahasiswa multi-disiplin di Desa Tampa, Barito Timur. Merancang dan mendeploy portal resmi desa terpadu, sistem pemetaan batas wilayah interaktif berbasis Leaflet, dan digitalisasi katalog UMKM keripik singkong lokal — menghasilkan peningkatan keterlibatan warga hingga lebih dari 75%."
+              data-lang-en="Led a 15-student multidisciplinary contingent in Tampa Village, East Barito. Designed and deployed the village's official digital portal, an interactive Leaflet mapping system, and e-commerce marketing tools for the local cassava chip cooperative — elevating community engagement by over 75%.">
+              Led a 15-student multidisciplinary contingent in Tampa Village, East Barito. Designed and deployed the village's official digital portal, an interactive Leaflet mapping system, and e-commerce marketing tools for the local cassava chip cooperative — elevating community engagement by over 75%.
+            </p>
+            <div class="pt-2 flex items-center gap-4">
+              <a href="https://desatampa.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                <span>desatampa.netlify.app</span>
+                <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
+              </a>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="stat-metric-box">
+              <span class="font-display text-3xl font-extrabold text-cyan-300 block">15</span>
+              <span class="text-xs text-white/60 font-mono" data-lang-id="Mahasiswa Dipimpin"
+                data-lang-en="Students Led">Students Led</span>
+            </div>
+            <div class="stat-metric-box">
+              <span class="font-display text-3xl font-extrabold text-cyan-300 block">75%+</span>
+              <span class="text-xs text-white/60 font-mono" data-lang-id="Kenaikan Interaksi"
+                data-lang-en="Engagement Lift">Engagement Lift</span>
+            </div>
+            <div class="stat-metric-box col-span-2">
+              <span class="font-display text-lg font-bold text-white block mb-1" data-lang-id="Publikasi Akademik Resmi"
+                data-lang-en="Official Academic Report">Official Academic Report</span>
+              <span class="text-xs text-white/60 leading-relaxed block"
+                data-lang-id="“TAMPA BERAKSI: Penguatan Pendidikan, Kesehatan, dan Lingkungan Melalui KKN Universitas Palangka Raya di Desa Tampa”"
+                data-lang-en="“TAMPA BERAKSI: Strengthening Education, Health, and Environment Through UPR Community Service”">
+                “TAMPA BERAKSI: Strengthening Education, Health, and Environment Through UPR Community Service”
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 07: CONTACT / LET'S CONNECT
+         ==================================================================== -->
+    <section id="contact" class="section-shell">
+      <div class="section-container">
+        <div class="section-header text-center max-w-3xl mx-auto">
+          <span class="editorial-kicker justify-center">// 06 CONTACT & COLLABORATION</span>
+          <h2 class="section-headline mt-2" data-lang-id="Membangun, Bertanding, & Berkreasi Bersama"
+            data-lang-en="Build, Compete, and Create with Precision">Build, Compete, and Create with Precision</h2>
+          <p class="section-desc mt-3 mx-auto"
+            data-lang-id="Terbuka untuk diskusi proyek rekayasa perangkat lunak, peluang riset teknologi, atau kolaborasi profesional."
+            data-lang-en="Open for inquiries regarding software engineering roles, impactful applied technology research, or strategic collaborations.">
+            Open for inquiries regarding software engineering roles, impactful applied technology research, or strategic collaborations.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Email Card -->
+          <article class="contact-card" onclick="window.copyEmailToClipboard('aippirwin@gmail.com')">
+            <div class="contact-icon-box">
+              <iconify-icon icon="solar:letter-linear"></iconify-icon>
+            </div>
+            <div>
+              <span class="font-mono text-xs uppercase tracking-widest text-cyan-300 block mb-1">EMAIL DIRECT</span>
+              <h4 class="text-lg font-bold text-white">aippirwin@gmail.com</h4>
+              <p class="text-xs text-white/50 mt-1" data-lang-id="Klik untuk menyalin alamat email"
+                data-lang-en="Click to copy email address">Click to copy email address</p>
+            </div>
+          </article>
+
+          <!-- GitHub Card -->
+          <a href="https://github.com/AIPPproject03" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <div class="contact-icon-box">
+              <iconify-icon icon="mdi:github"></iconify-icon>
+            </div>
+            <div>
+              <span class="font-mono text-xs uppercase tracking-widest text-cyan-300 block mb-1">OPEN SOURCE</span>
+              <h4 class="text-lg font-bold text-white">github.com/AIPPproject03</h4>
+              <p class="text-xs text-white/50 mt-1" data-lang-id="Repositori & kode sumber terbuka"
+                data-lang-en="Repositories & open-source code">Repositories & open-source code</p>
+            </div>
+          </a>
+
+          <!-- LinkedIn Card -->
+          <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <div class="contact-icon-box">
+              <iconify-icon icon="mdi:linkedin"></iconify-icon>
+            </div>
+            <div>
+              <span class="font-mono text-xs uppercase tracking-widest text-cyan-300 block mb-1">PROFESSIONAL</span>
+              <h4 class="text-lg font-bold text-white">LinkedIn Profile</h4>
+              <p class="text-xs text-white/50 mt-1" data-lang-id="Koneksi profesional & karir"
+                data-lang-en="Professional career network">Professional career network</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       SITE FOOTER
+       ==================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="flex items-center gap-3">
+          <img src="img/aipp-icon.png" alt="AIPP Icon" class="w-8 h-8 object-contain" />
+          <span class="font-display font-bold text-sm tracking-tight text-white">AGUSTINUS IRWIN PUTRA PANGESTI</span>
+        </div>
+
+        <div class="flex items-center gap-6 text-xs text-white/60">
+          <a href="#hero" class="hover:text-white transition-colors" data-lang-id="Kembali ke Atas"
+            data-lang-en="Back to Top">Back to Top</a>
+          <a href="projects/projects.html" class="hover:text-white transition-colors" data-lang-id="Semua Proyek"
+            data-lang-en="All Projects">All Projects</a>
+          <a href="https://github.com/AIPPproject03" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="current-year"></span> Agustinus Irwin Putra Pangesti. All rights reserved.</p>
+        <p class="font-mono text-[11px] text-white/40">Engineered with Vanilla JS • Liquid Glass Design System</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================================
+       FLOATING LIQUID GLASS AUDIO HUB & FUTURISTIC ROBOT COMPANION
+       ==================================================================== -->
+  <div class="floating-audio-hub" id="floating-audio-hub">
+    <!-- Sleek Minimalist Futuristic Mascot (SVG) -->
+    <div class="robot-companion" id="robot-companion" aria-label="Futuristic Audio Companion">
+      <svg id="robot-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+        <defs>
+          <linearGradient id="metal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#E5E9EE" />
+            <stop offset="50%" stop-color="#C8CDD3" />
+            <stop offset="100%" stop-color="#858D98" />
+          </linearGradient>
+          <linearGradient id="metal-chassis" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#242B35" />
+            <stop offset="100%" stop-color="#11151B" />
+          </linearGradient>
+          <linearGradient id="visor-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#78C9F5" />
+            <stop offset="100%" stop-color="#A4DFFF" />
+          </linearGradient>
+          <filter id="ice-glow-filter" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" result="glow" />
+            <feComposite in="SourceGraphic" in2="glow" operator="over" />
+          </filter>
+        </defs>
+
+        <!-- Antenna -->
+        <g id="robot-antenna-group" style="transform-origin: 24px 10px;">
+          <line x1="24" y1="10" x2="24" y2="4" stroke="#C8CDD3" stroke-width="1.5" stroke-linecap="round" />
+          <circle id="robot-antenna-node" cx="24" cy="3" r="2" fill="#78C9F5" filter="url(#ice-glow-filter)" />
+        </g>
+
+        <!-- Head Chassis -->
+        <g id="robot-head-group" style="transform-origin: 24px 20px;">
+          <rect x="10" y="10" width="28" height="20" rx="6" fill="url(#metal-grad)" stroke="#C8CDD3" stroke-width="0.75" />
+          <rect x="13" y="13" width="22" height="14" rx="4" fill="url(#metal-chassis)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
+          <rect id="robot-visor-eye" x="16" y="18" width="16" height="4" rx="2" fill="url(#visor-grad)" filter="url(#ice-glow-filter)" />
+        </g>
+
+        <!-- Floating Body Chassis -->
+        <g id="robot-body-group" style="transform-origin: 24px 36px;">
+          <path d="M16 32 H32 L28 40 H20 Z" fill="url(#metal-grad)" stroke="#C8CDD3" stroke-width="0.75" />
+          <ellipse id="robot-thruster" cx="24" cy="41" rx="4" ry="1.5" fill="#78C9F5" filter="url(#ice-glow-filter)" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Floating Audio Capsule Controller -->
+    <button type="button" class="floating-audio-controller" id="floating-audio-toggle" aria-label="Toggle Soundtrack Music">
+      <iconify-icon icon="solar:play-bold" class="audio-play-icon" id="audio-toggle-icon"></iconify-icon>
+      <div class="audio-meta-text">
+        <span class="audio-label">AIPP OST</span>
+        <span class="audio-status" id="audio-status-label">AUDIO OST</span>
+      </div>
+
+      <!-- Real-Time 16-Band Audio Frequency Spectrum -->
+      <div class="audio-spectrum-canvas" aria-hidden="true">
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+        <span class="spectrum-bar"></span>
+      </div>
+    </button>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" loop preload="none">
+      <source src="img/web-ost.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <!-- ====================================================================
+       PROJECT CASE STUDY MODAL DIALOG
+       ==================================================================== -->
+  <div class="project-modal-backdrop" id="project-modal-backdrop" data-lenis-prevent="true" onclick="window.closeProjectModal()">
+    <div class="project-modal-dialog" data-lenis-prevent="true" onclick="event.stopPropagation()">
+      <div class="project-modal-header">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span class="font-mono text-xs uppercase tracking-widest text-cyan-300" id="project-modal-badge">CASE STUDY</span>
+        </div>
+        <button type="button" class="project-modal-close" onclick="window.closeProjectModal()" aria-label="Close Case Study">
+          <iconify-icon icon="solar:close-circle-linear"></iconify-icon>
         </button>
-
-        <!-- Audio Element -->
-        <audio id="bg-music" loop preload="none">
-            <source src="img/web-ost.mp3" type="audio/mpeg">
-        </audio>
+      </div>
+      <div class="project-modal-body" id="project-modal-body" data-lenis-prevent="true">
+        <div id="project-modal-content"></div>
+      </div>
     </div>
+  </div>
 
-    <!-- Full-Screen Projects Portal Overlay -->
-    <div id="portal-overlay"
-        class="fixed inset-0 z-[9999] bg-slateInk opacity-0 pointer-events-none transition-opacity duration-500 flex flex-col">
-        <!-- Retro Loading Screen -->
-        <div id="portal-loader"
-            class="absolute inset-0 bg-slateInk z-50 flex flex-col items-center justify-center font-pixel text-cyan-300">
-            <div class="space-y-4 text-center">
-                <iconify-icon icon="mdi:loading" class="text-4xl animate-spin text-cyan-400"></iconify-icon>
-                <p class="text-xs uppercase tracking-widest animate-pulse"
-                    data-lang-id="MEMULAI DEKONSENTRASI PORTAL..." data-lang-en="INITIALIZING PORTAL LINK...">
-                    INITIALIZING PORTAL LINK...</p>
-            </div>
-        </div>
+  <!-- ====================================================================
+       IMAGE LIGHTBOX
+       ==================================================================== -->
+  <div class="lightbox-backdrop" id="lightbox-backdrop" data-lenis-prevent="true" onclick="window.closeLightbox()">
+    <img src="" alt="Enlarged Visual" class="lightbox-image" id="lightbox-img" onclick="event.stopPropagation()" />
+  </div>
 
-        <!-- Portal IFrame -->
-        <iframe id="portal-iframe" src="" class="w-full h-full border-none bg-transparent"></iframe>
-    </div>
+  <!-- Copy Toast Notification -->
+  <div id="copy-toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-charcoal border border-cyan-400/40 text-xs font-mono text-cyan-300 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none">
+    Email copied to clipboard!
+  </div>
 
-    <script type="module" src="script.js"></script>
+  <!-- Scripts -->
+  <script src="projects/projects-data.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
